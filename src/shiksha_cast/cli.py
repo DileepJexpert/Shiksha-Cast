@@ -49,8 +49,16 @@ def speak(
     root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
     force: bool = typer.Option(False, "--force", help="Regenerate all audio, ignoring cache"),
 ) -> None:
-    """Generate narration audio from script (Milestone 2)."""
-    raise typer.Exit("speak stage is not yet implemented (Milestone 2)")
+    """Generate narration audio from script."""
+    from shiksha_cast.pipeline import run_speak
+
+    project_root = root or _find_project_root()
+    result = run_speak(chapter, project_root, force=force)
+
+    rprint(f"[bold]{result.chapter}[/bold]: {len(result.audio_paths)} audio clips")
+    rprint(f"  synthesized: {result.synthesized_count}  cached: {result.cached_count}")
+    for p, d in zip(result.audio_paths, result.durations):
+        rprint(f"  [dim]{p}[/dim]  ({d:.1f}s)")
 
 
 @app.command()
@@ -58,8 +66,28 @@ def captions(
     chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID, e.g. ch03"),
     root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
 ) -> None:
-    """Generate SRT captions from script + audio durations (Milestone 4)."""
-    raise typer.Exit("captions stage is not yet implemented (Milestone 4)")
+    """Generate SRT captions from script + audio durations."""
+    from shiksha_cast.config import load_channel_config, load_script, resolve_chapter
+    from shiksha_cast.captions import write_captions
+    from shiksha_cast.pipeline import run_speak
+
+    project_root = root or _find_project_root()
+    cfg = load_channel_config(project_root)
+    chapter_dir, _ = resolve_chapter(project_root, chapter)
+    script = load_script(chapter_dir)
+
+    speak_result = run_speak(chapter, project_root)
+
+    srt_path = write_captions(
+        chapter=chapter,
+        project_root=project_root,
+        narrations=[s.narration for s in script.slides],
+        durations=speak_result.durations,
+        pad_before_s=cfg.timing.pad_before_ms / 1000,
+        pad_after_s=cfg.timing.pad_after_ms / 1000,
+        min_slide_s=cfg.timing.min_slide_s,
+    )
+    rprint(f"[bold]Captions written:[/bold] {srt_path}")
 
 
 @app.command()
@@ -68,8 +96,21 @@ def build(
     root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
     force: bool = typer.Option(False, "--force", help="Rebuild everything, ignoring cache"),
 ) -> None:
-    """Full pipeline: render → speak → assemble → caption → package."""
-    raise typer.Exit("Full build pipeline is not yet implemented")
+    """Full pipeline: render -> speak -> assemble -> caption -> MP4."""
+    from shiksha_cast.pipeline import run_build
+
+    project_root = root or _find_project_root()
+    rprint("[bold]Starting full build...[/bold]")
+
+    result = run_build(chapter, project_root, force=force)
+
+    rprint()
+    rprint(f"[bold green]Build complete![/bold green]")
+    rprint(f"  Slides: {result.render.rendered_count} rendered, {result.render.cached_count} cached")
+    rprint(f"  Audio:  {result.speak.synthesized_count} synthesized, {result.speak.cached_count} cached")
+    rprint(f"  Video:  {result.assemble.video_path}")
+    rprint(f"  SRT:    {result.srt_path}")
+    rprint(f"  Duration: {result.assemble.total_duration:.1f}s")
 
 
 @app.command()

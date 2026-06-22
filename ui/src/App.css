@@ -1,0 +1,393 @@
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  background: #f5f6f8;
+  color: #1a1a2e;
+  line-height: 1.5;
+}
+
+/* ---- Layout ---- */
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.main {
+  margin-top: 1.5rem;
+}
+
+/* ---- Header ---- */
+.header {
+  text-align: center;
+  padding: 2rem 0 1rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: #16213e;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* ---- Upload Section ---- */
+.upload-section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.upload-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background: #fafafa;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.tab-btn.active {
+  border-color: #4361ee;
+  background: #eef1ff;
+  color: #4361ee;
+}
+
+.tab-btn:hover:not(.active):not(:disabled) {
+  border-color: #999;
+}
+
+.chapter-input {
+  margin-bottom: 1rem;
+}
+
+.chapter-input label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #444;
+}
+
+.chapter-input input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.drop-zone {
+  border: 2px dashed #bbb;
+  border-radius: 8px;
+  padding: 3rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fafafa;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+  border-color: #4361ee;
+  background: #f0f3ff;
+}
+
+.drop-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.drop-hint {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.4rem;
+}
+
+.error {
+  color: #d32f2f;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ---- Chapter Bar ---- */
+.chapter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+}
+
+.chapter-label {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.reset-btn {
+  background: none;
+  border: 1px solid #d32f2f;
+  color: #d32f2f;
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.reset-btn:hover {
+  background: #fdecea;
+}
+
+/* ---- Slide Editor ---- */
+.slide-editor {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+}
+
+.slide-editor h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.voice-global {
+  margin-bottom: 1.25rem;
+}
+
+.voice-global label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #444;
+}
+
+.voice-global input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.slide-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.slide-card {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: #fcfcfc;
+}
+
+.slide-thumb-container {
+  flex-shrink: 0;
+  width: 200px;
+  position: relative;
+}
+
+.slide-number {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.slide-thumb {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  display: block;
+}
+
+.slide-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-fields label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.slide-fields textarea {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.voice-override {
+  margin-top: 0.5rem;
+}
+
+.voice-override summary {
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.voice-override input {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+/* ---- Build Section ---- */
+.build-section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.build-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.build-btn {
+  background: #4361ee;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.build-btn:hover:not(:disabled) {
+  background: #3a56d4;
+}
+
+.build-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.build-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.build-message.saving,
+.build-message.building,
+.build-message.polling {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.build-message.done {
+  background: #d4edda;
+  color: #155724;
+}
+
+.build-message.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.download-area {
+  margin-top: 1rem;
+}
+
+.download-btn {
+  display: inline-block;
+  background: #28a745;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.download-btn:hover {
+  background: #218838;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .slide-card {
+    flex-direction: column;
+  }
+
+  .slide-thumb-container {
+    width: 100%;
+    max-width: 300px;
+  }
+}
