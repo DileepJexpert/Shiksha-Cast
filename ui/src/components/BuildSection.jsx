@@ -2,9 +2,10 @@ import { useState, useRef, useCallback } from 'react';
 import { saveScript, triggerBuild, getStatus, downloadUrl } from '../api.js';
 
 export default function BuildSection({ chapter, scriptData }) {
-  const [status, setStatus] = useState('idle'); // idle | saving | building | polling | done | error
+  const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const [videoUrl, setVideoUrl] = useState(null);
+  const [aiMode, setAiMode] = useState(false);
   const pollingRef = useRef(null);
 
   const stopPolling = useCallback(() => {
@@ -14,20 +15,24 @@ export default function BuildSection({ chapter, scriptData }) {
     }
   }, []);
 
+  const hasVisualPrompts = scriptData?.some((s) => s.visual_prompt);
+
   async function handleBuild() {
     stopPolling();
     setVideoUrl(null);
 
     try {
-      // 1. Save script
       setStatus('saving');
       setMessage('Saving narration script...');
       await saveScript(chapter, scriptData);
 
-      // 2. Trigger build
       setStatus('building');
-      setMessage('Triggering build pipeline...');
-      const buildRes = await triggerBuild(chapter);
+      setMessage(
+        aiMode
+          ? 'Generating AI images + narration + video... this may take several minutes.'
+          : 'Triggering build pipeline...'
+      );
+      const buildRes = await triggerBuild(chapter, { aiMode });
 
       if (buildRes.video_url) {
         setStatus('done');
@@ -36,9 +41,12 @@ export default function BuildSection({ chapter, scriptData }) {
         return;
       }
 
-      // 3. Poll for status
       setStatus('polling');
-      setMessage('Building video... this may take a few minutes.');
+      setMessage(
+        aiMode
+          ? 'AI build in progress... generating images and assembling video.'
+          : 'Building video... this may take a few minutes.'
+      );
 
       pollingRef.current = setInterval(async () => {
         try {
@@ -53,7 +61,11 @@ export default function BuildSection({ chapter, scriptData }) {
             setStatus('error');
             setMessage(`Build failed: ${statusRes.error || 'Unknown error'}`);
           } else {
-            setMessage(`Building... (${statusRes.status || 'in progress'})`);
+            setMessage(
+              aiMode
+                ? `AI build in progress... (${statusRes.status || 'generating'})`
+                : `Building... (${statusRes.status || 'in progress'})`
+            );
           }
         } catch (err) {
           stopPolling();
@@ -73,8 +85,32 @@ export default function BuildSection({ chapter, scriptData }) {
     <section className="build-section">
       <h2>Build Video</h2>
 
+      <div className="build-mode-toggle">
+        <label className="toggle-label">
+          <input
+            type="checkbox"
+            checked={aiMode}
+            onChange={(e) => setAiMode(e.target.checked)}
+            disabled={busy}
+          />
+          <span className="toggle-text">
+            AI Visual Mode
+          </span>
+        </label>
+        <span className="toggle-hint">
+          {aiMode
+            ? 'Uses AI to generate contextual images from your visual prompts + Ken Burns animation'
+            : 'Uses uploaded PDF/PNG slides as-is'}
+        </span>
+        {aiMode && !hasVisualPrompts && (
+          <span className="toggle-warning">
+            Add visual prompts to your slides above for AI image generation
+          </span>
+        )}
+      </div>
+
       <button className="build-btn" onClick={handleBuild} disabled={busy || !chapter}>
-        {busy ? 'Building...' : 'Build Video'}
+        {busy ? 'Building...' : aiMode ? 'AI Build Video' : 'Build Video'}
       </button>
 
       {message && (

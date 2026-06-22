@@ -31,11 +31,19 @@ class BrandingConfig(BaseModel):
     mascot_overlay: Optional[str] = None
 
 
+class ImageGenConfig(BaseModel):
+    provider: str = "sdxl"
+    model: str = "stabilityai/sdxl-turbo"
+    num_steps: int = 4
+    kenburns: bool = True
+
+
 class ChannelConfig(BaseModel):
     channel: str = "Katixo Shiksha"
     resolution: tuple[int, int] = (1920, 1080)
     fps: int = 30
     voice: VoiceConfig = Field(default_factory=VoiceConfig)
+    imagegen: ImageGenConfig = Field(default_factory=ImageGenConfig)
     timing: TimingConfig = Field(default_factory=TimingConfig)
     music: MusicConfig = Field(default_factory=MusicConfig)
     branding: BrandingConfig = Field(default_factory=BrandingConfig)
@@ -44,6 +52,7 @@ class ChannelConfig(BaseModel):
 class SlideScript(BaseModel):
     n: int
     narration: str = ""
+    visual_prompt: Optional[str] = None
     voice_description: Optional[str] = None
     min_slide_s: Optional[float] = None
 

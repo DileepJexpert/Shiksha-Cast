@@ -118,6 +118,39 @@ def build(
     rprint(f"  Duration: {result.assemble.total_duration:.1f}s")
 
 
+@app.command(name="ai-build")
+def ai_build(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID, e.g. ch03"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+    force: bool = typer.Option(False, "--force", help="Rebuild everything, ignoring cache"),
+) -> None:
+    """AI pipeline: generate images from visual prompts -> speak -> Ken Burns -> MP4."""
+    from shiksha_cast.assemble import FFmpegNotFoundError
+    from shiksha_cast.pipeline import run_ai_build
+
+    project_root = root or _find_project_root()
+    rprint("[bold]Starting AI build...[/bold]")
+    rprint("[dim]This generates contextual images from your visual_prompt fields.[/dim]")
+
+    try:
+        result = run_ai_build(chapter, project_root, force=force)
+    except FFmpegNotFoundError as e:
+        rprint(f"[bold red]Error:[/bold red] {e}")
+        raise typer.Exit(code=1)
+    except ImportError as e:
+        rprint(f"[bold red]Error:[/bold red] {e}")
+        rprint("[dim]Install with: pip install -e \".[imagegen]\"[/dim]")
+        raise typer.Exit(code=1)
+
+    rprint()
+    rprint(f"[bold green]AI Build complete![/bold green]")
+    rprint(f"  Images: {result.visuals.generated_count} generated, {result.visuals.cached_count} cached")
+    rprint(f"  Audio:  {result.speak.synthesized_count} synthesized, {result.speak.cached_count} cached")
+    rprint(f"  Video:  {result.assemble.video_path}")
+    rprint(f"  SRT:    {result.srt_path}")
+    rprint(f"  Duration: {result.assemble.total_duration:.1f}s")
+
+
 @app.command()
 def meta(
     chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID, e.g. ch03"),

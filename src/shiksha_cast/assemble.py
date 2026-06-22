@@ -72,6 +72,48 @@ def build_slide_clip(
     return clip_dur
 
 
+def build_kenburns_clip(
+    image_png: Path,
+    audio_wav: Path,
+    output_mp4: Path,
+    duration: float,
+    effect_index: int = 0,
+    pad_before_s: float = 0.3,
+    pad_after_s: float = 0.7,
+    min_slide_s: float = 4.0,
+    fps: int = 30,
+    width: int = 1920,
+    height: int = 1080,
+) -> float:
+    """Create a video clip with Ken Burns zoom/pan animation on the image."""
+    clip_dur = max(min_slide_s, pad_before_s + duration + pad_after_s)
+    frames = int(clip_dur * fps)
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+
+    effects = [
+        f"zoompan=z='min(zoom+0.0008,1.15)':d={frames}:s={width}x{height}:fps={fps}",
+        f"zoompan=z='if(lte(zoom,1.0),1.15,max(1.001,zoom-0.0008))':d={frames}:s={width}x{height}:fps={fps}",
+        f"zoompan=z='min(zoom+0.0008,1.15)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames}:s={width}x{height}:fps={fps}",
+        f"zoompan=z='1.15':x='if(lte(on,1),0,x+1)':d={frames}:s={width}x{height}:fps={fps}",
+    ]
+    vf = effects[effect_index % len(effects)]
+
+    _run_ffmpeg([
+        "-i", str(image_png),
+        "-i", str(audio_wav),
+        "-vf", vf,
+        "-c:v", "libx264",
+        "-c:a", "aac",
+        "-b:a", "192k",
+        "-pix_fmt", "yuv420p",
+        "-t", f"{clip_dur:.3f}",
+        "-af", f"adelay={int(pad_before_s * 1000)}|{int(pad_before_s * 1000)},apad",
+        "-shortest",
+        str(output_mp4),
+    ])
+    return clip_dur
+
+
 def concat_clips(clip_paths: list[Path], output_mp4: Path) -> None:
     """Concatenate per-slide clips into a single video."""
     output_mp4.parent.mkdir(parents=True, exist_ok=True)

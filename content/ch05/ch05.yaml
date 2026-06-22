@@ -2,11 +2,16 @@ chapter: "Ch 5 — Fun with Shapes"
 slides:
   - n: 1
     narration: "नमस्ते बच्चों! आज हम सीखेंगे shapes के बारे में। Chapter five — Fun with Shapes! Aakritiyon ka maza! आज हम देखेंगे 2D aur 3D shapes, symmetry aur tiling। चलो शुरू करते हैं!"
+    visual_prompt: "A cheerful colorful classroom with a friendly female teacher at a whiteboard, cartoon educational style, geometric shapes decorating the walls"
   - n: 2
     narration: "आज हम four चीज़ें सीखेंगे। पहला — 2D shapes, जैसे triangle, square, rectangle। इनके sides aur corners गिनेंगे। दूसरा — 3D shapes जैसे cube, sphere, cylinder aur cone पहचानेंगे। तीसरा — symmetry, यानी mirror line समझेंगे। और चौथा — tiling, यानी shapes कैसे fit होते हैं!"
+    visual_prompt: "Four colorful icons on a whiteboard: 2D shapes, 3D shapes, a mirror/symmetry line, and a tiling pattern, educational infographic style"
   - n: 3
     narration: "बच्चों, shapes हर जगह हैं! अपने आस-पास देखो। Ghadi — वो circle है। Khidki — वो rectangle है। Toffee का dabba — वो cube है। Ball — वो sphere है। हर चीज़ की एक shape होती है। आज इन्हें पहचानना सीखेंगे!"
+    visual_prompt: "Everyday objects with shapes highlighted: a round clock (circle), rectangular window, cube-shaped box, spherical ball, colorful cartoon illustration for kids"
   - n: 4
     narration: "अब बात करते हैं 2D shapes की। 2D shapes flat होती हैं। Triangle के three sides aur three corners होते हैं। Square के four equal sides aur four corners। Rectangle के भी four sides, but दो लम्बी aur दो छोटी। Aur circle? Zero sides, zero corners — बस एक गोल line! Side मतलब seedhi line, aur corner मतलब जहाँ दो sides मिलती हैं।"
+    visual_prompt: "Colorful 2D shapes on a chalkboard: triangle, square, rectangle and circle, each labeled with sides and corners count, educational diagram for children"
   - n: 5
     narration: "अब आते हैं 3D shapes पर। ये thode mote होते हैं, solid! Cube — जैसे dice, छः faces होते हैं। Sphere — जैसे ball, गोल गोल। Cylinder — जैसे glass, ऊपर नीचे circle। Aur cone — जैसे ice-cream, नीचे circle ऊपर pointed! 3D shapes को हम pakad सकते हैं — इनकी length, width aur height होती है!"
+    visual_prompt: "3D shapes floating in space: a colorful cube/dice, shiny sphere/ball, cylinder/glass, and cone/ice-cream, with labels, 3D educational illustration"

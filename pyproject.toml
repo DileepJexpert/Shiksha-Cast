@@ -24,6 +24,12 @@ tts = [
     "torch>=2.0",
     "soundfile>=0.12",
 ]
+imagegen = [
+    "diffusers>=0.28",
+    "transformers>=4.40",
+    "torch>=2.0",
+    "accelerate>=0.25",
+]
 server = [
     "fastapi>=0.100",
     "uvicorn>=0.20",

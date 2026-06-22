@@ -129,12 +129,17 @@ async def get_slide(chapter: str, filename: str):
 @app.put("/api/chapter/{chapter}/script")
 async def save_script(chapter: str, body: dict):
     chapter_dir = _ensure_chapter_dir(chapter)
+    slides = []
+    for s in body.get("slides", []):
+        slide = {"n": s["n"], "narration": s.get("narration", "")}
+        if s.get("visual_prompt"):
+            slide["visual_prompt"] = s["visual_prompt"]
+        if s.get("voice_description"):
+            slide["voice_description"] = s["voice_description"]
+        slides.append(slide)
     script_data = {
         "chapter": body.get("title", chapter),
-        "slides": [
-            {"n": s["n"], "narration": s.get("narration", "")}
-            for s in body.get("slides", [])
-        ],
+        "slides": slides,
     }
     script_path = chapter_dir / f"{chapter}.yaml"
     with open(script_path, "w", encoding="utf-8") as f:
@@ -143,16 +148,21 @@ async def save_script(chapter: str, body: dict):
 
 
 @app.post("/api/chapter/{chapter}/build")
-async def start_build(chapter: str):
+async def start_build(chapter: str, body: dict | None = None):
     if chapter in _build_jobs and _build_jobs[chapter].get("status") == "running":
         return {"status": "running", "message": "Build already in progress"}
 
+    use_ai = (body or {}).get("ai_mode", False)
     _build_jobs[chapter] = {"status": "running", "error": None}
 
     def _do_build():
         try:
-            from shiksha_cast.pipeline import run_build
-            result = run_build(chapter, PROJECT_ROOT)
+            if use_ai:
+                from shiksha_cast.pipeline import run_ai_build
+                result = run_ai_build(chapter, PROJECT_ROOT)
+            else:
+                from shiksha_cast.pipeline import run_build
+                result = run_build(chapter, PROJECT_ROOT)
             _build_jobs[chapter] = {
                 "status": "done",
                 "video_url": f"/api/chapter/{chapter}/download",

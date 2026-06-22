@@ -28,8 +28,12 @@ export async function saveScript(chapter, slides) {
   return res.json();
 }
 
-export async function triggerBuild(chapter) {
-  const res = await fetch(`${BASE}/api/chapter/${chapter}/build`, { method: 'POST' });
+export async function triggerBuild(chapter, { aiMode = false } = {}) {
+  const res = await fetch(`${BASE}/api/chapter/${chapter}/build`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ai_mode: aiMode }),
+  });
   if (!res.ok) throw new Error(`Build trigger failed: ${res.status}`);
   return res.json();
 }

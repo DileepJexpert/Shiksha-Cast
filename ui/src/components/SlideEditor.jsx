@@ -4,6 +4,7 @@ import { slideImageUrl } from '../api.js';
 export default function SlideEditor({ chapter, slides, onScriptChange }) {
   const [voiceDesc, setVoiceDesc] = useState('');
   const [perSlideVoice, setPerSlideVoice] = useState({});
+  const [visualPrompts, setVisualPrompts] = useState({});
   const [narrations, setNarrations] = useState(() =>
     Object.fromEntries(slides.map((s) => [s.n, '']))
   );
@@ -11,25 +12,32 @@ export default function SlideEditor({ chapter, slides, onScriptChange }) {
   function updateNarration(n, text) {
     const updated = { ...narrations, [n]: text };
     setNarrations(updated);
-    emitChange(updated, voiceDesc, perSlideVoice);
+    emitChange(updated, voiceDesc, perSlideVoice, visualPrompts);
   }
 
   function updateVoiceDesc(val) {
     setVoiceDesc(val);
-    emitChange(narrations, val, perSlideVoice);
+    emitChange(narrations, val, perSlideVoice, visualPrompts);
   }
 
   function updatePerSlideVoice(n, val) {
     const updated = { ...perSlideVoice, [n]: val };
     setPerSlideVoice(updated);
-    emitChange(narrations, voiceDesc, updated);
+    emitChange(narrations, voiceDesc, updated, visualPrompts);
   }
 
-  function emitChange(narr, voice, perVoice) {
+  function updateVisualPrompt(n, val) {
+    const updated = { ...visualPrompts, [n]: val };
+    setVisualPrompts(updated);
+    emitChange(narrations, voiceDesc, perSlideVoice, updated);
+  }
+
+  function emitChange(narr, voice, perVoice, visuals) {
     const slideData = slides.map((s) => ({
       n: s.n,
       narration: narr[s.n] || '',
       voice_description: perVoice[s.n] || voice || undefined,
+      visual_prompt: visuals[s.n] || undefined,
     }));
     onScriptChange(slideData);
   }
@@ -68,6 +76,16 @@ export default function SlideEditor({ chapter, slides, onScriptChange }) {
                 value={narrations[slide.n] || ''}
                 onChange={(e) => updateNarration(slide.n, e.target.value)}
               />
+              <details className="visual-prompt-section">
+                <summary>AI Visual Prompt (optional)</summary>
+                <textarea
+                  rows={2}
+                  className="visual-prompt-input"
+                  placeholder="Describe the image to generate, e.g. 'Colorful 2D shapes - triangles, squares, circles on a chalkboard'"
+                  value={visualPrompts[slide.n] || ''}
+                  onChange={(e) => updateVisualPrompt(slide.n, e.target.value)}
+                />
+              </details>
               <details className="voice-override">
                 <summary>Voice override</summary>
                 <input
