@@ -56,7 +56,7 @@ def load_channel_config(project_root: Path) -> ChannelConfig:
     path = project_root / "config" / "channel.yaml"
     if not path.exists():
         return ChannelConfig()
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
     return ChannelConfig.model_validate(data)
 
@@ -68,7 +68,7 @@ def load_script(chapter_dir: Path) -> ScriptFile:
     if len(yamls) > 1:
         yamls = [y for y in yamls if y.stem == chapter_dir.name]
     script_path = yamls[0]
-    with open(script_path) as f:
+    with open(script_path, encoding="utf-8") as f:
         data = yaml.safe_load(f)
     return ScriptFile.model_validate(data)
 
