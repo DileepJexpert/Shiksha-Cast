@@ -24,10 +24,10 @@ class SDXLImageProvider(ImageProvider):
             return
 
         import torch
-        from diffusers import AutoPipelineForText2Image
+        from diffusers import DiffusionPipeline
 
         logger.info("Loading image model %s ...", self._model_id)
-        self._pipe = AutoPipelineForText2Image.from_pretrained(
+        self._pipe = DiffusionPipeline.from_pretrained(
             self._model_id,
             torch_dtype=torch.float16,
             variant="fp16",
