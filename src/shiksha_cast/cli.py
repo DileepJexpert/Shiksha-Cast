@@ -97,12 +97,17 @@ def build(
     force: bool = typer.Option(False, "--force", help="Rebuild everything, ignoring cache"),
 ) -> None:
     """Full pipeline: render -> speak -> assemble -> caption -> MP4."""
+    from shiksha_cast.assemble import FFmpegNotFoundError
     from shiksha_cast.pipeline import run_build
 
     project_root = root or _find_project_root()
     rprint("[bold]Starting full build...[/bold]")
 
-    result = run_build(chapter, project_root, force=force)
+    try:
+        result = run_build(chapter, project_root, force=force)
+    except FFmpegNotFoundError as e:
+        rprint(f"[bold red]Error:[/bold red] {e}")
+        raise typer.Exit(code=1)
 
     rprint()
     rprint(f"[bold green]Build complete![/bold green]")

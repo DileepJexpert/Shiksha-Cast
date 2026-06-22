@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import shutil
 import subprocess
 import tempfile
 from dataclasses import dataclass
@@ -13,9 +14,30 @@ class AssembleResult:
     total_duration: float
 
 
+class FFmpegNotFoundError(RuntimeError):
+    """Raised when the ffmpeg binary cannot be found on PATH."""
+
+
+def _ensure_ffmpeg() -> None:
+    if shutil.which("ffmpeg") is None:
+        raise FFmpegNotFoundError(
+            "FFmpeg was not found on your PATH. Install it and try again:\n"
+            "  Windows: winget install --id Gyan.FFmpeg  (then restart the terminal)\n"
+            "  macOS:   brew install ffmpeg\n"
+            "  Linux:   sudo apt install ffmpeg\n"
+            "Verify with: ffmpeg -version"
+        )
+
+
 def _run_ffmpeg(args: list[str]) -> None:
+    _ensure_ffmpeg()
     cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error"] + args
-    subprocess.run(cmd, check=True, capture_output=True, text=True)
+    try:
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(
+            f"FFmpeg failed (exit {e.returncode}):\n{e.stderr}"
+        ) from e
 
 
 def build_slide_clip(
