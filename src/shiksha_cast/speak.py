@@ -21,6 +21,7 @@ def _get_provider(cfg: ChannelConfig) -> TTSProvider:
     name = cfg.voice.provider
     if name == "parler":
         try:
+            import torch  # noqa: F401
             from shiksha_cast.tts.parler import ParlerTTSProvider
             return ParlerTTSProvider()
         except ImportError:
