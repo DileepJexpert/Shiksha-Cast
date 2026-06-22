@@ -284,6 +284,128 @@ body {
   font-size: 0.8rem;
 }
 
+/* ---- Model Selector ---- */
+.model-selector {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+}
+
+.model-selector h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.model-subtitle {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.model-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.model-tab {
+  padding: 0.4rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background: #fafafa;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.model-tab.active {
+  border-color: #4361ee;
+  background: #eef1ff;
+  color: #4361ee;
+}
+
+.model-tab:hover:not(.active) {
+  border-color: #999;
+}
+
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.75rem;
+}
+
+.model-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fcfcfc;
+}
+
+.model-card:hover {
+  border-color: #4361ee;
+  background: #f8f9ff;
+}
+
+.model-card.selected {
+  border-color: #28a745;
+  background: #f0faf3;
+}
+
+.model-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.model-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.model-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.active-badge {
+  background: #d4edda;
+  color: #155724;
+}
+
+.gated-badge {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.model-desc {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.model-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.model-size {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 600;
+}
+
 /* ---- Build Section ---- */
 .build-section {
   background: #fff;

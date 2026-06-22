@@ -13,6 +13,41 @@ from fastapi.staticfiles import StaticFiles
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
+AVAILABLE_MODELS = [
+    {
+        "id": "ai4bharat/indic-parler-tts",
+        "name": "Indic Parler-TTS",
+        "category": "Hindi",
+        "description": "Best quality for Hindi & Hinglish narration. Requires free HuggingFace approval.",
+        "size": "3.7 GB",
+        "gated": True,
+    },
+    {
+        "id": "parler-tts/parler-tts-mini-v1",
+        "name": "Parler-TTS Mini v1",
+        "category": "Multilingual",
+        "description": "Multilingual model, no approval needed. Good for English + mixed content.",
+        "size": "2.2 GB",
+        "gated": False,
+    },
+    {
+        "id": "parler-tts/parler-tts-large-v1",
+        "name": "Parler-TTS Large v1",
+        "category": "Multilingual",
+        "description": "Higher quality multilingual model. No approval needed, larger download.",
+        "size": "4.6 GB",
+        "gated": False,
+    },
+    {
+        "id": "stub",
+        "name": "Test Tone (No GPU)",
+        "category": "Test",
+        "description": "Silent placeholder with a short blip. No download needed, for testing pipeline only.",
+        "size": "0 MB",
+        "gated": False,
+    },
+]
+
 app = FastAPI(title="Shiksha-Cast API")
 
 app.add_middleware(
@@ -157,3 +192,43 @@ async def download_srt(chapter: str):
     if not path.exists():
         return JSONResponse({"error": "SRT not found."}, status_code=404)
     return FileResponse(path, media_type="text/plain", filename=f"{chapter}.srt")
+
+
+@app.get("/api/models")
+async def list_models():
+    from shiksha_cast.config import load_channel_config
+
+    cfg = load_channel_config(PROJECT_ROOT)
+    current_model = cfg.voice.model
+    if cfg.voice.provider == "stub":
+        current_model = "stub"
+    return {"models": AVAILABLE_MODELS, "current": current_model}
+
+
+@app.put("/api/config/voice-model")
+async def set_voice_model(body: dict):
+    model_id = body.get("model")
+    if not model_id:
+        return JSONResponse({"error": "model is required"}, status_code=400)
+
+    valid_ids = {m["id"] for m in AVAILABLE_MODELS}
+    if model_id not in valid_ids:
+        return JSONResponse({"error": f"Unknown model: {model_id}"}, status_code=400)
+
+    config_path = PROJECT_ROOT / "config" / "channel.yaml"
+    with open(config_path, encoding="utf-8") as f:
+        cfg_data = yaml.safe_load(f) or {}
+
+    if "voice" not in cfg_data:
+        cfg_data["voice"] = {}
+
+    if model_id == "stub":
+        cfg_data["voice"]["provider"] = "stub"
+    else:
+        cfg_data["voice"]["provider"] = "parler"
+        cfg_data["voice"]["model"] = model_id
+
+    with open(config_path, "w", encoding="utf-8") as f:
+        yaml.dump(cfg_data, f, allow_unicode=True, default_flow_style=False)
+
+    return {"status": "updated", "model": model_id}

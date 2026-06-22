@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import Header from './components/Header.jsx';
 import UploadSection from './components/UploadSection.jsx';
 import SlideEditor from './components/SlideEditor.jsx';
+import ModelSelector from './components/ModelSelector.jsx';
 import BuildSection from './components/BuildSection.jsx';
 
 export default function App() {
@@ -57,6 +58,8 @@ export default function App() {
               slides={slides}
               onScriptChange={handleScriptChange}
             />
+
+            <ModelSelector />
 
             <BuildSection chapter={chapter} scriptData={scriptRef.current} />
           </>

@@ -47,3 +47,19 @@ export function downloadUrl(chapter) {
 export function slideImageUrl(chapter, filename) {
   return `${BASE}/api/slides/${chapter}/${filename}`;
 }
+
+export async function getModels() {
+  const res = await fetch(`${BASE}/api/models`);
+  if (!res.ok) throw new Error(`Failed to load models: ${res.status}`);
+  return res.json();
+}
+
+export async function setVoiceModel(model) {
+  const res = await fetch(`${BASE}/api/config/voice-model`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model }),
+  });
+  if (!res.ok) throw new Error(`Failed to set model: ${res.status}`);
+  return res.json();
+}
