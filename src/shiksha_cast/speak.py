@@ -20,13 +20,25 @@ class SpeakResult:
 def _get_provider(cfg: ChannelConfig) -> TTSProvider:
     name = cfg.voice.provider
     if name == "parler":
-        try:
-            import torch  # noqa: F401
-            from shiksha_cast.tts.parler import ParlerTTSProvider
-            return ParlerTTSProvider()
-        except ImportError:
+        import importlib.util
+
+        # Parler needs all of these; if any is missing, fall back to the stub
+        # tone provider so the pipeline still produces a (silent-ish) video.
+        required = ("torch", "soundfile", "parler_tts", "transformers")
+        missing = [m for m in required if importlib.util.find_spec(m) is None]
+        if missing:
+            import logging
+
+            logging.getLogger(__name__).warning(
+                "Parler TTS unavailable (missing: %s). Falling back to stub tone. "
+                "Install real voice with: pip install -e \".[tts]\"",
+                ", ".join(missing),
+            )
             from shiksha_cast.tts.stub import StubTTSProvider
             return StubTTSProvider()
+
+        from shiksha_cast.tts.parler import ParlerTTSProvider
+        return ParlerTTSProvider()
     elif name == "stub":
         from shiksha_cast.tts.stub import StubTTSProvider
         return StubTTSProvider()
