@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shiksha-cast"
+version = "0.1.0"
+description = "Batch CLI to turn slide decks + narration scripts into captioned, narrated, YouTube-ready MP4s"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+    "typer>=0.12",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "pypdfium2>=4.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+tts = [
+    "parler-tts>=0.2",
+    "transformers>=4.40",
+    "torch>=2.0",
+    "soundfile>=0.12",
+]
+dev = [
+    "ruff>=0.4",
+    "pytest>=8.0",
+]
+
+[project.scripts]
+shiksha-cast = "shiksha_cast.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shiksha_cast"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

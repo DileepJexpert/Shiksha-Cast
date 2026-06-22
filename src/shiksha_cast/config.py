@@ -1,0 +1,91 @@
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Optional
+
+import yaml
+from pydantic import BaseModel, Field
+
+
+class VoiceConfig(BaseModel):
+    provider: str = "parler"
+    description: str = ""
+    sample_rate: int = 44100
+
+
+class TimingConfig(BaseModel):
+    pad_before_ms: int = 300
+    pad_after_ms: int = 700
+    min_slide_s: float = 4
+
+
+class MusicConfig(BaseModel):
+    bed: Optional[str] = None
+    duck_db: int = -18
+
+
+class BrandingConfig(BaseModel):
+    intro: Optional[str] = None
+    outro: Optional[str] = None
+    mascot_overlay: Optional[str] = None
+
+
+class ChannelConfig(BaseModel):
+    channel: str = "Katixo Shiksha"
+    resolution: tuple[int, int] = (1920, 1080)
+    fps: int = 30
+    voice: VoiceConfig = Field(default_factory=VoiceConfig)
+    timing: TimingConfig = Field(default_factory=TimingConfig)
+    music: MusicConfig = Field(default_factory=MusicConfig)
+    branding: BrandingConfig = Field(default_factory=BrandingConfig)
+
+
+class SlideScript(BaseModel):
+    n: int
+    narration: str = ""
+    voice_description: Optional[str] = None
+    min_slide_s: Optional[float] = None
+
+
+class ScriptFile(BaseModel):
+    chapter: str
+    slides: list[SlideScript]
+
+
+def load_channel_config(project_root: Path) -> ChannelConfig:
+    path = project_root / "config" / "channel.yaml"
+    if not path.exists():
+        return ChannelConfig()
+    with open(path) as f:
+        data = yaml.safe_load(f) or {}
+    return ChannelConfig.model_validate(data)
+
+
+def load_script(chapter_dir: Path) -> ScriptFile:
+    yamls = list(chapter_dir.glob("*.yaml"))
+    if not yamls:
+        raise FileNotFoundError(f"No script YAML found in {chapter_dir}")
+    if len(yamls) > 1:
+        yamls = [y for y in yamls if y.stem == chapter_dir.name]
+    script_path = yamls[0]
+    with open(script_path) as f:
+        data = yaml.safe_load(f)
+    return ScriptFile.model_validate(data)
+
+
+def find_pdf(chapter_dir: Path) -> Path:
+    pdfs = list(chapter_dir.glob("*.pdf"))
+    if not pdfs:
+        raise FileNotFoundError(f"No PDF found in {chapter_dir}")
+    if len(pdfs) > 1:
+        pdfs = [p for p in pdfs if p.stem == chapter_dir.name]
+    return pdfs[0]
+
+
+def resolve_chapter(project_root: Path, chapter: str) -> tuple[Path, Path]:
+    """Return (chapter_dir, pdf_path) for a chapter name like 'ch03'."""
+    chapter_dir = project_root / "content" / chapter
+    if not chapter_dir.is_dir():
+        raise FileNotFoundError(f"Chapter directory not found: {chapter_dir}")
+    pdf_path = find_pdf(chapter_dir)
+    return chapter_dir, pdf_path

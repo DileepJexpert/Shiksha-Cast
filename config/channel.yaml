@@ -1,0 +1,25 @@
+channel: "Katixo Shiksha"
+resolution: [1920, 1080]
+fps: 30
+
+voice:
+  provider: parler
+  description: >
+    A young female teacher speaks in a warm, cheerful, animated tone,
+    clearly and a little slowly, as if teaching small children.
+    Very clear audio, almost no background noise.
+  sample_rate: 44100
+
+timing:
+  pad_before_ms: 300
+  pad_after_ms: 700
+  min_slide_s: 4
+
+music:
+  bed: "assets/music/gentle_learning.mp3"
+  duck_db: -18
+
+branding:
+  intro: "assets/intro.mp4"
+  outro: "assets/outro.mp4"
+  mascot_overlay: null
