@@ -4,14 +4,16 @@ fps: 30
 
 voice:
   provider: parler
-  # Model options (no HuggingFace approval needed for parler-tts/parler-tts-mini-v1):
-  #   ai4bharat/indic-parler-tts    — best for Hindi/Hinglish (gated, needs HF approval)
-  #   parler-tts/parler-tts-mini-v1 — multilingual, ungated, no approval needed
-  model: ai4bharat/indic-parler-tts
+  # Model options:
+  #   ai4bharat/indic-parler-tts       — Hindi-heavy, gated
+  #   parler-tts/parler-tts-mini-v1    — English/multilingual, ungated, good for Hinglish
+  #   parler-tts/parler-tts-large-v1   — higher quality English, ungated
+  model: parler-tts/parler-tts-large-v1
   description: >
-    A young female teacher speaks in a warm, cheerful, animated tone,
-    clearly and a little slowly, as if teaching small children.
-    Very clear audio, almost no background noise.
+    A young female speaker with a clear, friendly Indian English accent
+    delivers an educational lecture in a lively, engaging tone.
+    She speaks at a moderate pace, enunciating clearly.
+    The recording is studio quality with no background noise.
   sample_rate: 44100
 
 timing:
