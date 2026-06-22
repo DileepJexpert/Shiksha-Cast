@@ -11,10 +11,11 @@ logger = logging.getLogger(__name__)
 class ParlerTTSProvider(TTSProvider):
     """Indic Parler-TTS (Apache-2.0) — local GPU/CPU inference."""
 
-    def __init__(self, device: str | None = None):
+    def __init__(self, model_name: str = "ai4bharat/indic-parler-tts", device: str | None = None):
         self._model = None
         self._tokenizer = None
         self._device = device
+        self._model_name = model_name
 
     def _load_model(self) -> None:
         if self._model is not None:
@@ -30,11 +31,10 @@ class ParlerTTSProvider(TTSProvider):
             ) from e
 
         device = self._device or ("cuda" if torch.cuda.is_available() else "cpu")
-        logger.info("Loading Indic Parler-TTS on %s...", device)
+        logger.info("Loading Parler-TTS model %s on %s...", self._model_name, device)
 
-        model_name = "ai4bharat/indic-parler-tts"
-        self._tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self._model = ParlerTTSForConditionalGeneration.from_pretrained(model_name).to(device)
+        self._tokenizer = AutoTokenizer.from_pretrained(self._model_name)
+        self._model = ParlerTTSForConditionalGeneration.from_pretrained(self._model_name).to(device)
         self._device = device
         logger.info("Model loaded.")
 

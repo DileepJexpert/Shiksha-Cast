@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 class VoiceConfig(BaseModel):
     provider: str = "parler"
+    model: str = "ai4bharat/indic-parler-tts"
     description: str = ""
     sample_rate: int = 44100
 

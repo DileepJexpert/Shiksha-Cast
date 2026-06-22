@@ -38,7 +38,7 @@ def _get_provider(cfg: ChannelConfig) -> TTSProvider:
             return StubTTSProvider()
 
         from shiksha_cast.tts.parler import ParlerTTSProvider
-        return ParlerTTSProvider()
+        return ParlerTTSProvider(model_name=cfg.voice.model)
     elif name == "stub":
         from shiksha_cast.tts.stub import StubTTSProvider
         return StubTTSProvider()
