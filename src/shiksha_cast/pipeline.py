@@ -36,7 +36,9 @@ def run_render(chapter: str, project_root: Path, force: bool = False) -> RenderR
 
 def run_speak(chapter: str, project_root: Path, force: bool = False) -> SpeakResult:
     cfg = load_channel_config(project_root)
-    chapter_dir, _ = resolve_chapter(project_root, chapter)
+    chapter_dir = project_root / "content" / chapter
+    if not chapter_dir.is_dir():
+        raise FileNotFoundError(f"Chapter directory not found: {chapter_dir}")
     script = load_script(chapter_dir)
     return speak_chapter(chapter, project_root, script, cfg, force=force)
 
@@ -44,12 +46,34 @@ def run_speak(chapter: str, project_root: Path, force: bool = False) -> SpeakRes
 def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildResult:
     cfg = load_channel_config(project_root)
     w, h = cfg.resolution
-    chapter_dir, _ = resolve_chapter(project_root, chapter)
+
+    chapter_dir = project_root / "content" / chapter
+    if not chapter_dir.is_dir():
+        raise FileNotFoundError(f"Chapter directory not found: {chapter_dir}")
     script = load_script(chapter_dir)
 
-    print(f"[STAGE] Rendering {len(script.slides)} slides from PDF...")
-    render_result = render_chapter(chapter, project_root, width=w, height=h, force=force)
-    print(f"[PROGRESS] Slides rendered: {render_result.rendered_count} new, {render_result.cached_count} cached")
+    slides_dir = project_root / "build" / chapter / "slides"
+    has_pdf = any(chapter_dir.glob("*.pdf"))
+    existing_slides = sorted(slides_dir.glob("slide_*.png")) if slides_dir.is_dir() else []
+
+    if has_pdf:
+        print(f"[STAGE] Rendering {len(script.slides)} slides from PDF...")
+        render_result = render_chapter(chapter, project_root, width=w, height=h, force=force)
+        print(f"[PROGRESS] Slides rendered: {render_result.rendered_count} new, {render_result.cached_count} cached")
+    elif existing_slides:
+        print(f"[STAGE] Using {len(existing_slides)} pre-uploaded slide images")
+        render_result = RenderResult(
+            chapter=chapter,
+            slide_paths=existing_slides,
+            pdf_hash="uploaded",
+            rendered_count=0,
+            cached_count=len(existing_slides),
+        )
+    else:
+        raise FileNotFoundError(
+            f"No PDF and no uploaded slides found for {chapter}. "
+            "Upload a PDF or PNG slides first."
+        )
 
     print(f"[STAGE] Generating narration audio for {len(script.slides)} slides...")
     speak_result = speak_chapter(chapter, project_root, script, cfg, force=force)
