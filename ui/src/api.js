@@ -28,11 +28,11 @@ export async function saveScript(chapter, slides) {
   return res.json();
 }
 
-export async function triggerBuild(chapter, { aiMode = false } = {}) {
+export async function triggerBuild(chapter, { aiMode = false, force = false } = {}) {
   const res = await fetch(`${BASE}/api/chapter/${chapter}/build`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ai_mode: aiMode }),
+    body: JSON.stringify({ ai_mode: aiMode, force }),
   });
   if (!res.ok) throw new Error(`Build trigger failed: ${res.status}`);
   return res.json();
@@ -46,6 +46,10 @@ export async function getStatus(chapter) {
 
 export function downloadUrl(chapter) {
   return `${BASE}/api/chapter/${chapter}/download`;
+}
+
+export function srtUrl(chapter) {
+  return `${BASE}/api/chapter/${chapter}/srt`;
 }
 
 export function slideImageUrl(chapter, filename) {
@@ -66,4 +70,20 @@ export async function setVoiceModel(model) {
   });
   if (!res.ok) throw new Error(`Failed to set model: ${res.status}`);
   return res.json();
+}
+
+export async function getChapters() {
+  const res = await fetch(`${BASE}/api/chapters`);
+  if (!res.ok) throw new Error(`Failed to load chapters: ${res.status}`);
+  return res.json();
+}
+
+export async function getScript(chapter) {
+  const res = await fetch(`${BASE}/api/chapter/${chapter}/script`);
+  if (!res.ok) throw new Error(`Failed to load script: ${res.status}`);
+  return res.json();
+}
+
+export function logStreamUrl(chapter) {
+  return `${BASE}/api/chapter/${chapter}/logs`;
 }

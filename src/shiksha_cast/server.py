@@ -1,15 +1,22 @@
 from __future__ import annotations
 
+import io
+import logging
 import shutil
+import sys
 import uuid
+from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
+from queue import Empty, Queue
 from threading import Thread
+from typing import Any
 
 import yaml
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.responses import StreamingResponse
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
@@ -58,12 +65,116 @@ app.add_middleware(
 )
 
 _build_jobs: dict[str, dict] = {}
+_build_logs: dict[str, Queue] = {}
+
+
+class _LogCapture(logging.Handler):
+    """Sends log records to a per-chapter SSE queue."""
+
+    def __init__(self, queue: Queue):
+        super().__init__()
+        self._q = queue
+
+    def emit(self, record: logging.LogRecord) -> None:
+        try:
+            self._q.put_nowait(self.format(record))
+        except Exception:
+            pass
+
+
+class _StreamCapture(io.TextIOBase):
+    """Captures writes to stdout/stderr and puts them in the log queue."""
+
+    def __init__(self, queue: Queue, original: Any):
+        self._q = queue
+        self._original = original
+
+    def write(self, s: str) -> int:
+        if self._original:
+            self._original.write(s)
+        text = s.strip()
+        if text:
+            for line in text.split("\n"):
+                line = line.strip()
+                if line:
+                    try:
+                        self._q.put_nowait(line)
+                    except Exception:
+                        pass
+        return len(s)
+
+    def flush(self) -> None:
+        if self._original:
+            self._original.flush()
 
 
 def _ensure_chapter_dir(chapter: str) -> Path:
     d = PROJECT_ROOT / "content" / chapter
     d.mkdir(parents=True, exist_ok=True)
     return d
+
+
+def _push_log(chapter: str, msg: str) -> None:
+    q = _build_logs.get(chapter)
+    if q:
+        try:
+            q.put_nowait(msg)
+        except Exception:
+            pass
+
+
+@app.get("/api/chapters")
+async def list_chapters():
+    content_dir = PROJECT_ROOT / "content"
+    chapters = []
+    if content_dir.is_dir():
+        for d in sorted(content_dir.iterdir()):
+            if not d.is_dir() or d.name.startswith("."):
+                continue
+            ch_id = d.name
+            info: dict[str, Any] = {"id": ch_id, "has_pdf": False, "has_script": False, "has_video": False, "slide_count": 0}
+
+            pdf = d / f"{ch_id}.pdf"
+            info["has_pdf"] = pdf.exists()
+
+            script = d / f"{ch_id}.yaml"
+            if script.exists():
+                info["has_script"] = True
+                try:
+                    with open(script, encoding="utf-8") as f:
+                        data = yaml.safe_load(f) or {}
+                    info["title"] = data.get("chapter", ch_id)
+                    info["slide_count"] = len(data.get("slides", []))
+                except Exception:
+                    info["title"] = ch_id
+            else:
+                info["title"] = ch_id
+
+            slides_dir = PROJECT_ROOT / "build" / ch_id / "slides"
+            if slides_dir.is_dir():
+                pngs = list(slides_dir.glob("slide_*.png"))
+                if pngs:
+                    info["slide_count"] = max(info["slide_count"], len(pngs))
+
+            video = PROJECT_ROOT / "dist" / f"{ch_id}.mp4"
+            info["has_video"] = video.exists()
+
+            job = _build_jobs.get(ch_id, {})
+            info["build_status"] = job.get("status", "idle")
+
+            chapters.append(info)
+    return {"chapters": chapters}
+
+
+@app.get("/api/chapter/{chapter}/script")
+async def get_script(chapter: str):
+    chapter_dir = PROJECT_ROOT / "content" / chapter
+    script_path = chapter_dir / f"{chapter}.yaml"
+    if not script_path.exists():
+        return JSONResponse({"error": "Script not found"}, status_code=404)
+    with open(script_path, encoding="utf-8") as f:
+        data = yaml.safe_load(f) or {}
+    return data
 
 
 @app.post("/api/upload-pdf")
@@ -153,28 +264,105 @@ async def start_build(chapter: str, body: dict | None = None):
         return {"status": "running", "message": "Build already in progress"}
 
     use_ai = (body or {}).get("ai_mode", False)
-    _build_jobs[chapter] = {"status": "running", "error": None}
+    force = (body or {}).get("force", False)
+
+    log_q: Queue = Queue(maxsize=5000)
+    _build_logs[chapter] = log_q
+    _build_jobs[chapter] = {"status": "running", "stage": "starting", "error": None, "progress": 0}
 
     def _do_build():
+        handler = _LogCapture(log_q)
+        handler.setFormatter(logging.Formatter("%(message)s"))
+        root_logger = logging.getLogger()
+        root_logger.addHandler(handler)
+
+        stdout_cap = _StreamCapture(log_q, sys.stdout)
+        stderr_cap = _StreamCapture(log_q, sys.stderr)
+        old_stdout, old_stderr = sys.stdout, sys.stderr
+
         try:
+            sys.stdout = stdout_cap  # type: ignore[assignment]
+            sys.stderr = stderr_cap  # type: ignore[assignment]
+
+            _push_log(chapter, f"[BUILD] Starting {'AI' if use_ai else 'standard'} build for {chapter}")
+
             if use_ai:
                 from shiksha_cast.pipeline import run_ai_build
-                result = run_ai_build(chapter, PROJECT_ROOT)
+
+                _build_jobs[chapter]["stage"] = "visuals"
+                _push_log(chapter, "[STAGE] Generating AI visuals...")
+                _build_jobs[chapter]["progress"] = 10
+
+                result = run_ai_build(chapter, PROJECT_ROOT, force=force)
             else:
                 from shiksha_cast.pipeline import run_build
-                result = run_build(chapter, PROJECT_ROOT)
+
+                _build_jobs[chapter]["stage"] = "render"
+                _push_log(chapter, "[STAGE] Rendering PDF slides to PNG...")
+                _build_jobs[chapter]["progress"] = 10
+
+                result = run_build(chapter, PROJECT_ROOT, force=force)
+
             _build_jobs[chapter] = {
                 "status": "done",
+                "stage": "complete",
+                "progress": 100,
                 "video_url": f"/api/chapter/{chapter}/download",
                 "srt_url": f"/api/chapter/{chapter}/srt",
                 "duration": result.assemble.total_duration,
                 "slides": result.assemble.slide_count,
             }
+            _push_log(chapter, f"[DONE] Build complete! {result.assemble.slide_count} slides, {result.assemble.total_duration:.1f}s video")
+            _push_log(chapter, "[END]")
+
         except Exception as e:
-            _build_jobs[chapter] = {"status": "error", "error": str(e)}
+            import traceback
+            tb = traceback.format_exc()
+            _build_jobs[chapter] = {"status": "error", "stage": "failed", "progress": 0, "error": str(e)}
+            _push_log(chapter, f"[ERROR] {e}")
+            _push_log(chapter, tb)
+            _push_log(chapter, "[END]")
+        finally:
+            sys.stdout = old_stdout
+            sys.stderr = old_stderr
+            root_logger.removeHandler(handler)
 
     Thread(target=_do_build, daemon=True).start()
     return {"status": "running"}
+
+
+@app.get("/api/chapter/{chapter}/logs")
+async def stream_logs(chapter: str):
+    """SSE endpoint - streams build logs in real time."""
+    q = _build_logs.get(chapter)
+    if not q:
+        job = _build_jobs.get(chapter, {})
+        if job.get("status") == "error":
+            async def error_stream():
+                yield f"data: [ERROR] {job.get('error', 'Unknown error')}\n\n"
+                yield "data: [END]\n\n"
+            return StreamingResponse(error_stream(), media_type="text/event-stream")
+        async def empty_stream():
+            yield "data: No active build for this chapter.\n\n"
+            yield "data: [END]\n\n"
+        return StreamingResponse(empty_stream(), media_type="text/event-stream")
+
+    async def event_generator():
+        yield "data: [CONNECTED] Log stream connected\n\n"
+        while True:
+            try:
+                msg = q.get(timeout=1.0)
+                yield f"data: {msg}\n\n"
+                if msg == "[END]":
+                    break
+            except Empty:
+                yield ": keepalive\n\n"
+                job = _build_jobs.get(chapter, {})
+                if job.get("status") in ("done", "error"):
+                    if q.empty():
+                        break
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 
 @app.get("/api/chapter/{chapter}/status")

@@ -61,6 +61,7 @@ def speak_chapter(
     manifest = BuildManifest(build_dir)
     result = SpeakResult(chapter=chapter)
 
+    total = len(script.slides)
     for slide in script.slides:
         out_path = audio_dir / f"slide_{slide.n:03d}.wav"
         voice_desc = slide.voice_description or cfg.voice.description
@@ -74,9 +75,12 @@ def speak_chapter(
             result.cached_count += 1
             result.audio_paths.append(out_path)
             result.durations.append(entry["duration"])
+            print(f"[PROGRESS] Audio slide {slide.n}/{total}: cached ({entry['duration']:.1f}s)")
             continue
 
+        print(f"[PROGRESS] Audio slide {slide.n}/{total}: synthesizing...")
         duration = provider.synthesize(slide.narration, voice_desc, out_path)
+        print(f"[PROGRESS] Audio slide {slide.n}/{total}: done ({duration:.1f}s)")
 
         manifest.set("speak", f"{slide.n}:{cache_key}", {
             "output": str(out_path),

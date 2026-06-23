@@ -47,10 +47,15 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
     chapter_dir, _ = resolve_chapter(project_root, chapter)
     script = load_script(chapter_dir)
 
+    print(f"[STAGE] Rendering {len(script.slides)} slides from PDF...")
     render_result = render_chapter(chapter, project_root, width=w, height=h, force=force)
+    print(f"[PROGRESS] Slides rendered: {render_result.rendered_count} new, {render_result.cached_count} cached")
 
+    print(f"[STAGE] Generating narration audio for {len(script.slides)} slides...")
     speak_result = speak_chapter(chapter, project_root, script, cfg, force=force)
+    print(f"[PROGRESS] Audio: {speak_result.synthesized_count} synthesized, {speak_result.cached_count} cached")
 
+    print("[STAGE] Assembling video clips...")
     assemble_result = assemble_chapter(
         chapter=chapter,
         project_root=project_root,
@@ -62,7 +67,9 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
         pad_after_s=cfg.timing.pad_after_ms / 1000,
         min_slide_s=cfg.timing.min_slide_s,
     )
+    print(f"[PROGRESS] Video assembled: {assemble_result.slide_count} clips, {assemble_result.total_duration:.1f}s total")
 
+    print("[STAGE] Writing captions...")
     narrations = [s.narration for s in script.slides]
     srt_path = write_captions(
         chapter=chapter,
@@ -73,6 +80,7 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
         pad_after_s=cfg.timing.pad_after_ms / 1000,
         min_slide_s=cfg.timing.min_slide_s,
     )
+    print(f"[PROGRESS] Captions written to {srt_path}")
 
     return BuildResult(
         render=render_result,

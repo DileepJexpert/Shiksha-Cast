@@ -156,9 +156,11 @@ def assemble_chapter(
 
     clip_paths: list[Path] = []
     total_dur = 0.0
+    total = len(slide_paths)
 
     for i, (slide, audio, dur) in enumerate(zip(slide_paths, audio_paths, durations)):
         clip_path = clips_dir / f"clip_{i + 1:03d}.mp4"
+        print(f"[PROGRESS] Encoding clip {i + 1}/{total}...")
         clip_dur = build_slide_clip(
             slide, audio, clip_path,
             duration=dur,
@@ -170,6 +172,7 @@ def assemble_chapter(
         clip_paths.append(clip_path)
         total_dur += clip_dur
 
+    print(f"[PROGRESS] Concatenating {total} clips into final video...")
     dist_dir = project_root / "dist"
     dist_dir.mkdir(parents=True, exist_ok=True)
     output_mp4 = dist_dir / f"{chapter}.mp4"

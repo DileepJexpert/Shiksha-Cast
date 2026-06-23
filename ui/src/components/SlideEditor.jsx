@@ -1,13 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { slideImageUrl } from '../api.js';
 
-export default function SlideEditor({ chapter, slides, onScriptChange }) {
+export default function SlideEditor({ chapter, slides, existingScript, onScriptChange }) {
   const [voiceDesc, setVoiceDesc] = useState('');
   const [perSlideVoice, setPerSlideVoice] = useState({});
   const [visualPrompts, setVisualPrompts] = useState({});
   const [narrations, setNarrations] = useState(() =>
     Object.fromEntries(slides.map((s) => [s.n, '']))
   );
+
+  useEffect(() => {
+    if (existingScript && existingScript.slides) {
+      const narr = {};
+      const voices = {};
+      const prompts = {};
+      for (const s of existingScript.slides) {
+        narr[s.n] = s.narration || '';
+        if (s.voice_description) voices[s.n] = s.voice_description;
+        if (s.visual_prompt) prompts[s.n] = s.visual_prompt;
+      }
+      setNarrations(narr);
+      setPerSlideVoice(voices);
+      setVisualPrompts(prompts);
+      emitChange(narr, voiceDesc, voices, prompts);
+    }
+  }, [existingScript]);
 
   function updateNarration(n, text) {
     const updated = { ...narrations, [n]: text };
@@ -42,9 +59,19 @@ export default function SlideEditor({ chapter, slides, onScriptChange }) {
     onScriptChange(slideData);
   }
 
+  const wordCount = Object.values(narrations).join(' ').split(/\s+/).filter(Boolean).length;
+  const filledCount = Object.values(narrations).filter((n) => n.trim()).length;
+
   return (
     <section className="slide-editor">
-      <h2>Slide Editor</h2>
+      <div className="editor-header">
+        <h2>Slide Editor</h2>
+        <div className="editor-stats">
+          <span className="stat">{filledCount}/{slides.length} narrated</span>
+          <span className="stat">{wordCount} words</span>
+          <span className="stat">~{Math.ceil(wordCount / 130)} min</span>
+        </div>
+      </div>
 
       <div className="voice-global">
         <label htmlFor="voice-desc">Voice description (all slides)</label>
@@ -59,13 +86,14 @@ export default function SlideEditor({ chapter, slides, onScriptChange }) {
 
       <div className="slide-list">
         {slides.map((slide) => (
-          <div key={slide.n} className="slide-card">
+          <div key={slide.n} className={`slide-card ${narrations[slide.n]?.trim() ? 'has-narration' : ''}`}>
             <div className="slide-thumb-container">
               <span className="slide-number">#{slide.n}</span>
               <img
                 className="slide-thumb"
-                src={slide.image_url || slideImageUrl(chapter, `slide_${slide.n}.png`)}
+                src={slide.image_url || slideImageUrl(chapter, `slide_${String(slide.n).padStart(3, '0')}.png`)}
                 alt={`Slide ${slide.n}`}
+                onError={(e) => { e.target.style.display = 'none'; }}
               />
             </div>
             <div className="slide-fields">
