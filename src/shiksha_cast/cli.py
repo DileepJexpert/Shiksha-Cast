@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
 
 import typer
 from rich import print as rprint
@@ -149,6 +149,39 @@ def ai_build(
     rprint(f"  Video:  {result.assemble.video_path}")
     rprint(f"  SRT:    {result.srt_path}")
     rprint(f"  Duration: {result.assemble.total_duration:.1f}s")
+
+
+@app.command()
+def concat(
+    videos: List[Path] = typer.Argument(..., help="MP4 files to concatenate in order"),
+    output: Path = typer.Option("dist/combined.mp4", "--output", "-o", help="Output MP4 path"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Concatenate multiple MP4 videos into one (e.g. combine chapters)."""
+    from shiksha_cast.assemble import FFmpegNotFoundError, concat_clips
+
+    project_root = root or _find_project_root()
+
+    resolved = []
+    for v in videos:
+        p = v if v.is_absolute() else project_root / v
+        if not p.exists():
+            rprint(f"[bold red]Error:[/bold red] Video not found: {p}")
+            raise typer.Exit(code=1)
+        resolved.append(p)
+
+    out_path = output if output.is_absolute() else project_root / output
+    rprint(f"[bold]Concatenating {len(resolved)} videos...[/bold]")
+    for v in resolved:
+        rprint(f"  [dim]{v}[/dim]")
+
+    try:
+        concat_clips(resolved, out_path)
+    except FFmpegNotFoundError as e:
+        rprint(f"[bold red]Error:[/bold red] {e}")
+        raise typer.Exit(code=1)
+
+    rprint(f"\n[bold green]Done![/bold green] Output: {out_path}")
 
 
 @app.command()
