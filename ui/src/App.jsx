@@ -101,16 +101,16 @@ export default function App() {
               </span>
             </div>
 
+            <BuildConsole chapter={chapter} scriptData={scriptRef.current} />
+
+            <ModelSelector />
+
             <SlideEditor
               chapter={chapter}
               slides={slides}
               existingScript={existingScript}
               onScriptChange={handleScriptChange}
             />
-
-            <ModelSelector />
-
-            <BuildConsole chapter={chapter} scriptData={scriptRef.current} />
           </>
         )}
       </main>
