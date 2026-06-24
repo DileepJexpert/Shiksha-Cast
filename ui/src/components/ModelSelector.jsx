@@ -1,23 +1,28 @@
 import { useState, useEffect } from 'react';
 import { getModels, setVoiceModel } from '../api.js';
 
-const CATEGORIES = ['Hindi', 'Multilingual', 'Test'];
-
 export default function ModelSelector() {
   const [models, setModels] = useState([]);
   const [current, setCurrent] = useState('');
-  const [activeTab, setActiveTab] = useState('Hindi');
+  const [activeTab, setActiveTab] = useState('');
   const [switching, setSwitching] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
     getModels()
       .then((data) => {
-        setModels(data.models || []);
+        const list = data.models || [];
+        setModels(list);
         setCurrent(data.current || '');
+        // Open the tab that contains the currently-selected voice (else the first).
+        const cur = list.find((m) => m.id === data.current);
+        setActiveTab(cur ? cur.category : (list[0]?.category || ''));
       })
       .catch(() => {});
   }, []);
+
+  // Categories are derived from the models the server returns (so new ones appear).
+  const CATEGORIES = [...new Set(models.map((m) => m.category))];
 
   async function handleSelect(modelId) {
     if (modelId === current) return;

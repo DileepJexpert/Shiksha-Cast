@@ -1,31 +1,26 @@
-channel: "Katixo Shiksha"
-resolution: [1920, 1080]
-fps: 30
-
-voice:
-  provider: parler
-  # Model options:
-  #   ai4bharat/indic-parler-tts       — Hindi-heavy, gated
-  #   parler-tts/parler-tts-mini-v1    — English/multilingual, ungated, good for Hinglish
-  #   parler-tts/parler-tts-large-v1   — higher quality English, ungated
-  model: parler-tts/parler-tts-large-v1
-  description: >
-    A young female speaker with a clear, friendly Indian English accent
-    delivers an educational lecture in a lively, engaging tone.
-    She speaks at a moderate pace, enunciating clearly.
-    The recording is studio quality with no background noise.
-  sample_rate: 44100
-
-timing:
-  pad_before_ms: 300
-  pad_after_ms: 700
-  min_slide_s: 4
-
-music:
-  bed: "assets/music/gentle_learning.mp3"
-  duck_db: -18
-
 branding:
-  intro: "assets/intro.mp4"
-  outro: "assets/outro.mp4"
+  intro: assets/intro.mp4
   mascot_overlay: null
+  outro: assets/outro.mp4
+channel: Katixo Shiksha
+fps: 30
+music:
+  bed: assets/music/gentle_learning.mp3
+  duck_db: -18
+resolution:
+- 1920
+- 1080
+timing:
+  min_slide_s: 4
+  pad_after_ms: 700
+  pad_before_ms: 300
+voice:
+  description: 'A young female speaker with a clear, friendly Indian English accent
+    delivers an educational lecture in a lively, engaging tone. She speaks at a moderate
+    pace, enunciating clearly. The recording is studio quality with no background
+    noise.
+
+    '
+  model: kavya
+  provider: veena
+  sample_rate: 24000

@@ -5,6 +5,7 @@ import UploadSection from './components/UploadSection.jsx';
 import SlideEditor from './components/SlideEditor.jsx';
 import ModelSelector from './components/ModelSelector.jsx';
 import BuildConsole from './components/BuildConsole.jsx';
+import Stepper from './components/Stepper.jsx';
 import { getScript, slideImageUrl } from './api.js';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(false);
   const [existingScript, setExistingScript] = useState(null);
+  const [flow, setFlow] = useState('existing'); // 'new' shows the New Chapter wizard steps
   const scriptRef = useRef([]);
 
   const handleUploadComplete = useCallback((result) => {
@@ -31,6 +33,7 @@ export default function App() {
   }, []);
 
   async function handleSelectChapter(ch) {
+    setFlow('existing');
     setChapter(ch.id);
 
     const slideList = [];
@@ -64,7 +67,13 @@ export default function App() {
     setChapter(null);
     setSlides([]);
     setExistingScript(null);
+    setFlow('existing');
     scriptRef.current = [];
+  }
+
+  function handleNew() {
+    setFlow('new');
+    setView('upload');
   }
 
   return (
@@ -75,7 +84,7 @@ export default function App() {
         {view === 'dashboard' && (
           <ChapterList
             onSelect={handleSelectChapter}
-            onNew={() => setView('upload')}
+            onNew={handleNew}
           />
         )}
 
@@ -84,6 +93,7 @@ export default function App() {
             <div className="nav-bar">
               <button className="btn-back" onClick={handleBack}>Back to Dashboard</button>
             </div>
+            {flow === 'new' && <Stepper current={1} />}
             <UploadSection
               onUploadComplete={handleUploadComplete}
               loading={loading}
@@ -100,6 +110,8 @@ export default function App() {
                 Chapter: <strong>{chapter}</strong> — {slides.length} slide{slides.length !== 1 ? 's' : ''}
               </span>
             </div>
+
+            {flow === 'new' && <Stepper current={2} />}
 
             <BuildConsole chapter={chapter} scriptData={scriptRef.current} />
 

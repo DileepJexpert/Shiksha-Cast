@@ -24,6 +24,11 @@ tts = [
     "torch>=2.0",
     "soundfile>=0.12",
 ]
+kokoro = [
+    "kokoro>=0.8",
+    "soundfile>=0.12",
+    "torch>=2.0",
+]
 imagegen = [
     "diffusers>=0.28,<0.32",
     "transformers>=4.40",

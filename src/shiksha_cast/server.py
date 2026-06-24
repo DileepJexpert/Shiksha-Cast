@@ -46,6 +46,46 @@ AVAILABLE_MODELS = [
         "gated": False,
     },
     {
+        "id": "veena:kavya",
+        "name": "Veena — Kavya (Hinglish, female)",
+        "category": "Hinglish",
+        "description": "Best-quality Hindi-English code-switching (MOS 4.2). 4-bit, fits 8GB. Apache-2.0. Needs the .venv-veena environment.",
+        "size": "3B (4-bit ~2 GB)",
+        "gated": False,
+    },
+    {
+        "id": "veena:maitri",
+        "name": "Veena — Maitri (Hinglish, female)",
+        "category": "Hinglish",
+        "description": "Veena alternate female voice. Hindi-English code-switching, 4-bit, fits 8GB.",
+        "size": "3B (4-bit ~2 GB)",
+        "gated": False,
+    },
+    {
+        "id": "veena:agastya",
+        "name": "Veena — Agastya (Hinglish, male)",
+        "category": "Hinglish",
+        "description": "Veena male voice. Hindi-English code-switching, 4-bit, fits 8GB.",
+        "size": "3B (4-bit ~2 GB)",
+        "gated": False,
+    },
+    {
+        "id": "veena:vinaya",
+        "name": "Veena — Vinaya (Hinglish, male)",
+        "category": "Hinglish",
+        "description": "Veena alternate male voice. Hindi-English code-switching, 4-bit, fits 8GB.",
+        "size": "3B (4-bit ~2 GB)",
+        "gated": False,
+    },
+    {
+        "id": "kokoro",
+        "name": "Kokoro-82M (clearest)",
+        "category": "English",
+        "description": "Crisp, natural English narration. Tiny (~330 MB), fast, low VRAM. Best audio clarity and no OOM on 8 GB GPUs.",
+        "size": "330 MB",
+        "gated": False,
+    },
+    {
         "id": "stub",
         "name": "Test Tone (No GPU)",
         "category": "Test",
@@ -247,6 +287,8 @@ async def save_script(chapter: str, body: dict):
             slide["visual_prompt"] = s["visual_prompt"]
         if s.get("voice_description"):
             slide["voice_description"] = s["voice_description"]
+        if s.get("voice"):
+            slide["voice"] = s["voice"]
         slides.append(slide)
     script_data = {
         "chapter": body.get("title", chapter),
@@ -400,6 +442,10 @@ async def list_models():
     current_model = cfg.voice.model
     if cfg.voice.provider == "stub":
         current_model = "stub"
+    elif cfg.voice.provider == "kokoro":
+        current_model = "kokoro"
+    elif cfg.voice.provider == "veena":
+        current_model = f"veena:{cfg.voice.model}"
     return {"models": AVAILABLE_MODELS, "current": current_model}
 
 
@@ -422,6 +468,14 @@ async def set_voice_model(body: dict):
 
     if model_id == "stub":
         cfg_data["voice"]["provider"] = "stub"
+    elif model_id == "kokoro" or model_id.startswith("kokoro:"):
+        cfg_data["voice"]["provider"] = "kokoro"
+        # "kokoro:af_bella" picks a specific voice; bare "kokoro" uses the default.
+        cfg_data["voice"]["model"] = model_id.split(":", 1)[1] if ":" in model_id else "af_heart"
+    elif model_id == "veena" or model_id.startswith("veena:"):
+        cfg_data["voice"]["provider"] = "veena"
+        # "veena:kavya" picks a speaker; bare "veena" uses the default.
+        cfg_data["voice"]["model"] = model_id.split(":", 1)[1] if ":" in model_id else "kavya"
     else:
         cfg_data["voice"]["provider"] = "parler"
         cfg_data["voice"]["model"] = model_id

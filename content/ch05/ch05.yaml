@@ -1,29 +1,69 @@
-chapter: "Ch 5 — Fun with Shapes"
+chapter: ch05
 slides:
-  - n: 1
-    narration: "Hello kids! Welcome to Chapter Five — Fun with Shapes! Today we're going to learn all about shapes — 2D shapes, 3D shapes, symmetry, and tiling. Toh chalo, let's get started!"
-    visual_prompt: "A cheerful colorful classroom with a friendly female teacher at a whiteboard, cartoon educational style, geometric shapes decorating the walls"
-  - n: 2
-    narration: "Today we'll learn four things. First — 2D shapes like triangles, squares, and rectangles. We'll count their sides and corners. Second — 3D shapes like cubes, spheres, cylinders, and cones. Third — symmetry, which means mirror lines. And fourth — tiling, how shapes fit together like a puzzle!"
-    visual_prompt: "Four colorful icons on a whiteboard: 2D shapes, 3D shapes, a mirror/symmetry line, and a tiling pattern, educational infographic style"
-  - n: 3
-    narration: "Guys, shapes are everywhere around us! Look around you. Your clock — that's a circle. Your window — that's a rectangle. A dice — that's a cube. A ball — that's a sphere. Har cheez ki ek shape hoti hai. Today we'll learn to spot them all!"
-    visual_prompt: "Everyday objects with shapes highlighted: a round clock (circle), rectangular window, cube-shaped box, spherical ball, colorful cartoon illustration for kids"
-  - n: 4
-    narration: "Now let's talk about 2D shapes. 2D shapes are flat — you can draw them on paper. A triangle has three sides and three corners. A square has four equal sides and four corners. A rectangle also has four sides, but two are long and two are short. And a circle? Zero sides, zero corners — just one smooth curved line! Easy, right?"
-    visual_prompt: "Colorful 2D shapes on a chalkboard: triangle, square, rectangle and circle, each labeled with sides and corners count, educational diagram for children"
-  - n: 5
-    narration: "Now let's move to 3D shapes. These are solid — you can hold them in your hand! A cube is like a dice — it has six flat faces. A sphere is like a ball — perfectly round. A cylinder is like a glass — circles on top and bottom. And a cone is like an ice cream cone — circle at the bottom, pointed at the top! 3D shapes have length, width, and height. Pretty cool, na?"
-    visual_prompt: "3D shapes floating in space: a colorful cube/dice, shiny sphere/ball, cylinder/glass, and cone/ice-cream, with labels, 3D educational illustration"
-  - n: 6
-    narration: "Let's do a quick activity! Look around your room and find one example of each shape. Can you find a circle? A rectangle? A cube? A sphere? Write them down or tell your parents! Shapes are literally everywhere once you start noticing them."
-    visual_prompt: "A child's bedroom with everyday objects highlighted as shapes: clock as circle, book as rectangle, box as cube, ball as sphere, bright educational illustration"
-  - n: 7
-    narration: "Now let's learn about symmetry. Symmetry means if you fold something in half, both sides look exactly the same. Like a butterfly — fold it in the middle, and both wings match perfectly. A square has four lines of symmetry. A circle has infinite lines of symmetry. But a triangle? It depends on the type!"
-    visual_prompt: "A colorful butterfly showing symmetry with a dotted line down the middle, alongside shapes with their symmetry lines marked, educational style"
-  - n: 8
-    narration: "Last topic — tiling! Tiling means covering a surface with shapes without any gaps or overlaps. Think of the tiles on your bathroom floor. Squares tile perfectly. Triangles tile perfectly too. But circles? Nope — they leave gaps! Can you think of other shapes that tile? Hexagons work great — just like a honeycomb!"
-    visual_prompt: "Tiling patterns showing squares, triangles, and hexagons covering a surface perfectly, with a circle showing gaps, colorful educational diagram"
-  - n: 9
-    narration: "Alright, quick recap! 2D shapes are flat — triangles, squares, rectangles, circles. 3D shapes are solid — cubes, spheres, cylinders, cones. Symmetry means both halves match. And tiling means shapes fit together with no gaps. You did amazing today! See you in the next chapter. Bye bye!"
-    visual_prompt: "A colorful summary poster with all the shapes learned, symmetry butterfly, and tiling pattern, with a waving cartoon teacher, cheerful educational style"
+- n: 1
+  narration: Hello kids! Welcome to Chapter Five — Fun with Shapes! Today we're going
+    to learn all about shapes — 2D shapes, 3D shapes, symmetry, and tiling. Toh chalo,
+    let's get started!
+  visual_prompt: A cheerful colorful classroom with a friendly female teacher at a
+    whiteboard, cartoon educational style, geometric shapes decorating the walls
+- n: 2
+  narration: Today we'll learn four things. First — 2D shapes like triangles, squares,
+    and rectangles. We'll count their sides and corners. Second — 3D shapes like cubes,
+    spheres, cylinders, and cones. Third — symmetry, which means mirror lines. And
+    fourth — tiling, how shapes fit together like a puzzle!
+  visual_prompt: 'Four colorful icons on a whiteboard: 2D shapes, 3D shapes, a mirror/symmetry
+    line, and a tiling pattern, educational infographic style'
+- n: 3
+  narration: Guys, shapes are everywhere around us! Look around you. Your clock —
+    that's a circle. Your window — that's a rectangle. A dice — that's a cube. A ball
+    — that's a sphere. Har cheez ki ek shape hoti hai. Today we'll learn to spot them
+    all!
+  visual_prompt: 'Everyday objects with shapes highlighted: a round clock (circle),
+    rectangular window, cube-shaped box, spherical ball, colorful cartoon illustration
+    for kids'
+- n: 4
+  narration: Now let's talk about 2D shapes. 2D shapes are flat — you can draw them
+    on paper. A triangle has three sides and three corners. A square has four equal
+    sides and four corners. A rectangle also has four sides, but two are long and
+    two are short. And a circle? Zero sides, zero corners — just one smooth curved
+    line! Easy, right?
+  visual_prompt: 'Colorful 2D shapes on a chalkboard: triangle, square, rectangle
+    and circle, each labeled with sides and corners count, educational diagram for
+    children'
+- n: 5
+  narration: Now let's move to 3D shapes. These are solid — you can hold them in your
+    hand! A cube is like a dice — it has six flat faces. A sphere is like a ball —
+    perfectly round. A cylinder is like a glass — circles on top and bottom. And a
+    cone is like an ice cream cone — circle at the bottom, pointed at the top! 3D
+    shapes have length, width, and height. Pretty cool, na?
+  visual_prompt: '3D shapes floating in space: a colorful cube/dice, shiny sphere/ball,
+    cylinder/glass, and cone/ice-cream, with labels, 3D educational illustration'
+- n: 6
+  narration: Let's do a quick activity! Look around your room and find one example
+    of each shape. Can you find a circle? A rectangle? A cube? A sphere? Write them
+    down or tell your parents! Shapes are literally everywhere once you start noticing
+    them.
+  visual_prompt: 'A child''s bedroom with everyday objects highlighted as shapes:
+    clock as circle, book as rectangle, box as cube, ball as sphere, bright educational
+    illustration'
+- n: 7
+  narration: Now let's learn about symmetry. Symmetry means if you fold something
+    in half, both sides look exactly the same. Like a butterfly — fold it in the middle,
+    and both wings match perfectly. A square has four lines of symmetry. A circle
+    has infinite lines of symmetry. But a triangle? It depends on the type!
+  visual_prompt: A colorful butterfly showing symmetry with a dotted line down the
+    middle, alongside shapes with their symmetry lines marked, educational style
+- n: 8
+  narration: Last topic — tiling! Tiling means covering a surface with shapes without
+    any gaps or overlaps. Think of the tiles on your bathroom floor. Squares tile
+    perfectly. Triangles tile perfectly too. But circles? Nope — they leave gaps!
+    Can you think of other shapes that tile? Hexagons work great — just like a honeycomb!
+  visual_prompt: Tiling patterns showing squares, triangles, and hexagons covering
+    a surface perfectly, with a circle showing gaps, colorful educational diagram
+- n: 9
+  narration: Alright, quick recap! 2D shapes are flat — triangles, squares, rectangles,
+    circles. 3D shapes are solid — cubes, spheres, cylinders, cones. Symmetry means
+    both halves match. And tiling means shapes fit together with no gaps. You did
+    amazing today! See you in the next chapter. Bye bye!
+  visual_prompt: A colorful summary poster with all the shapes learned, symmetry butterfly,
+    and tiling pattern, with a waving cartoon teacher, cheerful educational style

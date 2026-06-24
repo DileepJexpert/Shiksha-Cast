@@ -58,6 +58,16 @@ class ParlerTTSProvider(TTSProvider):
         sf.write(str(output_path), audio_arr, sample_rate)
 
         duration = len(audio_arr) / sample_rate
+
+        # Release per-utterance GPU memory so fragmentation doesn't accumulate
+        # across slides and OOM a tight (8 GB) card mid-build.
+        del generation, input_ids, prompt_ids
+        if self._device == "cuda":
+            import gc
+
+            gc.collect()
+            torch.cuda.empty_cache()
+
         return duration
 
     def name(self) -> str:

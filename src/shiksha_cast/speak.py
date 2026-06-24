@@ -39,6 +39,23 @@ def _get_provider(cfg: ChannelConfig) -> TTSProvider:
 
         from shiksha_cast.tts.parler import ParlerTTSProvider
         return ParlerTTSProvider(model_name=cfg.voice.model)
+    elif name == "kokoro":
+        from shiksha_cast.tts.kokoro import KokoroTTSProvider
+
+        # For Kokoro, voice.model holds the preset voice name (e.g. "af_heart").
+        # Tolerate a leftover Parler HF id ("org/model") by falling back to default.
+        voice = cfg.voice.model
+        if not voice or "/" in voice:
+            voice = "af_heart"
+        return KokoroTTSProvider(voice=voice)
+    elif name == "veena":
+        from shiksha_cast.tts.veena import VeenaTTSProvider
+
+        # For Veena, voice.model holds the speaker name (kavya/agastya/maitri/vinaya).
+        speaker = cfg.voice.model
+        if not speaker or "/" in speaker:
+            speaker = "kavya"
+        return VeenaTTSProvider(speaker=speaker)
     elif name == "stub":
         from shiksha_cast.tts.stub import StubTTSProvider
         return StubTTSProvider()
@@ -65,9 +82,13 @@ def speak_chapter(
     for slide in script.slides:
         out_path = audio_dir / f"slide_{slide.n:03d}.wav"
         voice_desc = slide.voice_description or cfg.voice.description
-        cache_key = content_hash(
-            slide.narration, voice_desc, provider.name(), str(cfg.voice.sample_rate)
-        )
+        slide_voice = getattr(slide, "voice", None)
+        # Per-slide voice is appended to the key ONLY when set, so slides without it
+        # keep the same hash (backward compatible with existing caches).
+        key_parts = [slide.narration, voice_desc, provider.name(), str(cfg.voice.sample_rate)]
+        if slide_voice:
+            key_parts.append(slide_voice)
+        cache_key = content_hash(*key_parts)
 
         entry = manifest.get("speak", f"{slide.n}:{cache_key}")
 
@@ -78,6 +99,10 @@ def speak_chapter(
             print(f"[PROGRESS] Audio slide {slide.n}/{total}: cached ({entry['duration']:.1f}s)")
             continue
 
+        # Apply a per-slide speaker if the provider supports it (e.g. Veena voices).
+        if slide_voice and hasattr(provider, "set_speaker"):
+            provider.set_speaker(slide_voice)
+
         print(f"[PROGRESS] Audio slide {slide.n}/{total}: synthesizing...")
         duration = provider.synthesize(slide.narration, voice_desc, out_path)
         print(f"[PROGRESS] Audio slide {slide.n}/{total}: done ({duration:.1f}s)")
@@ -87,6 +112,9 @@ def speak_chapter(
             "duration": duration,
             "narration_hash": cache_key,
         })
+        # Save after each slide so a killed/interrupted build (e.g. machine sleep)
+        # can resume from where it left off instead of restarting from scratch.
+        manifest.save()
         result.synthesized_count += 1
         result.audio_paths.append(out_path)
         result.durations.append(duration)

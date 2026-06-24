@@ -7,6 +7,15 @@ export default function ChapterList({ onSelect, onNew }) {
 
   useEffect(() => {
     loadChapters();
+    // Auto-refresh so manually-added chapters and finished builds appear without
+    // clicking Refresh: poll periodically + whenever the window regains focus.
+    const interval = setInterval(loadChapters, 8000);
+    const onFocus = () => loadChapters();
+    window.addEventListener('focus', onFocus);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', onFocus);
+    };
   }, []);
 
   async function loadChapters() {
@@ -34,6 +43,23 @@ export default function ChapterList({ onSelect, onNew }) {
           </button>
         </div>
       </div>
+
+      <details className="howto-panel">
+        <summary>📖 How to create a tutorial (click to expand)</summary>
+        <div className="howto-body">
+          <ol>
+            <li><strong>+ New Chapter</strong> → upload the slide <strong>PDF</strong> (or PNG images) and name it (e.g. <code>ch07</code>).</li>
+            <li>In the editor, click <strong>📋 Paste full script</strong> to drop in your whole narration at once (one blank line between slides), or type each slide.
+              <br />For Hinglish, write Hindi with English terms inline: <em>"आज हम place value सीखेंगे"</em>.</li>
+            <li>Pick the <strong>voice</strong> (Veena — Kavya for Hinglish) in the TTS panel, or set a different voice per slide.</li>
+            <li>Click <strong>Save</strong>, then <strong>Build Video</strong>, watch the logs, and <strong>Download</strong> the MP4.</li>
+          </ol>
+          <p className="howto-note">
+            Prefer files? Drop <code>chNN.pdf</code> + <code>chNN.yaml</code> into <code>content/chNN/</code> —
+            it appears here automatically (this list auto-refreshes). One build at a time on the GPU.
+          </p>
+        </div>
+      </details>
 
       {loading && chapters.length === 0 && (
         <div className="chapter-empty">Loading chapters...</div>
