@@ -149,6 +149,14 @@ class _StreamCapture(io.TextIOBase):
 
 
 def _ensure_chapter_dir(chapter: str) -> Path:
+    # Reuse an existing (possibly categorized) episode dir if there is one;
+    # otherwise create a new flat folder under content/.
+    from shiksha_cast.config import find_chapter_dir
+
+    try:
+        return find_chapter_dir(PROJECT_ROOT, chapter)
+    except FileNotFoundError:
+        pass
     d = PROJECT_ROOT / "content" / chapter
     d.mkdir(parents=True, exist_ok=True)
     return d
@@ -174,18 +182,21 @@ def _find_script_path(chapter_dir: Path) -> Path | None:
 
 @app.get("/api/chapters")
 async def list_chapters():
+    from shiksha_cast.config import iter_episode_dirs
+
     content_dir = PROJECT_ROOT / "content"
     chapters = []
-    if content_dir.is_dir():
-        for d in sorted(content_dir.iterdir()):
-            if not d.is_dir() or d.name.startswith((".","_")):
-                continue
-            ch_id = d.name
-            script_path = _find_script_path(d)
-            if not script_path:
-                continue
+    for d in iter_episode_dirs(PROJECT_ROOT):
+        ch_id = d.name
+        script_path = _find_script_path(d)
+        if not script_path:
+            continue
 
-            info: dict[str, Any] = {"id": ch_id, "has_pdf": False, "has_script": True, "has_video": False, "slide_count": 0}
+        # Category = folder path between content/ and the episode (e.g.
+        # "how-it-works/technology"); empty for flat episodes.
+        category = "/".join(d.relative_to(content_dir).parts[:-1])
+
+        info: dict[str, Any] = {"id": ch_id, "category": category, "has_pdf": False, "has_script": True, "has_video": False, "slide_count": 0}
 
             info["has_pdf"] = any(d.glob("*.pdf"))
 
@@ -215,7 +226,12 @@ async def list_chapters():
 
 @app.get("/api/chapter/{chapter}/script")
 async def get_script(chapter: str):
-    chapter_dir = PROJECT_ROOT / "content" / chapter
+    from shiksha_cast.config import find_chapter_dir
+
+    try:
+        chapter_dir = find_chapter_dir(PROJECT_ROOT, chapter)
+    except FileNotFoundError:
+        return JSONResponse({"error": "Script not found"}, status_code=404)
     script_path = _find_script_path(chapter_dir)
     if not script_path:
         return JSONResponse({"error": "Script not found"}, status_code=404)

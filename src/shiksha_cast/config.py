@@ -102,10 +102,57 @@ def find_pdf(chapter_dir: Path) -> Path:
     return pdfs[0]
 
 
+def _is_episode_dir(d: Path) -> bool:
+    """An episode dir is any folder that contains a script YAML."""
+    return d.is_dir() and bool(list(d.glob("*.yaml")))
+
+
+def iter_episode_dirs(project_root: Path) -> list[Path]:
+    """Every episode directory under content/, however deeply nested.
+
+    Episodes may live inside category folders (e.g.
+    content/how-it-works/technology/s02-wifi). Category folders themselves
+    have no script YAML, so they are skipped. Names starting with '.' or '_'
+    (e.g. _archive) are ignored at any level.
+    """
+    content_root = project_root / "content"
+    if not content_root.is_dir():
+        return []
+    found: list[Path] = []
+    for d in sorted(content_root.rglob("*")):
+        if not d.is_dir():
+            continue
+        if any(part.startswith((".", "_")) for part in d.relative_to(content_root).parts):
+            continue
+        if _is_episode_dir(d):
+            found.append(d)
+    return found
+
+
+def find_chapter_dir(project_root: Path, chapter: str) -> Path:
+    """Locate an episode directory by name, anywhere under content/.
+
+    Tries the flat layout (content/<chapter>) first for speed and backward
+    compatibility, then searches category subfolders recursively.
+    """
+    content_root = project_root / "content"
+    flat = content_root / chapter
+    if flat.is_dir():
+        return flat
+    if content_root.is_dir():
+        matches = [d for d in content_root.rglob(chapter) if d.is_dir() and d.name == chapter]
+        scripted = [d for d in matches if list(d.glob("*.yaml"))]
+        chosen = scripted or matches
+        if len(chosen) == 1:
+            return chosen[0]
+        if len(chosen) > 1:
+            joined = ", ".join(str(d.relative_to(project_root)) for d in chosen)
+            raise FileNotFoundError(f"Ambiguous chapter '{chapter}'; multiple matches: {joined}")
+    raise FileNotFoundError(f"Chapter directory not found: {chapter} (searched under {content_root})")
+
+
 def resolve_chapter(project_root: Path, chapter: str) -> tuple[Path, Path]:
     """Return (chapter_dir, pdf_path) for a chapter name like 'ch03'."""
-    chapter_dir = project_root / "content" / chapter
-    if not chapter_dir.is_dir():
-        raise FileNotFoundError(f"Chapter directory not found: {chapter_dir}")
+    chapter_dir = find_chapter_dir(project_root, chapter)
     pdf_path = find_pdf(chapter_dir)
     return chapter_dir, pdf_path

@@ -6,7 +6,7 @@ from typing import Optional
 
 from shiksha_cast.assemble import AssembleResult, assemble_chapter, build_kenburns_clip, concat_clips
 from shiksha_cast.captions import write_captions
-from shiksha_cast.config import load_channel_config, load_script, resolve_chapter
+from shiksha_cast.config import find_chapter_dir, load_channel_config, load_script, resolve_chapter
 from shiksha_cast.render import RenderResult, render_chapter
 from shiksha_cast.speak import SpeakResult, speak_chapter
 from shiksha_cast.visualize import VisualizeResult, generate_visuals
@@ -36,9 +36,7 @@ def run_render(chapter: str, project_root: Path, force: bool = False) -> RenderR
 
 def run_speak(chapter: str, project_root: Path, force: bool = False) -> SpeakResult:
     cfg = load_channel_config(project_root)
-    chapter_dir = project_root / "content" / chapter
-    if not chapter_dir.is_dir():
-        raise FileNotFoundError(f"Chapter directory not found: {chapter_dir}")
+    chapter_dir = find_chapter_dir(project_root, chapter)
     script = load_script(chapter_dir)
     return speak_chapter(chapter, project_root, script, cfg, force=force)
 
@@ -47,9 +45,7 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
     cfg = load_channel_config(project_root)
     w, h = cfg.resolution
 
-    chapter_dir = project_root / "content" / chapter
-    if not chapter_dir.is_dir():
-        raise FileNotFoundError(f"Chapter directory not found: {chapter_dir}")
+    chapter_dir = find_chapter_dir(project_root, chapter)
     script = load_script(chapter_dir)
 
     slides_dir = project_root / "build" / chapter / "slides"
@@ -123,9 +119,7 @@ def run_ai_build(
     """Build video using AI-generated images with Ken Burns animation."""
     cfg = load_channel_config(project_root)
     w, h = cfg.resolution
-    chapter_dir = project_root / "content" / chapter
-    if not chapter_dir.is_dir():
-        raise FileNotFoundError(f"Chapter directory not found: {chapter_dir}")
+    chapter_dir = find_chapter_dir(project_root, chapter)
     script = load_script(chapter_dir)
 
     visual_result = generate_visuals(chapter, project_root, script, cfg, force=force)

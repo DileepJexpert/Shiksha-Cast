@@ -21,6 +21,6 @@ voice:
     noise.
 
     '
-  model: kavya
+  model: maitri
   provider: veena
   sample_rate: 24000

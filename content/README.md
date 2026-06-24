@@ -5,45 +5,57 @@
 
 ## Overview
 
+Content is grouped into **three top-level categories** (these map to YouTube
+playlists). Inside `how-it-works/`, episodes are further grouped by **subject**.
+
 ```
 content/
 ├── README.md                    ← You are here
 ├── CONTENT_CREATION_GUIDE.md    ← How to design slides in Canva
 ├── SCRIPT_PROMPT_TEMPLATE.md    ← Prompt template for writing new scripts
 │
-├── s01-goosebumps/              ← Episode 1: Why Do You Get Goosebumps?
-│   ├── script.yaml              ← Narration text (pipeline reads this)
-│   ├── SLIDES.md                ← Per-slide Canva design instructions
-│   └── slides/                  ← Final PNG exports from Canva (1920×1080)
-│       ├── slide_001.png
-│       ├── slide_002.png
-│       └── ...
+├── how-it-works/                ← "Why/How does X work?" curiosity explainers
+│   ├── human-body/              ←   goosebumps, dreams, hiccups, memory…
+│   │   └── s01-goosebumps/
+│   │       ├── script.yaml      ← Narration text (pipeline reads this)
+│   │       ├── SLIDES.md        ← Per-slide Canva design instructions
+│   │       └── slides/          ← Final PNG exports (1920×1080)
+│   │           ├── slide_001.png
+│   │           └── ...
+│   ├── space/                   ←   rockets, black-holes, mars, stars…
+│   ├── technology/              ←   wifi, gps, internet, ai, qr-codes…
+│   ├── physics/                 ←   sky-blue, rainbows, magnets, planes…
+│   ├── chemistry/               ←   batteries, popcorn, soda-fizz, glass…
+│   └── earth-nature/            ←   ocean-salt, thunder, northern-lights…
 │
-├── s02-wifi/                    ← Episode 2: How Does WiFi Actually Work?
-│   ├── script.yaml
-│   ├── SLIDES.md
-│   └── slides/
+├── class-chapter/               ← Syllabus-aligned, by class & chapter
+│   ├── class-06/  …  class-10/  ←   (ready for NCERT chapter episodes)
+│   └── README.md
 │
-├── s03-blood-factory/           ← Episode 3: Your Blood Factory
-│   ├── script.yaml
-│   ├── SLIDES.md
-│   └── slides/
-│
-├── s04-rockets/                 ← Episode 4: How Do Rockets Escape Earth?
-│   ├── script.yaml
-│   ├── SLIDES.md
-│   └── slides/
-│
-├── s05-sky-blue/                ← Episode 5: Why Is the Sky Blue?
-│   ├── script.yaml
-│   ├── SLIDES.md
-│   └── slides/
+├── general-knowledge/           ← Misc GK / fun facts (not "how it works")
+│   └── README.md
 │
 └── _archive/                    ← Old Class 2-5 content (not active)
     ├── ch03/
-    ├── ch05/
     └── ...
 ```
+
+> **Episode IDs are still just the folder name** (e.g. `s01-goosebumps`).
+> The build tool finds an episode by name no matter how deeply it is nested,
+> so `shiksha-cast build -c s01-goosebumps` works unchanged after the move.
+> Build cache (`build/<id>/`) and output (`dist/<id>.mp4`) keep using that id.
+
+## Categories
+
+| Folder | What goes here | YouTube playlist |
+|--------|----------------|------------------|
+| `how-it-works/` | "Why is the sky blue?", "How does WiFi work?" — curiosity-driven explainers, grouped by subject | *How It Works* |
+| `class-chapter/` | Episodes mapped to a specific class + NCERT chapter (`class-08/ch05-…`) | *Class 6 / 7 / 8 / 9 / 10* |
+| `general-knowledge/` | Fun facts, trivia, "did you know" — knowledge that isn't a mechanism walkthrough | *General Knowledge* |
+
+**Adding a new episode:** drop the episode folder under the category (and
+subject) it belongs to. No code or config change is needed — the pipeline and
+dashboard discover it automatically.
 
 ## How It Works
 

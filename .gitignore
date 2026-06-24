@@ -13,3 +13,6 @@ __pycache__/
 .ruff_cache/
 ui/node_modules/
 ui/dist/
+# Local backups and generated slide exports (kept out of git)
+_backup_files*/
+slides_png/
