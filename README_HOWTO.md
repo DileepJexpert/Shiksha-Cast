@@ -102,6 +102,37 @@ Episode IDs are just the folder name (e.g. `s06-yawning`), found anywhere under
 
 ---
 
+## 4c. Animated video (AI images + 2.5D parallax)
+
+Instead of static slides, `ai-build` generates an image per slide (SDXL-Turbo,
+fits 8 GB) and animates it. Choose the motion in `config\channel.yaml` →
+`imagegen.motion`:
+
+| motion | What it does | Needs |
+|--------|--------------|-------|
+| `kenburns` (default) | ffmpeg zoom/pan on the image | nothing extra |
+| `parallax` | **DepthFlow** 2.5D depth animation — the image moves in 3D | `pip install depthflow` |
+| `static` | no motion | nothing |
+
+**Enable parallax (3D-looking motion, ~secs/clip on your GPU):**
+```
+pip install -e ".[parallax]"          # or: pip install depthflow
+python -m shiksha_cast parallax-check  # renders dist\parallax_test.mp4 to verify
+```
+Then set `imagegen.motion: parallax` in `config\channel.yaml` and build:
+```
+python -m shiksha_cast ai-build -c s36-ai
+```
+Each slide image is turned into a parallax clip, the narration is mixed on, and
+everything assembles as usual. If DepthFlow isn't installed (or a render fails),
+the build **automatically falls back to Ken Burns** — it never breaks.
+
+> Add a `visual_prompt:` to each slide in `script.yaml` so SDXL has something to
+> draw. If your DepthFlow version uses different CLI flags, set
+> `imagegen.parallax_command` (placeholders `{image} {output} {duration} {fps} {width} {height}`).
+
+---
+
 ## 5. Troubleshooting
 
 - **Veena not in the dropdown** → restart the backend (`run-backend.bat`).

@@ -147,6 +147,38 @@ def build_kenburns_clip(
     return clip_dur
 
 
+def mux_audio_onto_video(
+    video_in: Path,
+    audio_wav: Path,
+    output_mp4: Path,
+    clip_dur: float,
+    pad_before_s: float = 0.3,
+    fps: int = 30,
+    width: int = 1920,
+    height: int = 1080,
+    sample_rate: int = 24000,
+) -> None:
+    """Mux narration audio onto a pre-rendered (silent) clip, normalizing the
+    video to the standard clip params so it concatenates with slide clips."""
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+    delay_ms = int(pad_before_s * 1000)
+    # Loop the (silent) video and pad the audio so neither stream ends early;
+    # -t trims both to exactly clip_dur. This tolerates DepthFlow rendering a
+    # hair short without cutting the narration.
+    _run_ffmpeg([
+        "-stream_loop", "-1", "-i", str(video_in),
+        "-i", str(audio_wav),
+        "-filter_complex",
+        f"[0:v]scale={width}:{height},fps={fps},format=yuv420p[v];"
+        f"[1:a]adelay={delay_ms}|{delay_ms},apad[a]",
+        "-map", "[v]", "-map", "[a]",
+        "-c:v", "libx264", "-tune", "stillimage", "-pix_fmt", "yuv420p", "-r", str(fps),
+        "-c:a", "aac", "-b:a", "192k", "-ar", str(sample_rate), "-ac", "1",
+        "-t", f"{clip_dur:.3f}",
+        str(output_mp4),
+    ])
+
+
 def concat_clips(clip_paths: list[Path], output_mp4: Path) -> None:
     """Concatenate per-slide clips into a single video."""
     output_mp4.parent.mkdir(parents=True, exist_ok=True)

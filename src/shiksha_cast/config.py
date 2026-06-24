@@ -36,6 +36,18 @@ class ImageGenConfig(BaseModel):
     model: str = "stabilityai/sdxl-turbo"
     num_steps: int = 4
     kenburns: bool = True
+    # Per-slide motion for `ai-build`: "kenburns" (ffmpeg zoom/pan),
+    # "parallax" (DepthFlow 2.5D depth animation), or "static".
+    # None => derive from the legacy `kenburns` flag.
+    motion: Optional[str] = None
+    # Override the DepthFlow render command; placeholders:
+    # {image} {output} {duration} {fps} {width} {height}. None => built-in default.
+    parallax_command: Optional[str] = None
+
+    def effective_motion(self) -> str:
+        if self.motion:
+            return self.motion.lower()
+        return "kenburns" if self.kenburns else "static"
 
 
 class ChannelConfig(BaseModel):

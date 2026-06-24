@@ -165,28 +165,48 @@ def run_ai_build(
     ):
         clip_path = clips_dir / f"clip_{i + 1:03d}.mp4"
 
-        if img_path and img_path.exists() and cfg.imagegen.kenburns:
-            clip_dur = build_kenburns_clip(
-                img_path, audio, clip_path,
-                duration=dur,
-                effect_index=i,
-                pad_before_s=pad_before,
-                pad_after_s=pad_after,
-                min_slide_s=min_slide,
-                fps=cfg.fps,
-                width=w,
-                height=h,
-            )
-        elif img_path and img_path.exists():
-            from shiksha_cast.assemble import build_slide_clip
-            clip_dur = build_slide_clip(
-                img_path, audio, clip_path,
-                duration=dur,
-                pad_before_s=pad_before,
-                pad_after_s=pad_after,
-                min_slide_s=min_slide,
-                fps=cfg.fps,
-            )
+        if img_path and img_path.exists():
+            motion = cfg.imagegen.effective_motion()
+            if motion == "parallax":
+                from shiksha_cast.animate import ParallaxUnavailable, build_parallax_clip
+                try:
+                    clip_dur = build_parallax_clip(
+                        img_path, audio, clip_path,
+                        duration=dur,
+                        pad_before_s=pad_before,
+                        pad_after_s=pad_after,
+                        min_slide_s=min_slide,
+                        fps=cfg.fps,
+                        width=w,
+                        height=h,
+                        command_template=cfg.imagegen.parallax_command,
+                    )
+                except ParallaxUnavailable as e:
+                    print(f"[WARN] Parallax unavailable for slide {i + 1}; "
+                          f"using Ken Burns instead. ({e})")
+                    motion = "kenburns"
+            if motion == "kenburns":
+                clip_dur = build_kenburns_clip(
+                    img_path, audio, clip_path,
+                    duration=dur,
+                    effect_index=i,
+                    pad_before_s=pad_before,
+                    pad_after_s=pad_after,
+                    min_slide_s=min_slide,
+                    fps=cfg.fps,
+                    width=w,
+                    height=h,
+                )
+            elif motion == "static":
+                from shiksha_cast.assemble import build_slide_clip
+                clip_dur = build_slide_clip(
+                    img_path, audio, clip_path,
+                    duration=dur,
+                    pad_before_s=pad_before,
+                    pad_after_s=pad_after,
+                    min_slide_s=min_slide,
+                    fps=cfg.fps,
+                )
         elif fallback_slide_paths and i < len(fallback_slide_paths):
             from shiksha_cast.assemble import build_slide_clip
             clip_dur = build_slide_clip(

@@ -231,6 +231,45 @@ def make_assets(
     rprint("[dim]These are wired into builds automatically (channel.yaml branding).[/dim]")
 
 
+@app.command(name="parallax-check")
+def parallax_check(
+    image: Optional[Path] = typer.Option(None, "--image", "-i", help="Image to test with (defaults to a generated test card)"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Verify DepthFlow 2.5D parallax works on this machine (renders a 2s test clip)."""
+    import tempfile
+
+    from shiksha_cast.animate import ParallaxUnavailable, depthflow_available, render_parallax_video
+
+    project_root = root or _find_project_root()
+    if not depthflow_available():
+        rprint("[bold red]DepthFlow not found.[/bold red] Install it with:")
+        rprint("  [cyan]pip install depthflow[/cyan]")
+        rprint("[dim]Then set imagegen.motion: parallax in config/channel.yaml.[/dim]")
+        raise typer.Exit(code=1)
+
+    rprint("[bold]DepthFlow found.[/bold] Rendering a 2s test clip...")
+    with tempfile.TemporaryDirectory() as td:
+        tdp = Path(td)
+        if image is None:
+            from shiksha_cast.branding import CHANNEL_NAME, TEXT_LIGHT, font, new_canvas
+            img, d = new_canvas(1280, 720)
+            d.text((80, 320), CHANNEL_NAME, font=font("seguibl.ttf", 90), fill=TEXT_LIGHT)
+            image = tdp / "test_card.png"
+            img.save(image)
+        out = project_root / "dist" / "parallax_test.mp4"
+        try:
+            render_parallax_video(Path(image), out, duration=2.0, fps=30, width=1280, height=720)
+        except ParallaxUnavailable as e:
+            rprint(f"[bold red]Parallax render failed:[/bold red] {e}")
+            rprint("[dim]Your DepthFlow version may use different CLI flags — set "
+                   "imagegen.parallax_command in config/channel.yaml to match.[/dim]")
+            raise typer.Exit(code=1)
+    rprint(f"[bold green]Success![/bold green] Test clip: {out}")
+    rprint("[dim]Enable for builds: set imagegen.motion: parallax in config/channel.yaml,[/dim]")
+    rprint("[dim]then run: python -m shiksha_cast ai-build -c <episode>[/dim]")
+
+
 def main() -> None:
     app()
 

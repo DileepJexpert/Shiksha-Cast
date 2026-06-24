@@ -4,6 +4,14 @@ branding:
   outro: assets/outro.mp4
 channel: Katixo Shiksha
 fps: 30
+imagegen:
+  provider: sdxl
+  model: stabilityai/sdxl-turbo
+  num_steps: 4
+  # Per-slide motion for `ai-build`: kenburns | parallax | static.
+  # parallax = DepthFlow 2.5D depth animation (run `parallax-check` first).
+  motion: kenburns
+  # parallax_command: optional override; placeholders {image} {output} {duration} {fps} {width} {height}
 music:
   bed: assets/music/gentle_learning.mp3
   duck_db: -18
