@@ -23,7 +23,11 @@ for /f "delims=" %%F in ('dir /s /b /a-d content\script.yaml 2^>nul') do (
         echo ============================================================
         python -m shiksha_cast ai-build -c !EP!
     )
+    REM Publishing assets (thumbnail + YouTube metadata). Cheap, only need the
+    REM script; generate once and skip if already present (keeps re-runs fast).
+    if not exist "dist\!EP!.thumb.png" python -m shiksha_cast thumb -c !EP!
+    if not exist "dist\!EP!.youtube.md" python -m shiksha_cast meta -c !EP!
 )
 echo.
-echo ===== ALL EPISODES PROCESSED =====
+echo ===== ALL EPISODES PROCESSED ^(video + thumbnail + metadata^) =====
 endlocal

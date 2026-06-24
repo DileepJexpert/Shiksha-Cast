@@ -72,6 +72,11 @@ python -m shiksha_cast meta  -c <slug>        # title/description/tags
 ```
 Add `--build` to `new-episode` to render the video immediately after generating.
 
+**Batch everything:** `build-all.bat` (slides) and `build-all-ai.bat` (AI images)
+build every episode that has no video yet, and now also emit each episode's
+**thumbnail + YouTube metadata** (`dist\<ep>.thumb.png`, `dist\<ep>.youtube.md`).
+Both are resumable — already-built/already-generated files are skipped.
+
 Useful flags: `--category how-it-works/technology`, `--slug my-name`,
 `--model qwen2.5:7b`, `--audience "..."`, `--style "..."`. Defaults live under
 `generator:` in `config\channel.yaml`.
@@ -198,6 +203,10 @@ Resumable — skips episodes that already have `dist\<ep>.mp4`, honors per-slide
   ```
 - **CUDA out of memory** → you started two builds at once, or another app is using the GPU.
   Run **one build at a time** and close heavy GPU apps (Chrome video, NVIDIA Broadcast).
+- **GPU stays "full" / a build seems stuck between runs** → a TTS worker from an
+  interrupted build may be orphaned and holding VRAM. Double-click **`free-gpu.bat`**
+  (or `powershell -File scripts\free_gpu.ps1`) to kill stray Veena/XTTS workers. It
+  only targets this project's workers — your backend/UI are untouched.
 - **Builds are slow / seem stuck** → TTS on an 8 GB laptop GPU is slow (minutes per slide for
   Veena). Keep the laptop **awake & plugged in**; it pauses when the machine sleeps.
 - **"No PDF found"** → put `chNN.pdf` in `content\chNN\`, or upload PNG slides in the dashboard.
