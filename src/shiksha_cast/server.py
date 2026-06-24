@@ -163,31 +163,38 @@ def _push_log(chapter: str, msg: str) -> None:
             pass
 
 
+def _find_script_path(chapter_dir: Path) -> Path | None:
+    """Find script YAML in a chapter dir: script.yaml > {name}.yaml > any .yaml."""
+    for candidate in [chapter_dir / "script.yaml", chapter_dir / f"{chapter_dir.name}.yaml"]:
+        if candidate.exists():
+            return candidate
+    yamls = list(chapter_dir.glob("*.yaml"))
+    return yamls[0] if yamls else None
+
+
 @app.get("/api/chapters")
 async def list_chapters():
     content_dir = PROJECT_ROOT / "content"
     chapters = []
     if content_dir.is_dir():
         for d in sorted(content_dir.iterdir()):
-            if not d.is_dir() or d.name.startswith("."):
+            if not d.is_dir() or d.name.startswith((".","_")):
                 continue
             ch_id = d.name
-            info: dict[str, Any] = {"id": ch_id, "has_pdf": False, "has_script": False, "has_video": False, "slide_count": 0}
+            script_path = _find_script_path(d)
+            if not script_path:
+                continue
 
-            pdf = d / f"{ch_id}.pdf"
-            info["has_pdf"] = pdf.exists()
+            info: dict[str, Any] = {"id": ch_id, "has_pdf": False, "has_script": True, "has_video": False, "slide_count": 0}
 
-            script = d / f"{ch_id}.yaml"
-            if script.exists():
-                info["has_script"] = True
-                try:
-                    with open(script, encoding="utf-8") as f:
-                        data = yaml.safe_load(f) or {}
-                    info["title"] = data.get("chapter", ch_id)
-                    info["slide_count"] = len(data.get("slides", []))
-                except Exception:
-                    info["title"] = ch_id
-            else:
+            info["has_pdf"] = any(d.glob("*.pdf"))
+
+            try:
+                with open(script_path, encoding="utf-8") as f:
+                    data = yaml.safe_load(f) or {}
+                info["title"] = data.get("chapter", ch_id)
+                info["slide_count"] = len(data.get("slides", []))
+            except Exception:
                 info["title"] = ch_id
 
             slides_dir = PROJECT_ROOT / "build" / ch_id / "slides"
@@ -209,8 +216,8 @@ async def list_chapters():
 @app.get("/api/chapter/{chapter}/script")
 async def get_script(chapter: str):
     chapter_dir = PROJECT_ROOT / "content" / chapter
-    script_path = chapter_dir / f"{chapter}.yaml"
-    if not script_path.exists():
+    script_path = _find_script_path(chapter_dir)
+    if not script_path:
         return JSONResponse({"error": "Script not found"}, status_code=404)
     with open(script_path, encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
@@ -294,7 +301,7 @@ async def save_script(chapter: str, body: dict):
         "chapter": body.get("title", chapter),
         "slides": slides,
     }
-    script_path = chapter_dir / f"{chapter}.yaml"
+    script_path = chapter_dir / "script.yaml"
     with open(script_path, "w", encoding="utf-8") as f:
         yaml.dump(script_data, f, allow_unicode=True, default_flow_style=False)
     return {"status": "saved", "path": str(script_path)}
