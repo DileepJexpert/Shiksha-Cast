@@ -60,3 +60,25 @@ class SDXLImageProvider(ImageProvider):
 
     def name(self) -> str:
         return "sdxl"
+
+    def unload(self) -> None:
+        """Free the model from VRAM and return cached memory to the driver.
+
+        Critical on 8 GB GPUs: lets the (out-of-process) Veena TTS worker load
+        without OOM after image generation in the same ai-build run.
+        """
+        if self._pipe is None:
+            return
+        del self._pipe
+        self._pipe = None
+        try:
+            import gc
+
+            import torch
+
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            logger.info("SDXL unloaded; VRAM released.")
+        except Exception:
+            pass

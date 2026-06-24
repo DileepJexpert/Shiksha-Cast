@@ -78,4 +78,10 @@ def generate_visuals(
         result.image_paths.append(out_path)
 
     manifest.save()
+
+    # Free the image model from VRAM before the next stage (TTS) loads — on an
+    # 8 GB GPU, leaving SDXL resident OOMs the Veena worker.
+    if hasattr(provider, "unload"):
+        provider.unload()
+
     return result

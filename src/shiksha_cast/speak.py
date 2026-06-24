@@ -1,11 +1,69 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
 from shiksha_cast.cache import BuildManifest, content_hash
 from shiksha_cast.config import ChannelConfig, ScriptFile, SlideScript
 from shiksha_cast.tts.base import TTSProvider
+
+# In-slide two-host dialogue: lines beginning with a speaker tag are voiced by
+# that speaker and stitched together. F:/M: map to default female/male voices;
+# explicit Veena voice names also work. N:/narrator: uses the slide/channel default.
+_DIALOGUE_TAG = re.compile(
+    r"^\s*(F|M|N|kavya|maitri|agastya|vinaya|narrator)\s*:\s*(.*)$", re.IGNORECASE
+)
+_FEMALE_DEFAULT = "kavya"
+_MALE_DEFAULT = "agastya"
+
+
+def _parse_dialogue(narration: str):
+    """Split narration into (voice_or_None, text) segments when it uses speaker
+    tags at line starts. Returns None if there are no tags (use single-voice synth)."""
+    segs: list[tuple] = []
+    cur_voice, cur_text, saw_tag = None, [], False
+    for line in narration.splitlines():
+        m = _DIALOGUE_TAG.match(line)
+        if m:
+            saw_tag = True
+            if cur_text:
+                segs.append((cur_voice, " ".join(cur_text).strip()))
+            tag = m.group(1).lower()
+            cur_voice = {"f": _FEMALE_DEFAULT, "m": _MALE_DEFAULT,
+                         "n": None, "narrator": None}.get(tag, tag)
+            cur_text = [m.group(2).strip()]
+        else:
+            cur_text.append(line.strip())
+    if cur_text:
+        segs.append((cur_voice, " ".join(cur_text).strip()))
+    if not saw_tag:
+        return None
+    segs = [(v, t) for v, t in segs if t]
+    return segs or None
+
+
+def _synthesize_dialogue(provider, segments, voice_desc, out_path, default_speaker) -> float:
+    """Synthesize each speaker segment with its own voice and stitch into one wav."""
+    import numpy as np
+    import soundfile as sf
+
+    parts, sr = [], None
+    for i, (voice, text) in enumerate(segments):
+        provider.set_speaker(voice or default_speaker or "kavya")
+        tmp = out_path.parent / f".seg_{out_path.stem}_{i}.wav"
+        provider.synthesize(text, voice_desc, tmp)
+        a, sr = sf.read(str(tmp))
+        parts.append(np.asarray(a, dtype="float32"))
+        parts.append(np.zeros(int(sr * 0.28), dtype="float32"))  # pause between turns
+        try:
+            tmp.unlink()
+        except OSError:
+            pass
+    sr = sr or 24000
+    audio = np.concatenate(parts) if parts else np.zeros(int(sr * 0.2), dtype="float32")
+    sf.write(str(out_path), audio, sr)
+    return len(audio) / sr
 
 
 @dataclass
@@ -99,12 +157,16 @@ def speak_chapter(
             print(f"[PROGRESS] Audio slide {slide.n}/{total}: cached ({entry['duration']:.1f}s)")
             continue
 
-        # Apply a per-slide speaker if the provider supports it (e.g. Veena voices).
-        if slide_voice and hasattr(provider, "set_speaker"):
-            provider.set_speaker(slide_voice)
-
         print(f"[PROGRESS] Audio slide {slide.n}/{total}: synthesizing...")
-        duration = provider.synthesize(slide.narration, voice_desc, out_path)
+        # In-slide dialogue (F:/M: tagged lines) -> multi-voice stitched clip.
+        segments = _parse_dialogue(slide.narration) if hasattr(provider, "set_speaker") else None
+        if segments:
+            duration = _synthesize_dialogue(provider, segments, voice_desc, out_path, cfg.voice.model)
+        else:
+            # Apply a per-slide speaker if the provider supports it (e.g. Veena voices).
+            if slide_voice and hasattr(provider, "set_speaker"):
+                provider.set_speaker(slide_voice)
+            duration = provider.synthesize(slide.narration, voice_desc, out_path)
         print(f"[PROGRESS] Audio slide {slide.n}/{total}: done ({duration:.1f}s)")
 
         manifest.set("speak", f"{slide.n}:{cache_key}", {

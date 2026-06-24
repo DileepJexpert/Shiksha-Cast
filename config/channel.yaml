@@ -35,6 +35,6 @@ voice:
     noise.
 
     '
-  model: maitri
+  model: vinaya
   provider: veena
   sample_rate: 24000
