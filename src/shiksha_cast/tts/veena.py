@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import atexit
 import json
 import logging
 import subprocess
@@ -27,6 +28,10 @@ class VeenaTTSProvider(TTSProvider):
     def __init__(self, speaker: str = "kavya"):
         self._speaker = speaker or "kavya"
         self._proc: subprocess.Popen | None = None
+        # Backstop: kill the worker on interpreter exit even if close() is never
+        # called (e.g. an unhandled error). atexit is far more reliable than __del__,
+        # which previously let workers leak and hold GPU VRAM.
+        atexit.register(self.close)
 
     def set_speaker(self, speaker: str) -> None:
         """Switch voice mid-session; the worker reads the speaker per request."""
@@ -80,10 +85,26 @@ class VeenaTTSProvider(TTSProvider):
     def name(self) -> str:
         return "veena"
 
-    def __del__(self):
+    def close(self) -> None:
+        """Terminate the worker subprocess and free its GPU VRAM. Idempotent."""
+        proc = self._proc
+        if proc is None:
+            return
+        self._proc = None
         try:
-            if self._proc and self._proc.poll() is None:
-                self._proc.stdin.close()
-                self._proc.terminate()
+            if proc.poll() is None:
+                if proc.stdin:
+                    try:
+                        proc.stdin.close()  # EOF -> worker breaks its read loop
+                    except Exception:
+                        pass
+                proc.terminate()
+                try:
+                    proc.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    proc.kill()  # last resort if it ignored terminate
         except Exception:
             pass
+
+    def __del__(self):
+        self.close()

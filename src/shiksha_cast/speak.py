@@ -136,6 +136,20 @@ def speak_chapter(
     manifest = BuildManifest(build_dir)
     result = SpeakResult(chapter=chapter)
 
+    try:
+        _speak_slides(provider, script, cfg, audio_dir, manifest, result, force)
+    finally:
+        # Always release the TTS backend (e.g. the Veena worker subprocess holding
+        # GPU VRAM) so it can't be orphaned and clog the GPU for the next run.
+        close = getattr(provider, "close", None)
+        if callable(close):
+            close()
+
+    manifest.save()
+    return result
+
+
+def _speak_slides(provider, script, cfg, audio_dir, manifest, result, force) -> None:
     total = len(script.slides)
     for slide in script.slides:
         out_path = audio_dir / f"slide_{slide.n:03d}.wav"
@@ -182,4 +196,3 @@ def speak_chapter(
         result.durations.append(duration)
 
     manifest.save()
-    return result
