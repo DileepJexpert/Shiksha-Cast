@@ -1057,3 +1057,20 @@ body {
 .step-active .step-num { background: #4361ee; color: #fff; }
 .step-done { color: #1d7a46; }
 .step-done .step-num { background: #1d7a46; color: #fff; }
+
+.dialogue-tip {
+  background: #fff7ec;
+  border: 1px solid #ffe0b2;
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: #5a4a2a;
+  line-height: 1.5;
+}
+.dialogue-tip code {
+  background: #ffeccc;
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  margin: 0 0.15rem;
+}

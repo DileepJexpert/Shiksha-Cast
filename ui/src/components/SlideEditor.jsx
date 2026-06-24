@@ -145,6 +145,12 @@ export default function SlideEditor({ chapter, slides, existingScript, onScriptC
         )}
       </div>
 
+      <div className="dialogue-tip">
+        💬 <strong>Two-host dialogue in one slide:</strong> start lines with <code>F:</code> (female) or
+        <code>M:</code> (male) — e.g. <code>F: Aaj hum…</code> / <code>M: Haan, aur…</code> — and each
+        line is voiced separately and stitched. Or set a single voice per slide with the dropdown below.
+      </div>
+
       <div className="voice-global">
         <label htmlFor="voice-desc">Voice description (all slides, optional)</label>
         <input
