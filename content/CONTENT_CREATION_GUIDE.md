@@ -1,14 +1,20 @@
 # Katixo Shiksha — Content Creation Guide
 
-## 5-Chapter Plan (Mix of Maths + EVS)
+## Target Audience
+**Class 6–10 (Age 11–16)** | Indian teens | Hinglish | Curiosity-driven science
+- NOT "Made for Kids" on YouTube (enables full monetization, comments, notifications)
+- Tone: smart friend explaining, not teacher lecturing
+- Content level: real science — no dumbing down, but explained clearly
 
-| # | Chapter | Subject | Class | Slides | Est. Duration |
-|---|---------|---------|-------|--------|---------------|
-| Ch07 | Tick Tock Clock — Telling Time | Maths | 2-3 | 15 | ~7 min |
-| Ch08 | Paani Ka Safar — The Water Cycle | EVS | 3 | 15 | ~7 min |
-| Ch09 | Pizza Party — Introduction to Fractions | Maths | 3 | 15 | ~7 min |
-| Ch10 | Our Amazing Body — Bones & Muscles | EVS/Science | 3-4 | 15 | ~7 min |
-| Ch11 | Rupee Gyaan — Money & Billing | Maths | 2-3 | 15 | ~7 min |
+## Season 1 Episodes
+
+| # | Folder | Topic | Subject | Slides | Est. Duration |
+|---|--------|-------|---------|--------|---------------|
+| S01 | s01-goosebumps | Why Do You Get Goosebumps? | Biology / Evolution | 15 | ~5 min |
+| S02 | s02-wifi | How Does WiFi Actually Work? | Physics / Tech | 15 | ~6 min |
+| S03 | s03-blood-factory | Your Blood Factory | Biology / Human Body | 15 | ~6 min |
+| S04 | s04-rockets | How Do Rockets Escape Earth? | Physics / Space / ISRO | 15 | ~6 min |
+| S05 | s05-sky-blue | Why Is the Sky Blue? | Physics / Optics | 15 | ~6 min |
 
 ---
 
@@ -16,77 +22,82 @@
 
 ### 1. Setup (One-time)
 - Create a **Brand Kit** in Canva:
-  - Primary color: #4361EE (Katixo blue)
-  - Accent colors: #FF6B35 (orange), #28A745 (green), #FFD93D (yellow)
-  - Font: **Nunito** (heading) + **Comic Neue** or **Quicksand** (body)
+  - Primary: #1A1A2E (dark navy/black background)
+  - Accent: #00D4FF (neon cyan), #FF6B35 (neon orange), #4361EE (electric blue)
+  - Highlight: #FFD93D (yellow for emphasis)
+  - Font heading: **Montserrat Bold** or **Poppins Bold** (modern, techy)
+  - Font body: **Inter** or **Nunito Sans** (clean, readable)
   - Upload Katixo Shiksha logo
 - Canvas size: **1920 x 1080 px** (Presentation 16:9)
+- **Dark theme preferred** — looks premium, good for science content
 
-### 2. Slide Types (Use These Templates)
+### 2. Slide Types
 
-#### TYPE A — Title Slide (Slide 1)
+#### TYPE A — Hook / Title (Slide 1)
 ```
 ┌─────────────────────────────────────┐
-│  [Katixo Logo - top left]           │
+│  [Katixo Logo - top left] [S01]    │
 │                                     │
-│     Ch 7 — Tick Tock Clock          │
-│       Telling Time!                 │
+│  "Why Do You Get GOOSEBUMPS?"      │
+│   (big, bold, neon glow effect)     │
 │                                     │
-│  [Big colorful clock illustration]  │
-│                                     │
-│  [Mascot character - bottom right]  │
+│  [Dramatic visual - full bleed]     │
+│  [Stat or hook line at bottom]      │
 └─────────────────────────────────────┘
 ```
-- Background: gradient (light blue → white)
-- Chapter title: 72px bold, centered
-- Subtitle: 36px, lighter color
-- One big illustration (from Canva elements)
+- Dark background, dramatic hero image
+- Title in bold white with colored glow/outline
+- One jaw-dropping stat or visual to hook viewers in first 3 seconds
 
-#### TYPE B — Concept Slide (Slides 3-12)
+#### TYPE B — Concept / Explanation (Slides 2-12)
 ```
 ┌─────────────────────────────────────┐
-│  [Slide title - top]        [#4/15] │
+│  [Slide headline - short]   [#4/15]│
 │                                     │
-│  [Visual/Diagram      ] [Text box  ]│
-│  [takes 60% width     ] [key point ]│
-│  [colorful, simple    ] [2-3 lines ]│
+│  [Diagram / infographic / visual ]  │
+│  [Takes 60-70% of space           ]│
+│  [Scientific but clean             ]│
 │                                     │
-│  [Bottom bar: chapter name]         │
+│  [Key stat or text callout box]     │
+│  [Bottom: episode name bar]         │
 └─────────────────────────────────────┘
 ```
-- MAX 3 text lines per slide (kids lose focus with more)
-- Visual takes 60% of space, text takes 40%
-- Use Canva "Elements" → search for educational illustrations
-- Number badge in top-right corner
+- MAX 25 words text per slide (narration does the heavy lifting)
+- Visual takes 60-70%: diagrams, infographics, charts, comparisons
+- Use scientific illustrations — NOT cartoon/kiddie style
+- One key stat or insight highlighted in a callout box
+- Dark backgrounds with bright accent elements
 
-#### TYPE C — Quiz/Activity Slide (Slides 13-14)
+#### TYPE C — Quiz / Brain Check (Slides 13-14)
 ```
 ┌─────────────────────────────────────┐
-│        YOUR TURN!                   │
+│  PAUSE & ANSWER                     │
 │                                     │
-│   Q1: What time is shown?          │
-│   [Clock showing 3:30]              │
+│  Q1: [Question text]                │
+│  Q2: [Question text]                │
+│  Q3: [Question text]                │
 │                                     │
-│   Q2: _____ minutes = 1 hour       │
-│                                     │
-│   PAUSE the video and try!          │
+│  "Active recall > passive watching" │
+│  [PAUSE icon prominent]             │
 └─────────────────────────────────────┘
 ```
-- Bright yellow/orange background
-- "PAUSE" text prominent
-- Fun challenge, not stressful test
+- Bold "PAUSE & ANSWER" heading
+- Clean numbered questions
+- Dark background, neon accent text
+- Answers slide (14): same layout + green checkmarks
 
-#### TYPE D — Recap Slide (Slide 15)
+#### TYPE D — Recap + CTA (Slide 15)
 ```
 ┌─────────────────────────────────────┐
-│        What We Learned Today        │
+│  RECAP                              │
 │                                     │
-│  ✓ Point 1 with small icon          │
-│  ✓ Point 2 with small icon          │
-│  ✓ Point 3 with small icon          │
+│  • Key point 1 with icon            │
+│  • Key point 2 with icon            │
+│  • Key point 3 with icon            │
+│  • Key point 4 with icon            │
 │                                     │
-│  [Subscribe + Worksheet link]       │
-│  [Mascot waving goodbye]            │
+│  NEXT: [teaser for next episode]    │
+│  [SUBSCRIBE button] [Logo]          │
 └─────────────────────────────────────┘
 ```
 
@@ -94,81 +105,76 @@
 
 | Rule | Why |
 |------|-----|
-| Max 20 words per slide | Kids read slow, narration carries the content |
-| One idea per slide | Don't overload — split into 2 slides |
-| Font size ≥ 36px | Readable on mobile phones |
-| Use illustrations, NOT photos | Cartoon style = fun, relatable |
-| Consistent character/mascot | Kids build attachment, come back |
-| Color-code topics | Maths = blue, EVS = green, Science = purple |
-| No clipart mess | Max 2-3 visual elements per slide |
-| White/light backgrounds | Text stays readable |
+| Max 25 words per slide | Narration carries content; slides are visual support |
+| One concept per slide | Cognitive load — don't overwhelm |
+| Font size ≥ 32px | Readable on phones (most Indian teens watch on mobile) |
+| Dark backgrounds | Looks premium, reduces eye strain, modern science vibe |
+| Diagrams > illustrations | Teen audience wants real info, not cartoon art |
+| Neon accents on dark bg | Eye-catching, YouTube-thumbnail-worthy |
+| Consistent color coding | Physics = cyan, Biology = red/orange, Space = deep blue |
+| No visual clutter | Max 3-4 elements per slide — whitespace is good |
 
 ### 4. Canva Elements to Search
 
 | Topic | Search Keywords in Canva |
 |-------|--------------------------|
-| Clock/Time | "clock cartoon", "time illustration kids" |
-| Water Cycle | "water cycle diagram", "rain cloud cartoon" |
-| Fractions | "pizza slices", "pie chart cartoon", "fraction circles" |
-| Body/Bones | "skeleton cartoon kids", "human body diagram cute" |
-| Money | "indian rupee cartoon", "coins illustration", "shop billing" |
-| Numbers | "number blocks", "abacus cartoon", "counting" |
-| General | "kids learning", "classroom cartoon", "chalkboard" |
+| Goosebumps / Skin | "skin anatomy", "hair follicle diagram", "goosebumps close-up" |
+| WiFi / Radio | "radio waves", "electromagnetic spectrum", "router signal", "wifi diagram" |
+| Blood / Cells | "blood cells 3D", "circulatory system", "red blood cells microscope" |
+| Rockets / Space | "rocket launch", "ISRO", "orbit diagram", "escape velocity" |
+| Sky / Light | "prism rainbow", "light scattering", "sunset gradient", "atmosphere layers" |
+| General Science | "molecular structure", "brain neuron", "physics diagram" |
 
 ---
 
-## Canva Workflow (Per Chapter)
+## Canva Workflow (Per Episode)
 
-### Step 1: Create Deck (10 min)
-1. Open Canva → Create Design → Presentation (16:9)
-2. Create 15 blank slides
-3. Apply brand colors + fonts from Brand Kit
+### Step 1: Read the Brief (5 min)
+1. Open `SLIDES.md` in the episode folder
+2. Read all 15 slide descriptions — understand the visual story
+3. Read `script.yaml` alongside — match narration to visuals
 
-### Step 2: Title + Structure (10 min)
-1. Slide 1: Title (Type A)
-2. Slide 2: "What we'll learn" with 3-4 bullet icons
-3. Slides 3-12: Concept slides (Type B) — one idea each
-4. Slides 13-14: Quiz/Activity (Type C)
-5. Slide 15: Recap + goodbye (Type D)
+### Step 2: Create Deck (10 min)
+1. Canva → Create Design → Presentation (16:9)
+2. Apply dark theme + brand fonts from Brand Kit
+3. Create 15 slides, add slide numbers
 
-### Step 3: Add Visuals (20 min)
-1. Search Canva Elements for topic illustrations
-2. Place one main visual per slide (left 60%)
-3. Add key text (right 40%, max 20 words)
-4. Use arrows, circles, highlights to guide attention
+### Step 3: Design Each Slide (30-40 min)
+1. Follow SLIDES.md instructions slide by slide
+2. Search Canva Elements for relevant diagrams/illustrations
+3. Place visual (60-70% of space), add headline text
+4. Add accent elements: callout boxes, stat badges, arrows
+5. Keep text minimal — the narration explains everything
 
 ### Step 4: Export (2 min)
-1. File → Download → PDF Standard (or PNG pages)
-2. Save as `content/ch07/ch07.pdf`
-3. Drop into Shiksha-Cast pipeline
+1. File → Download → PNG (all pages, 1920×1080)
+2. Rename files: `slide_001.png`, `slide_002.png`, ...
+3. Place in episode's `slides/` folder
 
-### Total time per chapter: ~45 minutes
+### Total time per episode: ~45-55 minutes
 
 ---
 
-## Engagement Tricks That Work for Kids
+## Content Style for Teens (Age 11-16)
 
-### 1. Story-Based Learning
-DON'T: "The hour hand is shorter than the minute hand"
-DO: "Meet the two brothers who live inside every clock — Chhotu the hour hand, and Lambu the minute hand!"
+### Tone
+- **Smart friend**, not teacher: "Here's something wild..." not "Today children, we will learn..."
+- **Confident and direct**: state facts, give numbers, use real science terms
+- **Hinglish mix**: English science terms + Hindi expressions ("Dekho", "Sochke batao", "Mind = blown, na?")
+- **Respect their intelligence**: don't dumb down, but explain clearly
 
-### 2. Real-World Anchors
-DON'T: "Water evaporates from oceans"
-DO: "Remember when you left a wet towel in the sun? Where did the water go? That's evaporation!"
+### Script Structure (15 slides, ~5-6 min)
+1. **Hook** (Slide 1): Mind-blowing fact or question — grab attention in 10 seconds
+2. **Roadmap** (Slide 2): "Today we'll cover 4 things..." — sets expectations
+3. **Core content** (Slides 3-12): One concept per slide, build progressively
+4. **Quiz** (Slides 13-14): 3 questions + answers — active recall
+5. **Recap + CTA** (Slide 15): Key takeaways + tease next episode + subscribe
 
-### 3. Call-and-Response
-"So 3 plus 3 is... wait, don't tell me... SIX! Did you get it too?"
-
-### 4. Mistakes Are Fun
-"Oops! I made a silly mistake. Did you catch it? The answer isn't 42, it's..."
-
-### 5. Kid Language
-- "Super cool" instead of "interesting"
-- "Bahut easy hai!" instead of "This is simple"
-- "Let's crack this!" instead of "Let's solve this"
-
-### 6. Pause Points
-Every 3-4 slides, add a "YOUR TURN!" slide where they pause and try.
-
-### 7. End With Excitement
-"Next chapter is even more fun — we're going to learn about FRACTIONS with PIZZA!"
+### Engagement Techniques
+1. **Real numbers**: "11.2 km/s — 16× faster than a bullet" beats "very fast"
+2. **Comparisons**: "Your blood vessels could wrap around Earth twice"
+3. **Challenge the viewer**: "Try it right now — try to give yourself goosebumps"
+4. **Myth busting**: "Common misconception — your blood is NEVER blue"
+5. **Indian context**: ISRO references, rupee examples, monsoon, daal-chawal analogies
+6. **Study science**: "Active recall > passive watching" — teach them HOW to learn
+7. **Cliffhanger endings**: Tease next episode topic to drive subscriptions

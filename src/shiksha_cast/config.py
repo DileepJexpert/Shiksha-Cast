@@ -71,13 +71,22 @@ def load_channel_config(project_root: Path) -> ChannelConfig:
     return ChannelConfig.model_validate(data)
 
 
-def load_script(chapter_dir: Path) -> ScriptFile:
+def find_script_yaml(chapter_dir: Path) -> Path:
+    """Find script YAML: prefer script.yaml, then {dirname}.yaml, then any .yaml."""
+    canonical = chapter_dir / "script.yaml"
+    if canonical.exists():
+        return canonical
+    named = chapter_dir / f"{chapter_dir.name}.yaml"
+    if named.exists():
+        return named
     yamls = list(chapter_dir.glob("*.yaml"))
     if not yamls:
         raise FileNotFoundError(f"No script YAML found in {chapter_dir}")
-    if len(yamls) > 1:
-        yamls = [y for y in yamls if y.stem == chapter_dir.name]
-    script_path = yamls[0]
+    return yamls[0]
+
+
+def load_script(chapter_dir: Path) -> ScriptFile:
+    script_path = find_script_yaml(chapter_dir)
     with open(script_path, encoding="utf-8") as f:
         data = yaml.safe_load(f)
     return ScriptFile.model_validate(data)
