@@ -1,0 +1,60 @@
+# S08 — Black Hole Ke Andar Kya Hota Hai?
+
+_Read / explain each slide using these notes._
+
+## Slide 1
+
+दोस्तों, अंतरिक्ष में एक ऐसी जगह है जहाँ gravity इतनी strong है कि light भी escape नहीं कर सकती — एक ऐसा गड्ढा जिससे कुछ भी बाहर नहीं आ सकता! इसे कहते हैं black hole. और सबसे बड़ा सवाल — इसके अंदर आख़िर है क्या? आज Katixo Shiksha पर हम इसी रहस्य में उतरेंगे — event horizon से लेकर singularity तक, और समझेंगे कि क्यों physics के सबसे बड़े नियम भी यहाँ टूटने लगते हैं. ये सबसे mind-blowing episode होने वाला है. चलो शुरू करते हैं!
+
+## Slide 2
+
+पहले समझो black hole बनता कैसे है. जब कोई बहुत बड़ा तारा — हमारे sun से कई गुना भारी — अपना सारा fuel जला लेता है, तो उसमें fusion रुक जाता है. अब बाहर की तरफ धकेलने वाला pressure खत्म, पर gravity अब भी अंदर की तरफ खींच रही है. नतीजा — तारा अपने ही वज़न से ढह जाता है, जिसे कहते हैं gravitational collapse. सारा पदार्थ एक बेहद छोटी जगह में सिमट जाता है, और बनता है black hole. यह अक्सर एक ज़बरदस्त धमाके — supernova — के बाद होता है.
+
+## Slide 3
+
+अब black hole का सबसे famous हिस्सा — event horizon. यह कोई ठोस दीवार नहीं, बल्कि एक काल्पनिक सीमा है, point of no return. इस सीमा के पार जो भी जाए — चाहे rocket हो, ग्रह हो, या light की किरण — वो कभी वापस नहीं आ सकता, क्योंकि escape velocity light की speed से भी ज़्यादा हो जाती है. event horizon का आकार बताता है black hole की black border. इसी की वजह से black hole काला दिखता है — क्योंकि उसके अंदर से कोई रोशनी हम तक नहीं पहुँचती!
+
+## Slide 4
+
+Event horizon के size को मापने का एक नाम है — Schwarzschild radius. यह जितना बड़ा black hole, उतना बड़ा. मज़ेदार बात — अगर हमारी पूरी पृथ्वी को black hole बनाना हो, तो उसे सिकोड़कर सिर्फ एक मार्बल जितना, करीब 9 millimeter का करना पड़ेगा! और sun को black hole बनाना हो तो उसे करीब 3 kilometer के radius में निचोड़ना पड़े. इससे समझ आता है कि black hole में पदार्थ कितनी ज़बरदस्त density के साथ packed होता है — कल्पना से परे!
+
+## Slide 5
+
+अब चलते हैं और गहराई में — singularity की तरफ. theory के मुताबिक black hole के बिल्कुल center में सारा द्रव्यमान एक अनंत छोटे point में सिमट जाता है, जिसे कहते हैं singularity. यहाँ density लगभग infinite हो जाती है और space-time की curvature अनंत. यहीं पर मज़ा खत्म और रहस्य शुरू — क्योंकि Einstein की general relativity, जो gravity को समझाती है, singularity पर fail हो जाती है. इसके equations infinity देने लगते हैं, और infinity का मतलब है — हमारा मौजूदा physics यहाँ काम नहीं करता!
+
+## Slide 6
+
+तो singularity पर सच में क्या होता है? सच्चाई यह है दोस्तों — हम पक्के तौर पर नहीं जानते! gravity को general relativity समझाती है, और बहुत छोटी चीज़ों को quantum mechanics. पर singularity एक ऐसी जगह है जहाँ बहुत बड़ी gravity और बहुत छोटा size एक साथ हैं — यानी दोनों theories की एक साथ ज़रूरत. पर ये दोनों आपस में मेल नहीं खातीं! इसे जोड़ने के लिए scientists एक theory of quantum gravity की तलाश में हैं. यानी black hole का असली center आज भी physics का सबसे बड़ा unsolved सवाल है.
+
+## Slide 7
+
+अब एक मज़ेदार और डरावना concept — spaghettification! मान लो तुम पैर आगे करके black hole में गिर रहे हो. तुम्हारे पैरों पर gravity, तुम्हारे सिर के मुकाबले बहुत ज़्यादा होगी, क्योंकि वो center के ज़्यादा पास हैं. यह फर्क इतना भारी हो जाता है कि तुम लंबे, पतले नूडल या spaghetti की तरह खिंच जाओगे! scientists ने सच में इसे यही नाम दिया है — spaghettification. tidal forces की वजह से कोई भी चीज़ black hole के पास खिंचकर टूट जाती है.
+
+## Slide 8
+
+अब Stephen Hawking की एक शानदार खोज — Hawking radiation. लंबे समय तक माना जाता था कि black hole से कुछ भी बाहर नहीं आ सकता. पर 1974 में Hawking ने quantum physics का इस्तेमाल कर दिखाया कि black holes बहुत-बहुत धीरे-धीरे energy छोड़ते हैं और सिकुड़ते हैं. इसका मतलब — black holes हमेशा के लिए नहीं रहते, वो बहुत-बहुत लंबे समय में evaporate होकर खत्म हो सकते हैं! पर यह इतनी धीमी process है कि एक तारे जितने black hole को मिटने में ब्रह्मांड की उम्र से भी कहीं ज़्यादा समय लगेगा.
+
+## Slide 9
+
+अब time की एक हैरान करने वाली बात — time dilation. Einstein के मुताबिक जितनी strong gravity, उतनी धीमी time. black hole के event horizon के पास time बेहद धीमा हो जाता है. अगर तुम दूर से किसी दोस्त को black hole की तरफ गिरते देखो, तो तुम्हें लगेगा वो horizon के पास जाकर जैसे जम गया, धीमा होते-होते रुक सा गया! पर खुद उस दोस्त के लिए time normal चल रहा होगा. यानी black hole के पास time खुद अजीब और लचीला हो जाता है — किसी science fiction से कम नहीं!
+
+## Slide 10
+
+अब असली black holes की बात — ये सिर्फ theory नहीं! हमारी galaxy, Milky Way, के center में एक supermassive black hole है जिसका नाम Sagittarius A star है — जो हमारे sun से करीब 40 lakh गुना भारी है. और 2019 में पहली बार scientists ने एक black hole की असली तस्वीर ली — galaxy M87 के center में बैठे एक विशाल black hole की, उसके चमकते छल्ले के साथ. 2022 में हमारी अपनी galaxy के Sagittarius A star की भी तस्वीर आई. यानी black holes सच में हैं, और हम उन्हें देख भी चुके हैं!
+
+## Slide 11
+
+तो अब तक की कहानी समेटो दोस्तों. black hole एक मरते हुए विशाल तारे के ढहने से बनता है. उसकी सबसे बाहरी सीमा है event horizon — point of no return, जहाँ से light भी नहीं लौट सकती. उसके center में है singularity — अनंत density वाला बिंदु, जहाँ हमारा physics अधूरा पड़ जाता है. आसपास time धीमा होता है, चीज़ें spaghetti जैसी खिंचती हैं, और Hawking radiation से वो धीरे-धीरे evaporate होते हैं. black hole हमें याद दिलाता है कि ब्रह्मांड में अब भी कितना कुछ समझना बाकी है!
+
+## Slide 12
+
+Quick brain check! तीन सवाल, ज़रा दिमाग लगाओ. पहला — black hole की उस सीमा का नाम क्या है जहाँ से light भी बाहर नहीं आ सकती, यानी point of no return? दूसरा — black hole के बिल्कुल center वाले अनंत density बिंदु को क्या कहते हैं, और वहाँ कौन सी theory fail होती है? तीसरा — किसी चीज़ के black hole के पास नूडल जैसा खिंचने को क्या कहते हैं? अभी video PAUSE करो, सोचो, खुद जवाब दो. फिर answers मिलेंगे. चलो, pause!
+
+## Slide 13
+
+जवाब देखते हैं! पहला — उस सीमा का नाम है event horizon, जहाँ escape velocity light की speed से ज़्यादा हो जाती है, इसलिए light भी नहीं बच सकती. दूसरा — center वाले अनंत density बिंदु को कहते हैं singularity, और वहाँ Einstein की general relativity fail हो जाती है क्योंकि equations infinity देने लगते हैं. तीसरा — black hole के पास नूडल जैसा खिंचने को कहते हैं spaghettification, जो tidal forces से होता है. तीनों सही? कमाल, तुमने physics के सबसे गहरे रहस्य पकड़ लिए!
+
+## Slide 14
+
+तो final recap दोस्तों. black hole बनता है विशाल तारे के gravitational collapse से. event horizon उसकी सीमा है जहाँ से कुछ नहीं लौटता, और center में है singularity जहाँ हमारा physics अधूरा पड़ता है. आसपास time धीमा होता है, चीज़ें spaghetti जैसी खिंचती हैं, और Hawking radiation से वो धीरे-धीरे मिट सकते हैं. हम black hole की असली तस्वीरें भी ले चुके हैं! अगला episode भी ज़बरदस्त है — How Does GPS Know Where You Are, यानी GPS को तुम्हारी location कैसे पता चलती है! Subscribe करना मत भूलना! Bye!
+
