@@ -24,11 +24,16 @@ def generate_srt(
     pad_before_s: float = 0.3,
     pad_after_s: float = 0.7,
     min_slide_s: float = 4.0,
+    start_offset_s: float = 0.0,
 ) -> str:
-    """Generate SRT subtitle content from narration text and audio durations."""
+    """Generate SRT subtitle content from narration text and audio durations.
+
+    start_offset_s shifts every cue later (e.g. by an intro bumper's length)
+    so captions stay aligned when the final video is prepended with an intro.
+    """
     lines: list[str] = []
     cue_index = 1
-    timeline = 0.0
+    timeline = start_offset_s
 
     for narration, audio_dur in zip(narrations, durations):
         slide_dur = max(min_slide_s, pad_before_s + audio_dur + pad_after_s)
@@ -70,11 +75,14 @@ def write_captions(
     pad_before_s: float = 0.3,
     pad_after_s: float = 0.7,
     min_slide_s: float = 4.0,
+    start_offset_s: float = 0.0,
 ) -> Path:
     dist_dir = project_root / "dist"
     dist_dir.mkdir(parents=True, exist_ok=True)
     srt_path = dist_dir / f"{chapter}.srt"
 
-    content = generate_srt(narrations, durations, pad_before_s, pad_after_s, min_slide_s)
+    content = generate_srt(
+        narrations, durations, pad_before_s, pad_after_s, min_slide_s, start_offset_s
+    )
     srt_path.write_text(content, encoding="utf-8")
     return srt_path

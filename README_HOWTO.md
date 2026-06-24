@@ -69,7 +69,36 @@ Uses the voice in `config\channel.yaml`. Output: `dist\ch06.mp4` + `dist\ch06.sr
 | Test Tone (stub) | — | — | Silent; pipeline test only. |
 
 Default voice lives in `config\channel.yaml` (`voice.provider` + `voice.model`).
-Current default: `provider: veena`, `model: kavya`.
+Current default: `provider: veena`, `model: maitri`.
+
+---
+
+## 4b. Publishing assets (thumbnail, YouTube metadata, intro/outro/music)
+
+The pipeline can generate everything you need to upload, not just the MP4.
+
+**One-time — make the channel branding assets:**
+```
+python -m shiksha_cast make-assets
+```
+Creates `assets\intro.mp4` (3s bumper), `assets\outro.mp4` (subscribe card), and
+`assets\music\gentle_learning.mp3` (a soft placeholder bed — swap it for a licensed
+track anytime). Once these exist, **every build automatically** prepends the intro,
+appends the outro, and mixes the music bed under the narration (captions/chapters are
+auto-shifted to stay in sync). Re-run with `--force` to regenerate.
+
+**Per episode — thumbnail + metadata:**
+```
+python -m shiksha_cast thumb -c s06-yawning   # -> dist\s06-yawning.thumb.png  (1280x720)
+python -m shiksha_cast meta  -c s06-yawning   # -> dist\s06-yawning.youtube.md
+```
+- **thumb** renders a branded 1280×720 thumbnail (accent colour follows the episode's
+  subject; "WHY?/HOW?" hook word in the background).
+- **meta** writes a copy-paste-ready **title**, **description** (with auto chapter
+  timestamps from the script), and **tags** — open the `.md`, paste into YouTube.
+
+Episode IDs are just the folder name (e.g. `s06-yawning`), found anywhere under
+`content/`. Build-cache and outputs continue to use that id.
 
 ---
 
@@ -94,11 +123,16 @@ Current default: `provider: veena`, `model: kavya`.
 ## 6. Where things are
 
 ```
-content\chNN\chNN.pdf     slide deck (Hindi)
-content\chNN\chNN.yaml    narration script (Hinglish)
+content\<category>\<ep>\  episode folder (script.yaml + SLIDES.md), e.g.
+                          content\how-it-works\technology\s02-wifi\
 config\channel.yaml       voice + timing + branding config
-dist\chNN.mp4 / .srt      final video + captions
-src\shiksha_cast\         backend (pipeline, server, TTS, render, assemble)
+assets\intro|outro.mp4    branding bumpers (python -m shiksha_cast make-assets)
+assets\music\*.mp3        music bed
+dist\<ep>.mp4 / .srt      final video + captions
+dist\<ep>.thumb.png       YouTube thumbnail (shiksha-cast thumb)
+dist\<ep>.youtube.md      title/description/tags (shiksha-cast meta)
+src\shiksha_cast\         backend (pipeline, server, TTS, render, assemble,
+                          metadata, thumbnail, assets, branding)
 scripts\veena_worker.py   Veena TTS worker (runs in .venv-veena)
 ui\                       React dashboard
 ```

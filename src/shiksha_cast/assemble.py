@@ -40,6 +40,39 @@ def _run_ffmpeg(args: list[str]) -> None:
         ) from e
 
 
+def probe_duration(path: Path) -> float:
+    """Return a media file's duration in seconds (0.0 if it can't be probed)."""
+    ffprobe = shutil.which("ffprobe")
+    if ffprobe is None or not Path(path).exists():
+        return 0.0
+    try:
+        out = subprocess.run(
+            [ffprobe, "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", str(path)],
+            check=True, capture_output=True, text=True,
+        )
+        return float(out.stdout.strip())
+    except (subprocess.CalledProcessError, ValueError):
+        return 0.0
+
+
+def mix_music_bed(video_in: Path, music: Path, output_mp4: Path, music_db: float, sample_rate: int) -> None:
+    """Loop a music bed under the video's narration at music_db (e.g. -18) and remux."""
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+    _run_ffmpeg([
+        "-i", str(video_in),
+        "-stream_loop", "-1", "-i", str(music),
+        "-filter_complex",
+        f"[1:a]volume={music_db}dB[m];"
+        f"[0:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]",
+        "-map", "0:v", "-map", "[a]",
+        "-c:v", "copy",
+        "-c:a", "aac", "-b:a", "192k", "-ar", str(sample_rate), "-ac", "1",
+        "-shortest", "-movflags", "+faststart",
+        str(output_mp4),
+    ])
+
+
 def build_slide_clip(
     slide_png: Path,
     audio_wav: Path,
@@ -148,8 +181,17 @@ def assemble_chapter(
     pad_before_s: float = 0.3,
     pad_after_s: float = 0.7,
     min_slide_s: float = 4.0,
+    intro_path: Path | None = None,
+    outro_path: Path | None = None,
+    music_path: Path | None = None,
+    music_db: float = -18.0,
+    sample_rate: int = 24000,
 ) -> AssembleResult:
-    """Assemble per-slide clips and concatenate into final video."""
+    """Assemble per-slide clips, optional intro/outro bumpers and music bed.
+
+    intro/outro/music are applied only when the given paths exist, so builds
+    behave exactly as before when no branding assets are present.
+    """
     build_dir = project_root / "build" / chapter
     clips_dir = build_dir / "clips"
     clips_dir.mkdir(parents=True, exist_ok=True)
@@ -172,12 +214,29 @@ def assemble_chapter(
         clip_paths.append(clip_path)
         total_dur += clip_dur
 
-    print(f"[PROGRESS] Concatenating {total} clips into final video...")
+    # Wrap with intro/outro bumpers when available.
+    sequence = list(clip_paths)
+    if intro_path and Path(intro_path).exists():
+        sequence.insert(0, Path(intro_path))
+        total_dur += probe_duration(intro_path)
+        print("[PROGRESS] Prepending intro bumper")
+    if outro_path and Path(outro_path).exists():
+        sequence.append(Path(outro_path))
+        total_dur += probe_duration(outro_path)
+        print("[PROGRESS] Appending outro bumper")
+
+    print(f"[PROGRESS] Concatenating {len(sequence)} clips into final video...")
     dist_dir = project_root / "dist"
     dist_dir.mkdir(parents=True, exist_ok=True)
     output_mp4 = dist_dir / f"{chapter}.mp4"
 
-    concat_clips(clip_paths, output_mp4)
+    use_music = bool(music_path and Path(music_path).exists())
+    concat_target = (build_dir / "body.mp4") if use_music else output_mp4
+    concat_clips(sequence, concat_target)
+
+    if use_music:
+        print("[PROGRESS] Mixing music bed under narration...")
+        mix_music_bed(concat_target, Path(music_path), output_mp4, music_db, sample_rate)
 
     return AssembleResult(
         video_path=output_mp4,

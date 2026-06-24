@@ -28,6 +28,16 @@ class AIBuildResult:
     srt_path: Path
 
 
+def _branding_asset(project_root: Path, rel: Optional[str]) -> Optional[Path]:
+    """Resolve a branding asset path from config; return it only if it exists."""
+    if not rel:
+        return None
+    p = Path(rel)
+    if not p.is_absolute():
+        p = project_root / p
+    return p if p.exists() else None
+
+
 def run_render(chapter: str, project_root: Path, force: bool = False) -> RenderResult:
     cfg = load_channel_config(project_root)
     w, h = cfg.resolution
@@ -76,6 +86,10 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
     print(f"[PROGRESS] Audio: {speak_result.synthesized_count} synthesized, {speak_result.cached_count} cached")
 
     print("[STAGE] Assembling video clips...")
+    intro_path = _branding_asset(project_root, cfg.branding.intro)
+    outro_path = _branding_asset(project_root, cfg.branding.outro)
+    music_path = _branding_asset(project_root, cfg.music.bed)
+
     assemble_result = assemble_chapter(
         chapter=chapter,
         project_root=project_root,
@@ -86,10 +100,18 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
         pad_before_s=cfg.timing.pad_before_ms / 1000,
         pad_after_s=cfg.timing.pad_after_ms / 1000,
         min_slide_s=cfg.timing.min_slide_s,
+        intro_path=intro_path,
+        outro_path=outro_path,
+        music_path=music_path,
+        music_db=cfg.music.duck_db,
+        sample_rate=cfg.voice.sample_rate,
     )
     print(f"[PROGRESS] Video assembled: {assemble_result.slide_count} clips, {assemble_result.total_duration:.1f}s total")
 
     print("[STAGE] Writing captions...")
+    # Captions must shift by the intro length so they stay in sync.
+    from shiksha_cast.assemble import probe_duration
+    intro_offset = probe_duration(intro_path) if intro_path else 0.0
     narrations = [s.narration for s in script.slides]
     srt_path = write_captions(
         chapter=chapter,
@@ -99,6 +121,7 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
         pad_before_s=cfg.timing.pad_before_ms / 1000,
         pad_after_s=cfg.timing.pad_after_ms / 1000,
         min_slide_s=cfg.timing.min_slide_s,
+        start_offset_s=intro_offset,
     )
     print(f"[PROGRESS] Captions written to {srt_path}")
 

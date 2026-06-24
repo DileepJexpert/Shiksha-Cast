@@ -186,11 +186,49 @@ def concat(
 
 @app.command()
 def meta(
-    chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID, e.g. ch03"),
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID, e.g. s06-yawning"),
     root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
 ) -> None:
-    """Generate YouTube metadata stub (Milestone 5)."""
-    raise typer.Exit("meta stage is not yet implemented (Milestone 5)")
+    """Generate YouTube metadata (title, description, tags, chapters) -> dist/<id>.youtube.md."""
+    from shiksha_cast.metadata import build_metadata, write_metadata
+
+    project_root = root or _find_project_root()
+    m = build_metadata(chapter, project_root)
+    out_path = write_metadata(chapter, project_root)
+
+    rprint(f"[bold]Title:[/bold] {m.title}")
+    rprint(f"[bold]Tags:[/bold] [dim]{', '.join(m.tags)}[/dim]")
+    rprint(f"[bold]Chapters:[/bold] {len(m.chapters)}")
+    rprint(f"[bold green]Metadata written:[/bold green] {out_path}")
+
+
+@app.command()
+def thumb(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID, e.g. s06-yawning"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Render a 1280x720 YouTube thumbnail -> dist/<id>.thumb.png."""
+    from shiksha_cast.thumbnail import write_thumbnail
+
+    project_root = root or _find_project_root()
+    out_path = write_thumbnail(chapter, project_root)
+    rprint(f"[bold green]Thumbnail written:[/bold green] {out_path}")
+
+
+@app.command(name="make-assets")
+def make_assets(
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+    force: bool = typer.Option(False, "--force", help="Regenerate assets that already exist"),
+) -> None:
+    """Generate branded intro/outro clips + a placeholder music bed into assets/."""
+    from shiksha_cast.assets import generate_branding_assets
+
+    project_root = root or _find_project_root()
+    rprint("[bold]Generating branding assets...[/bold]")
+    created = generate_branding_assets(project_root, force=force)
+    for label, path in created:
+        rprint(f"  [green]{label}[/green]: {path}")
+    rprint("[dim]These are wired into builds automatically (channel.yaml branding).[/dim]")
 
 
 def main() -> None:

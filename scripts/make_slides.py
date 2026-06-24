@@ -136,10 +136,21 @@ def build(ep_dir):
     return total
 
 
+def discover_episodes():
+    """All episode dirs (containing script.yaml) anywhere under content/,
+    skipping archive/hidden folders. Handles the category subfolders."""
+    eps = []
+    for path in glob.glob("content/**/script.yaml", recursive=True):
+        rel = os.path.relpath(path, "content")
+        if any(part.startswith((".", "_")) for part in rel.split(os.sep)):
+            continue
+        eps.append(os.path.dirname(path))
+    return sorted(eps)
+
+
 def main():
     only = sys.argv[1] if len(sys.argv) > 1 else None
-    eps = sorted(d for d in glob.glob("content/s*") if os.path.isdir(d)
-                 and os.path.exists(os.path.join(d, "script.yaml")))
+    eps = discover_episodes()
     done = 0
     for d in eps:
         if only and os.path.basename(d) != only:
