@@ -4,7 +4,25 @@ import pytest
 
 from shiksha_cast import animate
 from shiksha_cast.animate import ParallaxUnavailable, _depthflow_args
-from shiksha_cast.config import ImageGenConfig
+from shiksha_cast.config import ImageGenConfig, ScriptFile, SlideScript
+
+
+def test_slide_motion_override_field():
+    s = SlideScript(n=1, narration="hi", motion="parallax")
+    assert s.motion == "parallax"
+    assert SlideScript(n=2, narration="hi").motion is None  # optional, defaults None
+
+
+def test_scriptfile_parses_per_slide_motion():
+    sf = ScriptFile.model_validate({
+        "chapter": "Demo",
+        "slides": [
+            {"n": 1, "narration": "a", "motion": "static"},
+            {"n": 2, "narration": "b"},
+        ],
+    })
+    assert sf.slides[0].motion == "static"
+    assert sf.slides[1].motion is None
 
 
 def test_effective_motion_resolution():

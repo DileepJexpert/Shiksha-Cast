@@ -127,6 +127,26 @@ Each slide image is turned into a parallax clip, the narration is mixed on, and
 everything assembles as usual. If DepthFlow isn't installed (or a render fails),
 the build **automatically falls back to Ken Burns** — it never breaks.
 
+**Per-slide motion override.** Mix motions within one episode by adding a
+`motion:` field to any slide in `script.yaml` (overrides `imagegen.motion`):
+```yaml
+slides:
+  - n: 1
+    narration: "..."
+    visual_prompt: "a glowing brain firing neurons"
+    motion: parallax     # this slide animates in 3D
+  - n: 2
+    narration: "..."
+    motion: static       # this one holds still
+```
+
+**Animate every episode (batch):**
+```
+build-all-ai.bat
+```
+Resumable — skips episodes that already have `dist\<ep>.mp4`, honors per-slide
+`motion:` overrides, and uses the channel default for the rest.
+
 > Add a `visual_prompt:` to each slide in `script.yaml` so SDXL has something to
 > draw. If your DepthFlow version uses different CLI flags, set
 > `imagegen.parallax_command` (placeholders `{image} {output} {duration} {fps} {width} {height}`).

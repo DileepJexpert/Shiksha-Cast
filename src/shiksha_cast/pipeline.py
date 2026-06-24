@@ -166,7 +166,14 @@ def run_ai_build(
         clip_path = clips_dir / f"clip_{i + 1:03d}.mp4"
 
         if img_path and img_path.exists():
-            motion = cfg.imagegen.effective_motion()
+            # Per-slide motion overrides the channel default; unknown -> default.
+            allowed = {"parallax", "kenburns", "static"}
+            slide = script.slides[i] if i < len(script.slides) else None
+            motion = (slide.motion or "").lower() if slide else ""
+            if motion not in allowed:
+                motion = cfg.imagegen.effective_motion()
+            if motion not in allowed:
+                motion = "kenburns"
             if motion == "parallax":
                 from shiksha_cast.animate import ParallaxUnavailable, build_parallax_clip
                 try:

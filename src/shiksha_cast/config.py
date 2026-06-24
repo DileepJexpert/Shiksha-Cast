@@ -68,6 +68,7 @@ class SlideScript(BaseModel):
     voice_description: Optional[str] = None
     voice: Optional[str] = None  # per-slide speaker (e.g. Veena "kavya"); overrides global
     min_slide_s: Optional[float] = None
+    motion: Optional[str] = None  # per-slide ai-build motion: parallax|kenburns|static; overrides global
 
 
 class ScriptFile(BaseModel):
