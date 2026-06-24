@@ -50,6 +50,14 @@ class ImageGenConfig(BaseModel):
         return "kenburns" if self.kenburns else "static"
 
 
+class GeneratorConfig(BaseModel):
+    """Local script generation (topic -> script.yaml) via an LLM."""
+    provider: str = "ollama"
+    model: str = "llama3.1:latest"
+    url: str = "http://localhost:11434"
+    slides: int = 14
+
+
 class ChannelConfig(BaseModel):
     channel: str = "Katixo Shiksha"
     resolution: tuple[int, int] = (1920, 1080)
@@ -59,6 +67,7 @@ class ChannelConfig(BaseModel):
     timing: TimingConfig = Field(default_factory=TimingConfig)
     music: MusicConfig = Field(default_factory=MusicConfig)
     branding: BrandingConfig = Field(default_factory=BrandingConfig)
+    generator: GeneratorConfig = Field(default_factory=GeneratorConfig)
 
 
 class SlideScript(BaseModel):

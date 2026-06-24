@@ -48,6 +48,41 @@ Uses the voice in `config\channel.yaml`. Output: `dist\ch06.mp4` + `dist\ch06.sr
 
 ---
 
+## 3a. Topic → video (generate a script with local AI)
+
+Give a topic and let a **local LLM (Ollama)** write the script — fully offline,
+no API key, no cost.
+
+**One-time:** install [Ollama](https://ollama.com), then pull a model:
+```
+ollama pull llama3.1:latest
+```
+
+**Generate an episode from a topic:**
+```
+python -m shiksha_cast new-episode "RO water purifier review — is it worth buying?" ^
+    --category general-knowledge --slides 8
+```
+This writes `content\general-knowledge\<slug>\script.yaml` (narration +
+`visual_prompt` per slide). Review/edit the narration, then make the video:
+```
+python -m shiksha_cast ai-build -c <slug>     # SDXL images + motion + narration
+python -m shiksha_cast thumb -c <slug>        # thumbnail
+python -m shiksha_cast meta  -c <slug>        # title/description/tags
+```
+Add `--build` to `new-episode` to render the video immediately after generating.
+
+Useful flags: `--category how-it-works/technology`, `--slug my-name`,
+`--model qwen2.5:7b`, `--audience "..."`, `--style "..."`. Defaults live under
+`generator:` in `config\channel.yaml`.
+
+> The local model writes a usable **draft** — always skim and tweak the
+> narration (and fill any empty `visual_prompt`) before building. For top
+> quality you can still hand-write or use Claude Chat via
+> `content\SCRIPT_PROMPT_TEMPLATE.md`.
+
+---
+
 ## 3. Make a NEW chapter
 
 1. Put the slide PDF at `content\chNN\chNN.pdf` (or upload PDF/PNG slides in the dashboard).

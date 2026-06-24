@@ -270,6 +270,58 @@ def parallax_check(
     rprint("[dim]then run: python -m shiksha_cast ai-build -c <episode>[/dim]")
 
 
+@app.command(name="new-episode")
+def new_episode(
+    topic: str = typer.Argument(..., help='Episode topic, e.g. "RO water purifier review"'),
+    category: str = typer.Option("general-knowledge", "--category", help="content/ subfolder, e.g. how-it-works/technology"),
+    slug: Optional[str] = typer.Option(None, "--slug", help="Folder name (default: derived from topic)"),
+    slides: Optional[int] = typer.Option(None, "--slides", help="Number of slides (default from config)"),
+    model: Optional[str] = typer.Option(None, "--model", help="Ollama model override, e.g. qwen2.5:7b"),
+    audience: str = typer.Option("Indian students, age 11-16", "--audience", help="Target audience"),
+    style: str = typer.Option(
+        "Hinglish (mostly English with light Hindi), curious and fun", "--style", help="Narration style"
+    ),
+    build: bool = typer.Option(False, "--build", help="Run ai-build immediately after generating"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Generate a new episode script from a topic using a local LLM (Ollama)."""
+    from shiksha_cast.config import load_channel_config
+    from shiksha_cast.generate import GeneratorUnavailable, write_episode
+
+    project_root = root or _find_project_root()
+    cfg = load_channel_config(project_root)
+
+    rprint(f'[bold]Generating script for:[/bold] "{topic}"')
+    rprint(f"[dim]via {cfg.generator.provider} ({model or cfg.generator.model}) — this can take a minute...[/dim]")
+    try:
+        ep_dir, data = write_episode(
+            topic, project_root, cfg.generator,
+            category=category, slug=slug, n_slides=slides,
+            audience=audience, style=style, model=model,
+        )
+    except GeneratorUnavailable as e:
+        rprint(f"[bold red]Cannot generate:[/bold red] {e}")
+        raise typer.Exit(code=1)
+
+    ep_id = ep_dir.name
+    rprint(f"[bold green]Created:[/bold green] {ep_dir / 'script.yaml'}")
+    rprint(f"  Title: {data.get('chapter')}")
+    rprint(f"  Slides: {len(data.get('slides', []))}")
+    rprint(f"[dim]Review/edit the narration, then build:[/dim] python -m shiksha_cast ai-build -c {ep_id}")
+
+    if build:
+        from shiksha_cast.assemble import FFmpegNotFoundError
+        from shiksha_cast.pipeline import run_ai_build
+
+        rprint("\n[bold]Building video...[/bold]")
+        try:
+            result = run_ai_build(ep_id, project_root)
+        except FFmpegNotFoundError as e:
+            rprint(f"[bold red]Error:[/bold red] {e}")
+            raise typer.Exit(code=1)
+        rprint(f"[bold green]Video:[/bold green] {result.assemble.video_path}")
+
+
 def main() -> None:
     app()
 

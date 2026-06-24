@@ -4,6 +4,12 @@ branding:
   outro: assets/outro.mp4
 channel: Katixo Shiksha
 fps: 30
+generator:
+  # Local LLM that writes a script from a topic (`new-episode` command).
+  provider: ollama
+  model: llama3.1:latest
+  url: http://localhost:11434
+  slides: 14
 imagegen:
   provider: sdxl
   model: stabilityai/sdxl-turbo
