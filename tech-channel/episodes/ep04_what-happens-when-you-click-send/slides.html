@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP04 — What really happens when you click "Send"?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">What really happens<br>when you click <span class="hl">"Send"</span>?</h1>
+    <p class="subhead">Your message doesn't travel in one piece. Here's the twist.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      You hit <span class="accent">Send</span> on a photo. It feels like one whole thing
+      flying across.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      But it actually leaves your phone in <span class="accent2">thousands of tiny pieces</span>.
+    </div>
+    <p class="subhead">And somehow they all arrive — perfectly. Let's see how. 📨</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — AAJ KA SAWAAL -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      When you click Send,<br>
+      how does your message get there — <span class="accent">in one piece</span>?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: chopped into packets -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — Break it up</div>
+    <h2 class="headline">Your message gets <span class="hl">chopped up</span>.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="lead" style="margin-bottom:0.5cm">"Hi, how are you? 📷"  <span class="accent2">→</span></div>
+      <div class="queue">
+        <span class="chip">📦 1</span><span class="chip">📦 2</span><span class="chip">📦 3</span>
+        <span class="chip">📦 4</span><span class="qlabel accent">… </span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>Too big to send as one blob.</li>
+        <li>It's split into small chunks called <b class="accent">packets</b>.</li>
+        <li>One photo can become <b>thousands</b> of packets.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: each packet is labelled -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Address &amp; number every piece</div>
+    <h2 class="headline">Each packet carries a <span class="hl">label</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># one packet</span>
+to:   <span class="fn">142.250.195.78</span>
+from: <span class="fn">your phone</span>
+no:   <span class="st">3 of 7</span>
+data: <span class="cm">…a chunk of the photo…</span></pre>
+      </div>
+      <ul class="bullets">
+        <li>Where it's going + where it's from (<b class="accent">IP addresses</b>).</li>
+        <li>A <b class="accent">sequence number</b> — "3 of 7".</li>
+        <li>And one small piece of the actual data.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: independent routing -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Like Mumbai's dabbawalas</div>
+    <h2 class="headline">Packets travel <span class="hl">separately</span>.</h2>
+    <div style="margin-top:0.4cm">
+      <div class="queue">
+        <span class="chip">📦</span><span class="qlabel accent2">→ router → router →</span>
+        <span class="chip">🏢</span>
+      </div>
+      <div class="queue" style="margin-top:0.3cm">
+        <span class="chip">📦</span><span class="qlabel accent3">→ a different route →</span>
+        <span class="chip">🏢</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.5cm">
+        <li>Like <b class="accent">dabbawalas</b>: thousands of tiffins, coded labels, different trains — still reach the right desk.</li>
+        <li>Each packet hops router to router, picking its own path.</li>
+        <li>So they can arrive <b>out of order</b>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: reassembly -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Put it back together</div>
+    <h2 class="headline">At the end, sorted back in <span class="hl">order</span>.</h2>
+    <div style="margin-top:0.4cm">
+      <div class="queue">
+        <span class="chip">📦 3</span><span class="chip">📦 1</span><span class="chip">📦 4</span><span class="chip">📦 2</span>
+        <span class="qlabel accent2">→ sort →</span>
+        <span class="chip">✅ message</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>The <b class="accent">numbers</b> snap the pieces back in order.</li>
+        <li>A packet went missing? It's politely <b>re-requested</b>.</li>
+        <li>You see the whole message — instantly.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">This makes the internet <span class="hl">unbreakable</span>.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li>A path goes down? Packets just <b class="accent">reroute</b> around it.</li>
+      <li>Lost a little? Re-send a few packets — that's <span class="accent">buffering</span>, not total failure.</li>
+      <li>One cable carries <b>millions</b> of conversations at once — all chopped &amp; mixed.</li>
+    </ul>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"My message travels as one whole thing, along one wire, start to finish."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>It's split into <b>packets</b>, each routed independently — maybe by different
+        paths — and reassembled at the end. That system is <span class="mono">TCP/IP</span>.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>Your data is split into <span class="accent">packets</span> — each labelled with addresses + a number.</li>
+      <li>They travel <span class="accent3">separately</span> and are reassembled in order at the other end. That's TCP/IP.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">Send = <span class="accent">chop, address, reassemble</span>. 📨</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>Why do computers only understand 0s and 1s?</b> 🔢</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

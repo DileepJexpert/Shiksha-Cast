@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<title>EP04 narration — Hinglish</title>
+<link rel="stylesheet" href="../../core/themes/narration.css">
+</head>
+<body>
+  <div class="doc-head">
+    <div class="brand">Katixo KhojLab · Narration script</div>
+    <h1>EP04 — What really happens when you click "Send"?</h1>
+    <span class="lang">HINGLISH (Roman)</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">01</span><span class="sb-label">Title</span></div>
+    <p class="say">Jis pal aap "Send" click karte ho, <span class="stress">actually</span> hota kya hai? Aapka message lagta hai ek poori cheez ud ke jaa rahi hai — par aisa <span class="stress">nahi</span> hai. Chalo ye surprising twist dikhata hoon.</p>
+    <span class="cue"><b>[CUE]</b> Title pe ~2s ruko. Thoda mysterious — "ek twist hai".</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">02</span><span class="sb-label">The Hook</span></div>
+    <p class="say">Aap ek photo pe Send dabate ho. Lagta hai ek solid cheez friend tak ud rahi hai. Par twist ye hai — wo actually aapke phone se <span class="stress">hazaaron chhote tukdon</span> mein nikalti hai. Aur phir bhi har tukda, perfectly, sahi order mein pahunch jaata hai. Kaise?</p>
+    <span class="cue"><b>[CUE]</b> Energy up. "hazaaron chhote tukdon" thode wonder ke saath.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">03</span><span class="sb-label">Aaj ka sawaal</span></div>
+    <p class="say">Toh aaj ka sawaal: jab aap Send click karte ho, aapka message actually pahunchta kaise hai — aur <span class="stress">ek piece mein</span> kaise aata hai? Chalo follow karte hain.</p>
+    <span class="cue"><b>[CUE]</b> "ek piece mein" pe slow down.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">04</span><span class="sb-label">Idea 1 — Chopped into packets</span></div>
+    <p class="say">Idea ek. Aapka message itna bada hota hai ki ek blob mein nahi bhej sakte, toh wo chhote chunks mein <span class="stress">chop</span> ho jaata hai. Har chunk ko hum <span class="term">packet</span> kehte hain. Ek chhota text kuch packets ho sakta hai; ek single photo <span class="stress">hazaaron</span> packets ban sakti hai.</p>
+    <span class="cue"><b>[CUE]</b> packet chips 1, 2, 3, 4 reveal karo jab "chop" bolo.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">05</span><span class="sb-label">Idea 2 — Each packet is labelled</span></div>
+    <p class="say">Idea do. Har packet ek <span class="stress">label</span> rakhta hai. Wo batata hai kahaan jaa raha hai aur kahaan se aaya — ye IP <span class="stress">addresses</span> hain. Wo ek <span class="stress">sequence number</span> rakhta hai, jaise "teen of saat". Aur usmein actual data ka ek chhota piece hota hai. Toh har packet ko apni destination aur apni position pata hoti hai.</p>
+    <span class="cue"><b>[CUE]</b> packet header pe point: to / from / no / data.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">06</span><span class="sb-label">Idea 3 — Travel separately (dabbawala)</span></div>
+    <p class="say">Idea teen — aur yahi cool part hai. Packets saath mein travel <span class="stress">nahi</span> karte. Mumbai ke dabbawalas socho: hazaaron tiffins, simple coded labels, alag trains aur routes — phir bhi har lunch sahi desk pe pahunchta hai. Packets bilkul aise hi hain. Har ek router se router hop karta hai, apna khud ka raasta chunta hua. Toh wo <span class="stress">out of order</span> bhi pahunch sakte hain.</p>
+    <span class="cue"><b>[CUE]</b> Dabbawala analogy pe zor — ye turant relatable hai.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">07</span><span class="sb-label">Idea 4 — Reassembled in order</span></div>
+    <p class="say">Idea chaar. Destination pe, packets wapas jod diye jaate hain — <span class="stress">order mein</span> — un sequence numbers se. Teen, ek, chaar, do ban jaata hai ek, do, teen, chaar. Agar koi packet raaste mein kho gaya, toh use simply <span class="stress">dobara maanga</span> jaata hai. Aur phir aapko poora message turant dikhta hai.</p>
+    <span class="cue"><b>[CUE]</b> Out-of-order packets ko sorted message mein snap hote dikhao.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">08</span><span class="sb-label">Why it matters</span></div>
+    <p class="say">Aur ye design genius hai — ye internet ko lagbhag <span class="stress">unbreakable</span> bana deta hai. Ek path down ho jaaye, toh packets uske around reroute kar lete hain. Kuch kho jaayein, toh sirf wahi dobara bhejte ho — wo chhota pause hi <span class="stress">buffering</span> hai. Aur ek cable ek saath millions conversations le jaati hai, sab chopped aur mixed.</p>
+    <span class="cue"><b>[CUE]</b> "buffering" ko unke daily experience se jodo.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">09</span><span class="sb-label">Common myth</span></div>
+    <p class="say">Toh myth: log sochte hain message <span class="stress">ek poori cheez</span> ki tarah, ek wire pe, start se end tak jaata hai. Reality: wo packets mein split hota hai, har ek independently route hota hai — shayad bilkul alag paths se — aur end pe reassemble hota hai. Is poore system ka ek naam hai: <span class="term">TCP/IP</span>.</p>
+    <span class="cue"><b>[CUE]</b> Myth pe ek beat ke baad green "Reality" card reveal karo.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">10</span><span class="sb-label">Recap</span></div>
+    <p class="say">Quick recap. Ek: aapka data <span class="stress">packets</span> mein split hota hai — har ek addresses aur ek number ke saath labelled. Do: wo alag-alag travel karte hain aur doosre end pe order mein reassemble hote hain. Wo system TCP/IP hai.</p>
+    <span class="cue"><b>[CUE]</b> Crisp. Do saaf lines.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">11</span><span class="sb-label">CTA</span></div>
+    <p class="say">Toh Send click karne ka matlab hai: chop karo, har piece ko address do, aur doosre end pe reassemble karo. Agar ye surprise hua, toh Katixo KhojLab ko subscribe karo. Agla sawaal: computers sirf zero aur one hi kyun samajhte hain? Milte hain agle video mein.</p>
+    <span class="cue"><b>[CUE]</b> Warm, friendly. Subscribe line pe awaaz mein smile.</span>
+  </div>
+</body>
+</html>
