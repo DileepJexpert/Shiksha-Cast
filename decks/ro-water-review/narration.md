@@ -32,5 +32,5 @@ So, is it worth buying? Well, it depends on your needs! If you want the best pos
 
 ## Slide 8
 
-Thanks for watching, friends! Don't forget to subscribe to Katixo Shiksha for more fun and educational videos. And, remember - clean drinking water is essential for our health!
+Thanks for watching, friends! Don't forget to subscribe to Katixo KhojLab for more fun and educational videos. And, remember - clean drinking water is essential for our health!
 

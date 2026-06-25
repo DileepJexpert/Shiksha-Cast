@@ -1,6 +1,6 @@
 # S38 — Why Does Soda Fizz? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -78,4 +78,4 @@
 ## Slide 13 — Recap + Next episode
 - **Visual:** Mini soda recap icons plus a teaser of a vaccine syringe and a shield protecting a cell.
 - **Text overlay:** "Recap done! NEXT: How do vaccines train your body? — Subscribe!"
-- **Style:** Split design, soda recap left, vaccine teaser right, Subscribe glow, Katixo Shiksha logo.
+- **Style:** Split design, soda recap left, vaccine teaser right, Subscribe glow, Katixo KhojLab logo.

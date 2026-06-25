@@ -2,7 +2,7 @@ branding:
   intro: assets/intro.mp4
   mascot_overlay: null
   outro: assets/outro.mp4
-channel: Katixo Shiksha
+channel: Katixo KhojLab
 fps: 30
 generator:
   # Local LLM that writes a script from a topic (`new-episode` command).

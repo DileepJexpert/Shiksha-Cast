@@ -1,12 +1,12 @@
 # S55 — Why Do We Age? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A glowing human silhouette aging from a baby to an old person across the frame, with floating neon cells drifting around. Deep navy-to-black gradient background.
 - **Text overlay:** "WHY DO WE AGE?"
-- **Style:** Massive bold title in electric cyan, subtle Katixo Shiksha logo top-left, pulsing particle glow.
+- **Style:** Massive bold title in electric cyan, subtle Katixo KhojLab logo top-left, pulsing particle glow.
 
 ---
 ## Slide 2 — Body Made of Cells
@@ -90,4 +90,4 @@
 ## Slide 15 — Recap & Wrap-up
 - **Visual:** A healthy glowing person surrounded by icons of good food, exercise, sleep, sunscreen, and a no-smoking sign, with a subscribe button popping in.
 - **Text overlay:** "STAY YOUNG — SUBSCRIBE!"
-- **Style:** Uplifting bright finish, neon subscribe button, Katixo Shiksha logo centered, warm hopeful glow.
+- **Style:** Uplifting bright finish, neon subscribe button, Katixo KhojLab logo centered, warm hopeful glow.

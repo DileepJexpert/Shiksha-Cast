@@ -1,12 +1,12 @@
 # S12 — Why Do We Cry? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** Split-screen close-up of a single human eye with a glistening teardrop on the lash. Left half shows a cut onion releasing wispy vapor; right half shows a blurred sad movie scene reflected in the eye. A neon glow line splits the two.
 - **Text overlay:** "Why Do We Cry?" (huge) with small kicker "Same tears, totally different reasons"
-- **Style:** Cinematic dark background, cyan and magenta neon split, bold white title, Katixo Shiksha logo bottom-right.
+- **Style:** Cinematic dark background, cyan and magenta neon split, bold white title, Katixo KhojLab logo bottom-right.
 
 ---
 ## Slide 2 — You Are Always Crying
@@ -84,4 +84,4 @@
 ## Slide 14 — Recap + Next Episode Tease
 - **Visual:** Left side: quick icon recap strip (3 tear types, lysozyme, nose-drain). Right side: a teaser image of an ice cube floating on water with neon question text. Subscribe button glowing at the bottom.
 - **Text overlay:** "Next: Why does ice float on water? — Subscribe!"
-- **Style:** Dark background, split recap/teaser layout, big neon Subscribe call-to-action, Katixo Shiksha logo.
+- **Style:** Dark background, split recap/teaser layout, big neon Subscribe call-to-action, Katixo KhojLab logo.

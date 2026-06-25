@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, सोचो — तुम अपने bicycle चलाना कैसे याद रखते हो? या अपने best friend का नाम? तुम्हारा brain ये सब memories कहाँ रखता है? क्या दिमाग के अंदर कोई hard drive है जहाँ files save होती हैं? आज Katixo Shiksha पर हम इसी रहस्य को खोलेंगे। मैं तुम्हें बताऊँगा कि कैसे तुम्हारे सिर के अंदर लगभग 86 billion neurons मिलकर हर memory को बनाते हैं। ये कहानी science fiction से भी ज़्यादा amazing है। तो चलो, अपने brain के अंदर एक मज़ेदार सफर पर निकलते हैं!
+दोस्तों, सोचो — तुम अपने bicycle चलाना कैसे याद रखते हो? या अपने best friend का नाम? तुम्हारा brain ये सब memories कहाँ रखता है? क्या दिमाग के अंदर कोई hard drive है जहाँ files save होती हैं? आज Katixo KhojLab पर हम इसी रहस्य को खोलेंगे। मैं तुम्हें बताऊँगा कि कैसे तुम्हारे सिर के अंदर लगभग 86 billion neurons मिलकर हर memory को बनाते हैं। ये कहानी science fiction से भी ज़्यादा amazing है। तो चलो, अपने brain के अंदर एक मज़ेदार सफर पर निकलते हैं!
 
 ## Slide 2
 

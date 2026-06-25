@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-You're watching a horror movie. Suddenly — the lights flicker, music gets intense, and BOOM — tiny bumps appear all over your arms. Goosebumps! But here's the real question — why does your skin do this? What possible reason could your body have for making your arm look like a plucked chicken? Today on Katixo Shiksha, we're solving this mystery. And trust me, the answer goes back thousands of years. Let's go!
+You're watching a horror movie. Suddenly — the lights flicker, music gets intense, and BOOM — tiny bumps appear all over your arms. Goosebumps! But here's the real question — why does your skin do this? What possible reason could your body have for making your arm look like a plucked chicken? Today on Katixo KhojLab, we're solving this mystery. And trust me, the answer goes back thousands of years. Let's go!
 
 ## Slide 2
 

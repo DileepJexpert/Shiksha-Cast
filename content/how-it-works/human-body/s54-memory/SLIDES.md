@@ -1,12 +1,12 @@
 # S54 — How Does Your Brain Store Memories? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A glowing human head silhouette in profile against a deep navy background, with a luminous neon-blue brain inside crackling with tiny electric sparks. Faint floating icons of a bicycle and a smiling face orbit the head.
 - **Text overlay:** "HOW DOES YOUR BRAIN STORE MEMORIES?"
-- **Style:** Large bold title in electric cyan, subtle glow, Katixo Shiksha logo bottom-right. Cinematic dark gradient.
+- **Style:** Large bold title in electric cyan, subtle glow, Katixo KhojLab logo bottom-right. Cinematic dark gradient.
 
 ---
 ## Slide 2 — 86 Billion Neurons
@@ -90,4 +90,4 @@
 ## Slide 15 — Recap & Wrap-Up
 - **Visual:** A montage ring of mini-icons from the episode (neuron, synapse, LTP arrows, hippocampus, sleeping child, bicycle) circling a glowing brain. Subscribe button and bell icon pulse at the bottom.
 - **Text overlay:** "RECAP: NEURONS • SYNAPSES • LTP • HIPPOCAMPUS • SLEEP\nSUBSCRIBE & SHARE!"
-- **Style:** Energetic finale, neon red Subscribe button with bell, Katixo Shiksha logo centered, celebratory glow.
+- **Style:** Energetic finale, neon red Subscribe button with bell, Katixo KhojLab logo centered, celebratory glow.

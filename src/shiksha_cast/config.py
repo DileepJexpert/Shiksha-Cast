@@ -59,7 +59,7 @@ class GeneratorConfig(BaseModel):
 
 
 class ChannelConfig(BaseModel):
-    channel: str = "Katixo Shiksha"
+    channel: str = "Katixo KhojLab"
     resolution: tuple[int, int] = (1920, 1080)
     fps: int = 30
     voice: VoiceConfig = Field(default_factory=VoiceConfig)

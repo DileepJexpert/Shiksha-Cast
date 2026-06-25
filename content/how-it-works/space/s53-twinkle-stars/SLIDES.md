@@ -1,11 +1,11 @@
 # S53 — Why Do Stars Twinkle? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A deep navy-black night sky filling the frame, a scatter of bright stars visibly flickering, one large hero star pulsing with a soft neon-cyan glow at center. Faint silhouette of city rooftops along the bottom edge.
-- **Text overlay:** "WHY DO STARS TWINKLE?" with a smaller neon subtitle "Katixo Shiksha"
+- **Text overlay:** "WHY DO STARS TWINKLE?" with a smaller neon subtitle "Katixo KhojLab"
 - **Style:** Huge bold sans-serif title in white with cyan glow; cinematic, mysterious mood; subtle lens-flare sparkle on the hero star.
 
 ---
@@ -84,4 +84,4 @@
 ## Slide 14 — Recap / Wrap-up
 - **Visual:** A summary collage — twinkling star, steady planet, atmosphere layers, Hubble — arranged around a central recap panel. Subscribe button glowing at bottom.
 - **Text overlay:** "Stars twinkle, planets don't — thanks to our air! SUBSCRIBE!"
-- **Style:** Warm closing tone, neon Subscribe button with bell icon, Katixo Shiksha logo lockup.
+- **Style:** Warm closing tone, neon Subscribe button with bell icon, Katixo KhojLab logo lockup.

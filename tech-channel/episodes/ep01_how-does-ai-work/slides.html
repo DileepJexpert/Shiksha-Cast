@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP01 — How does AI like ChatGPT actually work?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">How does AI like <span class="hl">ChatGPT</span><br>actually work?</h1>
+    <p class="subhead">No hype, no jargon — what's really happening inside the box.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      You type <span class="mono accent2">"I am going ho…"</span> and your phone
+      guesses <span class="mono accent">"home"</span>.
+    </div>
+    <div class="big" style="margin-top:0.7cm">
+      ChatGPT does the <span class="accent">same thing</span> —
+      just a <span class="accent3">billion times</span> bigger.
+    </div>
+    <p class="subhead">In 5 minutes, you'll actually understand the "magic". 🧠</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      How does it <span class="accent">decide</span> what to say —<br>
+      and does it actually <span class="accent3">know</span> things?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: prediction machine -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — It's a prediction machine</div>
+    <h2 class="headline">It predicts the <span class="hl">next word</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <div>
+        <div class="lead" style="margin-bottom:0.5cm">
+          <span class="mono">"The cat sat on the ___"</span>
+        </div>
+        <div class="predbar"><span>mat</span><i style="width:74%"></i><b>74%</b></div>
+        <div class="predbar"><span>floor</span><i style="width:14%"></i><b>14%</b></div>
+        <div class="predbar"><span>sofa</span><i style="width:8%"></i><b>8%</b></div>
+        <div class="predbar muted"><span>banana</span><i style="width:1%"></i><b>0.1%</b></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>It doesn't <b>look up</b> an answer.</li>
+          <li>It picks the <span class="accent">most likely</span> next word…</li>
+          <li>…then repeats, again and again.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: trained on lots of text -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Where it learned this</div>
+    <h2 class="headline">It read a <span class="hl">huge</span> amount of text.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>Trained on <b>billions</b> of sentences — books, websites, code.</li>
+        <li>It learned <span class="accent">patterns</span> of language…</li>
+        <li>…<b>not</b> a saved list of facts it copies.</li>
+      </ul>
+      <div>
+        <div class="chip" style="margin:0.2cm 0.2cm">📚 books</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🌐 websites</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">💬 conversations</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">💻 code</div>
+        <p class="subhead" style="margin-top:0.7cm">
+          Like a student who read millions of pages and absorbed
+          <span class="accent2">how language flows</span>.
+        </p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: one word at a time -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — How it builds an answer</div>
+    <h2 class="headline">One piece at a time.</h2>
+    <div class="code" style="margin-top:0.7cm">
+      <pre><span class="cm"># prompt</span>
+Why is the sky blue?
+
+<span class="cm"># it generates token by token, feeding each back in →</span>
+The      <span class="accent2">→</span> The sky      <span class="accent2">→</span> The sky looks
+<span class="accent2">→</span> The sky looks blue   <span class="accent2">→</span> The sky looks blue because …</pre>
+    </div>
+    <p class="subhead">Each word is a <b class="accent">token</b>. Pick one, add it, predict the next. Repeat.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: attention / context -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Why it stays on topic</div>
+    <h2 class="headline">It weighs <span class="hl">every word</span> you wrote.</h2>
+    <div style="margin-top:0.7cm">
+      <div class="lead" style="margin-bottom:0.5cm">
+        "I left my <span class="hot">phone</span> in the
+        <span class="hot">car</span>, can you help me <span class="want">find</span> it?"
+      </div>
+      <ul class="bullets">
+        <li>To choose the next word, it asks: <span class="accent">which earlier words matter most?</span></li>
+        <li>Here, <b class="accent3">phone</b> + <b class="accent3">car</b> shape the answer — not "the" or "my".</li>
+        <li>This "pay attention to context" trick is what made modern AI work.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">Same trick → essays, code, emails, answers.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>One simple idea — <span class="accent">predict the next token</span> — scales to almost any text task.</li>
+        <li>That's why a chatbot can debug code <em>and</em> write a poem.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent3">But remember</div>
+        <p class="big" style="margin-top:0.3cm">It's <b>predicting</b>, not <b>understanding</b>.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH / GALTI -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"ChatGPT <b>knows</b> the truth and looks it up."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>It predicts the most <b>likely</b> words. So it can sound confident and still be
+        <b class="accent3">wrong</b> — that's a <span class="mono">hallucination</span>. Always verify.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>AI like ChatGPT = <span class="accent">next-word prediction</span>, at massive scale.</li>
+      <li>It doesn't think or know — it <span class="accent3">guesses patterns</span>. So check the important facts.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">Now you understand the <span class="accent">"magic"</span>. 🎯</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>What is an algorithm?</b> — the samosa-queue secret 🥟</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

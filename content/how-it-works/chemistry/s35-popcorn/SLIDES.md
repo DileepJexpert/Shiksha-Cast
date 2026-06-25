@@ -1,14 +1,14 @@
 # S35 — Why Does Popcorn Pop? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
 ## Slide 1 — HOOK / Title
 - **Visual:** Hard yellow kernels in a hot pan mid-pop, white fluffy popcorn bursting upward with motion trails
 - **Text overlay:** "Why Does POPCORN Pop?" in bold white + neon orange glow
-- **Bottom bar:** "Katixo Shiksha" logo + "S35" badge
+- **Bottom bar:** "Katixo KhojLab" logo + "S35" badge
 - **Style:** Warm, appetizing, dynamic burst
 
 ## Slide 2 — A Special Corn
@@ -83,5 +83,5 @@
 ## Slide 14 — Recap + Series Close
 - **Visual:** Montage — kernel cutaway, pop burst, popcorn bowl; thumbnails teasing the whole S31–S35 series
 - **Text overlay:** "More curious questions next time! + Subscribe!"
-- **Bottom bar:** "Katixo Shiksha" logo + Subscribe button graphic
+- **Bottom bar:** "Katixo KhojLab" logo + Subscribe button graphic
 - **Style:** Energetic outro, neon call-to-action

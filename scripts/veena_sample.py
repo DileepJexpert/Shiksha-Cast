@@ -15,7 +15,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "dist/veena_slide1.wav"
 SPEAKER = sys.argv[2] if len(sys.argv) > 2 else "kavya"
 
 HINGLISH = (
-    "नमस्ते दोस्तों, और welcome back to Katixo Shiksha! आज हम एक बहुत ही मज़ेदार "
+    "नमस्ते दोस्तों, और welcome back to Katixo KhojLab! आज हम एक बहुत ही मज़ेदार "
     "chapter शुरू कर रहे हैं — House of Hundreds. एक cool idea है: हर बड़ी number का "
     "अपना एक घर होता है, और उस घर के अंदर तीन छोटे-छोटे rooms होते हैं! आज हम 3-digit "
     "numbers के घर के अंदर जाएँगे और मिलेंगे तीन rooms से — hundreds, tens, और ones. "

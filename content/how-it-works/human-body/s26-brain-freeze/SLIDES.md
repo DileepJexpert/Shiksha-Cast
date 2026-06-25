@@ -1,7 +1,7 @@
 # S26 — Why Do You Get Brain Freeze? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** Teen holding a melting ice cream cone, frozen mid-bite, holding forehead in pain; icy crystal effect radiating from head
 - **Text overlay:** "BRAIN FREEZE?!" in bold electric-cyan with frost glow
 - **Subtext:** "Sphenopalatine ganglioneuralgia"
-- **Bottom bar:** Katixo Shiksha logo + "S26" badge
+- **Bottom bar:** Katixo KhojLab logo + "S26" badge
 - **Style:** Dark navy background, neon cyan accents, dramatic ice-shard particles
 
 ## Slide 2 — Brain Has No Pain

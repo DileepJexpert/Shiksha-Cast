@@ -1,7 +1,7 @@
 # S04 — How Do Rockets Escape Earth? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Space theme, deep black/navy background, rocket orange/white accents, ISRO pride
+**Brand:** Katixo KhojLab | **Style:** Space theme, deep black/navy background, rocket orange/white accents, ISRO pride
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** ISRO Chandrayaan-3 launch photo or dramatic rocket launch with flame trail
 - **Text overlay:** "How Do Rockets ESCAPE Earth?" in bold white + orange glow
 - **Stat:** "Escape velocity: 11.2 km/sec — 16× faster than a bullet"
-- **Bottom bar:** Katixo Shiksha logo + "S04" badge
+- **Bottom bar:** Katixo KhojLab logo + "S04" badge
 - **Mood:** Patriotic, awe-inspiring, dramatic
 
 ## Slide 2 — Newton's Third Law
@@ -115,4 +115,4 @@
   - Newton's Third Law → Escape velocity (11.2 km/s) → Rocket equation → Staging → Orbit ≠ Height
 - **ISRO pride line:** "You don't need a huge budget to reach the stars"
 - **CTA:** "NEXT: Why Is the Sky Blue? 🔵"
-- **Bottom:** "SUBSCRIBE" + Katixo Shiksha logo
+- **Bottom:** "SUBSCRIBE" + Katixo KhojLab logo

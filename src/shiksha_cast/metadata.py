@@ -36,7 +36,7 @@ CATEGORY_PLAYLIST = {
 }
 
 BASE_TAGS = [
-    "Katixo Shiksha",
+    "Katixo KhojLab",
     "science for kids",
     "hinglish science",
     "class 6 to 10",
@@ -216,10 +216,10 @@ def build_metadata(chapter: str, project_root: Path) -> EpisodeMetadata:
 
     parts = chapter_dir.relative_to(project_root / "content").parts[:-1]
     category_key = parts[-1] if parts else ""
-    playlist = CATEGORY_PLAYLIST.get(category_key, "Katixo Shiksha")
+    playlist = CATEGORY_PLAYLIST.get(category_key, "Katixo KhojLab")
 
     clean = _clean_title(script.chapter)
-    title = f"{clean} | Katixo Shiksha"
+    title = f"{clean} | Katixo KhojLab"
     if len(title) > 95:  # YouTube hard limit is 100 chars
         title = clean[:95]
 
@@ -236,7 +236,7 @@ def build_metadata(chapter: str, project_root: Path) -> EpisodeMetadata:
     lines.append(f"Ever wondered — {clean.rstrip('?')}? 🤔")
     lines.append("")
     lines.append(
-        "In this Katixo Shiksha episode we break it down in simple Hinglish, "
+        "In this Katixo KhojLab episode we break it down in simple Hinglish, "
         "with clear visuals, for curious students of Class 6–10. Easy to follow, "
         "fun to watch, and exam-friendly!"
     )
@@ -252,7 +252,7 @@ def build_metadata(chapter: str, project_root: Path) -> EpisodeMetadata:
     lines.append("👉 Subscribe for a new 'why & how' every week!")
     lines.append("🔔 Hit the bell so you never miss an episode.")
     lines.append("")
-    lines.append("#KatixoShiksha #ScienceForKids #Hinglish #Class10 #LearnWithFun")
+    lines.append("#KatixoKhojLab #ScienceForKids #Hinglish #Class10 #LearnWithFun")
     description = "\n".join(lines)
 
     # ---- Tags ----

@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, हर रात तुम एक secret movie theater में जाते हो — जहाँ तुम ही director हो, तुम ही actor, और कहानी कुछ भी हो सकती है! उड़ना, exam में पेन ढूँढना, या किसी अजीब जगह पहुँच जाना. हम इसे कहते हैं सपने, dreams. पर सवाल यह है — हमारा brain नींद में, जब आराम करना चाहिए, तब ये पूरी फ़िल्में क्यों बनाता है? आज Katixo Shiksha पर हम घुसेंगे dreams की दुनिया में — REM sleep, brain की activity, और memory की सफ़ाई. चलो शुरू करते हैं!
+दोस्तों, हर रात तुम एक secret movie theater में जाते हो — जहाँ तुम ही director हो, तुम ही actor, और कहानी कुछ भी हो सकती है! उड़ना, exam में पेन ढूँढना, या किसी अजीब जगह पहुँच जाना. हम इसे कहते हैं सपने, dreams. पर सवाल यह है — हमारा brain नींद में, जब आराम करना चाहिए, तब ये पूरी फ़िल्में क्यों बनाता है? आज Katixo KhojLab पर हम घुसेंगे dreams की दुनिया में — REM sleep, brain की activity, और memory की सफ़ाई. चलो शुरू करते हैं!
 
 ## Slide 2
 

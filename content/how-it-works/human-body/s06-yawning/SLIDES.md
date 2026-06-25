@@ -1,6 +1,6 @@
 # S06 — Why Is Yawning Contagious — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -71,4 +71,4 @@
 ## Slide 14 — Recap & Next Episode
 - **Visual:** Mini-montage of yawn, brain, mirror neurons icons; right side teaser card with a dreaming face and stars for next episode.
 - **Text overlay:** "Next: Why Do We Dream? | Subscribe karna mat bhoolna!"
-- **Style:** Recap strip on left, glowing teaser on right. Katixo Shiksha logo bottom-right.
+- **Style:** Recap strip on left, glowing teaser on right. Katixo KhojLab logo bottom-right.

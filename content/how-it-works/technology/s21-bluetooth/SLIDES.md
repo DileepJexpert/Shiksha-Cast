@@ -1,12 +1,12 @@
 # S21 — How Does Bluetooth Connect Without Wires? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A teen wearing glowing wireless earbuds, with animated neon waves arcing from a smartphone to the earbuds; no cables visible.
 - **Text overlay:** "Bluetooth: No Wires, Still Connected!"
-- **Style:** Dark navy background, electric blue and cyan neon waves, large bold white title, Katixo Shiksha logo top-left.
+- **Style:** Dark navy background, electric blue and cyan neon waves, large bold white title, Katixo KhojLab logo top-left.
 
 ---
 ## Slide 2 — Radio Waves Basics

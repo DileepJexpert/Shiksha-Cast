@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-Every second, Earth's gravity is pulling you down with a force of about 9.8 newtons per kilogram. Jump up — gravity pulls you right back. Throw a ball — gravity curves it back to the ground. Nothing escapes. Or does it? In 2023, ISRO's Chandrayaan-3 blasted off from Sriharikota, broke free of Earth's gravity, travelled 3.84 lakh kilometres, and soft-landed on the Moon. How? How do you beat a force that never, ever stops pulling? Today on Katixo Shiksha, we're cracking the physics of rockets. Let's go!
+Every second, Earth's gravity is pulling you down with a force of about 9.8 newtons per kilogram. Jump up — gravity pulls you right back. Throw a ball — gravity curves it back to the ground. Nothing escapes. Or does it? In 2023, ISRO's Chandrayaan-3 blasted off from Sriharikota, broke free of Earth's gravity, travelled 3.84 lakh kilometres, and soft-landed on the Moon. How? How do you beat a force that never, ever stops pulling? Today on Katixo KhojLab, we're cracking the physics of rockets. Let's go!
 
 ## Slide 2
 

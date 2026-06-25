@@ -1,6 +1,6 @@
 # S36 — How Does AI Actually Think? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -78,4 +78,4 @@
 ## Slide 13 — Recap + Next episode
 - **Visual:** Mini-icons recapping (data, neural net, next-word, warning) plus a teaser image of green auroras over mountains.
 - **Text overlay:** "Recap done! NEXT: Northern Lights — Subscribe!"
-- **Style:** Split design, recap left, glowing aurora teaser right, Subscribe button glow, Katixo Shiksha logo.
+- **Style:** Split design, recap left, glowing aurora teaser right, Subscribe button glow, Katixo KhojLab logo.

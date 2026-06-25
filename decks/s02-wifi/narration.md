@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-Right now, invisible waves are passing through your body. Through the walls around you. Through your clothes, your bag, even your bones. And these waves are carrying Instagram reels, YouTube videos, WhatsApp messages — all flying through the air at the speed of light. This is WiFi. You use it every single day, but have you ever wondered — how does it actually work? How does a cat video travel from a server in America to your phone in India without any wires? Today on Katixo Shiksha, we break it down. Let's go!
+Right now, invisible waves are passing through your body. Through the walls around you. Through your clothes, your bag, even your bones. And these waves are carrying Instagram reels, YouTube videos, WhatsApp messages — all flying through the air at the speed of light. This is WiFi. You use it every single day, but have you ever wondered — how does it actually work? How does a cat video travel from a server in America to your phone in India without any wires? Today on Katixo KhojLab, we break it down. Let's go!
 
 ## Slide 2
 

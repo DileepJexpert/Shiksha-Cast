@@ -1,0 +1,236 @@
+/* ============================================================================
+   Katixo KhojLab — "cool tech" slide design system  (build once, reuse every episode)
+   16:9 PowerPoint canvas: 33.867cm x 19.05cm -> 2000x1125 px @150dpi.
+   Dark, high-contrast, geometric sans + mono for code. Latin-script Hinglish.
+
+   Per-deck overrides (set on .deck):
+     --brand: "Katixo KhojLab";     --total: "11";     --accent: ...;
+   Every slide auto-draws the footer brand (left) + slide counter (right) via
+   CSS counters — no per-slide footer markup needed.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Grotesk";
+  src: url("../fonts/SpaceGrotesk.ttf") format("truetype");
+  font-weight: 300 700;
+}
+@font-face {
+  font-family: "Mono";
+  src: url("../fonts/JetBrainsMono.ttf") format("truetype");
+  font-weight: 300 700;
+}
+
+@page { size: 33.867cm 19.05cm; margin: 0; }
+
+:root {
+  --bg:       #070b16;   /* near-black deep navy   */
+  --panel:    #0e1424;   /* slightly lighter panel */
+  --ink:      #eef2fb;   /* primary text           */
+  --muted:    #8a97b8;   /* secondary text         */
+  --line:     #1d2740;   /* hairlines / borders    */
+  --accent:   #22d3ee;   /* electric cyan (primary)*/
+  --accent2:  #a3e635;   /* lime                   */
+  --accent3:  #fb923c;   /* orange                 */
+  --danger:   #fb7185;   /* myth / galti           */
+  --brand:    "Katixo KhojLab";
+  --total:    "11";
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #000; }
+
+/* ----- the page / slide ----- */
+.deck { counter-reset: slide; }
+
+.slide {
+  counter-increment: slide;
+  position: relative;
+  width: 33.867cm;
+  height: 19.05cm;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 100% 0%, #122038 0%, rgba(18,32,56,0) 55%),
+    radial-gradient(100% 80% at 0% 100%, #0c1830 0%, rgba(12,24,48,0) 50%),
+    var(--bg);
+  color: var(--ink);
+  font-family: "Grotesk", "Segoe UI", system-ui, sans-serif;
+  padding: 1.5cm 2cm 1.7cm;
+  display: flex;
+  flex-direction: column;
+  page-break-after: always;
+}
+.slide:last-child { page-break-after: auto; }
+
+/* subtle tech grid wash */
+.slide::after,
+.slide::before { pointer-events: none; }
+
+/* footer: brand (left) + counter (right), auto-generated */
+.slide > .footer-brand,
+.slide > .footer-count { position: absolute; bottom: 0.85cm; font-size: 12pt; letter-spacing: 0.12em; }
+.foot {
+  position: absolute; left: 2cm; right: 2cm; bottom: 0.8cm;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11.5pt; letter-spacing: 0.14em; color: var(--muted);
+  text-transform: uppercase;
+}
+/* Two-tone brand: "Katixo" muted + "Katixo KhojLab" accent (real markup, not a var,
+   so the two halves can be different colours). Counter stays auto-generated. */
+.foot .fb { color: var(--accent); font-weight: 700; }
+.foot .fb .k { color: var(--muted); font-weight: 700; }
+.foot::after { content: counter(slide, decimal-leading-zero) " / " var(--total); }
+
+/* ----- shared type ----- */
+.kicker {
+  font-size: 15pt; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 0.45cm;
+}
+.headline { font-size: 40pt; font-weight: 700; line-height: 1.06; margin: 0; letter-spacing: -0.01em; }
+.headline .hl { color: var(--accent); }
+.subhead { font-size: 19pt; font-weight: 400; color: var(--muted); margin: 0.5cm 0 0; line-height: 1.35; }
+.big { font-size: 27pt; line-height: 1.3; font-weight: 500; }
+.lead { font-size: 21pt; line-height: 1.45; color: var(--ink); }
+.accent  { color: var(--accent); }
+.accent2 { color: var(--accent2); }
+.accent3 { color: var(--accent3); }
+.mono { font-family: "Mono", monospace; }
+.fill { flex: 1; }
+.center { justify-content: center; }
+
+/* ----- TITLE slide ----- */
+.slide--title { justify-content: center; }
+.slide--title .eyebrow {
+  font-size: 16pt; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent2);
+  font-weight: 700; margin-bottom: 0.5cm;
+}
+.slide--title .title {
+  font-size: 54pt; font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; margin: 0; max-width: 26cm;
+}
+.slide--title .title .hl { color: var(--accent); }
+.slide--title .brandmark {
+  position: absolute; top: 1.4cm; left: 2cm; display: flex; align-items: center; gap: 0.35cm;
+  font-weight: 700; letter-spacing: 0.18em; font-size: 16pt;
+}
+.slide--title .brandmark .logo {
+  width: 0.85cm; height: 0.85cm; border-radius: 7px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+.slide--title .brandmark .bk { color: var(--muted); }   /* "Katixo" muted   */
+.slide--title .brandmark .bl { color: var(--accent); }  /* "KhojLab" accent */
+
+/* ----- QUESTION slide ("aaj ka sawaal") ----- */
+.slide--question { justify-content: center; text-align: left; }
+.slide--question .qmark {
+  font-size: 150pt; font-weight: 700; color: var(--accent); opacity: 0.16;
+  position: absolute; right: 1.5cm; top: 0.5cm; line-height: 1;
+}
+.slide--question .q { font-size: 44pt; font-weight: 700; line-height: 1.1; max-width: 24cm; }
+
+/* ----- CONCEPT slide ----- */
+.slide--concept .kicker { color: var(--accent2); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1cm; align-items: center; flex: 1; }
+.bullets { list-style: none; margin: 0.6cm 0 0; padding: 0; }
+.bullets li {
+  font-size: 19pt; line-height: 1.3; margin: 0.42cm 0; padding-left: 1.1cm; position: relative; color: var(--ink);
+}
+.bullets li::before {
+  content: ""; position: absolute; left: 0; top: 0.32cm;
+  width: 0.55cm; height: 0.55cm; border-radius: 4px;
+  background: var(--accent); box-shadow: 0 0 14px rgba(34,211,238,0.5);
+}
+.bullets li.muted { color: var(--muted); }
+.bullets li.muted::before { background: var(--line); box-shadow: none; }
+
+/* ----- CODE / TERMINAL block ----- */
+.code {
+  background: #0a1120; border: 1px solid var(--line); border-radius: 12px;
+  font-family: "Mono", monospace; font-size: 16.5pt; line-height: 1.55; color: #cfe7ff;
+  padding: 0.9cm 1cm 0.9cm; position: relative; overflow: hidden;
+}
+.code::before {
+  content: "● ● ●"; color: #2c3a5a; letter-spacing: 0.15em; font-size: 12pt;
+  position: absolute; top: 0.35cm; left: 1cm;
+}
+.code .cm { color: #5f6f93; }                 /* comment */
+.code .kw { color: var(--accent3); }          /* keyword */
+.code .st { color: var(--accent2); }          /* string  */
+.code .fn { color: var(--accent); }           /* func    */
+.code pre { margin: 0.7cm 0 0; white-space: pre-wrap; }
+
+/* ----- DIAGRAM area (inline SVG lives here) ----- */
+.diagram { display: flex; align-items: center; justify-content: center; flex: 1; }
+.diagram svg { max-width: 100%; max-height: 100%; }
+.chip {
+  display: inline-flex; align-items: center; gap: 0.3cm;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 999px;
+  padding: 0.28cm 0.7cm; font-size: 15pt; color: var(--ink);
+}
+
+/* ----- MYTH / GALTI callout ----- */
+.slide--myth .kicker { color: var(--danger); }
+.myth {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.1cm; flex: 1; align-items: center;
+}
+.myth .card { border-radius: 14px; padding: 0.9cm 1cm; border: 1px solid var(--line); background: var(--panel); }
+.myth .card.wrong { border-color: rgba(251,113,133,0.5); }
+.myth .card.right { border-color: rgba(163,230,53,0.5); }
+.myth .tag { font-size: 14pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.myth .wrong .tag { color: var(--danger); }
+.myth .right .tag { color: var(--accent2); }
+.myth .card p { font-size: 19pt; line-height: 1.3; margin: 0.4cm 0 0; }
+
+/* ----- RECAP ----- */
+.slide--recap .takeaways { list-style: none; margin: 0.4cm 0 0; padding: 0; }
+.slide--recap .takeaways li {
+  font-size: 24pt; line-height: 1.25; margin: 0.55cm 0; padding-left: 1.4cm; position: relative; font-weight: 500;
+}
+.slide--recap .takeaways li::before {
+  content: counter(takeaway); counter-increment: takeaway;
+  position: absolute; left: 0; top: -0.05cm; width: 1cm; height: 1cm; border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #06121f;
+  font-weight: 700; font-size: 17pt; display: flex; align-items: center; justify-content: center;
+}
+.slide--recap .takeaways { counter-reset: takeaway; }
+
+/* ----- CTA / subscribe ----- */
+.slide--cta { justify-content: center; text-align: center; align-items: center; }
+.slide--cta .cta-h { font-size: 40pt; font-weight: 700; line-height: 1.1; }
+.slide--cta .sub {
+  display: inline-flex; align-items: center; gap: 0.4cm; margin-top: 0.8cm;
+  background: var(--danger); color: #2a0810; font-weight: 700; font-size: 21pt;
+  padding: 0.45cm 1.1cm; border-radius: 999px;
+}
+.slide--cta .next {
+  margin-top: 0.9cm; font-size: 18pt; color: var(--muted);
+}
+.slide--cta .next b { color: var(--accent); font-weight: 700; }
+
+/* ----- probability bars (Idea 1 diagram) ----- */
+.predbar {
+  display: grid; grid-template-columns: 3.4cm 1fr 1.8cm; align-items: center; gap: 0.4cm;
+  margin: 0.32cm 0; font-size: 17pt;
+}
+.predbar > span { font-family: "Mono", monospace; color: var(--ink); }
+.predbar > i {
+  height: 0.6cm; border-radius: 5px; display: block;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 14px rgba(34,211,238,0.35);
+}
+.predbar > b { font-family: "Mono", monospace; color: var(--muted); text-align: right; }
+.predbar.muted > i { background: var(--line); box-shadow: none; }
+
+/* ----- inline context highlights (Idea 4) ----- */
+.hot  { color: var(--accent3); font-weight: 700;
+        border-bottom: 3px solid rgba(251,146,60,0.5); }
+.want { color: var(--accent);  font-weight: 700;
+        border-bottom: 3px solid rgba(34,211,238,0.5); }
+
+/* ----- small note panel ----- */
+.card-note {
+  border: 1px solid var(--line); background: var(--panel);
+  border-radius: 14px; padding: 0.8cm 0.9cm; align-self: center;
+}
+.card-note .tag { font-size: 14pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* reveal grouping (animation-ready: each .step is one click reveal when recording) */
+.step { } /* visual marker only; kept visible in the static PDF */

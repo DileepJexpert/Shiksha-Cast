@@ -1,7 +1,7 @@
 # S29 — Why Does Honey Never Spoil? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** Golden honey dripping from a dipper, with an Egyptian pyramid + ancient sealed honey jar inset
 - **Text overlay:** "Why Honey NEVER Spoils" in bold gold with glow
 - **Subtext:** "3000-year-old honey is still edible!"
-- **Bottom bar:** Katixo Shiksha logo + "S29" badge
+- **Bottom bar:** Katixo KhojLab logo + "S29" badge
 - **Style:** Dark background, warm gold accents, glowing honey drip
 
 ## Slide 2 — Why Food Rots

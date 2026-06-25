@@ -1,7 +1,7 @@
 chapter: S16 — How does the internet actually work?
 slides:
 - n: 1
-  narration: दोस्तों, अभी तुम ये video देख रहे हो, लेकिन क्या तुमने कभी सोचा कि ये आया कहाँ से? तुम्हारा phone किसी magic से नहीं, बल्कि समंदर के नीचे बिछी असली cables से जुड़ा है! दुनिया भर में करीब 500 से ज़्यादा submarine cables समुंदर की तली पर पड़ी हैं, जो internet का 99 percent traffic ले जाती हैं। आज Katixo Shiksha पर हम समझेंगे कि internet असल में काम कैसे करता है, बिना किसी जादू के, सिर्फ science और बहुत सारी wires से। चलो शुरू करते हैं!
+  narration: दोस्तों, अभी तुम ये video देख रहे हो, लेकिन क्या तुमने कभी सोचा कि ये आया कहाँ से? तुम्हारा phone किसी magic से नहीं, बल्कि समंदर के नीचे बिछी असली cables से जुड़ा है! दुनिया भर में करीब 500 से ज़्यादा submarine cables समुंदर की तली पर पड़ी हैं, जो internet का 99 percent traffic ले जाती हैं। आज Katixo KhojLab पर हम समझेंगे कि internet असल में काम कैसे करता है, बिना किसी जादू के, सिर्फ science और बहुत सारी wires से। चलो शुरू करते हैं!
   visual_prompt: A glowing world map at night with bright neon lines (submarine cables) crisscrossing the oceans, a teen holding a phone in the foreground silhouette.. Educational science illustration for a teen audience, dark navy background, neon cyan and purple accents, clean vector diagram style, high detail, no text
 - n: 2
   narration: सबसे पहले एक बात साफ कर लें, दोस्तों, internet कोई cloud में तैरती हुई चीज़ नहीं है। Internet असल में लाखों computers का एक विशाल network है जो आपस में जुड़े हुए हैं। शब्द internet बना है inter यानी आपस में, और network से। सोचो जैसे पूरी दुनिया की सड़कें एक दूसरे से जुड़ी हों, वैसे ही हर computer किसी न किसी रास्ते से दूसरे computer तक पहुँच सकता है। जब तुम कुछ search करते हो, तो तुम्हारा device इसी विशाल जाल में से एक खास computer से बात कर रहा होता है।

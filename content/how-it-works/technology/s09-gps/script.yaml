@@ -1,7 +1,7 @@
 chapter: S09 — GPS Ko Teri Location Kaise Pata Chalti Hai?
 slides:
 - n: 1
-  narration: दोस्तों, ज़रा सोचो — तुम किसी नई जगह पर हो, फ़ोन निकाला, map खोला, और एक नीला dot ठीक तुम्हारे ऊपर! फ़ोन को कैसे पता चला कि तुम पूरी पृथ्वी पर ठीक किस जगह खड़े हो? इसके पीछे है space में घूमते satellites की एक पूरी फ़ौज और गणित का ज़बरदस्त जादू! आज Katixo Shiksha पर हम समझेंगे कि GPS आख़िर काम कैसे करता है — satellites, signals, और एक trick जिसका नाम है trilateration. चलो शुरू करते हैं!
+  narration: दोस्तों, ज़रा सोचो — तुम किसी नई जगह पर हो, फ़ोन निकाला, map खोला, और एक नीला dot ठीक तुम्हारे ऊपर! फ़ोन को कैसे पता चला कि तुम पूरी पृथ्वी पर ठीक किस जगह खड़े हो? इसके पीछे है space में घूमते satellites की एक पूरी फ़ौज और गणित का ज़बरदस्त जादू! आज Katixo KhojLab पर हम समझेंगे कि GPS आख़िर काम कैसे करता है — satellites, signals, और एक trick जिसका नाम है trilateration. चलो शुरू करते हैं!
   visual_prompt: A phone with a glowing blue location dot on a map, beams connecting up to satellites in orbit above Earth.. Educational science illustration for a teen audience, dark navy background, neon cyan and purple accents, clean vector diagram style, high detail, no text
 - n: 2
   narration: सबसे पहले — GPS का मतलब है Global Positioning System. यह एक system है करीब 24 से 31 satellites का, जो पृथ्वी से लगभग 20,000 kilometer ऊपर चक्कर लगा रहे हैं. इन्हें इस तरह set किया गया है कि पृथ्वी पर किसी भी जगह से, किसी भी समय, कम से कम 4 satellites आसमान में दिख सकें. यह system असल में अमेरिका ने बनाया था. आज भारत का अपना system भी है — NavIC, यानी Navigation with Indian Constellation. यानी अब हमारे अपने satellites भी रास्ता दिखाते हैं!

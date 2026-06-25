@@ -1,6 +1,6 @@
 # S08 — What Is Inside a Black Hole — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -71,4 +71,4 @@
 ## Slide 14 — Recap & Next Episode
 - **Visual:** Recap strip of black hole anatomy; teaser card with satellites and a phone map pin for next episode.
 - **Text overlay:** "Next: How Does GPS Find You? | Subscribe karna mat bhoolna!"
-- **Style:** Recap on left, glowing GPS teaser on right. Katixo Shiksha logo bottom-right.
+- **Style:** Recap on left, glowing GPS teaser on right. Katixo KhojLab logo bottom-right.

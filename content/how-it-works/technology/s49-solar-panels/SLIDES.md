@@ -1,12 +1,12 @@
 # S49 — How Do Solar Panels Make Electricity? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A glowing blue solar panel on a rooftop at sunrise, golden sun rays streaming down, tiny animated light particles drifting from the sun toward the panel. Silhouette of an Indian house below. Cinematic dark sky with neon orange-blue gradient.
 - **Text overlay:** "Solar Panel बिजली कैसे बनाता है?"
-- **Style:** Huge bold title, neon cyan glow on the panel, Katixo Shiksha logo top-left. Spark/lightning icon as accent.
+- **Style:** Huge bold title, neon cyan glow on the panel, Katixo KhojLab logo top-left. Spark/lightning icon as accent.
 
 ---
 ## Slide 2 — Sunlight = Photons
@@ -90,4 +90,4 @@
 ## Slide 15 — Recap + Next Episode Tease
 - **Visual:** A quick flow-chain graphic: Sun → Photons → P-N Junction → Electrons → DC → Inverter → AC → House. On the right, a teaser panel: zoomed-in cartoon gut with friendly bacteria characters.
 - **Text overlay:** "Recap done! Next: आँत में खरबों bacteria क्यों? — Subscribe करना मत भूलना!"
-- **Style:** Left side recap arrow-chain in neon, right side playful gut-bacteria preview. Big Subscribe button graphic with bell icon. Katixo Shiksha logo centered bottom.
+- **Style:** Left side recap arrow-chain in neon, right side playful gut-bacteria preview. Big Subscribe button graphic with bell icon. Katixo KhojLab logo centered bottom.

@@ -1,6 +1,6 @@
 # S39 — How Do Vaccines Train Your Body? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -78,4 +78,4 @@
 ## Slide 13 — Recap + Next episode
 - **Visual:** Mini vaccine recap icons plus a teaser of a big dramatic sneeze with spray droplets.
 - **Text overlay:** "Recap done! NEXT: Why do we sneeze? — Subscribe!"
-- **Style:** Split design, vaccine recap left, sneeze teaser right, Subscribe glow, Katixo Shiksha logo.
+- **Style:** Split design, vaccine recap left, sneeze teaser right, Subscribe glow, Katixo KhojLab logo.

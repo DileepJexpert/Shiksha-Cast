@@ -1,12 +1,12 @@
 # S23 — How Do Rainbows Form? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A vivid rainbow arcing over rain clouds after a storm, a teen looking up in awe.
 - **Text overlay:** "Where Do Rainbow Colours Come From?"
-- **Style:** Dark stormy backdrop, glowing rainbow arc, bold white title, Katixo Shiksha logo top-left.
+- **Style:** Dark stormy backdrop, glowing rainbow arc, bold white title, Katixo KhojLab logo top-left.
 
 ---
 ## Slide 2 — White Light Is Not White

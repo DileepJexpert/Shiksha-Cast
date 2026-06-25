@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, सोचो तुम WhatsApp पर किसी दोस्त को message भेजते हो, या online कोई payment करते हो। वो message internet के हज़ारों रास्तों, servers और routers से होकर गुज़रता है। तो फिर बीच में कोई hacker उसे पढ़ क्यों नहीं लेता? तुम्हारा password करोड़ों लोगों के बीच safe कैसे रहता है? इसका जवाब है एक जादुई शब्द, encryption! यह वो अदृश्य ताला है जो हमारी digital दुनिया को सुरक्षित रखता है। आज Katixo Shiksha पर हम समझेंगे कि कैसे गणित और logic मिलकर हमारे राज़ बचाते हैं। चलो दोस्तों, secrets की दुनिया में चलते हैं!
+दोस्तों, सोचो तुम WhatsApp पर किसी दोस्त को message भेजते हो, या online कोई payment करते हो। वो message internet के हज़ारों रास्तों, servers और routers से होकर गुज़रता है। तो फिर बीच में कोई hacker उसे पढ़ क्यों नहीं लेता? तुम्हारा password करोड़ों लोगों के बीच safe कैसे रहता है? इसका जवाब है एक जादुई शब्द, encryption! यह वो अदृश्य ताला है जो हमारी digital दुनिया को सुरक्षित रखता है। आज Katixo KhojLab पर हम समझेंगे कि कैसे गणित और logic मिलकर हमारे राज़ बचाते हैं। चलो दोस्तों, secrets की दुनिया में चलते हैं!
 
 ## Slide 2
 

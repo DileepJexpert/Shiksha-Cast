@@ -1,14 +1,14 @@
 # S34 — Why Do We Feel Deja Vu? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
 ## Slide 1 — HOOK / Title
 - **Visual:** A person freezing mid-moment with a glowing "rewind" echo of themselves; dreamy double-exposure effect
 - **Text overlay:** "Why Do We Feel DEJA VU?" in bold white + neon magenta glow
-- **Bottom bar:** "Katixo Shiksha" logo + "S34" badge
+- **Bottom bar:** "Katixo KhojLab" logo + "S34" badge
 - **Style:** Surreal, mysterious, double-image
 
 ## Slide 2 — It's Super Common
@@ -84,5 +84,5 @@
 ## Slide 14 — Recap + Next Episode
 - **Visual:** Montage — double-exposure moment, temporal lobe spark, VR test; tease image of popping popcorn
 - **Text overlay:** "Next: Why does popcorn pop? + Subscribe!"
-- **Bottom bar:** "Katixo Shiksha" logo + Subscribe button graphic
+- **Bottom bar:** "Katixo KhojLab" logo + Subscribe button graphic
 - **Style:** Energetic outro, neon call-to-action

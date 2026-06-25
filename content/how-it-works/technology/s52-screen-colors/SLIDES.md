@@ -1,12 +1,12 @@
 # S52 — How Do Screens Make Every Color? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A glowing smartphone/TV screen at center bursting into a vibrant rainbow spray of colors. Dark space-like background with subtle particle glow. A magnified pixel grid faintly visible in one corner hinting at the secret.
 - **Text overlay:** "How do screens make EVERY color?"
-- **Style:** Huge bold neon title font (cyan-to-magenta gradient). Katixo Shiksha logo top-left. High contrast, energetic, cinematic glow.
+- **Style:** Huge bold neon title font (cyan-to-magenta gradient). Katixo KhojLab logo top-left. High contrast, energetic, cinematic glow.
 
 ---
 ## Slide 2 — What Is a Pixel
@@ -82,6 +82,6 @@
 
 ---
 ## Slide 14 — Recap & Wrap-Up
-- **Visual:** Quick recap mosaic of key icons (pixel grid, RGB stripes, 0–255 sliders, 16.7M, white/black, eye, LCD/OLED). Katixo Shiksha logo prominent. Subscribe button and bell icon glowing.
+- **Visual:** Quick recap mosaic of key icons (pixel grid, RGB stripes, 0–255 sliders, 16.7M, white/black, eye, LCD/OLED). Katixo KhojLab logo prominent. Subscribe button and bell icon glowing.
 - **Text overlay:** "3 colors. Millions of shades. SUBSCRIBE!"
 - **Style:** Celebratory recap collage, bold call-to-action. Glowing red Subscribe button and bell. Warm energetic finish.

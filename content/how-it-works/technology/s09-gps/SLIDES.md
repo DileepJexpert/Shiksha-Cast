@@ -1,6 +1,6 @@
 # S09 — How Does GPS Know Where You Are — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -71,4 +71,4 @@
 ## Slide 14 — Recap & Next Episode
 - **Visual:** Recap strip of satellites, trilateration circles, phone dot; teaser card with a salty wave and salt crystals.
 - **Text overlay:** "Next: Why Is the Ocean Salty? | Subscribe karna mat bhoolna!"
-- **Style:** Recap on left, glowing ocean teaser on right. Katixo Shiksha logo bottom-right.
+- **Style:** Recap on left, glowing ocean teaser on right. Katixo KhojLab logo bottom-right.

@@ -37,7 +37,7 @@ def ollama_available(url: str) -> bool:
 
 
 def _build_prompt(topic: str, n_slides: int, audience: str, style: str) -> str:
-    return f"""You are a scriptwriter for the "Katixo Shiksha" educational YouTube channel.
+    return f"""You are a scriptwriter for the "Katixo KhojLab" educational YouTube channel.
 
 Write a narration script for a video about this topic:
 "{topic}"

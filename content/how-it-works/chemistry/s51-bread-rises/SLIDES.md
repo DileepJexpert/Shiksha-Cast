@@ -1,6 +1,6 @@
 # S51 — Why Does Bread Rise? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -69,6 +69,6 @@
 - **Style:** Green correct-answer glow.
 
 ## Slide 14 — Recap & Wrap-up
-- **Visual:** Happy bread slice mascot, Subscribe button glowing, Katixo Shiksha logo.
+- **Visual:** Happy bread slice mascot, Subscribe button glowing, Katixo KhojLab logo.
 - **Text overlay:** "Subscribe करना मत भूलना!"
 - **Style:** Celebratory, channel branding, call-to-action bright.

@@ -1,7 +1,7 @@
 # S28 — Why Is Mars Red? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** Mars glowing rusty-red against a star field, with a faint comparison to a reddish "star" in night sky
 - **Text overlay:** "Why Is MARS Red?" in bold rust-orange with glow
 - **Subtext:** "The Red Planet's biggest secret"
-- **Bottom bar:** Katixo Shiksha logo + "S28" badge
+- **Bottom bar:** Katixo KhojLab logo + "S28" badge
 - **Style:** Deep-space dark background, neon-orange accents, dramatic planet render
 
 ## Slide 2 — It's Literally Rust

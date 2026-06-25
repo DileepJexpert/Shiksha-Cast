@@ -54,8 +54,8 @@ def test_short_label_trims_and_caps():
 def test_build_metadata_for_real_episode():
     m = build_metadata("s06-yawning", PROJECT_ROOT)
     assert m.chapter_id == "s06-yawning"
-    assert m.title.endswith("| Katixo Shiksha")
-    assert "Katixo" not in _clean_title(m.title.replace(" | Katixo Shiksha", ""))
+    assert m.title.endswith("| Katixo KhojLab")
+    assert "Katixo KhojLab" not in _clean_title(m.title.replace(" | Katixo KhojLab", ""))
     assert len(m.title) <= 100  # YouTube hard limit
     assert len(m.chapters) >= 3  # enough for YouTube chapter markers
     # first chapter must start at 0:00

@@ -1,7 +1,7 @@
 # S05 — Why Is the Sky Blue? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Sky/optics theme, gradient blue backgrounds, prism rainbow accents
+**Brand:** Katixo KhojLab | **Style:** Sky/optics theme, gradient blue backgrounds, prism rainbow accents
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** Stunning gradient sky photo — deep blue overhead transitioning to pale horizon
 - **Text overlay:** "Why Is the Sky BLUE?" in bold white with soft blue glow
 - **Subtext:** "Simple question. Nobel Prize-level answer."
-- **Bottom bar:** Katixo Shiksha logo + "S05" badge
+- **Bottom bar:** Katixo KhojLab logo + "S05" badge
 - **Mood:** Beautiful, contemplative, curiosity-sparking
 
 ## Slide 2 — Sunlight Is a Mix
@@ -122,5 +122,5 @@
   - Sunsets: long path removes blue
   - Other planets = different sky colours
 - **CTA:** "Season 1 COMPLETE! Season 2 coming soon!"
-- **Bottom:** "SUBSCRIBE & SHARE" + Katixo Shiksha logo
+- **Bottom:** "SUBSCRIBE & SHARE" + Katixo KhojLab logo
 - **Style:** Grand finale aesthetic, celebratory

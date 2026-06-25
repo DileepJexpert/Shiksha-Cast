@@ -1,14 +1,14 @@
 # S01 — Why Do You Get Goosebumps? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
 ## Slide 1 — HOOK / Title
 - **Visual:** Close-up photo of arm with goosebumps, dramatic blue-purple lighting
 - **Text overlay:** "Why Do You Get GOOSEBUMPS?" in bold white + neon blue glow
-- **Bottom bar:** "Katixo Shiksha" logo + "S01" badge
+- **Bottom bar:** "Katixo KhojLab" logo + "S01" badge
 - **Mood:** Mysterious, cinematic, attention-grabbing
 
 ## Slide 2 — Skin Structure Intro
@@ -97,5 +97,5 @@
 - **Visual:** Summary bullet points with icons
 - **Key points:** Vestigial response | Warmth + Intimidation | Dopamine + emotions | Autonomic nervous system
 - **CTA:** "NEXT: How Does WiFi Actually Work? 📡" 
-- **Bottom:** "SUBSCRIBE" button graphic + Katixo Shiksha logo
+- **Bottom:** "SUBSCRIBE" button graphic + Katixo KhojLab logo
 - **Style:** Clean summary layout, brand colours

@@ -1,6 +1,6 @@
 # S43 — Why Does Coffee Wake You Up? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -66,4 +66,4 @@
 ## Slide 13 — RECAP / Next Episode
 - **Visual:** Recap montage of brain + caffeine-key icons; teaser of a tilted Earth orbiting the Sun for next episode; glowing Subscribe button.
 - **Text overlay:** "Next: Why Do We Have Seasons? | SUBSCRIBE"
-- **Style:** Bold Katixo Shiksha logo, neon Subscribe CTA, upbeat dark finish.
+- **Style:** Bold Katixo KhojLab logo, neon Subscribe CTA, upbeat dark finish.

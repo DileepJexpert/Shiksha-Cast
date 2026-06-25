@@ -1,14 +1,14 @@
 # S33 — How Do Noise-Cancelling Headphones Work? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
 ## Slide 1 — HOOK / Title
 - **Visual:** Person on a noisy bus/plane wearing headphones; chaotic noise icons fading to a calm "mute" symbol
 - **Text overlay:** "How Headphones KILL Noise" in bold white + neon cyan glow
-- **Bottom bar:** "Katixo Shiksha" logo + "S33" badge
+- **Bottom bar:** "Katixo KhojLab" logo + "S33" badge
 - **Style:** Split chaos-to-calm, cinematic
 
 ## Slide 2 — What Is Sound
@@ -84,5 +84,5 @@
 ## Slide 14 — Recap + Next Episode
 - **Visual:** Montage — waveform cancelling, mic, ANC logo; tease image of a swirling brain for deja vu episode
 - **Text overlay:** "Next: Why do we feel deja vu? + Subscribe!"
-- **Bottom bar:** "Katixo Shiksha" logo + Subscribe button graphic
+- **Bottom bar:** "Katixo KhojLab" logo + Subscribe button graphic
 - **Style:** Energetic outro, neon call-to-action

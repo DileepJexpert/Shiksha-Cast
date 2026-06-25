@@ -1,7 +1,7 @@
 chapter: S45 — इतने भारी plane हवा में टिके कैसे रहते हैं?
 slides:
 - n: 1
-  narration: दोस्तों, ज़रा सोचो — एक Boeing 747 plane का वज़न करीब चार लाख किलोग्राम होता है, यानी लगभग सौ हाथियों जितना! फिर भी यह आसमान में आराम से उड़ता रहता है, घंटों तक हवा में टिका रहता है। यह कोई जादू नहीं, बल्कि शुद्ध physics है — हवा, speed और wings का एक perfect खेल। आख़िर इतना भारी metal का डिब्बा गिरता क्यों नहीं? आज Katixo Shiksha पर हम इसी रहस्य को खोलेंगे। अपनी seatbelt बांध लो, चलो उड़ान भरते हैं!
+  narration: दोस्तों, ज़रा सोचो — एक Boeing 747 plane का वज़न करीब चार लाख किलोग्राम होता है, यानी लगभग सौ हाथियों जितना! फिर भी यह आसमान में आराम से उड़ता रहता है, घंटों तक हवा में टिका रहता है। यह कोई जादू नहीं, बल्कि शुद्ध physics है — हवा, speed और wings का एक perfect खेल। आख़िर इतना भारी metal का डिब्बा गिरता क्यों नहीं? आज Katixo KhojLab पर हम इसी रहस्य को खोलेंगे। अपनी seatbelt बांध लो, चलो उड़ान भरते हैं!
   visual_prompt: A giant Boeing 747 cruising above clouds, with a weight tag "~400,000 kg ≈ 100 elephants" floating beside it.. Educational science illustration for a teen audience, dark navy background, neon cyan and purple accents, clean vector diagram style, high detail, no text
 - n: 2
   narration: उड़ान को समझने के लिए चार forces जानना ज़रूरी है जो हर plane पर काम करते हैं। पहला — weight, जो plane को नीचे खींचता है यानी gravity. दूसरा — lift, जो plane को ऊपर उठाता है. तीसरा — thrust, जो plane को आगे धकेलता है, engines से बनता है. और चौथा — drag, यानी हवा का रुकावट जो plane को पीछे खींचती है. जब lift weight से ज़्यादा हो, plane ऊपर उठता है, और जब thrust drag से ज़्यादा हो, plane आगे बढ़ता है। पूरी उड़ान इन्हीं चार forces का balance है।

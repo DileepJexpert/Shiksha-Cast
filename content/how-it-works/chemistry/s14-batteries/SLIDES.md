@@ -1,12 +1,12 @@
 # S14 — How Do Batteries Store Power? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A glowing AA battery and a smartphone side by side on a dark background, both radiating neon energy lines. A torch beam and a spinning clock float around them. Big question mark sparking with electricity in the centre.
 - **Text overlay:** "How Do Batteries STORE Power?"
-- **Style:** Electric blue and lime-green neon glow, bold condensed font for title, Katixo Shiksha logo top-left, subtle circuit-pattern background.
+- **Style:** Electric blue and lime-green neon glow, bold condensed font for title, Katixo KhojLab logo top-left, subtle circuit-pattern background.
 
 ---
 ## Slide 2 — Myth Buster: Not Electricity
@@ -83,5 +83,5 @@
 ---
 ## Slide 14 — Recap + Next Episode
 - **Visual:** A quick visual recap strip (battery cutaway, electron flow, charge symbol) across the top. Below, a teaser card with a crying onion and watery eyes for the next episode. Subscribe button glowing at the bottom.
-- **Text overlay:** "Recap done! NEXT: Why do onions make you cry? | Subscribe to Katixo Shiksha!"
+- **Text overlay:** "Recap done! NEXT: Why do onions make you cry? | Subscribe to Katixo KhojLab!"
 - **Style:** Energetic recap montage, bright Subscribe button (red), teaser onion graphic with a teardrop sparkle, channel logo prominent.

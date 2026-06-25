@@ -1,14 +1,14 @@
 # S02 — How Does WiFi Actually Work? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Tech/digital theme, circuit-board patterns, blue-cyan neon
+**Brand:** Katixo KhojLab | **Style:** Tech/digital theme, circuit-board patterns, blue-cyan neon
 
 ---
 
 ## Slide 1 — HOOK / Title
 - **Visual:** Invisible WiFi waves radiating from a router through walls, furniture, people (X-ray style cutaway)
 - **Text overlay:** "How Does WiFi ACTUALLY Work?" in bold white + cyan glow
-- **Bottom bar:** Katixo Shiksha logo + "S02" badge
+- **Bottom bar:** Katixo KhojLab logo + "S02" badge
 - **Mood:** Futuristic, matrix/digital aesthetic
 
 ## Slide 2 — WiFi ≠ Internet
@@ -109,4 +109,4 @@
   - Your body absorbs WiFi (water content)
   - WPA3 encryption keeps data safe
 - **CTA:** "NEXT: Your Blood Factory 🩸" 
-- **Bottom:** "SUBSCRIBE" + Katixo Shiksha logo
+- **Bottom:** "SUBSCRIBE" + Katixo KhojLab logo

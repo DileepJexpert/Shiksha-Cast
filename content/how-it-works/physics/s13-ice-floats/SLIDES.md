@@ -1,12 +1,12 @@
 # S13 — Why Does Ice Float on Water? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A glass of water with a single ice cube bobbing at the surface, half submerged, glowing neon-cyan rim light. Faint silhouettes of a sinking stone and coin in the background contrasting with the floating ice. Bubbles rising.
 - **Text overlay:** "Why Does ICE FLOAT?"
-- **Style:** Huge bold title in neon cyan, dark navy gradient background, small "Katixo Shiksha" logo top-left, subtle question marks scattered.
+- **Style:** Huge bold title in neon cyan, dark navy gradient background, small "Katixo KhojLab" logo top-left, subtle question marks scattered.
 
 ---
 ## Slide 2 — What is Density?
@@ -84,4 +84,4 @@
 ## Slide 14 — Recap + Next Episode
 - **Visual:** Mini recap icons strip (density formula, H₂O molecule, hexagon lattice, floating ice, fish under ice). Teaser card: a glowing battery with lightning bolt. Subscribe button graphic.
 - **Text overlay:** "NEXT: How do batteries store power? | SUBSCRIBE!"
-- **Style:** Recap icons in a row, bold "NEXT EPISODE" teaser, red Subscribe button, "Katixo Shiksha" logo centered.
+- **Style:** Recap icons in a row, bold "NEXT EPISODE" teaser, red Subscribe button, "Katixo KhojLab" logo centered.

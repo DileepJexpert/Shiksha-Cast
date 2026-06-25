@@ -1,7 +1,7 @@
 # S27 — How Do QR Codes Store Information? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** Phone camera scanning a glowing QR code, data beams shooting out into a website + UPI icon
 - **Text overlay:** "How Do QR Codes WORK?" in bold neon-green
 - **Subtext:** "Black & white squares hiding secrets"
-- **Bottom bar:** Katixo Shiksha logo + "S27" badge
+- **Bottom bar:** Katixo KhojLab logo + "S27" badge
 - **Style:** Dark background, matrix-green data rain, glowing QR
 
 ## Slide 2 — Quick Response History

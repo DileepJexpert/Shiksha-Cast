@@ -1,7 +1,7 @@
 chapter: S33 — Noise-Cancelling Headphones शोर गायब कैसे करते हैं?
 slides:
 - n: 1
-  narration: दोस्तों, कल्पना करो — तुम भीड़भाड़ वाली बस या plane में बैठे हो, चारों तरफ़ शोर ही शोर। तुम headphones पहनते हो, एक button दबाते हो, और अचानक... सब कुछ शांत! जैसे किसी ने दुनिया का mute button दबा दिया हो। बिना तेज़ music चलाए बाहर का शोर गायब! ये कोई magic नहीं, बल्कि बहुत ही clever physics है। आज Katixo Shiksha पर हम खोलेंगे noise-cancelling headphones का राज़ — कैसे आवाज़ से ही आवाज़ को मारा जाता है। चलो शुरू करें!
+  narration: दोस्तों, कल्पना करो — तुम भीड़भाड़ वाली बस या plane में बैठे हो, चारों तरफ़ शोर ही शोर। तुम headphones पहनते हो, एक button दबाते हो, और अचानक... सब कुछ शांत! जैसे किसी ने दुनिया का mute button दबा दिया हो। बिना तेज़ music चलाए बाहर का शोर गायब! ये कोई magic नहीं, बल्कि बहुत ही clever physics है। आज Katixo KhojLab पर हम खोलेंगे noise-cancelling headphones का राज़ — कैसे आवाज़ से ही आवाज़ को मारा जाता है। चलो शुरू करें!
   visual_prompt: Person on a noisy bus/plane wearing headphones; chaotic noise icons fading to a calm "mute" symbol. Educational science illustration for a teen audience, dark navy background, neon cyan and purple accents, clean vector diagram style, high detail, no text
 - n: 2
   narration: पहले समझो आवाज़ होती क्या है। आवाज़ असल में हवा में चलती हुई एक wave है — हवा के कण आगे-पीछे हिलते हैं और बनाते हैं ऊँचे और नीचे का pattern, जिन्हें कहते हैं crests और troughs, यानी चोटियाँ और घाटियाँ। ये wave तुम्हारे कान के पर्दे को हिलाती है और तुम्हें sound सुनाई देता है। तो आवाज़ कोई ठोस चीज़ नहीं, बस हवा का एक हिलता हुआ pattern है। और यहीं छुपी है noise cancelling की पूरी trick — pattern को पकड़ो, और उसे उल्टा कर दो।

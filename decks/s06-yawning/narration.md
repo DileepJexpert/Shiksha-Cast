@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, एक छोटा सा experiment करते हैं — अगर मैं अभी बोलूँ yawning, उबासी, मुँह खोलकर बड़ी सी जम्हाई... तो शर्त लगा लो, अगले 30 seconds में तुम्हें भी yawn आ जाएगा! क्या hua? यह कोई magic नहीं, यह है science. आज Katixo Shiksha पर हम समझेंगे कि yawning इतना contagious यानी संक्रामक क्यों होता है — एक इंसान yawn करे और पूरा कमरा फैल जाए! इसके पीछे छुपा है हमारे brain का empathy system और millions साल पुराना evolution. चलो शुरू करते हैं!
+दोस्तों, एक छोटा सा experiment करते हैं — अगर मैं अभी बोलूँ yawning, उबासी, मुँह खोलकर बड़ी सी जम्हाई... तो शर्त लगा लो, अगले 30 seconds में तुम्हें भी yawn आ जाएगा! क्या hua? यह कोई magic नहीं, यह है science. आज Katixo KhojLab पर हम समझेंगे कि yawning इतना contagious यानी संक्रामक क्यों होता है — एक इंसान yawn करे और पूरा कमरा फैल जाए! इसके पीछे छुपा है हमारे brain का empathy system और millions साल पुराना evolution. चलो शुरू करते हैं!
 
 ## Slide 2
 

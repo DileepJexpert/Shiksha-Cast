@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, क्या तुमने कभी सोचा है कि एक छोटी सी AA battery, जो सिर्फ 1.5 volt की होती है, तुम्हारी टॉर्च, घड़ी और remote कैसे चला देती है? और तुम्हारे phone की battery दिनभर video चलाती रहती है! पर असली राज़ ये है कि battery बिजली store नहीं करती, बल्कि chemical energy store करती है। आज Katixo Shiksha पर हम समझेंगे कि battery के अंदर actually होता क्या है, electrons कैसे दौड़ते हैं, और ये पूरा magic कैसे काम करता है। तो चलो, अंदर झाँकते हैं!
+दोस्तों, क्या तुमने कभी सोचा है कि एक छोटी सी AA battery, जो सिर्फ 1.5 volt की होती है, तुम्हारी टॉर्च, घड़ी और remote कैसे चला देती है? और तुम्हारे phone की battery दिनभर video चलाती रहती है! पर असली राज़ ये है कि battery बिजली store नहीं करती, बल्कि chemical energy store करती है। आज Katixo KhojLab पर हम समझेंगे कि battery के अंदर actually होता क्या है, electrons कैसे दौड़ते हैं, और ये पूरा magic कैसे काम करता है। तो चलो, अंदर झाँकते हैं!
 
 ## Slide 2
 
@@ -56,5 +56,5 @@ Charging का राज़ क्या है, सोचा है कभी?
 
 ## Slide 14
 
-तो दोस्तों, आज हमने सीखा कि battery बिजली नहीं, chemical energy store करती है, जिसे वो electrical energy में बदलती है। Anode पर oxidation, cathode पर reduction, electrons बाहर circuit से बहते हैं और ions अंदर electrolyte में, और voltage सब को push देता है। Primary एक बार की, secondary rechargeable. मज़ा आया ना? अगली episode और भी मज़ेदार है, Why do onions make you cry, यानी प्याज़ काटते वक्त आँसू क्यों आते हैं! ये जानने के लिए Katixo Shiksha को Subscribe करना मत भूलना! मिलते हैं अगली बार, तब तक के लिए, Bye!
+तो दोस्तों, आज हमने सीखा कि battery बिजली नहीं, chemical energy store करती है, जिसे वो electrical energy में बदलती है। Anode पर oxidation, cathode पर reduction, electrons बाहर circuit से बहते हैं और ions अंदर electrolyte में, और voltage सब को push देता है। Primary एक बार की, secondary rechargeable. मज़ा आया ना? अगली episode और भी मज़ेदार है, Why do onions make you cry, यानी प्याज़ काटते वक्त आँसू क्यों आते हैं! ये जानने के लिए Katixo KhojLab को Subscribe करना मत भूलना! मिलते हैं अगली बार, तब तक के लिए, Bye!
 

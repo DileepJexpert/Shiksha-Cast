@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, कल्पना करो — तुम भीड़भाड़ वाली बस या plane में बैठे हो, चारों तरफ़ शोर ही शोर। तुम headphones पहनते हो, एक button दबाते हो, और अचानक... सब कुछ शांत! जैसे किसी ने दुनिया का mute button दबा दिया हो। बिना तेज़ music चलाए बाहर का शोर गायब! ये कोई magic नहीं, बल्कि बहुत ही clever physics है। आज Katixo Shiksha पर हम खोलेंगे noise-cancelling headphones का राज़ — कैसे आवाज़ से ही आवाज़ को मारा जाता है। चलो शुरू करें!
+दोस्तों, कल्पना करो — तुम भीड़भाड़ वाली बस या plane में बैठे हो, चारों तरफ़ शोर ही शोर। तुम headphones पहनते हो, एक button दबाते हो, और अचानक... सब कुछ शांत! जैसे किसी ने दुनिया का mute button दबा दिया हो। बिना तेज़ music चलाए बाहर का शोर गायब! ये कोई magic नहीं, बल्कि बहुत ही clever physics है। आज Katixo KhojLab पर हम खोलेंगे noise-cancelling headphones का राज़ — कैसे आवाज़ से ही आवाज़ को मारा जाता है। चलो शुरू करें!
 
 ## Slide 2
 

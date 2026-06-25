@@ -1,4 +1,4 @@
-# Katixo Shiksha — Content Creation Guide
+# Katixo KhojLab — Content Creation Guide
 
 ## Target Audience
 **Class 6–10 (Age 11–16)** | Indian teens | Hinglish | Curiosity-driven science
@@ -27,7 +27,7 @@
   - Highlight: #FFD93D (yellow for emphasis)
   - Font heading: **Montserrat Bold** or **Poppins Bold** (modern, techy)
   - Font body: **Inter** or **Nunito Sans** (clean, readable)
-  - Upload Katixo Shiksha logo
+  - Upload Katixo KhojLab logo
 - Canvas size: **1920 x 1080 px** (Presentation 16:9)
 - **Dark theme preferred** — looks premium, good for science content
 
@@ -36,7 +36,7 @@
 #### TYPE A — Hook / Title (Slide 1)
 ```
 ┌─────────────────────────────────────┐
-│  [Katixo Logo - top left] [S01]    │
+│  [Katixo KhojLab Logo - top left] [S01]    │
 │                                     │
 │  "Why Do You Get GOOSEBUMPS?"      │
 │   (big, bold, neon glow effect)     │

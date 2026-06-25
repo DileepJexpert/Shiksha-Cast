@@ -1,14 +1,14 @@
 # S32 — Why Does Thunder Come After Lightning? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
 ## Slide 1 — HOOK / Title
 - **Visual:** Dramatic night sky with a bright lightning bolt; a person counting fingers "1...2...3"
 - **Text overlay:** "Thunder AFTER Lightning — Why?" in bold white + neon yellow glow
-- **Bottom bar:** "Katixo Shiksha" logo + "S32" badge
+- **Bottom bar:** "Katixo KhojLab" logo + "S32" badge
 - **Style:** Cinematic storm, rain streaks, electric mood
 
 ## Slide 2 — How Lightning Forms (Charge)
@@ -83,5 +83,5 @@
 ## Slide 14 — Recap + Next Episode
 - **Visual:** Montage — bolt, stopwatch, safe building; tease image of headphones for next episode
 - **Text overlay:** "Next: How do noise-cancelling headphones work? + Subscribe!"
-- **Bottom bar:** "Katixo Shiksha" logo + Subscribe button graphic
+- **Bottom bar:** "Katixo KhojLab" logo + Subscribe button graphic
 - **Style:** Energetic outro, neon call-to-action

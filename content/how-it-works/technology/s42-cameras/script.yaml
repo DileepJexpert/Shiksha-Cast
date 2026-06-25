@@ -1,7 +1,7 @@
 chapter: S42 — कैमरा एक पल को हमेशा के लिए कैसे कैद करता है?
 slides:
 - n: 1
-  narration: दोस्तों, ज़रा सोचो — तुम एक button दबाते हो, click! और एक पल हमेशा के लिए कैद हो जाता है। तुम्हारी हंसी, सूरज ढलता आसमान, दोस्त का funny face — सब एक छोटी सी device में फ्रीज़ हो जाते हैं। लेकिन कैमरा असल में light को पकड़कर एक photo कैसे बना लेता है? इसके अंदर lens, sensor और millions of tiny pixels का एक पूरा magic चलता है। आज Katixo Shiksha पर हम कैमरे के अंदर झांकेंगे और समझेंगे यह पूरा कमाल। चलो शुरू करें!
+  narration: दोस्तों, ज़रा सोचो — तुम एक button दबाते हो, click! और एक पल हमेशा के लिए कैद हो जाता है। तुम्हारी हंसी, सूरज ढलता आसमान, दोस्त का funny face — सब एक छोटी सी device में फ्रीज़ हो जाते हैं। लेकिन कैमरा असल में light को पकड़कर एक photo कैसे बना लेता है? इसके अंदर lens, sensor और millions of tiny pixels का एक पूरा magic चलता है। आज Katixo KhojLab पर हम कैमरे के अंदर झांकेंगे और समझेंगे यह पूरा कमाल। चलो शुरू करें!
   visual_prompt: A finger pressing a shutter button, with a freeze-frame "click!" moment splitting into a vibrant captured photo.. Educational science illustration for a teen audience, dark navy background, neon cyan and purple accents, clean vector diagram style, high detail, no text
 - n: 2
   narration: सबसे पहले एक बड़ी बात — कैमरा light के बिना कुछ नहीं है। जो भी चीज़ तुम देखते हो, उससे light टकराकर reflect होती है और तुम्हारी आंख या कैमरे तक पहुंचती है। कैमरा basically एक artificial आंख है। इसका काम है उस reflected light को इकट्ठा करना, उसे focus करके एक साफ़ image बनाना, और फिर उस image को record कर लेना। पुराने ज़माने में यह record होता था film पर chemicals के ज़रिए, और आज होता है एक electronic sensor पर। दोनों का मक़सद एक ही है — light को पकड़ना।

@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-Right now, as you're sitting there watching this video, your heart is pumping blood through a network of blood vessels so long that if you stretched them all out end-to-end, they would wrap around the Earth — TWICE. That's about one lakh kilometres of blood vessels inside your body. And every single day, your heart pumps roughly 7,500 litres of blood through this network. But what IS blood? Why is it red? What's actually flowing through your veins? Today on Katixo Shiksha, we open up the blood factory. Let's go!
+Right now, as you're sitting there watching this video, your heart is pumping blood through a network of blood vessels so long that if you stretched them all out end-to-end, they would wrap around the Earth — TWICE. That's about one lakh kilometres of blood vessels inside your body. And every single day, your heart pumps roughly 7,500 litres of blood through this network. But what IS blood? Why is it red? What's actually flowing through your veins? Today on Katixo KhojLab, we open up the blood factory. Let's go!
 
 ## Slide 2
 

@@ -1,7 +1,7 @@
 # S03 — Your Blood Factory — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_015.png`
-**Brand:** Katixo Shiksha | **Style:** Medical/biology theme, deep red + dark background, anatomical illustrations
+**Brand:** Katixo KhojLab | **Style:** Medical/biology theme, deep red + dark background, anatomical illustrations
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** Dramatic close-up of blood cells flowing through a vessel (3D render or microscopy style)
 - **Text overlay:** "Your BLOOD FACTORY" in bold white + red glow
 - **Stat callout:** "1,00,000 km of blood vessels. 7,500 litres/day."
-- **Bottom bar:** Katixo Shiksha logo + "S03" badge
+- **Bottom bar:** Katixo KhojLab logo + "S03" badge
 - **Mood:** Cinematic, inside-the-body aesthetic
 
 ## Slide 2 — Blood Components Overview
@@ -115,4 +115,4 @@
   - 💧 Plasma → Transport medium
 - **Factory stat:** "Bone marrow: 200 billion RBCs/day"
 - **CTA:** "NEXT: How Do Rockets Escape Earth? 🚀"
-- **Bottom:** "SUBSCRIBE" + Katixo Shiksha logo
+- **Bottom:** "SUBSCRIBE" + Katixo KhojLab logo

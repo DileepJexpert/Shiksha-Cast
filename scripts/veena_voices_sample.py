@@ -8,7 +8,7 @@ import torch
 from snac import SNAC
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-LINE = ("नमस्ते दोस्तों! ये Katixo Shiksha की आवाज़ है। आज हम science के एक "
+LINE = ("नमस्ते दोस्तों! ये Katixo KhojLab की आवाज़ है। आज हम science के एक "
         "मज़ेदार सवाल का जवाब ढूँढेंगे। तो चलो, शुरू करते हैं!")
 VOICES = ["kavya", "maitri", "agastya", "vinaya"]
 OUTDIR = "voice_samples"

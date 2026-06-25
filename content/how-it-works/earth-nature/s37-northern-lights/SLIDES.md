@@ -1,6 +1,6 @@
 # S37 — What Causes the Northern Lights? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -78,4 +78,4 @@
 ## Slide 13 — Recap + Next episode
 - **Visual:** Mini aurora recap icons plus a teaser of a fizzing soda bottle with bubbles bursting out.
 - **Text overlay:** "Recap done! NEXT: Why does soda fizz? — Subscribe!"
-- **Style:** Split design, aurora recap left, fizzy soda teaser right, Subscribe glow, Katixo Shiksha logo.
+- **Style:** Split design, aurora recap left, fizzy soda teaser right, Subscribe glow, Katixo KhojLab logo.

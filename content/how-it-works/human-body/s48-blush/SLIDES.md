@@ -1,12 +1,12 @@
 # S48 — Why Do We Blush? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A close-up illustration of a teen's face with glowing neon-red cheeks, surrounded by floating question marks and a faint outline of dilated blood vessels under the skin. Dark navy background with a soft red glow around the cheeks.
 - **Text overlay:** "Why Do We BLUSH?"
-- **Style:** Massive bold neon-red title, Katixo Shiksha logo top-left, energetic comic-style spotlight on the face. High-contrast, attention-grabbing.
+- **Style:** Massive bold neon-red title, Katixo KhojLab logo top-left, energetic comic-style spotlight on the face. High-contrast, attention-grabbing.
 
 ---
 ## Slide 2 — What Is Blushing?
@@ -84,4 +84,4 @@
 ## Slide 14 — Recap & Next Episode
 - **Visual:** A recap strip of mini-icons (nervous system, adrenaline, red cheeks) on the left; on the right a teaser panel with a glowing solar panel under a sun, labeled "NEXT". Subscribe button graphic at the bottom.
 - **Text overlay:** "Next: How do solar panels make electricity? — Subscribe!"
-- **Style:** Two-panel split (recap + teaser), neon-red recap side and neon-blue solar teaser side, bold Katixo Shiksha subscribe call-to-action bar.
+- **Style:** Two-panel split (recap + teaser), neon-red recap side and neon-blue solar teaser side, bold Katixo KhojLab subscribe call-to-action bar.

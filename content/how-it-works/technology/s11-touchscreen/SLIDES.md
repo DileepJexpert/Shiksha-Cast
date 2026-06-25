@@ -1,6 +1,6 @@
 # S11 — How Do Touchscreens Feel Your Finger? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -78,4 +78,4 @@
 ## Slide 13 — Recap & Next Episode
 - **Visual:** Phone unlocking with a spark, plus a teaser thumbnail of teary eyes for next episode.
 - **Text overlay:** "Next: Why Do We Cry? | Subscribe! Bye!"
-- **Style:** Split screen recap + teaser, Katixo Shiksha logo, neon subscribe button.
+- **Style:** Split screen recap + teaser, Katixo KhojLab logo, neon subscribe button.

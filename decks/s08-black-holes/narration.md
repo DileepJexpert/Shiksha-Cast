@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, अंतरिक्ष में एक ऐसी जगह है जहाँ gravity इतनी strong है कि light भी escape नहीं कर सकती — एक ऐसा गड्ढा जिससे कुछ भी बाहर नहीं आ सकता! इसे कहते हैं black hole. और सबसे बड़ा सवाल — इसके अंदर आख़िर है क्या? आज Katixo Shiksha पर हम इसी रहस्य में उतरेंगे — event horizon से लेकर singularity तक, और समझेंगे कि क्यों physics के सबसे बड़े नियम भी यहाँ टूटने लगते हैं. ये सबसे mind-blowing episode होने वाला है. चलो शुरू करते हैं!
+दोस्तों, अंतरिक्ष में एक ऐसी जगह है जहाँ gravity इतनी strong है कि light भी escape नहीं कर सकती — एक ऐसा गड्ढा जिससे कुछ भी बाहर नहीं आ सकता! इसे कहते हैं black hole. और सबसे बड़ा सवाल — इसके अंदर आख़िर है क्या? आज Katixo KhojLab पर हम इसी रहस्य में उतरेंगे — event horizon से लेकर singularity तक, और समझेंगे कि क्यों physics के सबसे बड़े नियम भी यहाँ टूटने लगते हैं. ये सबसे mind-blowing episode होने वाला है. चलो शुरू करते हैं!
 
 ## Slide 2
 

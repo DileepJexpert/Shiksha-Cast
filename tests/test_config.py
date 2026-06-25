@@ -22,7 +22,7 @@ def test_channel_config_defaults():
 
 def test_load_channel_config():
     cfg = load_channel_config(PROJECT_ROOT)
-    assert cfg.channel == "Katixo Shiksha"
+    assert cfg.channel == "Katixo KhojLab"
     assert cfg.resolution == (1920, 1080)
     assert cfg.timing.pad_before_ms == 300
 

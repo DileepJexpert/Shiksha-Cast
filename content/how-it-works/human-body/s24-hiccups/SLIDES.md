@@ -1,12 +1,12 @@
 # S24 — Why Do We Get Hiccups? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A surprised teen mid-hiccup with a bouncy comic "HIC!" speech bubble and motion lines.
 - **Text overlay:** "Why Can't You Stop Hiccups?"
-- **Style:** Dark background, neon "HIC!" bubble in cyan, bold white title, Katixo Shiksha logo top-left.
+- **Style:** Dark background, neon "HIC!" bubble in cyan, bold white title, Katixo KhojLab logo top-left.
 
 ---
 ## Slide 2 — Meet the Diaphragm

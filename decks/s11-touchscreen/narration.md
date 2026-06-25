@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, सोचो तुम्हारा phone का screen एक काँच का टुकड़ा है, फिर भी जैसे ही तुम्हारी finger उसे छूती है, वो तुरंत समझ जाता है कि तुमने कहाँ touch किया! कैसे? क्या screen के अंदर कोई छोटा सा robot बैठा है? नहीं! आज Katixo Shiksha पर हम समझेंगे touchscreen technology का असली science. तुम्हारा फ़ोन actually तुम्हारी body की electricity को महसूस करता है. हाँ, तुम्हारे शरीर में electric charge है! चलो step by step देखते हैं कि ये जादू कैसे काम करता है.
+दोस्तों, सोचो तुम्हारा phone का screen एक काँच का टुकड़ा है, फिर भी जैसे ही तुम्हारी finger उसे छूती है, वो तुरंत समझ जाता है कि तुमने कहाँ touch किया! कैसे? क्या screen के अंदर कोई छोटा सा robot बैठा है? नहीं! आज Katixo KhojLab पर हम समझेंगे touchscreen technology का असली science. तुम्हारा फ़ोन actually तुम्हारी body की electricity को महसूस करता है. हाँ, तुम्हारे शरीर में electric charge है! चलो step by step देखते हैं कि ये जादू कैसे काम करता है.
 
 ## Slide 2
 

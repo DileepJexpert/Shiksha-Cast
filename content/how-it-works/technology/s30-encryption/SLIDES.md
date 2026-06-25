@@ -1,7 +1,7 @@
 # S30 — How Do Passwords and Encryption Keep Secrets? — Slide Design Brief
 
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 
@@ -9,7 +9,7 @@
 - **Visual:** A chat message turning into a glowing padlock, traveling across a web of servers past a blocked hacker
 - **Text overlay:** "How Encryption Keeps SECRETS" in bold neon-blue
 - **Subtext:** "The invisible lock on your digital life"
-- **Bottom bar:** Katixo Shiksha logo + "S30" badge
+- **Bottom bar:** Katixo KhojLab logo + "S30" badge
 - **Style:** Dark cyber background, neon-blue/green accents, lock glow
 
 ## Slide 2 — Plaintext → Ciphertext
@@ -85,7 +85,7 @@
 - **Style:** Dark theme, green tick glow, clean layout
 
 ## Slide 14 — Recap & Season Wrap
-- **Visual:** Recap icons (cipher → keys → hashing → HTTPS) + Katixo Shiksha logo with "more coming" spark
+- **Visual:** Recap icons (cipher → keys → hashing → HTTPS) + Katixo KhojLab logo with "more coming" spark
 - **Text overlay:** "Recap + More Mind-Blowing Questions Coming!"
 - **CTA:** "Subscribe करना मत भूलना! Bye!"
 - **Style:** Dark theme, neon recap chain, glowing subscribe button, channel sign-off badge

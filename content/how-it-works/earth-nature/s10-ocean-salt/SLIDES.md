@@ -1,6 +1,6 @@
 # S10 — Why Is the Ocean Salty — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -69,6 +69,6 @@
 - **Style:** Green checkmarks, clean answer cards.
 
 ## Slide 14 — Recap & Season Wrap
-- **Visual:** Recap strip of the salt cycle; a glowing "Season Finale" badge and Katixo Shiksha logo with subscribe button.
+- **Visual:** Recap strip of the salt cycle; a glowing "Season Finale" badge and Katixo KhojLab logo with subscribe button.
 - **Text overlay:** "Season wrap! Sawaal poochhna mat chhodo | Subscribe karna mat bhoolna!"
 - **Style:** Celebratory finale design, neon confetti, logo bottom-right.

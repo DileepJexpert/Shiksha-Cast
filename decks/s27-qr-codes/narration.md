@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-दोस्तों, हर दुकान पर, हर poster पर, यहाँ तक कि UPI payment में भी एक काले-सफेद चौकोर pattern दिखता है, जिसे हम QR code कहते हैं। तुम phone का camera उस पर ले जाते हो, और चुटकियों में website खुल जाती है या payment हो जाता है! पर कभी सोचा है कि उन काले-सफेद डब्बों में पूरी जानकारी आखिर छुपी कैसे होती है? यह जादू नहीं, बल्कि कमाल की engineering और maths है। आज Katixo Shiksha पर हम इस square pattern का पूरा रहस्य खोलेंगे। चलो दोस्तों, इस puzzle को decode करते हैं!
+दोस्तों, हर दुकान पर, हर poster पर, यहाँ तक कि UPI payment में भी एक काले-सफेद चौकोर pattern दिखता है, जिसे हम QR code कहते हैं। तुम phone का camera उस पर ले जाते हो, और चुटकियों में website खुल जाती है या payment हो जाता है! पर कभी सोचा है कि उन काले-सफेद डब्बों में पूरी जानकारी आखिर छुपी कैसे होती है? यह जादू नहीं, बल्कि कमाल की engineering और maths है। आज Katixo KhojLab पर हम इस square pattern का पूरा रहस्य खोलेंगे। चलो दोस्तों, इस puzzle को decode करते हैं!
 
 ## Slide 2
 

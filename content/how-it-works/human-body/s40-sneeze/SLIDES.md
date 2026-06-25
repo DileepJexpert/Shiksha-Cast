@@ -1,6 +1,6 @@
 # S40 — Why Do We Sneeze? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_013.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -76,6 +76,6 @@
 
 ---
 ## Slide 13 — Recap + Series wrap
-- **Visual:** Mini sneeze recap icons plus a warm "thanks for watching" Katixo Shiksha frame with a bell icon.
+- **Visual:** Mini sneeze recap icons plus a warm "thanks for watching" Katixo KhojLab frame with a bell icon.
 - **Text overlay:** "Recap done! Keep learning — Subscribe & ring the bell!"
-- **Style:** Split design, recap left, channel thank-you right, big Subscribe glow, Katixo Shiksha logo.
+- **Style:** Split design, recap left, channel thank-you right, big Subscribe glow, Katixo KhojLab logo.

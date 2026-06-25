@@ -1,4 +1,4 @@
-# Katixo Shiksha — Content Folder Structure
+# Katixo KhojLab — Content Folder Structure
 
 ## Target Audience
 **Class 6–10 (Age 11–16)** | Indian teens | Hinglish | Curiosity-driven science

@@ -1,6 +1,6 @@
 # S20 — Why Is Space Black If There Are Billions of Stars — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -84,4 +84,4 @@
 ## Slide 14 — Recap & Series Wrap
 - **Visual:** Collage of stars, redshift wave, CMB glow icons, with a warm thank-you and curiosity teaser.
 - **Text overlay:** "Stay curious! Subscribe for more!"
-- **Style:** Warm recap glow, Subscribe button, Katixo Shiksha logo corner.
+- **Style:** Warm recap glow, Subscribe button, Katixo KhojLab logo corner.

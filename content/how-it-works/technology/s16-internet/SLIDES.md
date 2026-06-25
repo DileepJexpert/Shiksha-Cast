@@ -1,6 +1,6 @@
 # S16 — How Does the Internet Actually Work — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
@@ -84,4 +84,4 @@
 ## Slide 14 — Recap & Next Episode
 - **Visual:** Collage of all key icons (packets, router, DNS, padlock) with a teaser image of the moon following a running kid.
 - **Text overlay:** "Next: Why does the Moon follow you? Subscribe!"
-- **Style:** Warm recap glow, Subscribe button graphic, Katixo Shiksha logo bottom corner.
+- **Style:** Warm recap glow, Subscribe button graphic, Katixo KhojLab logo bottom corner.

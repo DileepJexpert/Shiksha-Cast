@@ -1,0 +1,33 @@
+/* Narration script — a clean, readable A4 document you read off-screen while
+   recording. High legibility (light page, large type); [CUE] = stage notes;
+   <b class="stress"> = words to emphasise. */
+@font-face { font-family: "Grotesk"; src: url("../fonts/SpaceGrotesk.ttf") format("truetype"); font-weight: 300 700; }
+@font-face { font-family: "Mono"; src: url("../fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 300 700; }
+
+@page { size: A4; margin: 1.6cm 1.8cm; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Grotesk", system-ui, sans-serif; color: #14203a; font-size: 12.5pt; line-height: 1.5; }
+
+.doc-head { border-bottom: 3px solid #22d3ee; padding-bottom: 0.5cm; margin-bottom: 0.7cm; }
+.doc-head .brand { font-weight: 700; letter-spacing: 0.2em; color: #0891b2; font-size: 11pt; text-transform: uppercase; }
+.doc-head h1 { font-size: 20pt; margin: 0.15cm 0 0; line-height: 1.15; }
+.doc-head .lang { display: inline-block; margin-top: 0.25cm; font-size: 10pt; font-weight: 700;
+  background: #0e7490; color: #fff; padding: 0.08cm 0.35cm; border-radius: 5px; letter-spacing: 0.06em; }
+
+.slide-block { padding: 0.45cm 0; border-bottom: 1px solid #e3e8f2; page-break-inside: avoid; }
+.slide-block .sb-head { display: flex; align-items: baseline; gap: 0.4cm; margin-bottom: 0.2cm; }
+.slide-block .sb-num {
+  font-family: "Mono", monospace; font-weight: 700; font-size: 11pt; color: #fff; background: #14203a;
+  padding: 0.06cm 0.3cm; border-radius: 5px;
+}
+.slide-block .sb-label { font-weight: 700; color: #475569; font-size: 11.5pt; letter-spacing: 0.02em; }
+.slide-block .say { font-size: 13.5pt; line-height: 1.6; margin: 0.1cm 0; }
+
+.stress { color: #0e7490; font-weight: 700; }
+.term { font-family: "Mono", monospace; font-weight: 700; color: #b45309; }
+
+.cue {
+  display: block; margin: 0.25cm 0 0; padding: 0.2cm 0.4cm; font-size: 10.5pt; line-height: 1.4;
+  background: #ecfeff; border-left: 4px solid #22d3ee; color: #155e75; border-radius: 0 6px 6px 0;
+}
+.cue b { color: #0e7490; }

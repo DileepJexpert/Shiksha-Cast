@@ -4,7 +4,7 @@ _Read / explain each slide using these notes._
 
 ## Slide 1
 
-Here's a question that sounds like something a 5-year-old would ask — why is the sky blue? Simple, right? Except — when scientists tried to answer this properly, it took over a hundred years of physics, involved Lord Rayleigh, Einstein, and Maxwell, and the explanation touches on electromagnetic theory, quantum mechanics, and human biology. A question that seems childish turns out to be genuinely deep. That's the beauty of science — the simplest questions often have the most complex answers. Today on Katixo Shiksha, we're going deep on this one. Let's go!
+Here's a question that sounds like something a 5-year-old would ask — why is the sky blue? Simple, right? Except — when scientists tried to answer this properly, it took over a hundred years of physics, involved Lord Rayleigh, Einstein, and Maxwell, and the explanation touches on electromagnetic theory, quantum mechanics, and human biology. A question that seems childish turns out to be genuinely deep. That's the beauty of science — the simplest questions often have the most complex answers. Today on Katixo KhojLab, we're going deep on this one. Let's go!
 
 ## Slide 2
 

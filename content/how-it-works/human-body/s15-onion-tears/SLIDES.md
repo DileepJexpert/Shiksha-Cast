@@ -1,12 +1,12 @@
 # S15 — Why Do Onions Make You Cry? — Slide Design Brief
 **Format:** 1920×1080 PNG | **Export:** `slides/slide_001.png` to `slide_014.png`
-**Brand:** Katixo Shiksha | **Style:** Dark science theme, neon accents, bold text overlays
+**Brand:** Katixo KhojLab | **Style:** Dark science theme, neon accents, bold text overlays
 
 ---
 ## Slide 1 — HOOK / Title
 - **Visual:** A dramatic close-up of a person mid-cut over a chopping board, a single glowing teardrop frozen on their cheek, a halved onion glowing faintly with neon-green vapor rising from it. Background deep charcoal with subtle lab-grid texture.
 - **Text overlay:** "Why Do Onions Make You CRY? 😭🧅"
-- **Style:** Huge bold title in neon cyan with a green glow; small Katixo Shiksha logo top-left; teardrop has a soft blue glow. Cinematic vignette.
+- **Style:** Huge bold title in neon cyan with a green glow; small Katixo KhojLab logo top-left; teardrop has a soft blue glow. Cinematic vignette.
 
 ---
 ## Slide 2 — Onion's Underground Defense
@@ -90,4 +90,4 @@
 ## Slide 14 — RECAP + Subscribe
 - **Visual:** A clean recap infographic showing the full chain as mini-icons: underground onion → knife cut → enzymes mix → LFS gas → eye + acid → brain → tears. Side note bubble: "Fun fact: scientists made a TEARLESS onion!" Bottom: a big Subscribe button with a bell icon and a comment bubble saying "What topic next?".
 - **Text overlay:** "RECAP done! 🔬 Tearless onion exists! 👇 Comment your next topic | LIKE + SUBSCRIBE 🔔"
-- **Style:** Bright, summary-style layout. Katixo Shiksha logo prominent. Neon Subscribe button in red, glowing bell. Friendly, upbeat closing vibe.
+- **Style:** Bright, summary-style layout. Katixo KhojLab logo prominent. Neon Subscribe button in red, glowing bell. Friendly, upbeat closing vibe.
