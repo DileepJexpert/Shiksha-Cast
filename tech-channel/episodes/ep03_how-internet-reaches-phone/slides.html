@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP03 — How does the internet reach your phone?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">How does the internet<br>reach your <span class="hl">phone</span>?</h1>
+    <p class="subhead">Spoiler: it's almost never "wireless".</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      You tap a video in <span class="accent2">India</span>. It loads from a server in
+      <span class="accent2">America</span> — in <span class="accent">milliseconds</span>.
+    </div>
+    <div class="big" style="margin-top:0.6cm">No wire touches your hand. So… <b>how?</b></div>
+    <p class="subhead">Let's follow your data on its journey across the planet. 🌍</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — AAJ KA SAWAAL -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      When you open a website,<br>
+      what <span class="accent">physically</span> travels — and how <span class="accent3">far</span>?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: wifi is the last hop -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — The "wireless" myth, busted early</div>
+    <h2 class="headline">"WiFi" is only the last <span class="hl">few metres</span>.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="queue">
+        <span class="chip">📱 Phone</span>
+        <span class="qlabel accent2">))) radio )))</span>
+        <span class="chip">📡 Router</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>Your phone talks to your <b>router</b> using radio waves.</li>
+        <li>That wireless hop is <span class="accent">tiny</span> — just to the box on your wall.</li>
+        <li>After the router? <b>No more "air".</b></li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: it's cables -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — The internet is physical</div>
+    <h2 class="headline">After that, it's <span class="hl">wires</span>. Lots of them.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="queue">
+        <span class="chip">📡 Router</span><span class="qlabel accent2">→</span>
+        <span class="chip">🏙️ City fibre</span><span class="qlabel accent2">→</span>
+        <span class="chip">🌊 Undersea cable</span><span class="qlabel accent2">→</span>
+        <span class="chip">🏢 Data centre</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>Fibre-optic cables run across cities and countries.</li>
+        <li>Giant cables on the <b class="accent">ocean floor</b> connect the continents.</li>
+        <li>~<span class="accent2">99%</span> of the internet is physical cable — not air, not satellites.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: finding the server -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Finding the right computer</div>
+    <h2 class="headline">Your data goes to one <span class="hl">exact computer</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># you type a name…</span>
+youtube.com
+
+<span class="cm"># …which maps to an address (IP)</span>
+<span class="fn">142.250.<span class="st">195</span>.78</span>
+
+<span class="cm"># → a specific server, in a building</span></pre>
+      </div>
+      <ul class="bullets">
+        <li>Every server has an <b class="accent">address</b> — its IP.</li>
+        <li>Your request travels to that address…</li>
+        <li>…and the reply comes <b>back</b> to your phone.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: speed of light -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Why it feels instant</div>
+    <h2 class="headline">Milliseconds? It's <span class="hl">light through glass</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="card-note">
+        <div class="tag accent3">Mumbai → London</div>
+        <p class="big" style="margin-top:0.3cm">~7,000 km<br><span class="accent">≈ 120 ms</span> round trip</p>
+      </div>
+      <ul class="bullets">
+        <li>Fibre carries your data as <b class="accent">pulses of light</b>.</li>
+        <li>Light is the <span class="accent2">fastest thing</span> in the universe.</li>
+        <li>So even across the planet, it feels instant.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">Now buffering &amp; lag <span class="hl">make sense</span>.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li>A server <b>far away</b> = more distance = more delay. That's <span class="accent">ping / lag</span> in games.</li>
+      <li>"The cloud" is just <b class="accent">servers in big buildings</b>, joined by these cables.</li>
+      <li>Cut one undersea cable, and a whole region can slow down.</li>
+    </ul>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"The internet is wireless — it floats through the air and satellites."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>~99% is <b>physical cable</b>, including undersea fibre between continents.
+        Wireless (WiFi, mobile) is only the <span class="accent3">last hop</span> to you.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>The internet is a giant web of <span class="accent">physical cables</span> — wireless is just the last few metres to you.</li>
+      <li>Your data races as <span class="accent3">light</span> to a server's address and back — that's the millisecond magic.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">The internet = <span class="accent">cables + light</span>. 🌍</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>What really happens when you click "Send"?</b> 📨</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

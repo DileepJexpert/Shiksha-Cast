@@ -6,4 +6,4 @@
 
 **Tags:** internet, networking, WiFi, ISP, packets, how it works, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT
