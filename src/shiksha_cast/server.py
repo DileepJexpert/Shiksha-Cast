@@ -5,7 +5,6 @@ import logging
 import shutil
 import sys
 import uuid
-from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 from queue import Empty, Queue
 from threading import Thread
@@ -15,7 +14,6 @@ import yaml
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
-from fastapi.staticfiles import StaticFiles
 from starlette.responses import StreamingResponse
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -196,31 +194,38 @@ async def list_chapters():
         # "how-it-works/technology"); empty for flat episodes.
         category = "/".join(d.relative_to(content_dir).parts[:-1])
 
-        info: dict[str, Any] = {"id": ch_id, "category": category, "has_pdf": False, "has_script": True, "has_video": False, "slide_count": 0}
+        info: dict[str, Any] = {
+            "id": ch_id,
+            "category": category,
+            "has_pdf": False,
+            "has_script": True,
+            "has_video": False,
+            "slide_count": 0,
+        }
 
-            info["has_pdf"] = any(d.glob("*.pdf"))
+        info["has_pdf"] = any(d.glob("*.pdf"))
 
-            try:
-                with open(script_path, encoding="utf-8") as f:
-                    data = yaml.safe_load(f) or {}
-                info["title"] = data.get("chapter", ch_id)
-                info["slide_count"] = len(data.get("slides", []))
-            except Exception:
-                info["title"] = ch_id
+        try:
+            with open(script_path, encoding="utf-8") as f:
+                data = yaml.safe_load(f) or {}
+            info["title"] = data.get("chapter", ch_id)
+            info["slide_count"] = len(data.get("slides", []))
+        except Exception:
+            info["title"] = ch_id
 
-            slides_dir = PROJECT_ROOT / "build" / ch_id / "slides"
-            if slides_dir.is_dir():
-                pngs = list(slides_dir.glob("slide_*.png"))
-                if pngs:
-                    info["slide_count"] = max(info["slide_count"], len(pngs))
+        slides_dir = PROJECT_ROOT / "build" / ch_id / "slides"
+        if slides_dir.is_dir():
+            pngs = list(slides_dir.glob("slide_*.png"))
+            if pngs:
+                info["slide_count"] = max(info["slide_count"], len(pngs))
 
-            video = PROJECT_ROOT / "dist" / f"{ch_id}.mp4"
-            info["has_video"] = video.exists()
+        video = PROJECT_ROOT / "dist" / f"{ch_id}.mp4"
+        info["has_video"] = video.exists()
 
-            job = _build_jobs.get(ch_id, {})
-            info["build_status"] = job.get("status", "idle")
+        job = _build_jobs.get(ch_id, {})
+        info["build_status"] = job.get("status", "idle")
 
-            chapters.append(info)
+        chapters.append(info)
     return {"chapters": chapters}
 
 
@@ -303,6 +308,16 @@ async def get_slide(chapter: str, filename: str):
 @app.put("/api/chapter/{chapter}/script")
 async def save_script(chapter: str, body: dict):
     chapter_dir = _ensure_chapter_dir(chapter)
+    existing_script_path = _find_script_path(chapter_dir)
+    existing_title = chapter
+    if existing_script_path:
+        try:
+            with open(existing_script_path, encoding="utf-8") as f:
+                existing_data = yaml.safe_load(f) or {}
+            existing_title = existing_data.get("chapter") or chapter
+        except Exception:
+            existing_title = chapter
+
     slides = []
     for s in body.get("slides", []):
         slide = {"n": s["n"], "narration": s.get("narration", "")}
@@ -314,10 +329,10 @@ async def save_script(chapter: str, body: dict):
             slide["voice"] = s["voice"]
         slides.append(slide)
     script_data = {
-        "chapter": body.get("title", chapter),
+        "chapter": body.get("title") or existing_title,
         "slides": slides,
     }
-    script_path = chapter_dir / "script.yaml"
+    script_path = existing_script_path or chapter_dir / "script.yaml"
     with open(script_path, "w", encoding="utf-8") as f:
         yaml.dump(script_data, f, allow_unicode=True, default_flow_style=False)
     return {"status": "saved", "path": str(script_path)}
@@ -507,3 +522,101 @@ async def set_voice_model(body: dict):
         yaml.dump(cfg_data, f, allow_unicode=True, default_flow_style=False)
 
     return {"status": "updated", "model": model_id}
+
+
+# --- Topic -> script, publishing kit (sync defs: FastAPI runs these in a
+# --- threadpool so the blocking Ollama/ffmpeg calls don't stall the server) ---
+
+@app.post("/api/new-episode")
+def new_episode_endpoint(body: dict):
+    """Generate a new episode script from a topic using the local LLM (Ollama)."""
+    from shiksha_cast.config import load_channel_config
+    from shiksha_cast.generate import GeneratorUnavailable, write_episode
+
+    topic = (body.get("topic") or "").strip()
+    if not topic:
+        return JSONResponse({"error": "topic is required"}, status_code=400)
+    category = body.get("category") or "general-knowledge"
+    slides = body.get("slides")
+    model = body.get("model") or None
+
+    cfg = load_channel_config(PROJECT_ROOT)
+    try:
+        ep_dir, data = write_episode(
+            topic, PROJECT_ROOT, cfg.generator,
+            category=category, n_slides=int(slides) if slides else None, model=model,
+        )
+    except GeneratorUnavailable as e:
+        return JSONResponse({"error": str(e)}, status_code=503)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": f"Generation failed: {e}"}, status_code=500)
+
+    return {
+        "chapter": ep_dir.name,
+        "title": data.get("chapter"),
+        "slide_count": len(data.get("slides", [])),
+        "missing_visual_prompts": [
+            s.get("n") for s in data.get("slides", []) if not s.get("visual_prompt")
+        ],
+    }
+
+
+@app.post("/api/chapter/{chapter}/package")
+def package_endpoint(chapter: str, body: dict | None = None):
+    """Generate the full upload kit (thumbnail variants + metadata + Short)."""
+    from shiksha_cast.metadata import build_metadata
+    from shiksha_cast.package import build_package
+
+    include_short = True if body is None else bool(body.get("include_short", True))
+    try:
+        pkg = build_package(chapter, PROJECT_ROOT, include_short=include_short)
+        meta = build_metadata(chapter, PROJECT_ROOT)
+    except FileNotFoundError as e:
+        return JSONResponse({"error": str(e)}, status_code=404)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": f"Packaging failed: {e}"}, status_code=500)
+
+    files = sorted(p.relative_to(pkg).as_posix() for p in pkg.rglob("*") if p.is_file())
+    return {
+        "chapter": chapter,
+        "package_dir": str(pkg),
+        "files": files,
+        "title": meta.title,
+        "title_variants": meta.title_variants,
+        "description": meta.description,
+        "tags": meta.tags,
+        "pinned_comment": meta.pinned_comment,
+        "chapter_warnings": meta.chapter_warnings,
+        "has_short": (pkg / "short1.mp4").exists(),
+    }
+
+
+@app.get("/api/chapter/{chapter}/thumbnail")
+def get_thumbnail(chapter: str, style: str = "curiosity"):
+    """Serve a thumbnail PNG, rendering it on demand if absent."""
+    from shiksha_cast.thumbnail import write_thumbnail, write_thumbnail_variants
+
+    name = f"{chapter}.thumb.png" if style == "curiosity" else f"{chapter}.thumb.{style}.png"
+    path = PROJECT_ROOT / "dist" / name
+    if not path.exists():
+        try:
+            if style == "curiosity":
+                write_thumbnail(chapter, PROJECT_ROOT)
+            else:
+                write_thumbnail_variants(chapter, PROJECT_ROOT)
+        except Exception as e:  # noqa: BLE001
+            return JSONResponse({"error": str(e)}, status_code=404)
+    if not path.exists():
+        return JSONResponse({"error": "thumbnail not found"}, status_code=404)
+    return FileResponse(path, media_type="image/png")
+
+
+@app.get("/api/chapter/{chapter}/package.zip")
+def download_package(chapter: str):
+    """Zip the episode's upload package for one-click download."""
+    pkg = PROJECT_ROOT / "dist" / "packages" / chapter
+    if not pkg.is_dir():
+        return JSONResponse({"error": "No package. Generate it first."}, status_code=404)
+    zip_base = PROJECT_ROOT / "dist" / "packages" / f"{chapter}_package"
+    archive = shutil.make_archive(str(zip_base), "zip", root_dir=str(pkg))
+    return FileResponse(archive, media_type="application/zip", filename=f"{chapter}_package.zip")

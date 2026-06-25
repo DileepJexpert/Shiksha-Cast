@@ -18,11 +18,12 @@ export async function uploadSlides(files, chapter) {
   return res.json();
 }
 
-export async function saveScript(chapter, slides) {
+export async function saveScript(chapter, slides, title) {
+  const body = title ? { title, slides } : { slides };
   const res = await fetch(`${BASE}/api/chapter/${chapter}/script`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ slides }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) throw new Error(`Save failed: ${res.status}`);
   return res.json();
@@ -86,4 +87,34 @@ export async function getScript(chapter) {
 
 export function logStreamUrl(chapter) {
   return `${BASE}/api/chapter/${chapter}/logs`;
+}
+
+export async function newEpisode({ topic, category, slides, model } = {}) {
+  const res = await fetch(`${BASE}/api/new-episode`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ topic, category, slides, model }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `Generation failed: ${res.status}`);
+  return data;
+}
+
+export async function generatePackage(chapter, { includeShort = true } = {}) {
+  const res = await fetch(`${BASE}/api/chapter/${chapter}/package`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ include_short: includeShort }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `Packaging failed: ${res.status}`);
+  return data;
+}
+
+export function thumbnailUrl(chapter, style = 'curiosity') {
+  return `${BASE}/api/chapter/${chapter}/thumbnail?style=${style}&t=${Date.now()}`;
+}
+
+export function packageZipUrl(chapter) {
+  return `${BASE}/api/chapter/${chapter}/package.zip`;
 }

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { saveScript, triggerBuild, getStatus, downloadUrl, srtUrl, logStreamUrl } from '../api.js';
 
-export default function BuildConsole({ chapter, scriptData }) {
+export default function BuildConsole({ chapter, scriptData, title }) {
   const [status, setStatus] = useState('idle');
   const [logs, setLogs] = useState([]);
   const [videoUrl, setVideoUrl] = useState(null);
@@ -103,7 +103,7 @@ export default function BuildConsole({ chapter, scriptData }) {
     try {
       setStatus('saving');
       addLog('Saving narration script...', 'info');
-      await saveScript(chapter, scriptData);
+      await saveScript(chapter, scriptData, title);
       addLog('Script saved', 'success');
 
       setStatus('building');

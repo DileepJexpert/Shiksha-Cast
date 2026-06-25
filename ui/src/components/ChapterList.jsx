@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getChapters, downloadUrl, srtUrl } from '../api.js';
 
-export default function ChapterList({ onSelect, onNew }) {
+export default function ChapterList({ onSelect, onNew, onNewTopic }) {
   const [chapters, setChapters] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,8 +38,13 @@ export default function ChapterList({ onSelect, onNew }) {
           <button className="btn-refresh" onClick={loadChapters} disabled={loading}>
             {loading ? 'Loading...' : 'Refresh'}
           </button>
-          <button className="btn-primary" onClick={onNew}>
-            + New Chapter
+          {onNewTopic && (
+            <button className="btn-primary" onClick={onNewTopic}>
+              ✨ New from Topic
+            </button>
+          )}
+          <button className="btn-secondary" onClick={onNew}>
+            + New Chapter (PDF)
           </button>
         </div>
       </div>

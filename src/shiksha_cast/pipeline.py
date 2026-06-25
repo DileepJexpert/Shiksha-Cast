@@ -4,9 +4,16 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-from shiksha_cast.assemble import AssembleResult, assemble_chapter, build_kenburns_clip, concat_clips
+from shiksha_cast.assemble import (
+    AssembleResult,
+    assemble_chapter,
+    build_kenburns_clip,
+    concat_clips,
+    mix_music_bed,
+    probe_duration,
+)
 from shiksha_cast.captions import write_captions
-from shiksha_cast.config import find_chapter_dir, load_channel_config, load_script, resolve_chapter
+from shiksha_cast.config import find_chapter_dir, load_channel_config, load_script
 from shiksha_cast.render import RenderResult, render_chapter
 from shiksha_cast.speak import SpeakResult, speak_chapter
 from shiksha_cast.visualize import VisualizeResult, generate_visuals
@@ -110,7 +117,6 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
 
     print("[STAGE] Writing captions...")
     # Captions must shift by the intro length so they stay in sync.
-    from shiksha_cast.assemble import probe_duration
     intro_offset = probe_duration(intro_path) if intro_path else 0.0
     narrations = [s.narration for s in script.slides]
     srt_path = write_captions(
@@ -247,9 +253,31 @@ def run_ai_build(
     dist_dir = project_root / "dist"
     dist_dir.mkdir(parents=True, exist_ok=True)
     output_mp4 = dist_dir / f"{chapter}.mp4"
-    concat_clips(clip_paths, output_mp4)
+
+    intro_path = _branding_asset(project_root, cfg.branding.intro)
+    outro_path = _branding_asset(project_root, cfg.branding.outro)
+    music_path = _branding_asset(project_root, cfg.music.bed)
+
+    sequence = list(clip_paths)
+    if intro_path:
+        sequence.insert(0, intro_path)
+        total_dur += probe_duration(intro_path)
+        print("[PROGRESS] Prepending intro bumper")
+    if outro_path:
+        sequence.append(outro_path)
+        total_dur += probe_duration(outro_path)
+        print("[PROGRESS] Appending outro bumper")
+
+    use_music = bool(music_path)
+    concat_target = (build_dir / "ai_body.mp4") if use_music else output_mp4
+    concat_clips(sequence, concat_target)
+
+    if music_path:
+        print("[PROGRESS] Mixing music bed under narration...")
+        mix_music_bed(concat_target, music_path, output_mp4, cfg.music.duck_db, cfg.voice.sample_rate)
 
     narrations = [s.narration for s in script.slides]
+    intro_offset = probe_duration(intro_path) if intro_path else 0.0
     srt_path = write_captions(
         chapter=chapter,
         project_root=project_root,
@@ -258,6 +286,7 @@ def run_ai_build(
         pad_before_s=pad_before,
         pad_after_s=pad_after,
         min_slide_s=min_slide,
+        start_offset_s=intro_offset,
     )
 
     return AIBuildResult(

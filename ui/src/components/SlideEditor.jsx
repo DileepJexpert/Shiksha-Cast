@@ -1,111 +1,71 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { slideImageUrl, getModels } from '../api.js';
 
-export default function SlideEditor({ chapter, slides, existingScript, onScriptChange }) {
+export default function SlideEditor({
+  chapter,
+  slides,
+  scriptData,
+  onScriptChange,
+}) {
   const [voiceDesc, setVoiceDesc] = useState('');
-  const [perSlideVoiceDesc, setPerSlideVoiceDesc] = useState({}); // free-text voice_description
-  const [perSlideSpeaker, setPerSlideSpeaker] = useState({});     // Veena speaker -> slide.voice
-  const [visualPrompts, setVisualPrompts] = useState({});
-  const [narrations, setNarrations] = useState(() =>
-    Object.fromEntries(slides.map((s) => [s.n, '']))
-  );
   const [bulkText, setBulkText] = useState('');
   const [bulkOpen, setBulkOpen] = useState(false);
-  const [voiceOptions, setVoiceOptions] = useState([]); // [{id:'kavya', name:'...'}]
+  const [voiceOptions, setVoiceOptions] = useState([]);
 
-  // Load the available Veena speaker voices for the per-slide dropdown.
+  const scriptBySlide = useMemo(() => {
+    return new Map((scriptData || []).map((s) => [s.n, s]));
+  }, [scriptData]);
+
   useEffect(() => {
     getModels()
       .then((data) => {
         const veena = (data.models || [])
           .filter((m) => m.id.startsWith('veena:'))
-          .map((m) => ({ id: m.id.split(':')[1], name: m.name.replace('Veena — ', '') }));
+          .map((m) => ({ id: m.id.split(':')[1], name: m.name.replace('Veena - ', '') }));
         setVoiceOptions(veena);
       })
       .catch(() => {});
   }, []);
 
-  useEffect(() => {
-    if (existingScript && existingScript.slides) {
-      const narr = {};
-      const voices = {};
-      const speakers = {};
-      const prompts = {};
-      for (const s of existingScript.slides) {
-        narr[s.n] = s.narration || '';
-        if (s.voice_description) voices[s.n] = s.voice_description;
-        if (s.voice) speakers[s.n] = s.voice;
-        if (s.visual_prompt) prompts[s.n] = s.visual_prompt;
-      }
-      setNarrations(narr);
-      setPerSlideVoiceDesc(voices);
-      setPerSlideSpeaker(speakers);
-      setVisualPrompts(prompts);
-      emitChange(narr, voiceDesc, voices, speakers, prompts);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [existingScript]);
+  function normalizedScript() {
+    return slides.map((s) => scriptBySlide.get(s.n) || { n: s.n, narration: '' });
+  }
 
-  function updateNarration(n, text) {
-    const updated = { ...narrations, [n]: text };
-    setNarrations(updated);
-    emitChange(updated, voiceDesc, perSlideVoiceDesc, perSlideSpeaker, visualPrompts);
+  function updateSlide(n, patch) {
+    const next = normalizedScript().map((s) => (s.n === n ? { ...s, ...patch, n } : s));
+    onScriptChange(next);
   }
 
   function updateVoiceDesc(val) {
     setVoiceDesc(val);
-    emitChange(narrations, val, perSlideVoiceDesc, perSlideSpeaker, visualPrompts);
+    const next = normalizedScript().map((s) => ({
+      ...s,
+      voice_description: s.voice_description || val || undefined,
+    }));
+    onScriptChange(next);
   }
 
-  function updatePerSlideVoiceDesc(n, val) {
-    const updated = { ...perSlideVoiceDesc, [n]: val };
-    setPerSlideVoiceDesc(updated);
-    emitChange(narrations, voiceDesc, updated, perSlideSpeaker, visualPrompts);
-  }
-
-  function updateSpeaker(n, val) {
-    const updated = { ...perSlideSpeaker };
-    if (val) updated[n] = val; else delete updated[n];
-    setPerSlideSpeaker(updated);
-    emitChange(narrations, voiceDesc, perSlideVoiceDesc, updated, visualPrompts);
-  }
-
-  function updateVisualPrompt(n, val) {
-    const updated = { ...visualPrompts, [n]: val };
-    setVisualPrompts(updated);
-    emitChange(narrations, voiceDesc, perSlideVoiceDesc, perSlideSpeaker, updated);
-  }
-
-  // Split a pasted script into per-slide narration. Blocks are separated by a blank
-  // line; assigned to slides 1..N in order. "---" on its own line also splits.
   function applyBulk() {
     const blocks = bulkText
       .split(/\n\s*\n|\n-{3,}\n/)
       .map((b) => b.trim())
       .filter(Boolean);
-    const updated = { ...narrations };
-    slides.forEach((s, i) => {
-      if (blocks[i] !== undefined) updated[s.n] = blocks[i];
-    });
-    setNarrations(updated);
-    emitChange(updated, voiceDesc, perSlideVoiceDesc, perSlideSpeaker, visualPrompts);
+
+    const next = normalizedScript().map((s, i) => ({
+      ...s,
+      narration: blocks[i] ?? s.narration ?? '',
+    }));
+    onScriptChange(next);
     setBulkOpen(false);
   }
 
-  function emitChange(narr, voice, perVoice, speakers, visuals) {
-    const slideData = slides.map((s) => ({
-      n: s.n,
-      narration: narr[s.n] || '',
-      voice_description: perVoice[s.n] || voice || undefined,
-      voice: speakers[s.n] || undefined,
-      visual_prompt: visuals[s.n] || undefined,
-    }));
-    onScriptChange(slideData);
-  }
-
-  const wordCount = Object.values(narrations).join(' ').split(/\s+/).filter(Boolean).length;
-  const filledCount = Object.values(narrations).filter((n) => n.trim()).length;
-  const bulkBlocks = bulkText.split(/\n\s*\n|\n-{3,}\n/).map((b) => b.trim()).filter(Boolean).length;
+  const narrations = normalizedScript().map((s) => s.narration || '');
+  const wordCount = narrations.join(' ').split(/\s+/).filter(Boolean).length;
+  const filledCount = narrations.filter((n) => n.trim()).length;
+  const bulkBlocks = bulkText
+    .split(/\n\s*\n|\n-{3,}\n/)
+    .map((b) => b.trim())
+    .filter(Boolean).length;
 
   return (
     <section className="slide-editor">
@@ -118,16 +78,15 @@ export default function SlideEditor({ chapter, slides, existingScript, onScriptC
         </div>
       </div>
 
-      {/* Bulk paste: paste a whole script, auto-split into slides */}
       <div className="bulk-paste">
         <button className="btn-secondary" onClick={() => setBulkOpen((v) => !v)}>
-          {bulkOpen ? 'Close bulk paste' : '📋 Paste full script'}
+          {bulkOpen ? 'Close bulk paste' : 'Paste full script'}
         </button>
         {bulkOpen && (
           <div className="bulk-paste-body">
             <p className="bulk-hint">
               Paste your whole script below. Separate each slide with a <strong>blank line</strong>
-              {' '}(or a line with <code>---</code>). It fills slides 1→{slides.length} in order.
+              {' '}(or a line with <code>---</code>). It fills slides 1 to {slides.length} in order.
             </p>
             <textarea
               rows={8}
@@ -136,7 +95,7 @@ export default function SlideEditor({ chapter, slides, existingScript, onScriptC
               onChange={(e) => setBulkText(e.target.value)}
             />
             <div className="bulk-actions">
-              <span className="stat">{bulkBlocks} block{bulkBlocks !== 1 ? 's' : ''} → {slides.length} slides</span>
+              <span className="stat">{bulkBlocks} block{bulkBlocks !== 1 ? 's' : ''} to {slides.length} slides</span>
               <button className="btn-primary" onClick={applyBulk} disabled={!bulkBlocks}>
                 Apply to slides
               </button>
@@ -146,9 +105,9 @@ export default function SlideEditor({ chapter, slides, existingScript, onScriptC
       </div>
 
       <div className="dialogue-tip">
-        💬 <strong>Two-host dialogue in one slide:</strong> start lines with <code>F:</code> (female) or
-        <code>M:</code> (male) — e.g. <code>F: Aaj hum…</code> / <code>M: Haan, aur…</code> — and each
-        line is voiced separately and stitched. Or set a single voice per slide with the dropdown below.
+        <strong>Two-host dialogue in one slide:</strong> start lines with <code>F:</code> (female)
+        or <code>M:</code> (male), and each line is voiced separately and stitched. You can also
+        set a single voice per slide with the dropdown below.
       </div>
 
       <div className="voice-global">
@@ -163,61 +122,65 @@ export default function SlideEditor({ chapter, slides, existingScript, onScriptC
       </div>
 
       <div className="slide-list">
-        {slides.map((slide) => (
-          <div key={slide.n} className={`slide-card ${narrations[slide.n]?.trim() ? 'has-narration' : ''}`}>
-            <div className="slide-thumb-container">
-              <span className="slide-number">#{slide.n}</span>
-              <img
-                className="slide-thumb"
-                src={slide.image_url || slideImageUrl(chapter, `slide_${String(slide.n).padStart(3, '0')}.png`)}
-                alt={`Slide ${slide.n}`}
-                onError={(e) => { e.target.style.display = 'none'; }}
-              />
-            </div>
-            <div className="slide-fields">
-              <label>Narration for slide {slide.n}</label>
-              <textarea
-                rows={4}
-                placeholder="Enter narration text for this slide..."
-                value={narrations[slide.n] || ''}
-                onChange={(e) => updateNarration(slide.n, e.target.value)}
-              />
-              {voiceOptions.length > 0 && (
-                <div className="slide-voice-row">
-                  <label>Voice for this slide</label>
-                  <select
-                    value={perSlideSpeaker[slide.n] || ''}
-                    onChange={(e) => updateSpeaker(slide.n, e.target.value)}
-                  >
-                    <option value="">Default (chapter voice)</option>
-                    {voiceOptions.map((v) => (
-                      <option key={v.id} value={v.id}>{v.name}</option>
-                    ))}
-                  </select>
-                </div>
-              )}
-              <details className="visual-prompt-section">
-                <summary>AI Visual Prompt (optional)</summary>
+        {slides.map((slide) => {
+          const scriptSlide = scriptBySlide.get(slide.n) || { n: slide.n, narration: '' };
+
+          return (
+            <div key={slide.n} className={`slide-card ${scriptSlide.narration?.trim() ? 'has-narration' : ''}`}>
+              <div className="slide-thumb-container">
+                <span className="slide-number">#{slide.n}</span>
+                <img
+                  className="slide-thumb"
+                  src={slide.image_url || slideImageUrl(chapter, `slide_${String(slide.n).padStart(3, '0')}.png`)}
+                  alt={`Slide ${slide.n}`}
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              </div>
+              <div className="slide-fields">
+                <label>Narration for slide {slide.n}</label>
                 <textarea
-                  rows={2}
-                  className="visual-prompt-input"
-                  placeholder="Describe the image to generate, e.g. 'Colorful 2D shapes on a chalkboard'"
-                  value={visualPrompts[slide.n] || ''}
-                  onChange={(e) => updateVisualPrompt(slide.n, e.target.value)}
+                  rows={4}
+                  placeholder="Enter narration text for this slide..."
+                  value={scriptSlide.narration || ''}
+                  onChange={(e) => updateSlide(slide.n, { narration: e.target.value })}
                 />
-              </details>
-              <details className="voice-override">
-                <summary>Advanced voice description</summary>
-                <input
-                  type="text"
-                  placeholder="Free-text voice description for this slide"
-                  value={perSlideVoiceDesc[slide.n] || ''}
-                  onChange={(e) => updatePerSlideVoiceDesc(slide.n, e.target.value)}
-                />
-              </details>
+                {voiceOptions.length > 0 && (
+                  <div className="slide-voice-row">
+                    <label>Voice for this slide</label>
+                    <select
+                      value={scriptSlide.voice || ''}
+                      onChange={(e) => updateSlide(slide.n, { voice: e.target.value || undefined })}
+                    >
+                      <option value="">Default (chapter voice)</option>
+                      {voiceOptions.map((v) => (
+                        <option key={v.id} value={v.id}>{v.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                <details className="visual-prompt-section">
+                  <summary>AI Visual Prompt (optional)</summary>
+                  <textarea
+                    rows={2}
+                    className="visual-prompt-input"
+                    placeholder="Describe the image to generate, e.g. 'Colorful 2D shapes on a chalkboard'"
+                    value={scriptSlide.visual_prompt || ''}
+                    onChange={(e) => updateSlide(slide.n, { visual_prompt: e.target.value || undefined })}
+                  />
+                </details>
+                <details className="voice-override">
+                  <summary>Advanced voice description</summary>
+                  <input
+                    type="text"
+                    placeholder="Free-text voice description for this slide"
+                    value={scriptSlide.voice_description || ''}
+                    onChange={(e) => updateSlide(slide.n, { voice_description: e.target.value || undefined })}
+                  />
+                </details>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
