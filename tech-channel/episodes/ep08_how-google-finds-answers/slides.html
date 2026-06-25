@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP08 — How does Google find answers so fast?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">How does Google find<br>answers so <span class="hl">fast</span>?</h1>
+    <p class="subhead">It searches the whole web in 0.3 seconds — except it doesn't.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      You hit <span class="accent2">enter</span> and in about
+      <span class="accent">0.3 seconds</span> Google "searched the entire internet".
+    </div>
+    <div class="big" style="margin-top:0.7cm">
+      Except — it <span class="accent3">didn't</span>.
+      The real trick is way <b>cleverer</b>.
+    </div>
+    <p class="subhead">In 5 minutes, you'll see what really happens. 🔍</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      How does it search <span class="accent">billions</span> of pages —<br>
+      and answer before you <span class="accent3">blink</span>?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: it searches an index, not the web -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — It doesn't search the live web</div>
+    <h2 class="headline">It searches a pre-built <span class="hl">index</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>When you search, Google does <b>not</b> go scan the live internet.</li>
+        <li>It looks inside a giant <span class="accent">pre-built index</span>…</li>
+        <li>…like the <b>index at the back of a textbook</b> — which word is on which page.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent3">Picture this</div>
+        <p class="big" style="margin-top:0.3cm">Word → list of pages it appears on.<br>Already built. Just look it up.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: crawling builds the index -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Where the index comes from</div>
+    <h2 class="headline">Crawlers build it <span class="hl">before</span> you search.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>Programs called <b class="accent">crawlers</b> (or "spiders") roam the web 24/7.</li>
+        <li>They visit pages, <b>follow links</b>, read the words…</li>
+        <li>…and note which word appears on which page.</li>
+      </ul>
+      <div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🕷️ visit page</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🔗 follow links</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">📖 read words</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🗂️ add to index</div>
+        <p class="subhead" style="margin-top:0.7cm">
+          All of this happens <span class="accent2">before</span> you ever type a thing.
+        </p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: lookup is instant -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Why the lookup is instant</div>
+    <h2 class="headline">Looking up the index is <span class="hl">milliseconds</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div>
+        <div class="lead" style="margin-bottom:0.5cm">Find your words across the web:</div>
+        <div class="predbar"><span>scan whole web</span><i style="width:100%"></i><b>∞</b></div>
+        <div class="predbar"><span>look up index</span><i style="width:2%"></i><b>~ms</b></div>
+        <div class="subhead" style="margin-top:0.3cm">time it takes</div>
+      </div>
+      <ul class="bullets">
+        <li><b>Scan whole web</b> = impossibly slow.</li>
+        <li><b class="accent">Look up the index</b> = a few milliseconds.</li>
+        <li>Just like finding a word via a book's <em>index</em> vs reading every page.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: ranking is the hard part -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — The real magic</div>
+    <h2 class="headline">Finding is easy. <span class="hl">Ranking</span> is hard.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="lead" style="margin-bottom:0.5cm">
+        <b class="accent3">Millions</b> of pages match your words. Which goes on top?
+      </div>
+      <ul class="bullets">
+        <li>The real magic is <b class="accent">ranking</b> — deciding the <b>order</b>.</li>
+        <li>Signals: <span class="mono">relevance · quality · links from other sites · freshness · your location</span>.</li>
+        <li>Finding pages is easy; ranking them <em>well</em> is the hard problem.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">It explains things you've <span class="hl">noticed</span>.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li><b class="accent">Brand-new pages take time</b> to show up — they must be crawled first.</li>
+      <li><b class="accent">Results differ</b> by person and place — location is a ranking signal.</li>
+      <li><b class="accent">SEO</b> = helping your page <em>rank</em>, so it lands higher in the order.</li>
+    </ul>
+    <p class="subhead">Search isn't one trick — it's crawl, index, then rank.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH / GALTI -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"Google <b>scans the entire internet</b> the moment you search."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>It searches its own <b>pre-built index</b>. The crawling and indexing
+        already happened <b class="accent3">in advance</b> — your search just looks it up.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>Google <span class="accent">crawls + indexes</span> the web ahead of time.</li>
+      <li>Your search hits the <span class="accent">index</span> (fast); <span class="accent3">ranking</span> decides the order.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">Crawl, index, <span class="accent">rank</span>. That's the magic. 🔍</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>What is machine learning, simply?</b> 🤖</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

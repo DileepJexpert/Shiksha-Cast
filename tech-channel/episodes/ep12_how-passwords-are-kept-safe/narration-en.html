@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP12 narration — English</title>
+<link rel="stylesheet" href="../../core/themes/narration.css">
+</head>
+<body>
+  <div class="doc-head">
+    <div class="brand">Katixo KhojLab · Narration script</div>
+    <h1>EP12 — How are passwords kept safe?</h1>
+    <span class="lang">ENGLISH</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">01</span><span class="sb-label">Title</span></div>
+    <p class="say">How are passwords actually kept safe? Welcome to the season finale of Katixo KhojLab. Here's the twist that surprises everyone: a good website never even <span class="stress">knows</span> your real password. Let's see how that's possible.</p>
+    <span class="cue"><b>[CUE]</b> Hold on the title ~2s, calm confident tone, then go.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">02</span><span class="sb-label">The Hook</span></div>
+    <p class="say">Here's something genuinely wild. When you build a website properly, it <span class="stress">never</span> knows your actual password. Not the staff, not the database, not even the people who built it — <span class="stress">nobody</span> can see it. So if they can't see your password… how on earth do they check that you typed it right?</p>
+    <span class="cue"><b>[CUE]</b> Energy up — this is the hook. Land hard on "nobody".</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">03</span><span class="sb-label">Today's question</span></div>
+    <p class="say">So here's today's one question: if a website never stores your password, how does it <span class="stress">check</span> you got it right? Let's find out.</p>
+    <span class="cue"><b>[CUE]</b> Slow down. Let the question land before moving on.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">04</span><span class="sb-label">Idea 1 — They don't store it</span></div>
+    <p class="say">Idea number one: they don't store your password at all. When you sign up, the site does <span class="stress">not</span> save the password you chose. Instead it saves a <span class="term">hash</span> — a scrambled "fingerprint" of your password. Think of it like a lock built from your password: you can build the lock from the password, but you can't get the password back out of the lock.</p>
+    <span class="cue"><b>[CUE]</b> Emphasise "fingerprint" — reveal the card-note as you say the lock analogy.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">05</span><span class="sb-label">Idea 2 — Hashing is one-way</span></div>
+    <p class="say">Idea two: a hash function is <span class="stress">one-way</span>. You feed it any input — say, "password123" — and it turns it into a fixed-length jumble, like "ef92a7c4d1…". Going forward is easy. But going <span class="stress">backward</span> — turning the jumble back into the password — is practically impossible. And this is the important bit: this is <span class="stress">not</span> encryption. Encryption is reversible if you have the key. A hash is one-way on purpose — that's the whole point.</p>
+    <span class="cue"><b>[CUE]</b> Read the code arrow forward, then pause on the "can't go back" line.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">06</span><span class="sb-label">Idea 3 — Login compares hashes</span></div>
+    <p class="say">So if the password is never stored, how does login work? Simple — it compares hashes. When you log in, the site takes whatever you just typed, hashes <span class="stress">that</span>, and compares it to the hash it saved earlier. If the two hashes match, your password must have been correct. They've verified it's really you — <span class="stress">without</span> ever storing or seeing your real password.</p>
+    <span class="cue"><b>[CUE]</b> Trace the queue left-to-right; land on "match" with the comparison.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">07</span><span class="sb-label">Idea 4 — Salting</span></div>
+    <p class="say">One more clever trick: <span class="term">salting</span>. Before hashing, the site adds a unique random value — a "salt" — to each password. So if two people happen to pick the exact same password, they still get <span class="stress">different</span> hashes. That also breaks pre-computed attack tables, called rainbow tables, because the attacker can't prepare for a salt they've never seen. Every single password gets its own salt.</p>
+    <span class="cue"><b>[CUE]</b> Show both "hello" lines producing different hashes; stress "different".</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">08</span><span class="sb-label">Why it matters</span></div>
+    <p class="say">Why should you care? Three real reasons. One: when a good company gets breached, attackers only get the <span class="stress">hashes</span> — not your actual password. Two: if a site ever emails you your own password, that's a giant <span class="stress">red flag</span> — it means they stored it in plain text. And three: never reuse the same password across sites, because one leak shouldn't be able to unlock everything else.</p>
+    <span class="cue"><b>[CUE]</b> Count the three points on your fingers; punch "red flag".</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">09</span><span class="sb-label">Common myth</span></div>
+    <p class="say">Which brings us to the big myth. People think websites store their password — maybe encrypted — and could read it back if they wanted. But a properly-built site stores a one-way <span class="stress">salted hash</span>. It can verify you, but it can <span class="stress">never</span> recover your actual password. Remember the difference: encryption can be undone with a key — a hash cannot. That's the whole magic.</p>
+    <span class="cue"><b>[CUE]</b> Reveal the green "Reality" card after a beat on the myth.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">10</span><span class="sb-label">Recap</span></div>
+    <p class="say">Quick recap. One: passwords are stored as one-way, <span class="stress">salted hashes</span> — never the real thing. Two: login works by <span class="stress">comparing hashes</span>, so your real password is never kept anywhere. Verified, but never stored.</p>
+    <span class="cue"><b>[CUE]</b> Crisp and clear — these are the two lines people should remember.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">11</span><span class="sb-label">CTA — Season finale</span></div>
+    <p class="say">And that's the season! You now understand the tech you use every single day — from AI to the internet to the passwords that protect you. If KhojLab made these things finally <span class="stress">click</span>, subscribe to Katixo KhojLab. And tell me — what should we explain next? Drop it in the comments. More khoj coming soon. See you there.</p>
+    <span class="cue"><b>[CUE]</b> Warm, celebratory. Smile in your voice on the subscribe line.</span>
+  </div>
+</body>
+</html>

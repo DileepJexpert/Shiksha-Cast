@@ -6,4 +6,4 @@
 
 **Tags:** GPS, satellites, location, trilateration, how it works, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT

@@ -6,4 +6,4 @@
 
 **Tags:** binary, transistors, bits, computer basics, CS, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT

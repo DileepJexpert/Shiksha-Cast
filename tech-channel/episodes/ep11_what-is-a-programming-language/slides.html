@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP11 — What is a programming language — and why so many?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">What is a <span class="hl">programming language</span><br>— and why so many?</h1>
+    <p class="subhead">Computers only understand 0s and 1s. So why 700+ languages?</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      Last time we learned: a CPU only really understands
+      <span class="accent">0s and 1s</span>.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      Writing in raw binary would be <span class="accent3">torture</span>.
+      So humans built <span class="accent2">700+ programming languages</span> instead.
+    </div>
+    <p class="subhead">But… why so many? Let's crack it open. 💻</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      If a computer only speaks <span class="accent">binary</span>,<br>
+      why do we have <span class="accent3">so many</span> ways to write code?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: a human-friendly bridge -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — A human-friendly bridge</div>
+    <h2 class="headline">Readable instructions, <span class="hl">not</span> binary.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># you write this — and you can read it</span>
+<span class="fn">print</span>(<span class="st">"Namaste!"</span>)</pre>
+      </div>
+      <ul class="bullets">
+        <li>A programming language = a <b class="accent">human-readable</b> way to write instructions.</li>
+        <li>It's a <b class="accent">bridge</b>: you write something clear…</li>
+        <li>…and it gets translated down to the <b>0s and 1s</b> the CPU runs.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: translation (compiler / interpreter) -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Who does the translating</div>
+    <h2 class="headline">A <span class="hl">translator</span> turns code into binary.</h2>
+    <div style="margin-top:0.4cm">
+      <div class="queue">
+        <span class="chip">📝 print("Namaste!")</span>
+        <span class="qlabel accent2">→ compiler / interpreter →</span>
+        <span class="chip">⚙ 01001000 01101001</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>A special program — a <b class="accent">compiler</b> or an <b class="accent">interpreter</b> — does the translating.</li>
+        <li>It turns your code into the exact <b>machine code</b> the processor executes.</li>
+        <li>You <b class="accent3">never</b> touch the 0s and 1s yourself.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: why so many — different jobs -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Different jobs, different tools</div>
+    <h2 class="headline">Each language is built for a <span class="hl">job</span>.</h2>
+    <div class="two-col" style="margin-top:0.4cm">
+      <div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🐍 Python · AI &amp; scripts</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🌐 JavaScript · websites</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">⚡ C / C++ · games &amp; systems</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🗄 SQL · databases</div>
+      </div>
+      <ul class="bullets">
+        <li>Python is <b class="accent">simple</b> — great for AI &amp; quick scripts.</li>
+        <li>C / C++ is very <b class="accent">fast</b> — runs games and systems.</li>
+        <li>It's a trade-off triangle: <b class="accent2">easy</b> vs <b class="accent">fast</b> vs <b class="accent3">safe</b> — no one wins all three.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: same core ideas underneath -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Same ideas, different words</div>
+    <h2 class="headline">Underneath, they're <span class="hl">the same</span>.</h2>
+    <div class="two-col" style="margin-top:0.4cm">
+      <div class="code">
+        <pre><span class="cm"># every language has these</span>
+<span class="kw">variable</span>  = a labelled box
+<span class="kw">if / else</span> = make a decision
+<span class="kw">loop</span>     = repeat
+<span class="kw">function</span> = a reusable step</pre>
+      </div>
+      <ul class="bullets">
+        <li>Variables, decisions, loops, functions — <b class="accent">the same core ideas</b>.</li>
+        <li>Like Hindi, English &amp; Tamil express the <b>same thought</b> in different words.</li>
+        <li>Learn <b class="accent2">one</b> language truly → the next is mostly new vocabulary.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">Pick the <span class="hl">right tool</span> for the goal.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <ul class="bullets">
+        <li>Knowing the strengths helps you <b class="accent">match a language to a goal</b>.</li>
+        <li>It's why one app often uses <b>several languages together</b> — site, server, database.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent3">Relax</div>
+        <p class="big" style="margin-top:0.3cm">"Which language first?" Almost <b>any</b> — the concepts transfer.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"There's one <b>best</b> language, and you must master <b>all</b> of them."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>Each language is a <b>tool</b> suited to a job. They share the same core
+        logic, so <b class="accent3">choose by what you're building</b> — not hype.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>A programming language = <span class="accent">human-friendly instructions</span>, translated down to machine code.</li>
+      <li>Many exist because different jobs have different needs — but the <span class="accent3">core ideas are shared</span>.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">Code = a <span class="accent">bridge</span> to binary. 💻</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>How are passwords kept safe?</b> 🔒</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

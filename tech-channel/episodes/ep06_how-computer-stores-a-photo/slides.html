@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP06 — How does a computer store a photo?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">How does a computer<br>store a <span class="hl">photo</span>?</h1>
+    <p class="subhead">To a computer, your photo is just a grid of numbers.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      A photo looks <span class="accent">smooth</span>, real, full of colour.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      But a computer doesn't see a "picture" at all — it sees a giant
+      <span class="accent2">spreadsheet of numbers</span>.
+    </div>
+    <p class="subhead">Let's zoom in until you can see them. 🔍</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      Your selfie is colour and light.<br>
+      So how does a machine that only knows <span class="accent">numbers</span> hold it?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: pixels -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — Zoom in far enough</div>
+    <h2 class="headline">A photo is a grid of <span class="hl">tiny squares</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>Each little coloured square is a <b class="accent">pixel</b>.</li>
+        <li>Zoom in far enough and you literally see the squares.</li>
+        <li>A phone photo has <b>millions</b> of them.</li>
+      </ul>
+      <div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🟦 pixel</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🟥 pixel</div>
+        <div class="chip" style="margin:0.2cm 0.2cm">🟩 pixel</div>
+        <p class="subhead" style="margin-top:0.7cm">
+          <span class="accent2">Megapixels</span> = millions of pixels.
+          <span class="mono">mega</span> just means <b>million</b>.
+        </p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: RGB -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — What one pixel is</div>
+    <h2 class="headline">Every colour is just <span class="hl">3 numbers</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># one pixel = Red, Green, Blue (0–255)</span>
+( <span class="accent3">255</span>, <span class="accent2">0</span>, <span class="accent">0</span> )    <span class="cm">→ red</span>
+( <span class="accent3">0</span>, <span class="accent2">0</span>, <span class="accent">0</span> )      <span class="cm">→ black</span>
+( <span class="accent3">255</span>, <span class="accent2">255</span>, <span class="accent">255</span> )  <span class="cm">→ white</span></pre>
+      </div>
+      <ul class="bullets">
+        <li>Three lights: <b class="accent3">Red</b>, <b class="accent2">Green</b>, <b class="accent">Blue</b>.</li>
+        <li>Each one a number from <b>0 to 255</b> — off to full brightness.</li>
+        <li>Mix them and you get <span class="accent">any colour</span> you want.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: a big list of numbers -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Why photos are "heavy"</div>
+    <h2 class="headline">So a photo = a <span class="hl">huge list</span> of numbers.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># one photo</span>
+millions of pixels  <span class="accent2">×</span>  3 numbers each  <span class="accent2">=</span>  a giant list
+
+stored as <span class="st">binary</span>   <span class="cm"># the same 0s and 1s, callback to EP05</span></pre>
+      </div>
+      <ul class="bullets" style="margin-top:0.5cm">
+        <li>Every number is finally written as <b class="accent">0s and 1s</b>.</li>
+        <li>More pixels → more numbers → a <b>bigger</b> file.</li>
+        <li>That's why photos are measured in <b class="accent3">MB</b>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: compression -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — The clever shrink</div>
+    <h2 class="headline">Compression throws away what your <span class="hl">eye won't miss</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <ul class="bullets">
+        <li>Storing every single number is <b>wasteful</b>.</li>
+        <li><b class="accent">JPEG</b> drops tiny details you'd never notice…</li>
+        <li>…and reuses <span class="accent">repeated patterns</span> instead of copying them.</li>
+        <li>Result: far smaller than the raw image.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent2">PNG vs JPEG</div>
+        <p class="big" style="margin-top:0.3cm">
+          <b class="accent2">PNG</b> keeps everything <em>(lossless)</em>.<br>
+          <b class="accent3">JPEG</b> drops detail <em>(lossy)</em>.
+        </p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">This explains your whole <span class="hl">gallery</span>.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li><b class="accent">Megapixels</b> = how many pixels the camera captures.</li>
+      <li>File <b class="accent3">size</b> = how many numbers had to be stored.</li>
+      <li>Zoom in too far or open an old, tiny photo → you see the squares: it looks <b>blocky / pixelated</b>.</li>
+      <li>Sharing a logo? Pick <b class="accent2">PNG</b>. A normal photo? <b class="accent3">JPEG</b> saves space.</li>
+    </ul>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"The computer stores the actual colours — the real picture is inside the file."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>It stores <b>numbers</b> — the <span class="mono">RGB</span> values of each pixel. Your screen turns
+        those numbers back into light. The "photo" only exists when it's <b class="accent3">displayed</b>.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>A photo = a grid of <span class="accent">pixels</span>, each just a few numbers (<span class="accent3">RGB</span>).</li>
+      <li>Compression shrinks the file by cleverly <span class="accent3">dropping detail</span> you won't notice.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">Your photo = <span class="accent">a grid of numbers</span>. 🖼️</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>What is "the cloud" actually?</b> ☁️</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

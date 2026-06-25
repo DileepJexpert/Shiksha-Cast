@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP05 — Why do computers only understand 0s and 1s?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">Why do computers only<br>understand <span class="hl">0s and 1s</span>?</h1>
+    <p class="subhead">Every photo, song and video — secretly just two digits.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      Every photo, song, video and WhatsApp message on your phone is
+      <span class="accent">ultimately</span> just 0s and 1s.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      But why only <span class="accent2">two</span> digits — when we humans count with
+      <span class="accent3">ten</span>?
+    </div>
+    <p class="subhead">In 5 minutes, the whole "binary" mystery disappears. 🔢</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      Why does a computer use just <span class="accent">two</span> symbols —<br>
+      and how can that store <span class="accent3">everything</span>?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: switches -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — It's all switches</div>
+    <h2 class="headline">Inside: billions of tiny <span class="hl">switches</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <div>
+        <div class="queue">
+          <span class="chip">🔌 OFF</span><span class="qlabel accent2">= 0</span>
+        </div>
+        <div class="queue" style="margin-top:0.4cm">
+          <span class="chip">⚡ ON</span><span class="qlabel accent">= 1</span>
+        </div>
+        <p class="subhead" style="margin-top:0.6cm">
+          These switches are called <span class="accent">transistors</span>.
+        </p>
+      </div>
+      <ul class="bullets">
+        <li>A computer is built from <b>billions</b> of microscopic switches.</li>
+        <li>Each one is either <b class="accent2">OFF</b> or <b class="accent">ON</b> — two states.</li>
+        <li>OFF = <b>0</b>, ON = <b>1</b>. That's the whole alphabet.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: two = reliable -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Why two? Because it's reliable</div>
+    <h2 class="headline">Two states are easy to <span class="hl">tell apart</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <ul class="bullets">
+        <li>Like a light switch — clearly <b class="accent">on</b> or <b class="accent2">off</b> (high or low voltage).</li>
+        <li>Ten different levels? Easy to <b class="accent3">confuse</b> → errors.</li>
+        <li>Simple = <b class="accent">reliable</b> = fast. This is the key insight.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent">2 levels</div>
+        <p class="big" style="margin-top:0.3cm">Hard to mistake <b class="accent">ON</b> for <b class="accent2">OFF</b>.</p>
+        <div class="tag accent3" style="margin-top:0.5cm">10 levels</div>
+        <p class="big" style="margin-top:0.3cm">Is that a <b>6</b> or a <b>7</b>? Too risky.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: combine bits to count -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Line them up to count</div>
+    <h2 class="headline">One switch is small. <span class="hl">Many</span> can count anything.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># one switch = 1 bit = 2 options</span>
+
+<span class="cm"># line up 4 bits → read like place value</span>
+ 8   4   2   1
+ <span class="st">1</span>   <span class="st">0</span>   <span class="st">1</span>   <span class="st">0</span>   <span class="accent2">→</span>  8 + 2 = <span class="fn">10</span></pre>
+      </div>
+      <ul class="bullets">
+        <li>Each 0/1 is a <b class="accent">bit</b>.</li>
+        <li><b>8 bits = 1 byte</b> = <b class="accent">256</b> combinations.</li>
+        <li>Enough bits → <b>any</b> number you want.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: everything becomes numbers -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Everything becomes a number</div>
+    <h2 class="headline">Numbers → <span class="hl">binary</span>. So binary stores it all.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="queue">
+        <span class="chip">🔤 letters</span><span class="qlabel accent2">→ a code (ASCII / Unicode)</span>
+      </div>
+      <div class="queue" style="margin-top:0.35cm">
+        <span class="chip">🎨 colours</span><span class="qlabel accent3">→ Red, Green, Blue values</span>
+      </div>
+      <div class="queue" style="margin-top:0.35cm">
+        <span class="chip">🔊 sound</span><span class="qlabel accent">→ thousands of samples</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.5cm">
+        <li>First turn it into <b>numbers</b>…</li>
+        <li>…then every number becomes <b class="accent">binary</b>.</li>
+        <li>One simple system stores <b>everything</b>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">This is why <span class="hl">"digital"</span> is so reliable.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li>Two clean states is why computers <b class="accent">rarely make mistakes</b>.</li>
+      <li>Simple switches can be made <b>tiny</b> — billions on one chip.</li>
+      <li>Tiny + simple = <b class="accent3">cheap and fast</b>. That's the whole digital world.</li>
+    </ul>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"Binary is some weird, <b>secret code</b> that only computers understand."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>It's just <b>counting with two symbols</b> — because the hardware physically has
+        two states: <span class="mono">on / off</span> switches. Nothing mysterious.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>A computer = billions of <span class="accent">on/off switches</span> — so its alphabet is just 0 and 1.</li>
+      <li>Two states are <span class="accent3">reliable</span>, and combining them can represent <b>any</b> data.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">0s and 1s = <span class="accent">switches you can trust</span>. 🔢</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>How does a computer store a photo?</b> 🖼️</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

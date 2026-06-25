@@ -6,4 +6,4 @@
 
 **Tags:** pixels, RGB, image, compression, binary, how it works, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT

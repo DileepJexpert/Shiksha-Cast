@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+<meta charset="utf-8">
+<title>EP12 narration — Hinglish</title>
+<link rel="stylesheet" href="../../core/themes/narration.css">
+</head>
+<body>
+  <div class="doc-head">
+    <div class="brand">Katixo KhojLab · Narration script</div>
+    <h1>EP12 — How are passwords kept safe?</h1>
+    <span class="lang">HINGLISH (Roman)</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">01</span><span class="sb-label">Title</span></div>
+    <p class="say">Passwords actually safe kaise rakhe jaate hain? Welcome to Katixo KhojLab — aur ye hai season ka finale. Ek twist jo sabko surprise karta hai: ek achhi website aapka real password kabhi <span class="stress">jaanti hi nahi</span>. Chalo dekhte hain ye possible kaise hai.</p>
+    <span class="cue"><b>[CUE]</b> Title pe ~2s ruko, calm confident tone, phir aage badho.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">02</span><span class="sb-label">The Hook</span></div>
+    <p class="say">Ek sach mein wild baat. Jab website theek se bani ho, to wo aapka actual password <span class="stress">kabhi</span> nahi jaanti. Na staff, na database, na wo log jinhone use banaya — <span class="stress">koi bhi</span> use dekh nahi sakta. To agar wo password dekh hi nahi sakte… to ye check kaise karte hain ki aapne sahi type kiya?</p>
+    <span class="cue"><b>[CUE]</b> Yahan energy high — ye hook hai. "koi bhi" pe zor.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">03</span><span class="sb-label">Aaj ka sawaal</span></div>
+    <p class="say">Toh aaj ka ek sawaal: agar website aapka password store hi nahi karti, to ye <span class="stress">check</span> kaise karti hai ki aapne sahi daala? Chalo pata karte hain.</p>
+    <span class="cue"><b>[CUE]</b> Thoda slow. Sawaal ko land hone do, phir aage.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">04</span><span class="sb-label">Idea 1 — Store nahi karte</span></div>
+    <p class="say">Idea number one: wo aapka password store karte hi nahi. Jab aap sign up karte ho, site aapka chuna hua password <span class="stress">save nahi</span> karti. Iske badle wo ek <span class="term">hash</span> save karti hai — aapke password ka ek scrambled "fingerprint". Soch lo jaise password se bana ek taala: taala aap password se bana sakte ho, par taale se wapas password nahi nikaal sakte.</p>
+    <span class="cue"><b>[CUE]</b> "fingerprint" pe zor — taale wali analogy pe card-note reveal karo.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">05</span><span class="sb-label">Idea 2 — Hashing one-way hai</span></div>
+    <p class="say">Idea do: hash function <span class="stress">one-way</span> hota hai. Koi bhi input do — jaise "password123" — aur ye use ek fixed-length jumble bana deta hai, jaise "ef92a7c4d1…". Aage jaana easy hai. Par <span class="stress">peeche</span> jaana — jumble ko wapas password banana — practically impossible hai. Aur ye important baat: ye encryption <span class="stress">nahi</span> hai. Encryption reversible hai agar key ho. Hash jaan-boojhke one-way hai — yahi to pura point hai.</p>
+    <span class="cue"><b>[CUE]</b> Code ka arrow aage padho, phir "wapas nahi" wali line pe ruko.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">06</span><span class="sb-label">Idea 3 — Login = hashes compare</span></div>
+    <p class="say">Toh agar password store hi nahi hota, to login kaam kaise karta hai? Simple — hashes compare karke. Jab aap login karte ho, site aapke abhi type kiye password ko leti hai, <span class="stress">uska</span> hash banati hai, aur use pehle se saved hash se compare karti hai. Agar dono hashes match ho gaye, to password sahi tha. Verify ho gaya ki ye sach mein aap ho — <span class="stress">bina</span> kabhi aapka real password store ya dekhe.</p>
+    <span class="cue"><b>[CUE]</b> queue ko left-to-right trace karo; "match" pe compare dikhao.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">07</span><span class="sb-label">Idea 4 — Salting</span></div>
+    <p class="say">Ek aur clever trick: <span class="term">salting</span>. Hash karne se pehle, site har password mein ek unique random value — ek "salt" — add kar deti hai. Toh agar do log bilkul same password chunte hain, phir bhi unke hashes <span class="stress">alag</span> aate hain. Isse pre-computed attack tables, jinhe rainbow tables kehte hain, bhi toot jaate hain — kyunki attacker us salt ke liye tayyari kar hi nahi sakta jo usne dekha hi nahi. Har ek password ko apna alag salt milta hai.</p>
+    <span class="cue"><b>[CUE]</b> Dono "hello" lines alag hash dete dikhao; "alag" pe zor.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">08</span><span class="sb-label">Why it matters</span></div>
+    <p class="say">Aap ko isse farak kyun padta hai? Teen real reasons. Ek: jab koi achhi company breach hoti hai, attackers ko sirf <span class="stress">hashes</span> milte hain — aapka actual password nahi. Do: agar koi site aapko aapka apna password email kare, to ye ek bada <span class="stress">red flag</span> hai — matlab unhone use plain text mein store kiya hai. Aur teen: kabhi same password alag-alag sites pe reuse mat karo, kyunki ek leak se baaki sab kuch unlock nahi hona chahiye.</p>
+    <span class="cue"><b>[CUE]</b> Teen points ungliyon pe gino; "red flag" pe punch.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">09</span><span class="sb-label">Common myth</span></div>
+    <p class="say">Aur isse aata hai sabse bada myth. Log sochte hain website unka password store karti hai — shayad encrypted — aur chahe to use wapas padh sakti hai. Par theek se bani site ek one-way <span class="stress">salted hash</span> store karti hai. Wo aapko verify kar sakti hai, par aapka actual password <span class="stress">kabhi</span> recover nahi kar sakti. Difference yaad rakho: encryption key se undo ho sakti hai — hash nahi. Yahi pura magic hai.</p>
+    <span class="cue"><b>[CUE]</b> Myth pe ek beat ke baad green "Reality" card reveal karo.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">10</span><span class="sb-label">Recap</span></div>
+    <p class="say">Quick recap. Ek: passwords one-way, <span class="stress">salted hashes</span> ki tarah store hote hain — kabhi real password nahi. Do: login <span class="stress">hashes compare</span> karke kaam karta hai, isliye aapka real password kahin store hi nahi hota. Verify, par store kabhi nahi.</p>
+    <span class="cue"><b>[CUE]</b> Crisp aur clear — ye do lines log yaad rakhein.</span>
+  </div>
+
+  <div class="slide-block">
+    <div class="sb-head"><span class="sb-num">11</span><span class="sb-label">CTA — Season finale</span></div>
+    <p class="say">Aur yahi tha season! Ab aap wo tech samajhte ho jo aap roz use karte ho — AI se lekar internet tak, aur un passwords tak jo aapko protect karte hain. Agar KhojLab ne ye sab cheezein finally <span class="stress">click</span> karwa di, to Katixo KhojLab ko subscribe karo. Aur batao — agla kya explain karein? Comments mein likho. Aur khoj jald aa rahi hai. Milte hain agle video mein.</p>
+    <span class="cue"><b>[CUE]</b> Warm, celebratory. Subscribe line pe awaaz mein smile.</span>
+  </div>
+</body>
+</html>

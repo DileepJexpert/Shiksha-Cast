@@ -6,4 +6,4 @@
 
 **Tags:** programming language, compiler, code, CS basics, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP12 — How are passwords kept safe?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">How are <span class="hl">passwords</span><br>kept safe?</h1>
+    <p class="subhead">A good website never even knows your real password.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      Here's something wild: a well-built website <span class="accent">never knows</span>
+      your actual password.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      Not the staff, not their database — <span class="accent2">nobody</span>.
+      Even they can't see it.
+    </div>
+    <p class="subhead">So how do they check you got it right? 🔐</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      If a site never stores your password,<br>
+      how does it <span class="accent">check</span> you typed it right?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: they don't store your password -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — They don't store it</div>
+    <h2 class="headline">It saves a <span class="hl">fingerprint</span>, not the password.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>When you sign up, the site does <b class="accent">not</b> save your password.</li>
+        <li>Instead it saves a <b class="accent">hash</b> — a scrambled "fingerprint" of it.</li>
+        <li>The real password is never written down anywhere.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent3">Think of it like</div>
+        <p class="big" style="margin-top:0.3cm">A <b>lock</b> made from your password — but you can't get the password back from the lock.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: hashing is one-way -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Hashing is one-way</div>
+    <h2 class="headline">Easy forward. <span class="hl">Impossible</span> backward.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># a hash function</span>
+<span class="st">"password123"</span>  <span class="accent2">→</span>  hash  <span class="accent2">→</span>  <span class="fn">ef92a7c4d1…</span>
+
+<span class="cm"># try to go back?</span>
+<span class="fn">ef92a7c4d1…</span>  <span class="accent3">→</span>  <span class="kw">??? </span> <span class="cm"># can't</span></pre>
+      </div>
+      <ul class="bullets">
+        <li>Any input becomes a fixed-length jumble.</li>
+        <li>It's <b class="accent">one-way</b>: easy to compute, practically impossible to reverse.</li>
+        <li><b>Different</b> from encryption — that's reversible with a key. A hash is <span class="accent3">not</span>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: login = compare hashes -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Logging in</div>
+    <h2 class="headline">Login = <span class="hl">compare the hashes</span>.</h2>
+    <div style="margin-top:0.4cm">
+      <div class="queue">
+        <span class="chip">⌨️ you type it</span><span class="qlabel accent2">→ hash →</span>
+        <span class="chip">🔢 new hash</span><span class="qlabel accent">⟷ match? ⟷</span>
+        <span class="chip">🗄️ stored hash</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>You log in → the site hashes whatever you just typed.</li>
+        <li>It compares that to the <b class="accent">stored hash</b>.</li>
+        <li>Hashes match? Password was correct — verified <b>without</b> ever seeing the real one.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: salting -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Salting</div>
+    <h2 class="headline">Add a pinch of <span class="hl">salt</span> first.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div class="code">
+        <pre><span class="cm"># two people, SAME password</span>
+<span class="st">"hello"</span> + <span class="kw">salt_A</span>  <span class="accent2">→</span>  <span class="fn">9f1c…</span>
+<span class="st">"hello"</span> + <span class="kw">salt_B</span>  <span class="accent2">→</span>  <span class="fn">4b7e…</span>
+<span class="cm"># different hashes!</span></pre>
+      </div>
+      <ul class="bullets">
+        <li>Before hashing, add a unique random value — a <b class="accent">salt</b>.</li>
+        <li>Same password → <span class="accent">different</span> hashes for each person.</li>
+        <li>Pre-computed attack tables (<span class="mono">rainbow tables</span>) stop working.</li>
+        <li>Each password gets its <b>own</b> salt.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">This is your <span class="hl">real-world</span> shield.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li>A good data breach leaks only <b class="accent">hashes</b> — not your real password.</li>
+      <li>"We'll email you your password" is a huge <b class="accent3">red flag</b> — it means they store it in plain text.</li>
+      <li>Never <b>reuse</b> the same password across sites — one leak shouldn't unlock everything.</li>
+    </ul>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"Websites store my password (maybe <b>encrypted</b>) and could read it if they wanted."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>A proper site stores a one-way <b>salted hash</b>. It can verify you, but can <b class="accent3">never recover</b> your password. Encryption can be undone — a <span class="mono">hash</span> cannot.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>Passwords are stored as <span class="accent">one-way, salted hashes</span> — never the real thing.</li>
+      <li>Login works by <span class="accent3">comparing hashes</span>, so your real password is never kept anywhere.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA (season finale) -->
+  <section class="slide slide--cta">
+    <div class="cta-h">That's the <span class="accent">season</span>! 🎉</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">More khoj coming — <b>what should we explain next?</b> Comment below. 💬</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

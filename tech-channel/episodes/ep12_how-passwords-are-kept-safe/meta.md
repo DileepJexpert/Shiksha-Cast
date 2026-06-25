@@ -6,4 +6,4 @@
 
 **Tags:** passwords, hashing, encryption, security, how it works, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT

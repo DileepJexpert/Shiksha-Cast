@@ -6,4 +6,4 @@
 
 **Tags:** cloud, data center, servers, hosting, how it works, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT

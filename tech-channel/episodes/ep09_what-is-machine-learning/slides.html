@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP09 — What is machine learning, simply?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">What is <span class="hl">machine learning</span>,<br>simply?</h1>
+    <p class="subhead">How a computer learns without being told the rules.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      Normally you control a computer by giving it <span class="accent">exact rules</span>.
+      Do this, then this.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      But how would you write the rules for <span class="accent2">"is this a cat?"</span> —
+      list every whisker, ear and pose?
+    </div>
+    <p class="subhead">Impossible. So we flip the whole approach. 🐱</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      How can a computer <span class="accent">learn</span> something —<br>
+      without anyone writing the <span class="accent3">rules</span>?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: examples, not rules -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — Examples, not rules</div>
+    <h2 class="headline">Stop writing rules. Show <span class="hl">examples</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <div class="code">
+        <pre><span class="cm"># traditional programming</span>
+Rules    <span class="accent2">→</span>  <span class="fn">computer</span>  <span class="accent2">→</span>  Answers
+
+<span class="cm"># machine learning</span>
+Examples <span class="accent2">→</span>  <span class="fn">computer</span>  <span class="accent2">→</span>  Rules</pre>
+      </div>
+      <ul class="bullets">
+        <li>Old way: <b class="accent">you</b> write the rules, the computer just follows.</li>
+        <li>ML way: you show lots of <span class="accent">examples</span>…</li>
+        <li>…and the computer figures out the rules <b>by itself</b>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: training -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Training</div>
+    <h2 class="headline">Show it <span class="hl">thousands</span> of labelled photos.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="queue">
+        <span class="chip">🐱 cat</span><span class="chip">🐶 dog</span><span class="chip">🐱 cat</span>
+        <span class="chip">🐱 cat</span><span class="chip">🐶 dog</span><span class="qlabel accent">… ×1000s</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>It gradually finds the <span class="accent">patterns</span> on its own — shapes, ears, textures.</li>
+        <li>Just like a small child learns "cat" from <b>seeing many cats</b> — not from a definition.</li>
+        <li>This phase is called <b class="accent3">training</b>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: prediction on new data -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Prediction on new data</div>
+    <h2 class="headline">Now it can handle a <span class="hl">brand-new</span> photo.</h2>
+    <div style="margin-top:0.4cm">
+      <div class="queue">
+        <span class="chip">🖼️ never seen before</span>
+        <span class="qlabel accent2">→ trained model →</span>
+        <span class="chip">🐱 "cat" (92%)</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>It looks at a photo it has <b>never seen</b> and predicts "cat".</li>
+        <li>Based on the <span class="accent">patterns</span> it learned during training.</li>
+        <li>That's the whole point: it <b class="accent3">generalises</b> to new examples.</li>
+      </ul>
+      <p class="subhead" style="margin-top:0.5cm">It's making an <b class="accent">informed guess</b> — not "knowing".</p>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: only as good as the data -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Only as good as the data</div>
+    <h2 class="headline">Garbage in, <span class="hl">garbage out</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>A model is only as good as its <span class="accent">examples</span>.</li>
+        <li>Show it <b class="accent3">biased</b> or <b class="accent3">wrong</b> data…</li>
+        <li>…and it learns biased or wrong patterns.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent3">Why it matters</div>
+        <p class="big" style="margin-top:0.3cm">This is why <b>data quality</b> matters so much.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">ML is already <span class="hl">everywhere</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <ul class="bullets">
+        <li>🔓 Face unlock on your phone.</li>
+        <li>📧 Spam filters in your inbox.</li>
+        <li>▶️ YouTube &amp; Instagram recommendations.</li>
+        <li>💳 Fraud detection on your bank card.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent">Callback — EP01</div>
+        <p class="big" style="margin-top:0.3cm">Chatbots like <b class="accent">ChatGPT</b>? That's ML too.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH / GALTI -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"The machine <b>understands</b> and <b>thinks</b> like us."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>It found <b>statistical patterns</b> in examples. No understanding —
+        just very powerful <span class="mono">pattern-matching</span> and guessing.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>ML = learning rules from <span class="accent">examples</span>, instead of being told the rules.</li>
+      <li>It predicts on <span class="accent3">new data</span> — and it's only as good as the examples you gave it.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">Learn from examples, <span class="accent">guess on new ones</span>. 🧠</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>How does your phone know your location (GPS)?</b> 📍</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

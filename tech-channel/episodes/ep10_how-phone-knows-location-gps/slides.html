@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP10 — How does your phone know your location (GPS)?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">How does your phone<br>know your <span class="hl">location</span>?</h1>
+    <p class="subhead">Your phone has no idea where it is — until it listens to clocks in space.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      You open Maps and a little <span class="accent">blue dot</span> knows
+      <span class="accent2">exactly</span> where you are.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      But your phone has <b>no built-in sense of place</b>. So… <b>how?</b>
+    </div>
+    <p class="subhead">It works it out by listening to satellites — clocks floating in space. 🛰️</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — TODAY'S QUESTION -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      With no GPS chip telling it,<br>
+      how does your phone <span class="accent">figure out</span> where it is on <span class="accent3">Earth</span>?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: satellites broadcasting -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — Clocks in space, shouting</div>
+    <h2 class="headline">Satellites just <span class="hl">broadcast</span>, all the time.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div>
+        <div class="queue">
+          <span class="chip">🛰️ Satellite</span>
+          <span class="qlabel accent2">))) signal )))</span>
+          <span class="chip">🌍 Everyone</span>
+        </div>
+        <p class="subhead" style="margin-top:0.7cm">
+          About <span class="accent2">30</span> satellites orbit Earth, shouting to the whole planet.
+        </p>
+      </div>
+      <ul class="bullets">
+        <li>Each one constantly broadcasts <b>two things</b>.</li>
+        <li>Its own <span class="accent">position</span> in space.</li>
+        <li>The exact <span class="accent3">time</span> from an ultra-precise <b>atomic clock</b>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: timing -> distance -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — Turning time into distance</div>
+    <h2 class="headline">How <span class="hl">long</span> it took → how <span class="hl">far</span> it is.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <ul class="bullets">
+        <li>Your phone catches signals from <b>several</b> satellites.</li>
+        <li>Each signal travels at the <span class="accent">speed of light</span>.</li>
+        <li>Measure exactly how long it took to arrive…</li>
+        <li>…and the phone knows how <b class="accent3">far</b> that satellite is.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent3">The trick</div>
+        <p class="big" style="margin-top:0.3cm">time delay<br><span class="accent">→ distance</span></p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: trilateration -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Where all the distances meet</div>
+    <h2 class="headline">One spot fits <span class="hl">all of them</span>.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <ul class="bullets">
+        <li>One distance puts you <em>somewhere</em> on a giant <span class="accent">sphere</span>.</li>
+        <li>Add a second, then a third…</li>
+        <li>…and only <b class="accent3">ONE point</b> on Earth fits all the distances at once. That's you.</li>
+      </ul>
+      <div class="card-note">
+        <div class="tag accent2">Like three friends</div>
+        <p class="big" style="margin-top:0.3cm">Each says "you're 5 km from me." Only <b class="accent">one spot</b> satisfies all three.</p>
+        <p class="subhead" style="margin-top:0.4cm">This is called <span class="mono accent">trilateration</span>.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: phone only listens -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — Your phone never speaks</div>
+    <h2 class="headline">It only <span class="hl">listens</span>. Never transmits.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div>
+        <div class="queue">
+          <span class="chip">🛰️ Satellites</span>
+          <span class="qlabel accent2">))) one way )))</span>
+          <span class="chip">📱 Phone</span>
+        </div>
+        <p class="subhead" style="margin-top:0.7cm">
+          Your phone <span class="accent">receives</span> only — it never sends anything <em>up</em>.
+        </p>
+      </div>
+      <ul class="bullets">
+        <li>It needs about <b class="accent2">4</b> satellites.</li>
+        <li><b>3</b> to pin the position…</li>
+        <li>…<b>1</b> more to correct the phone's own clock.</li>
+        <li><span class="accent">More satellites</span> = more accuracy.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">This blue dot <span class="hl">runs your day</span>.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li>Maps, <b>Uber / Ola</b>, food delivery, fitness trackers — all ride on GPS.</li>
+      <li>Indoors, in tunnels, or between <b class="accent">tall buildings</b>? Signals get blocked — so GPS gets weak.</li>
+      <li>Constantly listening to faint space signals is also why GPS can <span class="accent3">drain your battery</span>.</li>
+    </ul>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"Satellites <b>track and watch me</b> — my phone <b>talks</b> to the satellites."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>Satellites just <b>broadcast</b> their time and position to the whole world.
+        Your phone silently <b class="accent3">listens</b> and calculates its own location. The satellites don't even know you exist.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>GPS satellites just <span class="accent">broadcast</span> their time and position to everyone.</li>
+      <li>Your phone <span class="accent3">times</span> those signals to get distances, then <b>trilaterates</b> to pin your exact spot.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">GPS = <span class="accent">listening to clocks in space</span>. 🛰️</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>What is a programming language, and why so many?</b> 💻</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>

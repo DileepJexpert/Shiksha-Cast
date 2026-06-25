@@ -6,4 +6,4 @@
 
 **Tags:** Google, search engine, index, ranking, how it works, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT
