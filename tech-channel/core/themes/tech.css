@@ -166,6 +166,11 @@ html, body { margin: 0; padding: 0; background: #000; }
   padding: 0.28cm 0.7cm; font-size: 15pt; color: var(--ink);
 }
 
+/* ----- QUEUE row (FIFO visual) ----- */
+.queue { display: flex; align-items: center; gap: 0.5cm; flex-wrap: wrap; }
+.queue .chip { font-size: 19pt; padding: 0.35cm 0.8cm; }
+.qlabel { font-weight: 700; letter-spacing: 0.08em; font-size: 17pt; }
+
 /* ----- MYTH / GALTI callout ----- */
 .slide--myth .kicker { color: var(--danger); }
 .myth {

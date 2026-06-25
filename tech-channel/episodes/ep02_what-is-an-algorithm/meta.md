@@ -6,4 +6,4 @@
 
 **Tags:** algorithm, data structures, stack, queue, CS basics, Hinglish
 
-**Status:** scaffolded
+**Status:** FULLY BUILT

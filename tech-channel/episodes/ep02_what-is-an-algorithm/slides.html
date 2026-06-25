@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EP02 — What is an algorithm?</title>
+<link rel="stylesheet" href="../../core/themes/tech.css">
+</head>
+<body>
+<div class="deck" style='--total:"11"; --brand:"Katixo KhojLab";'>
+
+  <!-- 1 — TITLE -->
+  <section class="slide slide--title">
+    <div class="brandmark"><span class="logo"></span> <span class="bk">Katixo</span> <span class="bl">KhojLab</span></div>
+    <div class="eyebrow">CS &amp; AI · Explained</div>
+    <h1 class="title">What is an <span class="hl">algorithm</span>?</h1>
+    <p class="subhead">You already use them every day — without even knowing it.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 2 — HOOK -->
+  <section class="slide center">
+    <div class="kicker">The Hook</div>
+    <div class="big">
+      Made 2-minute <span class="accent2">Maggi</span> today? You just ran an
+      <span class="accent">algorithm</span>.
+    </div>
+    <div class="big" style="margin-top:0.6cm">
+      Boil water <span class="accent2">→</span> add masala <span class="accent2">→</span>
+      add Maggi <span class="accent2">→</span> wait 2 min. <b>Steps, in order.</b>
+    </div>
+    <p class="subhead">That's all an algorithm is — a recipe. Let's make it click. 🍜</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 3 — AAJ KA SAWAAL -->
+  <section class="slide slide--question">
+    <div class="qmark">?</div>
+    <div class="kicker">Today's Question</div>
+    <div class="q">
+      What exactly <span class="accent">is</span> an algorithm —<br>
+      and why does CS care so <span class="accent3">much</span> about it?
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 4 — IDEA 1: a precise recipe -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 1 / 4 — What it is</div>
+    <h2 class="headline">It's just a <span class="hl">step-by-step recipe</span>.</h2>
+    <div class="two-col" style="margin-top:0.6cm">
+      <div class="code">
+        <pre><span class="cm"># algorithm: make 1 cup chai</span>
+1. boil 1 cup <span class="st">water</span>
+2. add 1 tsp <span class="st">tea</span> + sugar
+3. add <span class="st">milk</span>, boil 2 min
+4. strain into cup   <span class="accent2">→ done ✓</span></pre>
+      </div>
+      <ul class="bullets">
+        <li>A <span class="accent">clear set of steps</span>…</li>
+        <li>…to solve <b>one</b> specific problem.</li>
+        <li>That's it. That's an algorithm.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 5 — IDEA 2: clear, ordered, finite -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 2 / 4 — The rules</div>
+    <h2 class="headline">Steps must be <span class="hl">clear, ordered &amp; finite</span>.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li><b class="accent">Clear:</b> no "add thoda sa" — how much, exactly?</li>
+      <li><b class="accent">Ordered:</b> add Maggi <em>before</em> boiling water? Disaster. Order matters.</li>
+      <li><b class="accent">Finite:</b> it must <em>end</em> — no running forever.</li>
+    </ul>
+    <p class="subhead">A computer follows steps <b>literally</b>. Be vague, and it breaks.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 6 — IDEA 3: efficiency -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 3 / 4 — Why CS obsesses over them</div>
+    <h2 class="headline">Same task → a <span class="hl">smarter</span> algorithm is way faster.</h2>
+    <div class="two-col" style="margin-top:0.5cm">
+      <div>
+        <div class="lead" style="margin-bottom:0.5cm">Find a word in a <b>1000-page</b> dictionary:</div>
+        <div class="predbar"><span>page by page</span><i style="width:100%"></i><b>1000</b></div>
+        <div class="predbar"><span>open middle</span><i style="width:2%"></i><b>~10</b></div>
+        <div class="subhead" style="margin-top:0.3cm">checks needed to find it</div>
+      </div>
+      <ul class="bullets">
+        <li><b>Page by page</b> = up to 1000 looks.</li>
+        <li><b class="accent">Open the middle</b>, go left or right, repeat = ~10 looks.</li>
+        <li>Both correct — one is <span class="accent2">100× faster</span>.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 7 — IDEA 4: the samosa queue (FIFO) -->
+  <section class="slide slide--concept">
+    <div class="kicker">Idea 4 / 4 — How computers organise work</div>
+    <h2 class="headline">Simple rules, like a <span class="hl">queue</span>.</h2>
+    <div style="margin-top:0.5cm">
+      <div class="queue">
+        <span class="qlabel accent2">IN →</span>
+        <span class="chip">🥟 1st</span>
+        <span class="chip">🥟 2nd</span>
+        <span class="chip">🥟 3rd</span>
+        <span class="qlabel accent">→ OUT</span>
+      </div>
+      <ul class="bullets" style="margin-top:0.6cm">
+        <li>Samosa line: whoever comes <b class="accent">first</b>, gets served <b class="accent">first</b>.</li>
+        <li>That's a <b>queue</b> — <span class="mono">FIFO</span> (First In, First Out).</li>
+        <li>Print jobs, ticket counters, WhatsApp messages — all run on a queue.</li>
+      </ul>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 8 — WHY IT MATTERS -->
+  <section class="slide slide--concept">
+    <div class="kicker">Why it matters</div>
+    <h2 class="headline">Algorithms run your <span class="hl">whole day</span>.</h2>
+    <ul class="bullets" style="margin-top:0.4cm">
+      <li><b class="accent">Google Maps</b> picks the shortest route home.</li>
+      <li><b class="accent">YouTube</b> decides which video to show you next.</li>
+      <li><b class="accent">UPI</b> checks and clears a payment in 2 seconds.</li>
+    </ul>
+    <p class="subhead">All of it = clever step-by-step algorithms, running millions of times a second.</p>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 9 — MYTH -->
+  <section class="slide slide--myth">
+    <div class="kicker">Common myth — "yeh galat samajhte hain"</div>
+    <div class="myth">
+      <div class="card wrong">
+        <div class="tag">✗ Myth</div>
+        <p>"Algorithm = scary maths that only coders and AI use."</p>
+      </div>
+      <div class="card right">
+        <div class="tag">✓ Reality</div>
+        <p>It's just <b>clear steps</b> to do a task — you use them daily. Code is only
+        writing those steps precisely enough for a <span class="accent3">computer</span>.</p>
+      </div>
+    </div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 10 — RECAP -->
+  <section class="slide slide--recap">
+    <div class="kicker">Recap — 2 things to remember</div>
+    <ol class="takeaways">
+      <li>An algorithm = <span class="accent">precise, ordered, finite steps</span> to solve a problem.</li>
+      <li>The same task can have a <span class="accent3">fast or slow</span> algorithm — that's the heart of CS.</li>
+    </ol>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+  <!-- 11 — CTA -->
+  <section class="slide slide--cta">
+    <div class="cta-h">Algorithms = <span class="accent">recipes</span>. Simple. 🍜</div>
+    <div class="sub">▶ Subscribe @KatixoKhojLab</div>
+    <div class="next">Next question: <b>How does the internet reach your phone?</b> 🌐</div>
+    <div class="foot"><span class="fb"><span class="k">Katixo</span> KhojLab</span></div>
+  </section>
+
+</div>
+</body>
+</html>
