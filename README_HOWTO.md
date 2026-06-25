@@ -140,6 +140,25 @@ python -m shiksha_cast meta  -c s06-yawning   # -> dist\s06-yawning.youtube.md
 Episode IDs are just the folder name (e.g. `s06-yawning`), found anywhere under
 `content/`. Build-cache and outputs continue to use that id.
 
+### Shorts, thumbnail/title variants, and one-folder upload package
+
+```
+python -m shiksha_cast shorts  -c <ep> [--start 0 --duration 45 --hook "..." --count 1]
+python -m shiksha_cast thumbs  -c <ep>     # 4 thumbnail styles: curiosity/exam/kids/hinglish
+python -m shiksha_cast package -c <ep>     # bundles EVERYTHING into dist\packages\<ep>\
+```
+
+- **shorts** → vertical 9:16 clip(s) in `dist\shorts\` with a blurred fill
+  background, your video centered, big burned-in captions, and a hook strip on top.
+- **thumbs** → `dist\<ep>.thumb.<style>.png` × 4 distinct styles to A/B test.
+- **package** → one upload-ready folder per episode:
+  `video.mp4`, `thumbnail.png` (+ 4 styles in `thumbnails\`), `captions.srt`,
+  `title.txt`, `titles.txt` (searchable/curiosity/Hinglish A/B ideas),
+  `description.txt`, `tags.txt`, `pinned-comment.txt`, `short1.mp4`, and a
+  `README.txt` checklist. The `meta`/package step also **validates chapters**
+  against YouTube's rules (first at 0:00, ≥3 chapters, ≥10s apart) and lists any
+  problems.
+
 ---
 
 ## 4c. Animated video (AI images + 2.5D parallax)

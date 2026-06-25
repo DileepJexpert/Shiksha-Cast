@@ -62,6 +62,63 @@ class EpisodeMetadata:
     description: str
     tags: list[str]
     chapters: list[Chapter] = field(default_factory=list)
+    title_variants: dict = field(default_factory=dict)
+    pinned_comment: str = ""
+    chapter_warnings: list[str] = field(default_factory=list)
+
+
+def build_title_variants(raw_title: str, clean: str) -> dict:
+    """Three title angles for A/B testing: searchable, curiosity, hinglish."""
+    base = clean.rstrip("?！.। ").strip()
+    has_q = clean.rstrip().endswith("?")
+
+    searchable = f"{base} — Simple Science Explained (Class 6–10)"
+    curiosity = (
+        f"{base}? The Answer Will Surprise You 🤯" if has_q
+        else f"The Real Truth About {base} 🤯"
+    )
+    # Many episode titles are already Hinglish; keep that. Otherwise add a hook.
+    looks_hinglish = bool(re.search(r"[ऀ-ॿ]", raw_title)) or raw_title.strip() != clean
+    hinglish = _clean_title(raw_title) if looks_hinglish else f"{base} — Hindi Mein Samjho!"
+
+    def _cap(s: str) -> str:
+        return s if len(s) <= 100 else s[:99]
+
+    return {
+        "searchable": _cap(searchable),
+        "curiosity": _cap(curiosity),
+        "hinglish": _cap(hinglish),
+    }
+
+
+def build_pinned_comment(clean: str, playlist: str) -> str:
+    """A pinned-comment with an engagement question + CTA."""
+    q = clean.rstrip("?").strip()
+    return (
+        f"🤔 Quick question: {q}? — comment your answer below! 👇\n\n"
+        f"📚 More like this in our '{playlist}' playlist.\n"
+        "🔔 Subscribe + hit the bell for a new 'why & how' every week!"
+    )
+
+
+def validate_chapters(chapters: list[Chapter]) -> list[str]:
+    """Check YouTube's chapter rules; return a list of human-readable problems.
+
+    Rules: first chapter at 0:00, at least 3 chapters, each >= 10s after the
+    previous. https://support.google.com/youtube/answer/9884579
+    """
+    problems: list[str] = []
+    if len(chapters) < 3:
+        problems.append(f"Only {len(chapters)} chapters — YouTube needs at least 3.")
+    if chapters and chapters[0].start_s != 0.0:
+        problems.append(f"First chapter starts at {chapters[0].start_s:.0f}s, must be 0:00.")
+    for a, b in zip(chapters, chapters[1:]):
+        if b.start_s - a.start_s < 10.0:
+            problems.append(
+                f"Chapters '{a.label}' and '{b.label}' are "
+                f"{b.start_s - a.start_s:.0f}s apart — must be >= 10s."
+            )
+    return problems
 
 
 def _clean_title(raw: str) -> str:
@@ -214,6 +271,9 @@ def build_metadata(chapter: str, project_root: Path) -> EpisodeMetadata:
         description=description,
         tags=tags,
         chapters=chapters,
+        title_variants=build_title_variants(script.chapter, clean),
+        pinned_comment=build_pinned_comment(clean, playlist),
+        chapter_warnings=validate_chapters(chapters),
     )
 
 
@@ -226,6 +286,12 @@ def render_metadata_file(meta: EpisodeMetadata) -> str:
         "",
         meta.title,
         "",
+        "## Title variants (A/B ideas)",
+        "",
+        f"- Searchable: {meta.title_variants.get('searchable', '')}",
+        f"- Curiosity:  {meta.title_variants.get('curiosity', '')}",
+        f"- Hinglish:   {meta.title_variants.get('hinglish', '')}",
+        "",
         "## Description",
         "",
         meta.description,
@@ -234,7 +300,15 @@ def render_metadata_file(meta: EpisodeMetadata) -> str:
         "",
         ", ".join(meta.tags),
         "",
+        "## Pinned comment",
+        "",
+        meta.pinned_comment,
+        "",
     ]
+    if meta.chapter_warnings:
+        out += ["## ⚠️ Chapter warnings", ""]
+        out += [f"- {w}" for w in meta.chapter_warnings]
+        out += [""]
     return "\n".join(out)
 
 

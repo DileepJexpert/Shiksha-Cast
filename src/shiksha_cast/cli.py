@@ -322,6 +322,56 @@ def new_episode(
         rprint(f"[bold green]Video:[/bold green] {result.assemble.video_path}")
 
 
+@app.command()
+def shorts(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID"),
+    start: float = typer.Option(0.0, "--start", help="Start time in seconds"),
+    duration: float = typer.Option(45.0, "--duration", help="Short length in seconds (max ~60)"),
+    hook: Optional[str] = typer.Option(None, "--hook", help="Hook text at the top (default: episode title)"),
+    count: int = typer.Option(1, "--count", help="How many Shorts (sequential windows)"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Create vertical 9:16 Shorts (blurred fill + big captions + hook) -> dist/shorts/."""
+    from shiksha_cast.shorts import build_short
+
+    project_root = root or _find_project_root()
+    for i in range(count):
+        out = build_short(
+            chapter, project_root,
+            start_s=start + i * duration, duration_s=duration, hook_text=hook, index=i + 1,
+        )
+        rprint(f"[bold green]Short {i + 1}:[/bold green] {out}")
+
+
+@app.command()
+def thumbs(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Render thumbnail variants (curiosity/exam/kids/hinglish) -> dist/<id>.thumb.<style>.png."""
+    from shiksha_cast.thumbnail import write_thumbnail_variants
+
+    project_root = root or _find_project_root()
+    for p in write_thumbnail_variants(chapter, project_root):
+        rprint(f"  [green]{p.stem.split('.')[-1]}[/green]: {p}")
+
+
+@app.command()
+def package(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID"),
+    no_short: bool = typer.Option(False, "--no-short", help="Skip generating a Short"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Assemble a ready-to-upload folder (video, thumbnail, captions, title/desc/tags, Short)."""
+    from shiksha_cast.package import build_package
+
+    project_root = root or _find_project_root()
+    rprint(f"[bold]Packaging {chapter}...[/bold]")
+    pkg = build_package(chapter, project_root, include_short=not no_short)
+    rprint(f"[bold green]Upload package ready:[/bold green] {pkg}")
+    rprint("[dim]See README.txt inside for the upload checklist.[/dim]")
+
+
 def main() -> None:
     app()
 

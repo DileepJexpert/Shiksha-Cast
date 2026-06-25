@@ -34,6 +34,15 @@ _HOOKS = {
     "kaise": "KAISE?",
 }
 
+# Thumbnail styles — each yields a visually distinct option for the same episode.
+# accent=None means "use the subject-category accent".
+STYLES = {
+    "curiosity": {"accent": None, "tagline": "Hinglish Science • Class 6–10", "hook": True},
+    "exam": {"accent": (60, 170, 255), "tagline": "Exam-Ready • NCERT Class 6–10", "hook": False},
+    "kids": {"accent": (255, 193, 7), "tagline": "Fun Science for Curious Kids! 🎉", "hook": True},
+    "hinglish": {"accent": (0, 230, 150), "tagline": "Hindi + English • Aasaan Bhasha Mein", "hook": True},
+}
+
 
 def _clean_title(raw: str) -> str:
     t = re.sub(r"^\s*(?:s|ch)\s*\d+\s*[—\-:.]\s*", "", raw, flags=re.IGNORECASE)
@@ -47,20 +56,27 @@ def _hook_word(title: str) -> str | None:
     return _HOOKS.get(first[0].lower())
 
 
-def build_thumbnail(chapter: str, project_root: Path) -> Image.Image:
+def build_thumbnail(
+    chapter: str,
+    project_root: Path,
+    style: str = "curiosity",
+    title: str | None = None,
+) -> Image.Image:
     chapter_dir = find_chapter_dir(project_root, chapter)
     script = load_script(chapter_dir)
     parts = chapter_dir.relative_to(project_root / "content").parts[:-1]
     category_key = parts[-1] if parts else ""
-    accent = accent_for(category_key)
 
-    title = _clean_title(script.chapter)
+    spec = STYLES.get(style, STYLES["curiosity"])
+    accent = spec["accent"] or accent_for(category_key)
+
+    title = title or _clean_title(script.chapter)
     badge = chapter_dir.name.split("-")[0].upper()  # e.g. S06
 
     img, d = new_canvas(W, H)
 
-    # Giant faded hook word in the background for visual punch.
-    hook = _hook_word(title)
+    # Giant faded hook word in the background for visual punch (some styles skip it).
+    hook = _hook_word(title) if spec["hook"] else None
     if hook:
         hf = font("seguibl.ttf", 360)
         hw = d.textlength(hook, font=hf)
@@ -97,7 +113,7 @@ def build_thumbnail(chapter: str, project_root: Path) -> Image.Image:
 
     # Accent underline + bottom tagline.
     d.rectangle([75, y + 10, 75 + 360, y + 20], fill=accent)
-    d.text((75, H - 78), "Hinglish Science • Class 6–10", font=font("segoeui.ttf", 38), fill=SUB_YELLOW)
+    d.text((75, H - 78), spec["tagline"], font=font("segoeui.ttf", 38), fill=SUB_YELLOW)
 
     return img
 
@@ -110,3 +126,34 @@ def write_thumbnail(chapter: str, project_root: Path) -> Path:
     out_path = dist_dir / f"{chapter_dir.name}.thumb.png"
     img.save(out_path)
     return out_path
+
+
+def write_thumbnail_variants(
+    chapter: str, project_root: Path, styles: list[str] | None = None
+) -> list[Path]:
+    """Render one thumbnail per style -> dist/<id>.thumb.<style>.png.
+
+    Also (re)writes the default dist/<id>.thumb.png as the 'curiosity' style.
+    """
+    from shiksha_cast.metadata import build_title_variants
+
+    chapter_dir = find_chapter_dir(project_root, chapter)
+    script = load_script(chapter_dir)
+    clean = _clean_title(script.chapter)
+    hinglish_title = build_title_variants(script.chapter, clean).get("hinglish")
+
+    dist_dir = project_root / "dist"
+    dist_dir.mkdir(parents=True, exist_ok=True)
+    ep = chapter_dir.name
+
+    out_paths: list[Path] = []
+    for style in (styles or list(STYLES.keys())):
+        # The hinglish style shows the Hinglish title text.
+        title = hinglish_title if style == "hinglish" else None
+        img = build_thumbnail(chapter, project_root, style=style, title=title)
+        out = dist_dir / f"{ep}.thumb.{style}.png"
+        img.save(out)
+        out_paths.append(out)
+        if style == "curiosity":  # keep the canonical default name in sync
+            img.save(dist_dir / f"{ep}.thumb.png")
+    return out_paths

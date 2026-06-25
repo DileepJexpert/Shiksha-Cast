@@ -1,9 +1,36 @@
 from pathlib import Path
 
 from shiksha_cast.captions import generate_srt
-from shiksha_cast.metadata import _clean_title, _fmt_ts, _short_label, build_metadata
+from shiksha_cast.metadata import (
+    Chapter,
+    _clean_title,
+    _fmt_ts,
+    _short_label,
+    build_metadata,
+    build_title_variants,
+    validate_chapters,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+def test_title_variants_three_angles_within_limit():
+    v = build_title_variants("S05 — Why Is the Sky Blue?", "Why Is the Sky Blue?")
+    assert set(v) == {"searchable", "curiosity", "hinglish"}
+    assert all(len(x) <= 100 for x in v.values())
+    assert "Surprise" in v["curiosity"]  # question -> curiosity hook
+
+
+def test_validate_chapters_rules():
+    # good: 3 chapters, 0:00 start, >=10s apart
+    good = [Chapter(0, "A"), Chapter(15, "B"), Chapter(40, "C")]
+    assert validate_chapters(good) == []
+    # bad: too few, not starting at 0, too close
+    bad = [Chapter(3, "A"), Chapter(8, "B")]
+    problems = validate_chapters(bad)
+    assert any("at least 3" in p for p in problems)
+    assert any("0:00" in p for p in problems)
+    assert any(">= 10s" in p for p in problems)
 
 
 def test_clean_title_strips_internal_prefix():

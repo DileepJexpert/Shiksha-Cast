@@ -29,11 +29,11 @@ def _ensure_ffmpeg() -> None:
         )
 
 
-def _run_ffmpeg(args: list[str]) -> None:
+def _run_ffmpeg(args: list[str], cwd: str | None = None) -> None:
     _ensure_ffmpeg()
     cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error"] + args
     try:
-        subprocess.run(cmd, check=True, capture_output=True, text=True)
+        subprocess.run(cmd, check=True, capture_output=True, text=True, cwd=cwd)
     except subprocess.CalledProcessError as e:
         raise RuntimeError(
             f"FFmpeg failed (exit {e.returncode}):\n{e.stderr}"
