@@ -16,3 +16,7 @@ ui/dist/
 # Local backups and generated slide exports (kept out of git)
 _backup_files*/
 slides_png/
+
+slides_png/
+_backup_files13/
+voice_samples/

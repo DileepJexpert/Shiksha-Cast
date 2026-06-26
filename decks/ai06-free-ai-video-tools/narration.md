@@ -1,0 +1,52 @@
+# AI06 — Free AI Video Tools: Bina Camera Aur Editing Ke Video Kaise Banayein?
+
+_Read / explain each slide using these notes._
+
+## Slide 1
+
+दोस्तों, सोचो — आप सिर्फ़ कुछ lines लिखो, और AI आपके लिए एक पूरा video बना दे, जिसमें pictures भी हों, हिलते-डुलते scenes भी हों और background music भी। ना कोई camera, ना कोई महँगा editing software, ना घंटों की मेहनत। आज ये सच में possible है, और सबसे अच्छी बात — कई tools बिल्कुल free में शुरू हो जाते हैं। Katixo KhojLab की इस AI series में आज हम सीखेंगे कि free AI video बनाने के tools कौन से हैं और इन्हें आसान तरीके से कैसे इस्तेमाल करें। चलो शुरू करते हैं।
+
+## Slide 2
+
+सबसे पहले समझो — AI video tool होता क्या है? ये एक ऐसा software है जो आपके लिखे हुए शब्दों या आपकी दी हुई images को समझकर एक video तैयार कर देता है। कई tools आपके text को सुंदर slides में बदलते हैं, उसमें pictures और transitions जोड़ते हैं, और साथ में AI voice भी दे देते हैं। कुछ tools तो छोटे-छोटे moving clips भी बना देते हैं। मतलब, जो काम पहले एक पूरी team करती थी, वो अब आप अकेले अपने laptop या phone से कर सकते हो।
+
+## Slide 3
+
+अब जानते हैं कुछ भरोसेमंद free tools के नाम। पहला — CapCut, जो phone और computer दोनों पर free है और इसमें AI features भी हैं। दूसरा — Canva, जिसमें video templates और text to video जैसे options मिलते हैं। तीसरा — Microsoft Clipchamp, जो Windows के साथ free आता है। और चौथा — Pictory और InVideo, जो आपके text या article को सीधे video में बदल देते हैं और free trial देते हैं। इनमें से किसी एक में भी आप सिर्फ़ अपने email या Google account से login करके शुरू कर सकते हो।
+
+## Slide 4
+
+अब step by step देखते हैं कि video कैसे बनाएं। मैं example के लिए Canva लेता हूँ, क्योंकि ये नए लोगों के लिए सबसे आसान है। पहला step — Canva खोलो और login करो, फिर ऊपर search में Video लिखकर कोई template चुनो। दूसरा step — हर slide पर अपना text और pictures बदलो, AI के text to video या Magic options भी try करो। तीसरा step — background music और transitions जोड़ो। आख़िर में Share या Download दबाकर अपना video MP4 में save कर लो। बस इतना ही।
+
+## Slide 5
+
+चलो एक concrete example लेते हैं। मान लो आपकी एक छोटी mobile repair shop है और आपको एक 30 second का promotion video बनाना है। आप Canva में एक video template चुनो, पहली slide पर लिखो 'Fast Mobile Repair', दूसरी slide पर अपने काम की photos डालो, तीसरी पर rate list, और आख़िरी slide पर अपना address और phone number। ऊपर से एक हल्का music चुन लो। दस मिनट में आपका professional दिखने वाला video तैयार, जिसे आप WhatsApp status या Instagram पर लगा सकते हो।
+
+## Slide 6
+
+अगर आपके पास कोई article या script पहले से लिखा हो, तो text to video tools कमाल के हैं। जैसे Pictory या InVideo में आप अपना पूरा text paste करते हो, और AI उसे automatically छोटे-छोटे scenes में बाँट देता है, हर line के साथ मिलती-जुलती stock pictures लगा देता है, और चाहो तो AI voice से narration भी जोड़ देता है। आपको बस scenes थोड़े adjust करने हैं और गलत pictures बदलने हैं। ये तरीका news, story या educational videos बनाने के लिए सबसे तेज़ है।
+
+## Slide 7
+
+कुछ काम की tips भी जान लो। पहली tip — videos को छोटा रखो, खासकर social media के लिए; 30 से 60 second के video ज़्यादा देखे जाते हैं। दूसरी tip — हर slide पर बहुत सारा text मत भरो, एक slide पर एक ही मुख्य बात रखो ताकि देखने वाला आसानी से समझे। तीसरी tip — हमेशा royalty free या tool के अंदर दिया गया music ही इस्तेमाल करो, बाहर से कोई भी गाना डालने पर copyright की दिक्कत आ सकती है, खासकर YouTube पर।
+
+## Slide 8
+
+अब एक ज़रूरी सावधानी, क्योंकि सही जानकारी ज़रूरी है। पहली बात — हर free tool की एक limit होती है; कुछ tools बने हुए video पर अपना watermark यानी छोटा logo लगा देते हैं, जो हटाने के लिए कई बार paid plan लेना पड़ता है। दूसरी बात — free version में कई बार video की length या quality थोड़ी कम मिलती है। तीसरी बात — AI voice और stock pictures इस्तेमाल करते वक़्त एक बार check कर लो कि वो commercial यानी business use के लिए allowed हैं या नहीं।
+
+## Slide 9
+
+अब सोचो ये सब किस-किस काम आ सकता है। अगर आपकी कोई दुकान या business है, तो आप ad और offer videos बना सकते हो। अगर आप student हो, तो project और presentation को video में बदल सकते हो। अगर आप teacher हो, तो बच्चों के लिए मज़ेदार lesson videos बना सकते हो। और अगर आप content creator हो, तो Reels, Shorts और YouTube videos जल्दी से बना सकते हो। यानी एक ही skill, और इस्तेमाल अनगिनत। बस एक बार शुरू करने की देर है।
+
+## Slide 10
+
+एक बात साफ़ कर दूँ ताकि कोई ग़लतफ़हमी ना रहे। AI अभी आपके लिए पूरा perfect video अकेले नहीं बनाता; ये आपका काम बहुत आसान और तेज़ ज़रूर कर देता है, पर final touch आपको ही देना होता है। जैसे गलत picture बदलना, text ठीक करना, या timing सही करना। तो AI को एक तेज़ assistant समझो, boss आप ही हो। शुरू में एक-दो video बनाने में time लगेगा, पर फिर आप मिनटों में video बनाने लगोगे।
+
+## Slide 11
+
+तो चलो एक quick recap करते हैं, तीन points में। एक — AI video tools आपके text या images को video में बदल देते हैं, और CapCut, Canva, Clipchamp जैसे कई tools free में शुरू हो जाते हैं। दो — आसान तरीका है template चुनो, अपना text और photos डालो, music जोड़ो और download करो; और लंबा text हो तो text to video tools इस्तेमाल करो। तीन — video छोटा रखो, royalty free music लो, और watermark व terms एक बार ज़रूर check कर लो।
+
+## Slide 12
+
+तो दोस्तों, अब आपके पास एक ऐसी superpower है जिससे आप बिना camera और बिना editing सीखे भी अच्छे video बना सकते हो, वो भी बहुत कम खर्च में। मेरी guzaarish है — आज ही किसी एक free tool में एक छोटा सा 30 second का video बनाकर देखो, चाहे अपनी shop का हो या किसी भी topic पर। शुरू में थोड़ा अटपटा लगे तो घबराना मत, practice से सब आसान हो जाएगा। Aisi aur AI tips ke liye Katixo KhojLab subscribe karein! मिलते हैं अगले episode में।
+
