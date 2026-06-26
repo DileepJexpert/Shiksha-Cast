@@ -4,29 +4,23 @@ import { getModels, setVoiceModel } from '../api.js';
 export default function ModelSelector() {
   const [models, setModels] = useState([]);
   const [current, setCurrent] = useState('');
-  const [activeTab, setActiveTab] = useState('');
-  const [switching, setSwitching] = useState(null);
+  const [switching, setSwitching] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
     getModels()
       .then((data) => {
-        const list = data.models || [];
-        setModels(list);
+        setModels(data.models || []);
         setCurrent(data.current || '');
-        // Open the tab that contains the currently-selected voice (else the first).
-        const cur = list.find((m) => m.id === data.current);
-        setActiveTab(cur ? cur.category : (list[0]?.category || ''));
       })
       .catch(() => {});
   }, []);
 
-  // Categories are derived from the models the server returns (so new ones appear).
-  const CATEGORIES = [...new Set(models.map((m) => m.category))];
+  const categories = [...new Set(models.map((m) => m.category))];
 
-  async function handleSelect(modelId) {
-    if (modelId === current) return;
-    setSwitching(modelId);
+  async function handleChange(modelId) {
+    if (!modelId || modelId === current) return;
+    setSwitching(true);
     setError('');
     try {
       await setVoiceModel(modelId);
@@ -34,59 +28,34 @@ export default function ModelSelector() {
     } catch (err) {
       setError(err.message);
     } finally {
-      setSwitching(null);
+      setSwitching(false);
     }
   }
 
-  const filtered = models.filter((m) => m.category === activeTab);
+  const sel = models.find((m) => m.id === current);
 
   return (
-    <section className="model-selector">
-      <h2>TTS Voice Model</h2>
-      <p className="model-subtitle">
-        Select a text-to-speech model. It will be downloaded automatically on first build.
-      </p>
-
-      <div className="model-tabs">
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            className={`model-tab ${activeTab === cat ? 'active' : ''}`}
-            onClick={() => setActiveTab(cat)}
-          >
-            {cat}
-          </button>
+    <section className="model-selector-compact">
+      <label htmlFor="voice-select">Voice</label>
+      <select
+        id="voice-select"
+        value={current}
+        onChange={(e) => handleChange(e.target.value)}
+        disabled={switching}
+      >
+        {categories.map((cat) => (
+          <optgroup key={cat} label={cat}>
+            {models
+              .filter((m) => m.category === cat)
+              .map((m) => (
+                <option key={m.id} value={m.id}>{m.name}</option>
+              ))}
+          </optgroup>
         ))}
-      </div>
-
-      <div className="model-grid">
-        {filtered.map((m) => {
-          const isActive = m.id === current;
-          const isLoading = m.id === switching;
-          return (
-            <div
-              key={m.id}
-              className={`model-card ${isActive ? 'selected' : ''}`}
-              onClick={() => !isLoading && handleSelect(m.id)}
-            >
-              <div className="model-card-header">
-                <span className="model-name">{m.name}</span>
-                {isActive && <span className="model-badge active-badge">Active</span>}
-                {m.gated && !isActive && (
-                  <span className="model-badge gated-badge">HF Login</span>
-                )}
-              </div>
-              <p className="model-desc">{m.description}</p>
-              <div className="model-meta">
-                <span className="model-size">{m.size}</span>
-                {isLoading && <span className="spinner" />}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {error && <p className="error">{error}</p>}
+      </select>
+      {switching && <span className="spinner" />}
+      {sel && <span className="voice-hint">{sel.size}</span>}
+      {error && <span className="error">{error}</span>}
     </section>
   );
 }

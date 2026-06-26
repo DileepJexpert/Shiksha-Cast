@@ -123,7 +123,7 @@ export default function BuildConsole({ chapter, scriptData, title }) {
 
   return (
     <section className="build-console">
-      <h2>Build Video</h2>
+      <h2>Build Video — <span className="bc-chapter">{title || chapter}</span></h2>
 
       <div className="build-options">
         <label className="build-option">

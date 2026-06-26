@@ -1117,3 +1117,39 @@ body {
 .pk-multiline { white-space: pre-wrap; font-family: inherit; max-height: 220px; overflow: auto; }
 .pk-download { margin-top: 1rem; }
 .pk-download a { text-decoration: none; display: inline-block; }
+
+/* ===== Compact editor overrides (smaller, less bold, clearer) ===== */
+.main .build-console,
+.main .slide-editor { padding: 0.9rem 1.1rem; margin-bottom: 0.9rem; }
+.main .build-console h2,
+.main .slide-editor h2 { font-size: 1.05rem; margin: 0 0 0.6rem; }
+.bc-chapter { color: #4361ee; }
+
+/* Voice model: compact one-line dropdown instead of big cards */
+.model-selector-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.9rem;
+}
+.model-selector-compact label { font-weight: 600; color: #333; }
+.model-selector-compact select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #d7dbe6;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #fff;
+  min-width: 280px;
+}
+.model-selector-compact .voice-hint { color: #999; font-size: 0.8rem; }
+
+/* Tighter slide cards + smaller thumbnails so the script isn't pushed way down */
+.slide-editor .slide-card { padding: 0.6rem; gap: 0.7rem; }
+.slide-editor .slide-thumb { max-width: 220px; }
+.slide-editor .slide-card textarea { font-size: 0.9rem; }
+.dialogue-tip { font-size: 0.8rem; padding: 0.5rem 0.75rem; }
