@@ -1,0 +1,28 @@
+chapter: "KM08 — X-axis aur Y-axis, coordinates ka khel?"
+slides:
+  - n: 1
+    narration: "Namaste बच्चों! Katixo KhojLab me तुम्हारा फिर से स्वागत है! आज हम खेलेंगे एक मज़ेदार खेल: coordinates का खेल! सोचो तुम्हें खज़ाने का नक्शा मिला है, और उस पर लिखा है तीन कदम दाएँ aur दो कदम ऊपर. वहीं छुपा है खज़ाना! बस यही काम coordinates करते हैं, वो किसी भी जगह का पक्का पता बताते हैं. इसमें दो लाइनें होती हैं, X-axis aur Y-axis. डरने की कोई बात नहीं, ये बहुत आसान है. चलो शुरू करते हैं!"
+  - n: 2
+    narration: "सबसे पहले graph paper को देखो. इस पर छोटे-छोटे square बने होते हैं, जैसे कोई जाली. बीच में दो खास लाइनें मिलती हैं. एक लाइन सीधी आड़ी जाती है, यानी left से right, उसे हम X-axis कहते हैं. दूसरी लाइन सीधी खड़ी जाती है, यानी नीचे से ऊपर, उसे हम Y-axis कहते हैं. ये दोनों लाइनें जहाँ मिलती हैं उस point को origin कहते हैं. याद रखो बच्चों, X आड़ी aur Y खड़ी!"
+  - n: 3
+    narration: "अब origin को समझो. जहाँ X-axis aur Y-axis आपस में मिलते हैं, वो खास point origin कहलाता है. Origin पर दोनों की गिनती 0 से शुरू होती है, इसलिए उसे हम लिखते हैं कोष्ठक में 0 comma 0. यहीं से हम कदम गिनना शुरू करते हैं. X-axis पर right जाओ तो number बढ़ता है, aur Y-axis पर ऊपर जाओ तो number बढ़ता है. तो origin हमारा starting point है, यानी जहाँ से खेल शुरू होता है!"
+  - n: 4
+    narration: "अब coordinates लिखने का तरीका सीखो, ये सबसे ज़रूरी है. हर point को दो numbers से लिखते हैं, कोष्ठक में, बीच में comma लगाकर. पहला number हमेशा X होता है, यानी कितने कदम दाएँ. दूसरा number हमेशा Y होता है, यानी कितने कदम ऊपर. जैसे एक point है कोष्ठक में 3 comma 2. इसका मतलब 3 कदम right aur फिर 2 कदम ऊपर. याद रखो बच्चों: पहले right, फिर ऊपर. यानी पहले X, फिर Y!"
+  - n: 5
+    narration: "चलो एक worked example करते हैं. हमें point कोष्ठक में 4 comma 3 ढूँढना है. origin से शुरू करो, यानी 0 comma 0 से. पहला number 4 है, तो X-axis पर 4 कदम right चलो. अब दूसरा number 3 है, तो वहाँ से 3 कदम ऊपर चलो. बस, जहाँ रुके वही है point 4 comma 3! देखा बच्चों, कितना आसान था? पहले दाएँ गिनो, फिर ऊपर गिनो, और तुम्हें सही जगह मिल जाएगी. यही coordinates का जादू है!"
+  - n: 6
+    narration: "अब एक aur example करते हैं ताकि पक्का हो जाए. हमें point कोष्ठक में 2 comma 5 ढूँढना है. origin से शुरू करो. पहला number 2 है, तो X-axis पर 2 कदम right चलो. अब दूसरा number 5 है, तो वहाँ से 5 कदम ऊपर चलो. वहीं है तुम्हारा point 2 comma 5! ध्यान दो बच्चों, 2 comma 5 aur 5 comma 2 बिल्कुल अलग जगह हैं! इसलिए हमेशा पहले X aur फिर Y, यह क्रम कभी मत बदलना!"
+  - n: 7
+    narration: "अब एक खास बात याद रखो. coordinates में क्रम बहुत मायने रखता है. point कोष्ठक में 3 comma 1 का मतलब है 3 कदम right aur 1 कदम ऊपर. पर point कोष्ठक में 1 comma 3 का मतलब है 1 कदम right aur 3 कदम ऊपर. दोनों बिल्कुल अलग जगह पर हैं! इसीलिए इन्हें ordered pair कहते हैं, यानी क्रम वाली जोड़ी. बच्चों, हमेशा पहला number X aur दूसरा number Y, यह नियम सोने जैसा है, इसे संभाल कर रखो!"
+  - n: 8
+    narration: "अब एक मज़ेदार रोज़ की कहानी. सोचो तुम chess यानी शतरंज खेल रहे हो. हर मोहरे की एक खास जगह होती है, जैसे कोई खाना. ठीक वैसे ही coordinates किसी भी point की पक्की जगह बताते हैं. या सोचो किसी city के map पर तुम्हें कोई दुकान ढूँढनी है, तो उसकी location भी ऐसे ही X aur Y से बताई जा सकती है. यहाँ तक कि video games में भी हर चीज़ की जगह coordinates से तय होती है. मज़ेदार है ना?"
+  - n: 9
+    narration: "चलो एक aur मज़ेदार example. मान लो हमने graph पर तीन points लगाए: कोष्ठक में 1 comma 1, फिर 4 comma 1, aur फिर 4 comma 4. अगर इन तीनों को मिला दें तो एक आकृति बनने लगती है! इस तरह coordinates से हम points लगाकर पूरी shapes बना सकते हैं, जैसे triangle या square. इसलिए तो artist aur engineer भी coordinates इस्तेमाल करते हैं. देखा बच्चों, छोटे-छोटे points से कितनी बड़ी चीज़ें बनती हैं!"
+  - n: 10
+    narration: "अब समय है तुम्हारी बारी! Chalo try karein! तीन सवाल हैं, video रोको aur copy me हल करो. पहला: point कोष्ठक में 3 comma 2 में पहले कितने कदम right जाओगे? दूसरा: origin किस point को कहते हैं? तीसरा: क्या 2 comma 4 aur 4 comma 2 एक ही जगह हैं, हाँ या ना? ध्यान से सोचना, क्रम मत भूलना. हो गया? शाबाश! अब अगली slide पर answers देखते हैं!"
+  - n: 11
+    narration: "चलो answers मिलाते हैं! पहला: point 3 comma 2 में पहला number 3 है, यानी 3 कदम right जाओगे, फिर 2 कदम ऊपर! दूसरा: origin वो point है जहाँ X-axis aur Y-axis मिलते हैं, यानी कोष्ठक में 0 comma 0! तीसरा: नहीं, 2 comma 4 aur 4 comma 2 बिल्कुल अलग जगह हैं, क्योंकि coordinates में क्रम मायने रखता है! कितने सही हुए बच्चों? सब सही तो शाबाश, और कोई गलत तो फिर कोशिश करो!"
+  - n: 12
+    narration: "चलो अब पूरा recap करते हैं! Graph पर X-axis आड़ी लाइन है, यानी left से right, aur Y-axis खड़ी लाइन है, यानी नीचे से ऊपर. जहाँ दोनों मिलते हैं वो origin है, यानी 0 comma 0. हर point को दो numbers से लिखते हैं, कोष्ठक में, comma लगाकर: पहले X यानी right, फिर Y यानी ऊपर. क्रम कभी मत बदलना, क्योंकि 3 comma 2 aur 2 comma 3 अलग होते हैं. बस इतना याद रखो aur तुम master बन जाओगे!"
+  - n: 13
+    narration: "शाबाश बच्चों! आज तुमने X-axis, Y-axis aur coordinates सीख लिए, ekdum aasaan tarike se! अब graph paper लेकर खुद points लगाने की practice करना, ये बिल्कुल खेल जैसा मज़ेदार लगेगा. अगर मज़ा आया तो Katixo KhojLab subscribe karo, like करो aur bell दबाओ ताकि हर नया मज़ेदार lesson सबसे पहले तुम तक पहुँचे! अगली बार एक नए topic के साथ मिलेंगे. तब तक सीखते रहो, मुस्कुराते रहो. Shabaash, milte hain agle episode me!"
