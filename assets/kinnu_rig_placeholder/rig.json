@@ -1,0 +1,16 @@
+{
+  "character": "character_base.png",
+  "mouths": {
+    "closed": "mouth_closed.png",
+    "half": "mouth_half.png",
+    "open": "mouth_open.png"
+  },
+  "mouth_anchor": [
+    350,
+    432
+  ],
+  "size": [
+    700,
+    920
+  ]
+}
