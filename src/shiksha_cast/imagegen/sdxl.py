@@ -31,10 +31,23 @@ class SDXLImageProvider(ImageProvider):
             self._model_id,
             torch_dtype=torch.float16,
             variant="fp16",
-        ).to("cuda")
-
+        )
         self._pipe.set_progress_bar_config(disable=True)
-        logger.info("Image model loaded on CUDA.")
+
+        # On an 8 GB GPU shared with desktop apps, loading the whole SDXL pipeline
+        # straight to CUDA OOMs. Offload to CPU and stream components to the GPU on
+        # demand (peak VRAM ~2-3 GB), with attention/VAE slicing for extra safety.
+        try:
+            self._pipe.enable_model_cpu_offload()
+            self._pipe.enable_attention_slicing()
+            try:
+                self._pipe.enable_vae_slicing()
+            except Exception:
+                pass
+            logger.info("Image model loaded with CPU offload (8 GB-safe).")
+        except Exception as e:
+            logger.warning("CPU offload unavailable (%s); falling back to .to(cuda)", e)
+            self._pipe = self._pipe.to("cuda")
 
     def generate(self, prompt: str, output_path: Path, width: int = 1024, height: int = 576) -> Path:
         self._load()
