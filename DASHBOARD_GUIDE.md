@@ -18,6 +18,32 @@ Open the dashboard at **http://localhost:5173** (start it with `run-backend.bat`
 
 ---
 
+## 🛠️ Maintenance panel (top of the dashboard)
+
+Run the common fixes from the UI — no terminal needed.
+
+- **GPU meter** — shows live VRAM used / total + utilization, auto-refreshing.
+  Turns red when VRAM is high (close to the 8 GB limit).
+- **Refresh** — re-reads the GPU status now.
+- **Free GPU / Stop builds** — stops any stuck build and the TTS worker and frees
+  VRAM. **Use this when a build hangs or you get "CUDA out of memory."** It does
+  **not** stop the app/server — only the build processes. Safe to click anytime.
+
+Per-chapter, inside a chapter's **Build Video** panel:
+
+- **Clear cache** — deletes that chapter's build cache so the next **Build Video**
+  regenerates everything fresh (re-does narration/audio and re-assembles the video).
+  Use this if the audio sounds wrong or you changed the voice and want a clean rebuild.
+
+**Typical fixes:**
+| Problem | Do this in the UI |
+|---|---|
+| Build stuck / "out of memory" | Maintenance → **Free GPU / Stop builds**, then Build again |
+| Audio wrong / changed voice | Chapter → **Clear cache** → **Build Video** |
+| Not sure if GPU is busy | Look at the **GPU meter** (utilization %) |
+
+---
+
 ## ➕ New Chapter (the "+ New Chapter" flow)
 
 - **Upload a PDF**, or **upload PNG slides** (select multiple).
