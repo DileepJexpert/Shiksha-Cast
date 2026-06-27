@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { saveScript, triggerBuild, getStatus, downloadUrl, srtUrl, logStreamUrl } from '../api.js';
+import { saveScript, triggerBuild, getStatus, downloadUrl, srtUrl, logStreamUrl, clearCache } from '../api.js';
 
 export default function BuildConsole({ chapter, scriptData, title }) {
   const [status, setStatus] = useState('idle');
@@ -153,6 +153,23 @@ export default function BuildConsole({ chapter, scriptData, title }) {
       <div className="build-actions">
         <button className="btn-build" onClick={handleBuild} disabled={busy || !chapter}>
           {busy ? 'Building...' : aiMode ? 'AI Build' : 'Build Video'}
+        </button>
+
+        <button
+          className="btn-secondary"
+          disabled={busy || !chapter}
+          title="Delete this chapter's cache so the next build regenerates fresh"
+          onClick={async () => {
+            if (!window.confirm("Clear this chapter's build cache?\nThe next build will regenerate audio + video from scratch.")) return;
+            try {
+              await clearCache(chapter);
+              addLog('Cache cleared — next build will be fresh.', 'success');
+            } catch (e) {
+              addLog('Clear cache error: ' + e.message, 'error');
+            }
+          }}
+        >
+          Clear cache
         </button>
 
         {stage && (

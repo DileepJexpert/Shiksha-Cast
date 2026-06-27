@@ -8,6 +8,7 @@ import BuildConsole from './components/BuildConsole.jsx';
 import Stepper from './components/Stepper.jsx';
 import TopicForm from './components/TopicForm.jsx';
 import PublishKit from './components/PublishKit.jsx';
+import ToolsPanel from './components/ToolsPanel.jsx';
 import { getScript, slideImageUrl } from './api.js';
 
 export default function App() {
@@ -96,11 +97,14 @@ export default function App() {
 
       <main className="main">
         {view === 'dashboard' && (
-          <ChapterList
-            onSelect={handleSelectChapter}
-            onNew={handleNew}
-            onNewTopic={handleNewTopic}
-          />
+          <>
+            <ToolsPanel />
+            <ChapterList
+              onSelect={handleSelectChapter}
+              onNew={handleNew}
+              onNewTopic={handleNewTopic}
+            />
+          </>
         )}
 
         {view === 'topic' && (

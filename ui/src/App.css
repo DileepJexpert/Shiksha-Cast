@@ -1153,3 +1153,16 @@ body {
 .slide-editor .slide-thumb { max-width: 220px; }
 .slide-editor .slide-card textarea { font-size: 0.9rem; }
 .dialogue-tip { font-size: 0.8rem; padding: 0.5rem 0.75rem; }
+
+/* Maintenance / tools panel */
+.tools-panel { background:#fff; border:1px solid #e6e8ef; border-radius:10px; padding:0.7rem 1rem; margin-bottom:1rem; }
+.tools-row { display:flex; align-items:center; gap:0.7rem; flex-wrap:wrap; }
+.tools-title { font-weight:700; color:#333; }
+.tools-spacer { flex:1; }
+.gpu-stat { font-size:0.85rem; color:#555; background:#f3f5fb; padding:0.3rem 0.6rem; border-radius:6px; }
+.gpu-stat.gpu-high { background:#ffe3e3; color:#b02a2a; font-weight:600; }
+.btn-danger { background:#e7484f; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; font-weight:600; cursor:pointer; }
+.btn-danger:hover { background:#cf3b42; }
+.btn-danger:disabled { opacity:0.6; cursor:default; }
+.tools-msg { margin-top:0.5rem; font-size:0.85rem; color:#1d7a46; }
+.tools-hint { margin-top:0.4rem; font-size:0.78rem; color:#888; }

@@ -118,3 +118,24 @@ export function thumbnailUrl(chapter, style = 'curiosity') {
 export function packageZipUrl(chapter) {
   return `${BASE}/api/chapter/${chapter}/package.zip`;
 }
+
+// ---- Maintenance / tools ----
+export async function getGpu() {
+  const res = await fetch(`${BASE}/api/tools/gpu`);
+  if (!res.ok) throw new Error(`GPU status failed: ${res.status}`);
+  return res.json();
+}
+
+export async function freeGpu() {
+  const res = await fetch(`${BASE}/api/tools/free-gpu`, { method: 'POST' });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `Free GPU failed: ${res.status}`);
+  return data;
+}
+
+export async function clearCache(chapter) {
+  const res = await fetch(`${BASE}/api/tools/clear-cache/${chapter}`, { method: 'POST' });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `Clear cache failed: ${res.status}`);
+  return data;
+}

@@ -620,3 +620,71 @@ def download_package(chapter: str):
     zip_base = PROJECT_ROOT / "dist" / "packages" / f"{chapter}_package"
     archive = shutil.make_archive(str(zip_base), "zip", root_dir=str(pkg))
     return FileResponse(archive, media_type="application/zip", filename=f"{chapter}_package.zip")
+
+
+# ---------------------------------------------------------------------------
+# Maintenance / Tools — run from the dashboard so no terminal is needed.
+# ---------------------------------------------------------------------------
+def _gpu_status() -> dict:
+    import subprocess
+    try:
+        r = subprocess.run(
+            ["nvidia-smi", "--query-gpu=memory.used,memory.total,utilization.gpu",
+             "--format=csv,noheader,nounits"],
+            capture_output=True, text=True, timeout=15,
+        )
+        used, total, util = [x.strip() for x in r.stdout.strip().splitlines()[0].split(",")]
+        return {"memory_used_mb": int(used), "memory_total_mb": int(total),
+                "utilization_pct": int(util)}
+    except Exception as e:  # noqa: BLE001
+        return {"error": str(e)}
+
+
+@app.get("/api/tools/gpu")
+def tools_gpu():
+    """Live GPU memory + utilization (for the dashboard maintenance panel)."""
+    return _gpu_status()
+
+
+@app.post("/api/tools/free-gpu")
+def tools_free_gpu():
+    """Stop stray build / TTS-worker processes to free GPU VRAM. Never kills the server."""
+    import os
+    import subprocess
+    import time
+
+    self_pid = os.getpid()
+    ps = (
+        "Get-CimInstance Win32_Process | Where-Object { "
+        "$_.Name -eq 'python.exe' -and $_.CommandLine -and "
+        f"$_.ProcessId -ne {self_pid} -and "
+        "( ($_.CommandLine -match 'shiksha_cast' -and $_.CommandLine -notmatch 'uvicorn') "
+        "-or $_.CommandLine -match 'veena_worker|make_slides|make_kids_slides|export_decks|veena_voices_sample' ) "
+        "} | ForEach-Object { Stop-Process -Id $_.ProcessId -Force; $_.ProcessId }"
+    )
+    try:
+        r = subprocess.run(["powershell", "-NoProfile", "-Command", ps],
+                           capture_output=True, text=True, timeout=30)
+        killed = [x.strip() for x in r.stdout.strip().splitlines() if x.strip()]
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+    for ch, job in list(_build_jobs.items()):
+        if job.get("status") == "running":
+            _build_jobs[ch] = {"status": "idle", "stage": "stopped"}
+    time.sleep(2)
+    return {"stopped": killed, "count": len(killed), "gpu": _gpu_status()}
+
+
+@app.post("/api/tools/clear-cache/{chapter}")
+def tools_clear_cache(chapter: str):
+    """Delete a chapter's build cache (manifest) so the next build regenerates fresh."""
+    manifest = PROJECT_ROOT / "build" / chapter / "manifest.json"
+    removed = False
+    if manifest.exists():
+        try:
+            manifest.unlink()
+            removed = True
+        except Exception as e:  # noqa: BLE001
+            return JSONResponse({"error": str(e)}, status_code=500)
+    _build_jobs.pop(chapter, None)
+    return {"chapter": chapter, "cache_cleared": removed}
