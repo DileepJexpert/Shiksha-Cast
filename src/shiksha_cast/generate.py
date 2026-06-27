@@ -9,14 +9,17 @@ from __future__ import annotations
 
 import json
 import re
-import urllib.error
-import urllib.request
 from pathlib import Path
 from typing import Optional
 
 import yaml
 
 from shiksha_cast.config import GeneratorConfig, ScriptFile
+from shiksha_cast.local_ai import (
+    LocalAIUnavailable,
+    ollama_available,
+    ollama_generate_json,
+)
 
 
 class GeneratorUnavailable(RuntimeError):
@@ -26,14 +29,6 @@ class GeneratorUnavailable(RuntimeError):
 def slugify(text: str, max_len: int = 48) -> str:
     s = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
     return s[:max_len].strip("-") or "episode"
-
-
-def ollama_available(url: str) -> bool:
-    try:
-        with urllib.request.urlopen(f"{url.rstrip('/')}/api/tags", timeout=5) as r:
-            return r.status == 200
-    except Exception:
-        return False
 
 
 def _build_prompt(topic: str, n_slides: int, audience: str, style: str) -> str:
@@ -65,33 +60,10 @@ Output ONLY a JSON object with exactly this shape:
 
 
 def _ollama_generate(url: str, model: str, prompt: str, timeout_s: int = 900) -> str:
-    body = json.dumps({
-        "model": model,
-        "prompt": prompt,
-        "stream": False,
-        "format": "json",
-        "options": {"temperature": 0.7},
-    }).encode("utf-8")
-    req = urllib.request.Request(
-        f"{url.rstrip('/')}/api/generate",
-        data=body,
-        headers={"Content-Type": "application/json"},
-    )
     try:
-        with urllib.request.urlopen(req, timeout=timeout_s) as r:
-            payload = json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        detail = e.read().decode("utf-8", "ignore")
-        if "not found" in detail.lower() or e.code == 404:
-            raise GeneratorUnavailable(
-                f"Ollama model '{model}' not found. Pull it first: ollama pull {model}"
-            ) from e
-        raise GeneratorUnavailable(f"Ollama error (HTTP {e.code}): {detail}") from e
-    except urllib.error.URLError as e:
-        raise GeneratorUnavailable(
-            f"Could not reach Ollama at {url}. Is it running? ({e.reason})"
-        ) from e
-    return payload.get("response", "")
+        return ollama_generate_json(url, model, prompt, temperature=0.7, timeout_s=timeout_s)
+    except LocalAIUnavailable as e:
+        raise GeneratorUnavailable(str(e)) from e
 
 
 def _parse_script_json(raw: str) -> dict:

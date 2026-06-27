@@ -1,0 +1,109 @@
+chapter: Friction Friends
+topic: friction story with Kinnu and Gappu
+audience: kids age 5-10
+style: Hinglish, funny and warm, like a playful science cartoon
+characters:
+- id: kinnu
+  name: Kinnu
+  voice: kavya
+  description: curious friendly girl stickman host
+  rig: assets/characters/kinnu/rig.json
+- id: gappu
+  name: Gappu
+  voice: agastya
+  description: cute friendly boy stickman friend, playful and asks questions
+  rig: assets/characters/gappu/rig.json
+scenes:
+- n: 1
+  title: Hook
+  background_prompt: bright cartoon classroom floor with a toy ball, no characters, open space at left
+    and right
+  learning_point: Introduce the concept of friction by showing an object's inability to move on a smooth
+    surface.
+  characters:
+    kinnu:
+      x: 0.22
+      y: 0.86
+      height: 0.62
+      pose: happy
+      facing: right
+    gappu:
+      x: 0.74
+      y: 0.86
+      height: 0.62
+      pose: confused
+      facing: left
+  dialogue:
+  - speaker: kinnu
+    text: Gappu, look at this!
+    emotion: happy
+    action: point
+  - speaker: gappu
+    text: Why did it stop?
+    emotion: confused
+    action: think
+  animation_notes:
+  - Kinnu enters from left
+  - Gappu tilts head while listening
+- n: 2
+  title: Explaining Friction
+  background_prompt: cartoon illustration of different surfaces with rough and smooth textures, no characters
+  learning_point: Explain that friction is the force that opposes motion between two surfaces in contact.
+  characters:
+    kinnu:
+      x: 0.22
+      y: 0.86
+      height: 0.62
+      pose: idle_bob
+      facing: right
+    gappu:
+      x: 0.74
+      y: 0.86
+      height: 0.62
+      pose: surprised
+      facing: left
+  dialogue:
+  - speaker: kinnu
+    text: Gappu, it's because of friction!
+    emotion: excited
+    action: look_at_object
+  - speaker: gappu
+    text: Friction? What's that?
+    emotion: curious
+    action: think
+  animation_notes:
+  - Kinnu points to a rough surface
+  - Gappu looks at the smooth surface
+- n: 3
+  title: Real-Life Example
+  background_prompt: cartoon illustration of a child sliding on a skateboard, no characters
+  learning_point: Show how friction affects real-life situations, like skateboarding.
+  characters:
+    kinnu:
+      x: 0.22
+      y: 0.86
+      height: 0.62
+      pose: happy_jump
+      facing: right
+    gappu:
+      x: 0.74
+      y: 0.86
+      height: 0.62
+      pose: excited
+      facing: left
+  dialogue:
+  - speaker: kinnu
+    text: Gappu, see how the skateboard moves?
+    emotion: happy
+    action: point
+  - speaker: gappu
+    text: Yes! It's sliding!
+    emotion: excited
+    action: look_at_object
+  animation_notes:
+  - Kinnu cheers Gappu on
+  - Gappu watches the skateboard slide
+asset_needs:
+- backgrounds without characters
+- Kinnu rig with mouth states
+- Gappu rig with mouth states

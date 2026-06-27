@@ -322,6 +322,93 @@ def new_episode(
         rprint(f"[bold green]Video:[/bold green] {result.assemble.video_path}")
 
 
+@app.command(name="ollama-check")
+def ollama_check(
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Check the local Ollama server and list pulled models."""
+    from shiksha_cast.config import load_channel_config
+    from shiksha_cast.local_ai import LocalAIUnavailable, list_ollama_models
+
+    project_root = root or _find_project_root()
+    cfg = load_channel_config(project_root)
+    rprint(f"[bold]Ollama URL:[/bold] {cfg.generator.url}")
+    rprint(f"[bold]Configured model:[/bold] {cfg.generator.model}")
+    try:
+        models = list_ollama_models(cfg.generator.url)
+    except LocalAIUnavailable as e:
+        rprint(f"[bold red]Ollama unavailable:[/bold red] {e}")
+        rprint("[dim]Start Ollama, then pull a local model, for example:[/dim]")
+        rprint(f"  [cyan]ollama pull {cfg.generator.model}[/cyan]")
+        raise typer.Exit(code=1)
+
+    if not models:
+        rprint("[yellow]Ollama is running, but no models are pulled yet.[/yellow]")
+        rprint(f"  [cyan]ollama pull {cfg.generator.model}[/cyan]")
+        return
+
+    rprint("[bold green]Ollama is running.[/bold green] Local models:")
+    for m in models:
+        size = f" ({m.size / (1024 ** 3):.1f} GB)" if m.size else ""
+        marker = " [green]<- configured[/green]" if m.name == cfg.generator.model else ""
+        rprint(f"  - {m.name}{size}{marker}")
+
+
+@app.command(name="new-story")
+def new_story(
+    topic: str = typer.Argument(..., help='Story topic, e.g. "friction with Kinnu and Gappu"'),
+    category: str = typer.Option("stories", "--category", help="content/ subfolder"),
+    slug: Optional[str] = typer.Option(None, "--slug", help="Folder name (default: derived from topic)"),
+    scenes: int = typer.Option(6, "--scenes", help="Number of story scenes"),
+    model: Optional[str] = typer.Option(None, "--model", help="Ollama model override"),
+    audience: str = typer.Option("kids age 5-10", "--audience", help="Target audience"),
+    style: str = typer.Option(
+        "Hinglish, funny and warm, like a playful science cartoon",
+        "--style",
+        help="Story/directing style",
+    ),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+) -> None:
+    """Generate a two-character story plan with local Ollama.
+
+    Writes both story.yaml (future multi-character animator) and script.yaml
+    (current TTS/build-compatible dialogue with F:/M: speaker tags).
+    """
+    from shiksha_cast.config import load_channel_config
+    from shiksha_cast.story import StoryUnavailable, write_story_episode
+
+    project_root = root or _find_project_root()
+    cfg = load_channel_config(project_root)
+
+    rprint(f'[bold]Generating local story for:[/bold] "{topic}"')
+    rprint(f"[dim]via Ollama ({model or cfg.generator.model}); no cloud API is used.[/dim]")
+    try:
+        ep_dir, story, script = write_story_episode(
+            topic,
+            project_root,
+            cfg.generator,
+            category=category,
+            slug=slug,
+            n_scenes=scenes,
+            audience=audience,
+            style=style,
+            model=model,
+        )
+    except StoryUnavailable as e:
+        rprint(f"[bold red]Cannot generate story:[/bold red] {e}")
+        raise typer.Exit(code=1)
+
+    ep_id = ep_dir.name
+    rprint(f"[bold green]Created:[/bold green] {ep_dir}")
+    rprint(f"  story:  {ep_dir / 'story.yaml'}")
+    rprint(f"  script: {ep_dir / 'script.yaml'}")
+    rprint(f"  Title:  {story.get('chapter')}")
+    rprint(f"  Scenes: {len(story.get('scenes', []))}")
+    rprint(f"[dim]Current build path:[/dim] python -m shiksha_cast ai-build -c {ep_id}")
+    rprint(f"[dim]Talking-host path:[/dim] python scripts/build_talking_episode.py {ep_id}")
+    rprint(f"[dim]Future path:[/dim] multi-character renderer will consume story.yaml directly.")
+
+
 @app.command()
 def shorts(
     chapter: str = typer.Option(..., "--chapter", "-c", help="Chapter ID"),

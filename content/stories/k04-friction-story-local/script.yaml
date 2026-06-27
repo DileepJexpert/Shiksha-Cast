@@ -1,0 +1,23 @@
+chapter: Friction Friends
+slides:
+- n: 1
+  narration: 'F: Gappu, look at this!
+
+    M: Why did it stop?'
+  visual_prompt: bright cartoon classroom floor with a toy ball, no characters, open space at left and
+    right. No characters, no people, no mascot, leave space for overlays.
+  motion: kenburns
+- n: 2
+  narration: 'F: Gappu, it''s because of friction!
+
+    M: Friction? What''s that?'
+  visual_prompt: cartoon illustration of different surfaces with rough and smooth textures, no characters.
+    No characters, no people, no mascot, leave space for overlays.
+  motion: kenburns
+- n: 3
+  narration: 'F: Gappu, see how the skateboard moves?
+
+    M: Yes! It''s sliding!'
+  visual_prompt: cartoon illustration of a child sliding on a skateboard, no characters. No characters,
+    no people, no mascot, leave space for overlays.
+  motion: kenburns

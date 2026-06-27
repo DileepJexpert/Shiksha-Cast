@@ -88,6 +88,36 @@ Useful flags: `--category how-it-works/technology`, `--slug my-name`,
 
 ---
 
+## 3b. Local story director (Kinnu + Gappu)
+
+For Binocs/Peekaboo-style videos, use Ollama as the local writer/director and keep
+the video renderer deterministic. This creates:
+
+- `story.yaml` -> rich scene plan: characters, positions, dialogue, emotions, actions.
+- `script.yaml` -> current build-compatible dialogue using `F:` / `M:` speaker tags.
+
+Check local models:
+```
+python -m shiksha_cast ollama-check
+```
+
+Generate a two-character story pack:
+```
+python -m shiksha_cast new-story "friction story with Kinnu and Gappu" --scenes 6
+```
+
+Current build options after review:
+```
+python -m shiksha_cast ai-build -c <slug>
+python scripts\build_talking_episode.py <slug>
+```
+
+Future renderer work should consume `story.yaml` directly so Kinnu and Gappu can
+move, react, and lip-sync separately. The model only plans the episode; local
+Python/FFmpeg renders the video.
+
+---
+
 ## 3. Make a NEW chapter
 
 1. Put the slide PDF at `content\chNN\chNN.pdf` (or upload PDF/PNG slides in the dashboard).
