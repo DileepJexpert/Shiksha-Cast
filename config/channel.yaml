@@ -35,6 +35,6 @@ voice:
     noise.
 
     '
-  model: vinaya
-  provider: veena
+  model: af_heart
+  provider: kokoro
   sample_rate: 24000
