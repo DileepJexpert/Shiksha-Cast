@@ -5,39 +5,91 @@ slides:
   narration: Hello friends! Ye hai humara dost Kinnu. Kinnu ko laddoo bahut-bahut pasand hain! Lekin aaj Kinnu ek badi galti karne wala hai. Chalo dekhte hain Kinnu kya karta hai. Ready? Let's go!
   visual_prompt: A cute smiling stickman "Kinnu" waving, holding a laddoo, big googly eyes. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: title
+    title: Kinnu Learns ADDITION!
+    subtitle: Funny Maths Story
 - n: 2
   narration: Dekho! Kinnu ke paas 2 laddoo hain. Ek… do! Yummy yummy! Kinnu bahut khush hai. Two laddoos! Wah Kinnu, wah!
   visual_prompt: Stickman Kinnu holding 2 yellow laddoos, happy face. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: count
+    n: 2
+    item: laddoo
+    caption: Kinnu ke paas 2 laddoo
 - n: 3
   narration: Tabhi Kinnu ka dost aata hai. Aur woh Kinnu ko 3 aur laddoo deta hai. Ek… do… teen! Three more laddoos! Kinnu aur bhi khush ho gaya. Thank you, dost!
   visual_prompt: A second stickman handing 3 laddoos to Kinnu. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: add
+    n1: 2
+    n2: 3
+    item: laddoo
+    caption: Dost ne diye 3 aur laddoo!
 - n: 4
   narration: 'Ab Kinnu sochta hai — mere paas kitne laddoo hain? Kinnu zor se bolta hai: do aur teen… teyiis! 23 laddoos! He he he! Kya Kinnu sahi keh raha hai? Nahi nahi nahi!'
   visual_prompt: Kinnu with a goofy proud face, thought bubble showing "23". Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: mistake
+    eq: 2 + 3 = 23
+    caption: Kinnu bola 23?!
 - n: 5
   narration: Tabhi teacher aati hain. Teacher kehti hain — Nahi Kinnu! Ye 23 nahi hai! Tumne numbers ko joining kar diya. Ye galat hai. Isko bolte hain ADDITION — jodna! Chalo, sahi tarika seekhte hain.
   visual_prompt: A friendly stickman teacher with a pointer, gentle smile. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: bigtext
+    big: ADDITION = jodna!
+    small: joining numbers nahi
 - n: 6
   narration: Teacher kehti hain — Addition ka matlab hai cheezon ko ginna, saath milaakar. Kinnu ke paas the 2 laddoo. Phir aaye 3 aur. Toh ab sabko ek saath gino. Ready? Chalo saath mein ginte hain!
   visual_prompt: Two groups of laddoos (2 and 3) with a big plus sign between them. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: add
+    n1: 2
+    n2: 3
+    item: laddoo
+    caption: Saath milaakar gino
 - n: 7
   narration: 'Ek… do… (ye pehle wale do laddoo). Ab aage — teen… chaar… paanch! Count karo: 1, 2, 3, 4, 5. Total kitne hue? Paanch laddoo! Five laddoos! Shabaash!'
   visual_prompt: All 5 laddoos in a row, each numbered 1,2,3,4,5. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: countnum
+    n: 5
+    item: laddoo
+    caption: 'Gino: 1, 2, 3, 4, 5'
 - n: 8
   narration: Toh dosto, do aur teen milkar paanch hote hain. 2 plus 3 equals 5. Ye hai addition! Joining nahi, balki ginna aur jodna. Ab Kinnu samajh gaya. Thank you teacher!
   visual_prompt: 'Big happy equation with laddoos: 2 + 3 = 5, Kinnu cheering. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters'
   voice: kavya
+  visual:
+    scene: add
+    n1: 2
+    n2: 3
+    result: 5
+    item: laddoo
+    caption: Yeh hai addition!
 - n: 9
   narration: Chalo ek aur try karo! Kinnu ke paas hai 1 ball. Friend deta hai 1 aur ball. Ab kitni balls? Socho… ek aur ek… do! 1 plus 1 equals 2! Tum bilkul sahi ho. You are a star!
   visual_prompt: 1 ball + 1 ball = 2 balls, Kinnu pointing at the viewer. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: add
+    n1: 1
+    n2: 1
+    question: true
+    item: ball
+    caption: Ab tum karo!
 - n: 10
   narration: Toh aaj humne kya seekha? Addition matlab cheezein jodna aur ginna — joining numbers nahi! 2 plus 3 equals 5. Agar tumhe maza aaya, toh Kinnu ko like aur subscribe karo. Aise hi funny learning ke liye milte rahenge. Bye bye friends! A Katixo channel.
   visual_prompt: Kinnu waving bye, holding a "SUBSCRIBE" sign, balloons. Cute simple 2D stickman cartoon, thick black outlines, bright cheerful flat colors, plain soft pastel background, child-friendly, funny, wholesome, no text, no letters
   voice: kavya
+  visual:
+    scene: cta
+    big: Subscribe to Kinnu!
+    small: A Katixo channel

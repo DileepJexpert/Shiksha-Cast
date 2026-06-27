@@ -1,7 +1,7 @@
 branding:
-  intro: assets/intro.mp4
+  intro: null
   mascot_overlay: null
-  outro: assets/outro.mp4
+  outro: null
 channel: Katixo KhojLab
 fps: 30
 generator:
