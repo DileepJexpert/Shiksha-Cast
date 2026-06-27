@@ -68,14 +68,14 @@ def parse_overlays(path):
     return out
 
 
-def render(ep_id, text, n, total, accent, out, is_title=False):
+def render(ep_id, text, n, total, accent, out, is_title=False, brand="KATIXO SHIKSHA"):
     img = Image.new("RGB", (W, H))
     d = ImageDraw.Draw(img)
     gradient(d)
     d.rectangle([0, 0, 18, H], fill=accent)  # left accent bar
 
     badge = ep_id.split("-")[0].upper()
-    d.text((70, 58), "KATIXO SHIKSHA", font=font("segoeuib.ttf", 34), fill=accent)
+    d.text((70, 58), brand, font=font("segoeuib.ttf", 34), fill=accent)
     bf = font("segoeuib.ttf", 34)
     d.text((W - 70 - d.textlength(badge, font=bf), 58), badge, font=bf, fill=(180, 190, 210))
 
@@ -116,6 +116,7 @@ def build(ep_dir):
     slides = scr.get("slides", [])
     total = len(slides)
     ep_title = scr.get("chapter", ep)
+    brand = scr.get("brand", "KATIXO SHIKSHA")
     smd = os.path.join(ep_dir, "SLIDES.md")
     overlays = parse_overlays(smd) if os.path.exists(smd) else []
     outdir = os.path.join("build", ep, "slides")
@@ -125,10 +126,10 @@ def build(ep_dir):
         accent = ACCENTS[i % len(ACCENTS)]
         if i == 0:
             text = overlays[0] if overlays else (ep_title.split("—", 1)[-1].strip())
-            render(ep, text, n, total, accent, os.path.join(outdir, f"slide_{n:03d}.png"), is_title=True)
+            render(ep, text, n, total, accent, os.path.join(outdir, f"slide_{n:03d}.png"), is_title=True, brand=brand)
         else:
             text = overlays[i] if i < len(overlays) and overlays[i] else f"Slide {n}"
-            render(ep, text, n, total, accent, os.path.join(outdir, f"slide_{n:03d}.png"))
+            render(ep, text, n, total, accent, os.path.join(outdir, f"slide_{n:03d}.png"), brand=brand)
     # remove the placeholder note if present
     note = os.path.join(outdir, "_PUT_SLIDES_HERE.txt")
     if os.path.exists(note):
