@@ -112,6 +112,7 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
         music_path=music_path,
         music_db=cfg.music.duck_db,
         sample_rate=cfg.voice.sample_rate,
+        motion=cfg.imagegen.effective_motion(),
     )
     print(f"[PROGRESS] Video assembled: {assemble_result.slide_count} clips, {assemble_result.total_duration:.1f}s total")
 

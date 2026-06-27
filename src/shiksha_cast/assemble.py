@@ -64,13 +64,76 @@ def mix_music_bed(video_in: Path, music: Path, output_mp4: Path, music_db: float
         "-stream_loop", "-1", "-i", str(music),
         "-filter_complex",
         f"[1:a]volume={music_db}dB[m];"
-        f"[0:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]",
+        f"[0:a][m]amix=inputs=2:duration=first:dropout_transition=2[mix];"
+        f"[mix]loudnorm=I=-14:TP=-1.5:LRA=11[a]",
         "-map", "0:v", "-map", "[a]",
         "-c:v", "copy",
         "-c:a", "aac", "-b:a", "192k", "-ar", str(sample_rate), "-ac", "1",
         "-shortest", "-movflags", "+faststart",
         str(output_mp4),
     ])
+
+
+def normalize_loudness(video_in: Path, output_mp4: Path, sample_rate: int) -> None:
+    """Master the final audio to the YouTube target (-14 LUFS) so videos are punchy
+    and consistent. Used when there is no music bed (the music path normalizes inline)."""
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+    _run_ffmpeg([
+        "-i", str(video_in),
+        "-af", "loudnorm=I=-14:TP=-1.5:LRA=11",
+        "-c:v", "copy",
+        "-c:a", "aac", "-b:a", "192k", "-ar", str(sample_rate), "-ac", "1",
+        "-movflags", "+faststart",
+        str(output_mp4),
+    ])
+
+
+def build_slide_motion_clip(
+    slide_png: Path,
+    audio_wav: Path,
+    output_mp4: Path,
+    duration: float,
+    effect_index: int = 0,
+    pad_before_s: float = 0.3,
+    pad_after_s: float = 0.7,
+    min_slide_s: float = 4.0,
+    fps: int = 30,
+    width: int = 1920,
+    height: int = 1080,
+) -> float:
+    """Gentle, slide-SAFE Ken Burns: a slow CENTERED zoom (in or out) that keeps the
+    logo, title and 'Slide N' badge fully on-screen (low zoom, no pan). We pre-upscale
+    so zoompan stays smooth and crisp instead of jittering on a single image."""
+    clip_dur = max(min_slide_s, pad_before_s + duration + pad_after_s)
+    frames = int(clip_dur * fps)
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+
+    cx, cy = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+    if effect_index % 2 == 0:
+        z = "min(zoom+0.0005,1.07)"                      # slow zoom IN
+    else:
+        z = "if(lte(zoom,1.0),1.07,max(1.0,zoom-0.0005))"  # slow zoom OUT
+    vf = (
+        f"scale={width * 2}:{height * 2},"
+        f"zoompan=z='{z}':x='{cx}':y='{cy}':d={frames}:s={width}x{height}:fps={fps},"
+        f"format=yuv420p"
+    )
+
+    _run_ffmpeg([
+        "-i", str(slide_png),
+        "-i", str(audio_wav),
+        "-vf", vf,
+        "-c:v", "libx264",
+        "-c:a", "aac",
+        "-b:a", "192k",
+        "-pix_fmt", "yuv420p",
+        "-r", str(fps),
+        "-t", f"{clip_dur:.3f}",
+        "-af", f"adelay={int(pad_before_s * 1000)}|{int(pad_before_s * 1000)},apad",
+        "-shortest",
+        str(output_mp4),
+    ])
+    return clip_dur
 
 
 def build_slide_clip(
@@ -218,6 +281,7 @@ def assemble_chapter(
     music_path: Path | None = None,
     music_db: float = -18.0,
     sample_rate: int = 24000,
+    motion: str = "kenburns",
 ) -> AssembleResult:
     """Assemble per-slide clips, optional intro/outro bumpers and music bed.
 
@@ -232,17 +296,29 @@ def assemble_chapter(
     total_dur = 0.0
     total = len(slide_paths)
 
+    use_motion = (motion or "").lower() in ("kenburns", "zoom", "motion", "kb")
     for i, (slide, audio, dur) in enumerate(zip(slide_paths, audio_paths, durations)):
         clip_path = clips_dir / f"clip_{i + 1:03d}.mp4"
         print(f"[PROGRESS] Encoding clip {i + 1}/{total}...")
-        clip_dur = build_slide_clip(
-            slide, audio, clip_path,
-            duration=dur,
-            pad_before_s=pad_before_s,
-            pad_after_s=pad_after_s,
-            min_slide_s=min_slide_s,
-            fps=fps,
-        )
+        if use_motion:
+            clip_dur = build_slide_motion_clip(
+                slide, audio, clip_path,
+                duration=dur,
+                effect_index=i,
+                pad_before_s=pad_before_s,
+                pad_after_s=pad_after_s,
+                min_slide_s=min_slide_s,
+                fps=fps,
+            )
+        else:
+            clip_dur = build_slide_clip(
+                slide, audio, clip_path,
+                duration=dur,
+                pad_before_s=pad_before_s,
+                pad_after_s=pad_after_s,
+                min_slide_s=min_slide_s,
+                fps=fps,
+            )
         clip_paths.append(clip_path)
         total_dur += clip_dur
 
@@ -263,12 +339,15 @@ def assemble_chapter(
     output_mp4 = dist_dir / f"{chapter}.mp4"
 
     use_music = bool(music_path and Path(music_path).exists())
-    concat_target = (build_dir / "body.mp4") if use_music else output_mp4
+    concat_target = (build_dir / "body.mp4") if use_music else (build_dir / "body.mp4")
     concat_clips(sequence, concat_target)
 
     if use_music:
-        print("[PROGRESS] Mixing music bed under narration...")
+        print("[PROGRESS] Mixing music bed under narration + mastering to -14 LUFS...")
         mix_music_bed(concat_target, Path(music_path), output_mp4, music_db, sample_rate)
+    else:
+        print("[PROGRESS] Mastering audio to -14 LUFS...")
+        normalize_loudness(concat_target, output_mp4, sample_rate)
 
     return AssembleResult(
         video_path=output_mp4,
