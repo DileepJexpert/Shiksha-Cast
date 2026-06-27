@@ -61,6 +61,22 @@ def _shape(level: float) -> str:
     return "open"
 
 
+def _load_rig(rigdir: str):
+    """Return (frames_mode, assets, anchor). Two rig kinds are supported:
+      frames mode  -> rig.json has {"frames": {"closed":..,"half":..,"open":..}}
+                      each is a FULL character image (ChatGPT 3-mouth host). Swapped whole.
+      base+mouth   -> rig.json has {"character":.., "mouths":{...}, "mouth_anchor":[x,y]}
+                      a body PNG with separate mouth overlays.
+    """
+    rig = json.load(open(os.path.join(rigdir, "rig.json"), encoding="utf-8"))
+    if rig.get("frames"):
+        states = {k: Image.open(os.path.join(rigdir, v)).convert("RGBA") for k, v in rig["frames"].items()}
+        return True, states, None
+    char = Image.open(os.path.join(rigdir, rig["character"])).convert("RGBA")
+    mouths = {k: Image.open(os.path.join(rigdir, v)).convert("RGBA") for k, v in rig["mouths"].items()}
+    return False, {"_char": char, **{f"m_{k}": v for k, v in mouths.items()}}, rig["mouth_anchor"]
+
+
 def build_talking_clip(
     audio: str,
     rigdir: str,
@@ -72,12 +88,28 @@ def build_talking_clip(
     pad_before_s: float = 0.3,
     pad_after_s: float = 0.7,
     min_slide_s: float = 4.0,
-    char_height_frac: float = 0.8,
+    char_height_frac: float = 0.78,
+    char_x_frac: float = 0.5,
 ) -> float:
-    rig = json.load(open(os.path.join(rigdir, "rig.json"), encoding="utf-8"))
-    char = Image.open(os.path.join(rigdir, rig["character"])).convert("RGBA")
-    mouths = {k: Image.open(os.path.join(rigdir, v)).convert("RGBA") for k, v in rig["mouths"].items()}
-    anchor = rig["mouth_anchor"]
+    """Render one talking-Kinnu clip over a background. char_x_frac is the character's
+    horizontal CENTER as a fraction of width (0.18 = lower-left presenter, 0.5 = center)."""
+    frames_mode, assets, anchor = _load_rig(rigdir)
+
+    def rs(im):
+        return im.resize((max(1, int(im.size[0] * scale)), max(1, int(im.size[1] * scale))))
+
+    if frames_mode:
+        base = assets.get("closed") or next(iter(assets.values()))
+        scale = (height * char_height_frac) / base.size[1]
+        states = {k: rs(v) for k, v in assets.items()}
+        cw, ch = (states.get("closed") or next(iter(states.values()))).size
+    else:
+        base = assets["_char"]
+        scale = (height * char_height_frac) / base.size[1]
+        char = rs(base)
+        mouths = {k[2:]: rs(v) for k, v in assets.items() if k.startswith("m_")}
+        ax, ay = int(anchor[0] * scale), int(anchor[1] * scale)
+        cw, ch = char.size
 
     levels, dur = rms_per_frame(audio, fps)
     clip_dur = max(min_slide_s, pad_before_s + dur + pad_after_s)
@@ -87,15 +119,10 @@ def build_talking_clip(
     if bg and os.path.exists(bg):
         background = Image.open(bg).convert("RGBA").resize((width, height))
     else:
-        # soft sky gradient placeholder
         background = Image.new("RGBA", (width, height), (188, 226, 255, 255))
 
-    scale = (height * char_height_frac) / char.size[1]
-    cs = char.resize((int(char.size[0] * scale), int(char.size[1] * scale)))
-    mouths_s = {k: m.resize((max(1, int(m.size[0] * scale)), max(1, int(m.size[1] * scale)))) for k, m in mouths.items()}
-    ax, ay = int(anchor[0] * scale), int(anchor[1] * scale)
-    px = (width - cs.size[0]) // 2
-    py = height - cs.size[1] - int(height * 0.02)
+    px = max(0, min(int(width * char_x_frac - cw / 2), width - cw))
+    py = height - ch - int(height * 0.02)
 
     tmp = tempfile.mkdtemp()
     try:
@@ -104,9 +131,13 @@ def build_talking_clip(
             bob = int(6 * math.sin(f / fps * 2 * math.pi * 0.6))  # gentle idle bob
             si = f - speech_start
             shape = _shape(float(levels[si])) if 0 <= si < len(levels) else "closed"
-            frame.alpha_composite(cs, (px, py + bob))
-            m = mouths_s.get(shape) or mouths_s["closed"]
-            frame.alpha_composite(m, (px + ax - m.size[0] // 2, py + bob + ay - m.size[1] // 2))
+            if frames_mode:
+                img = states.get(shape) or states.get("closed") or next(iter(states.values()))
+                frame.alpha_composite(img, (px, py + bob))
+            else:
+                frame.alpha_composite(char, (px, py + bob))
+                m = mouths.get(shape) or mouths.get("closed") or next(iter(mouths.values()))
+                frame.alpha_composite(m, (px + ax - m.size[0] // 2, py + bob + ay - m.size[1] // 2))
             frame.convert("RGB").save(os.path.join(tmp, f"f_{f:05d}.png"))
 
         os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
@@ -134,8 +165,11 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--bg", default=None)
     ap.add_argument("--fps", type=int, default=30)
+    ap.add_argument("--char-x", type=float, default=0.5, help="character center x (0..1)")
+    ap.add_argument("--char-h", type=float, default=0.78, help="character height fraction")
     a = ap.parse_args()
-    d = build_talking_clip(a.audio, a.rig, a.out, bg=a.bg, fps=a.fps)
+    d = build_talking_clip(a.audio, a.rig, a.out, bg=a.bg, fps=a.fps,
+                           char_x_frac=a.char_x, char_height_frac=a.char_h)
     print(f"DONE {a.out} ({d:.1f}s)")
 
 
