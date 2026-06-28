@@ -111,16 +111,16 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
         if do == "talk":
             pose["mouth"] = _viseme(a["levels"], fps, lt)
         elif do == "wave":
-            pose["arm_right"] = (150 + 6 * math.sin(lt * 9), 6); pose["eyes"] = "happy"; pose["brows"] = "happy"
+            pose["arm_right"] = (-125 + 6 * math.sin(lt * 9), -15); pose["eyes"] = "happy"; pose["brows"] = "happy"
         elif do == "point":
             if a.get("side") == "left":
-                pose["arm_left"] = (-95, -6)
+                pose["arm_left"] = (95, 6)
             else:
-                pose["arm_right"] = (95, 6)
+                pose["arm_right"] = (-95, -6)
         elif do == "point_up":
-            pose["arm_right"] = (150, 6)
+            pose["arm_right"] = (-150, -8)
         elif do == "cheer":
-            pose["arm_left"] = (-150, -6); pose["arm_right"] = (150, 6)
+            pose["arm_left"] = (150, 15); pose["arm_right"] = (-150, -15)
             pose["eyes"] = "happy"; pose["brows"] = "happy"; pose["mouth"] = "D"
         elif do == "sad":
             pose["brows"] = "sad"

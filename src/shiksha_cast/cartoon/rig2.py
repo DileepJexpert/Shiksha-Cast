@@ -74,9 +74,10 @@ class SkeletalCharacter:
         upper_len = up.height * BONE[ukey]
         # upper bone
         self._place_rot(canvas, up, self._pv(upper_name, ukey), shoulder, a_upper)
-        # elbow = shoulder + R(a_upper) * (0, upper_len)   (down is +y)
+        # elbow = shoulder + R(a_upper) * (0, upper_len). _place_rot rotates CW (-angle),
+        # so the down-vector maps to (-sin, cos) in screen space.
         rad = math.radians(a_upper)
-        elbow = (shoulder[0] + math.sin(rad) * upper_len, shoulder[1] + math.cos(rad) * upper_len)
+        elbow = (shoulder[0] - math.sin(rad) * upper_len, shoulder[1] + math.cos(rad) * upper_len)
         self._place_rot(canvas, self._img(fore_name), self._pv(fore_name, fkey), elbow, a_upper + a_fore)
 
     def compose(self, pose: dict) -> Image.Image:
