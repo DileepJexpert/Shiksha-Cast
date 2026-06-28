@@ -1154,6 +1154,21 @@ body {
 .slide-editor .slide-card textarea { font-size: 0.9rem; }
 .dialogue-tip { font-size: 0.8rem; padding: 0.5rem 0.75rem; }
 
+/* Categorised content browser */
+.count-pill { background:#efeafe; color:#5a4bd6; border-radius:999px; padding:1px 9px; font-size:0.78rem; font-weight:700; margin-left:6px; vertical-align:middle; }
+.cat-toolbar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:10px 0 14px; }
+.cat-search { flex:1 1 280px; min-width:200px; padding:9px 13px; border:2px solid #e6e8ef; border-radius:10px; font-size:14px; outline:none; background:#fbfaff; }
+.cat-search:focus { border-color:#7c5cff; box-shadow:0 0 0 3px rgba(124,92,255,.15); }
+.cat-status { display:flex; gap:6px; }
+.status-chip { border:1px solid #e0dcf3; background:#f6f4ff; color:#5a4bd6; border-radius:999px; padding:7px 14px; font-weight:600; font-size:13px; cursor:pointer; }
+.status-chip.active { background:#7c5cff; color:#fff; border-color:#7c5cff; }
+.cat-group { margin-bottom:10px; }
+.cat-group-header { width:100%; display:flex; align-items:center; gap:10px; background:#f3f1fb; border:1px solid #e6e2f7; border-radius:10px; padding:11px 14px; cursor:pointer; font-size:15px; font-weight:700; color:#2f2a55; }
+.cat-group-header:hover { background:#ece8f9; }
+.cat-caret { width:14px; color:#7c5cff; }
+.cat-label { flex:1; text-align:left; }
+.cat-group .chapter-grid { margin-top:10px; }
+
 /* Maintenance / tools panel */
 .tools-panel { background:#fff; border:1px solid #e6e8ef; border-radius:10px; padding:0.7rem 1rem; margin-bottom:1rem; }
 .tools-row { display:flex; align-items:center; gap:0.7rem; flex-wrap:wrap; }
