@@ -459,6 +459,27 @@ def package(
     rprint("[dim]See README.txt inside for the upload checklist.[/dim]")
 
 
+@app.command(name="cartoon-build")
+def cartoon_build(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Cartoon episode id (folder with scenes.yaml)"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output MP4 path"),
+) -> None:
+    """Render a cutout-CARTOON episode from scenes.yaml (separated-part characters that
+    walk/wave/point/blink/talk, per-character voices, music, captions)."""
+    import glob
+
+    from shiksha_cast.cartoon.build import build_episode
+
+    project_root = root or _find_project_root()
+    matches = glob.glob(str(project_root / "content" / "**" / chapter / "scenes.yaml"), recursive=True)
+    if not matches:
+        raise typer.BadParameter(f"No scenes.yaml found for cartoon episode '{chapter}' under content/.")
+    rprint(f"[bold]Building cartoon {chapter}[/bold] from {matches[0]}")
+    p = build_episode(matches[0], project_root, out=str(out) if out else None)
+    rprint(f"[bold green]Cartoon ready:[/bold green] {p}")
+
+
 def main() -> None:
     app()
 

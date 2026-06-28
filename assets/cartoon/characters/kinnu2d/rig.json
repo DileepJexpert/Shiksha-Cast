@@ -1,0 +1,80 @@
+{
+  "name": "kinnu2d",
+  "space": [
+    600,
+    900
+  ],
+  "feet": [
+    300,
+    880
+  ],
+  "scale": 1.0,
+  "parts": [
+    {
+      "name": "arm_left",
+      "img": "arm_left.png",
+      "pivot": [
+        238,
+        520
+      ],
+      "z": 0
+    },
+    {
+      "name": "leg_left",
+      "img": "leg_left.png",
+      "pivot": [
+        272,
+        618
+      ],
+      "z": 0
+    },
+    {
+      "name": "leg_right",
+      "img": "leg_right.png",
+      "pivot": [
+        328,
+        618
+      ],
+      "z": 1
+    },
+    {
+      "name": "body",
+      "img": "body.png",
+      "pivot": [
+        300,
+        600
+      ],
+      "z": 2
+    },
+    {
+      "name": "arm_right",
+      "img": "arm_right.png",
+      "pivot": [
+        362,
+        520
+      ],
+      "z": 3
+    },
+    {
+      "name": "head",
+      "img": "head.png",
+      "pivot": [
+        300,
+        470
+      ],
+      "z": 4
+    }
+  ],
+  "eyes": {
+    "open": "eye_open.png",
+    "closed": "eye_closed.png",
+    "z": 5
+  },
+  "mouths": {
+    "closed": "mouth_closed.png",
+    "half": "mouth_half.png",
+    "open": "mouth_open.png",
+    "z": 6
+  },
+  "head_part": "head"
+}
