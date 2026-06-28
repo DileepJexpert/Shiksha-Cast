@@ -29,12 +29,12 @@ JOINTS = {
 }
 # face anchors (centre points) relative to the rig space; tuned to the head art
 FACE = {"brows": (380, 250), "eyes": (380, 300), "mouth": (380, 372)}
-PIVOT = {  # (fx, fy) fraction of each part image = its joint/rotation point
+PIVOT = {  # (fx, fy) fraction of each part image = its joint/rotation point (measured)
     "torso": (0.5, 0.5), "head": (0.5, 0.95),
-    "upper_arm": (0.5, 0.08), "forearm": (0.5, 0.08),
-    "thigh": (0.5, 0.06), "shin": (0.5, 0.06),
+    "upper_arm": (0.5, 0.03), "forearm": (0.5, 0.03),
+    "thigh": (0.5, 0.03), "shin": (0.5, 0.03),
 }
-BONE = {"upper_arm": 0.84, "forearm": 0.0, "thigh": 0.86, "shin": 0.0}  # length frac of img height
+BONE = {"upper_arm": 0.97, "forearm": 0.0, "thigh": 0.97, "shin": 0.0}  # elbow/knee at ~97% of segment
 
 
 class SkeletalCharacter:

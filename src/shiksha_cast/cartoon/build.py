@@ -30,6 +30,11 @@ CHARS_DIR = "assets/cartoon/characters"
 BG_DIR = "assets/cartoon/backgrounds"
 
 
+def _is_adv(d: Path) -> bool:
+    """Advanced skeletal rig = has separated 2-bone limb parts."""
+    return (d / "upper_arm_left.png").exists()
+
+
 def _lerp(a, b, t):
     return a + (b - a) * t
 
@@ -75,6 +80,69 @@ def _mouth_from_levels(levels, fps, lt):
     return "closed" if v < 0.12 else ("half" if v < 0.45 else "open")
 
 
+def _viseme(levels, fps, lt):
+    """Amplitude -> one of the 9 mouth visemes (X rest .. D wide)."""
+    i = int(lt * fps)
+    if i < 0 or i >= len(levels):
+        return "X"
+    v = levels[i]
+    if v < 0.08:
+        return "X"
+    if v < 0.18:
+        return "B"
+    if v < 0.33:
+        return "C"
+    if v < 0.55:
+        return "E"
+    return "D"
+
+
+def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
+    """Build a rig2 (skeletal) pose for an advanced character from active actions."""
+    sway = math.sin(t * 1.4 + phase_off)
+    pose = {"arm_left": (6 * sway, 0), "arm_right": (-6 * sway, 0),
+            "leg_left": (0, 0), "leg_right": (0, 0), "head": 1.5 * sway,
+            "eyes": "open", "mouth": "X", "brows": "neutral"}
+    bob = 0.0; x_cur = x_frac; facing = facing0
+    for a in actions:
+        if a.get("who") != cid or not (a["start"] <= t < a.get("end", a["start"])):
+            continue
+        do = a.get("do"); lt = t - a["start"]
+        if do == "talk":
+            pose["mouth"] = _viseme(a["levels"], fps, lt)
+        elif do == "wave":
+            pose["arm_right"] = (150 + 6 * math.sin(lt * 9), 6); pose["eyes"] = "happy"; pose["brows"] = "happy"
+        elif do == "point":
+            if a.get("side") == "left":
+                pose["arm_left"] = (-95, -6)
+            else:
+                pose["arm_right"] = (95, 6)
+        elif do == "point_up":
+            pose["arm_right"] = (150, 6)
+        elif do == "cheer":
+            pose["arm_left"] = (-150, -6); pose["arm_right"] = (150, 6)
+            pose["eyes"] = "happy"; pose["brows"] = "happy"; pose["mouth"] = "D"
+        elif do == "sad":
+            pose["brows"] = "sad"
+        elif do == "surprise":
+            pose["brows"] = "surprised"
+        elif do in ("enter", "walkto"):
+            dur = max(0.3, a["end"] - a["start"])
+            if do == "enter":
+                frm = a.get("from", "left"); sx = -0.18 if frm == "left" else 1.18
+                x_cur = sx + (x_frac - sx) * min(1.0, lt / dur); facing = "right" if frm == "left" else "left"
+            else:
+                to = float(a.get("to", x_frac)); x_cur = x_frac + (to - x_frac) * min(1.0, lt / dur)
+                facing = "right" if to >= x_frac else "left"
+            sw = 16 * math.sin(lt * 8)
+            pose["leg_left"] = (sw, 0); pose["leg_right"] = (-sw, 0); bob = abs(math.sin(lt * 8)) * 7
+        elif do == "jump":
+            bob += motion.jump_bob(lt / max(0.3, a["end"] - a["start"])); pose["eyes"] = "happy"
+    if pose["eyes"] == "open" and motion.blink_state(t + phase_off) == "closed":
+        pose["eyes"] = "closed"
+    return pose, x_cur, facing, bob
+
+
 _PROP_CACHE: dict = {}
 
 
@@ -108,6 +176,7 @@ def _build_frame(t, ctx, cache):
     W, H, fps, scene_dur = ctx["W"], ctx["H"], ctx["fps"], ctx["scene_dur"]
     frame = cache["_bg"].copy()
     _draw_props(frame, ctx, t, "back")
+    adv = set(ctx.get("adv", []))
     for cinfo in ctx["present"]:
         cid = cinfo["id"]; ch = cache.get(cid)
         if ch is None:
@@ -116,6 +185,10 @@ def _build_frame(t, ctx, cache):
         x_frac, ground_y = float(pos[0]), float(pos[1]) * H
         char_h = float(cinfo.get("scale", 1.0)) * 0.72 * H
         facing = cinfo.get("facing", "right"); phase_off = (hash(cid) % 7) * 0.5
+        if cid in adv:
+            pose, x_cur, facing, bob = _adv_pose(cid, ctx["actions"], t, fps, phase_off, x_frac, facing)
+            ch.place(frame, pose, x_cur, ground_y, char_h, facing=facing, bob=bob)
+            continue
         base = motion.idle(t, phase_off)
         angles = dict(base["angles"]); bob = base["bob"]; mouth = "closed"; x_cur = x_frac
         for a in ctx["actions"]:
@@ -166,9 +239,11 @@ def _build_frame(t, ctx, cache):
 _WORK: dict = {}
 
 
-def _worker_init(char_dirs):
+def _worker_init(char_dirs, adv):
     from shiksha_cast.cartoon.character import Character
-    _WORK["chars"] = {cid: Character(d) for cid, d in char_dirs.items()}
+    from shiksha_cast.cartoon.rig2 import SkeletalCharacter
+    _WORK["chars"] = {cid: (SkeletalCharacter(d) if cid in adv else Character(d))
+                      for cid, d in char_dirs.items()}
     _WORK["bgs"] = {}
 
 
@@ -196,9 +271,13 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
     cast = spec.get("cast", {})
 
     chars = {}
+    adv: set = set()
     for name in cast:
         d = project_root / CHARS_DIR / name
-        if (d / "rig.json").exists():
+        if _is_adv(d):
+            from shiksha_cast.cartoon.rig2 import SkeletalCharacter
+            chars[name] = SkeletalCharacter(d); adv.add(name)
+        elif (d / "rig.json").exists():
             chars[name] = Character(d)
 
     work = project_root / "build" / ep
@@ -216,9 +295,8 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
     if workers >= 2:
         try:
             from concurrent.futures import ProcessPoolExecutor
-            all_dirs = {cid: str(project_root / CHARS_DIR / cid) for cid in cast
-                        if (project_root / CHARS_DIR / cid / "rig.json").exists()}
-            pool = ProcessPoolExecutor(max_workers=workers, initializer=_worker_init, initargs=(all_dirs,))
+            all_dirs = {cid: str(project_root / CHARS_DIR / cid) for cid in chars}
+            pool = ProcessPoolExecutor(max_workers=workers, initializer=_worker_init, initargs=(all_dirs, adv))
         except Exception as e:  # noqa: BLE001
             print(f"[no parallel pool -> sequential: {e}]")
             pool = None
@@ -280,7 +358,7 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
                               "z": p.get("z", "front"), "start": float(p.get("start", 0.0)),
                               "end": float(p.get("end", scene_dur))})
         ctx = {"present": [{**c} for c in scene.get("characters", []) if c["id"] in chars],
-               "actions": actions_ser, "props": props_ser, "W": W, "H": H, "fps": fps,
+               "actions": actions_ser, "props": props_ser, "adv": list(adv), "W": W, "H": H, "fps": fps,
                "scene_dur": scene_dur, "cam": cam, "bg_path": bg_path}
         total = int(scene_dur * fps)
         tmp = tempfile.mkdtemp()
