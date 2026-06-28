@@ -1,0 +1,8 @@
+{
+  "frames": {
+    "closed": "closed.png",
+    "half": "half.png",
+    "open": "open.png"
+  },
+  "_note": "Drop the 3 transparent ChatGPT host PNGs here (closed/half/open, identical except the mouth). build_talking_episode.py auto-uses this rig once all three exist; until then it falls back to the placeholder rig."
+}

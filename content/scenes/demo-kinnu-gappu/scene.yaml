@@ -1,0 +1,18 @@
+title: "Kinnu meets Gappu"
+cast:
+  kinnu: af_heart
+  gappu: am_michael
+char_height: 0.6
+scenes:
+  - bg: build/k02-star-bridge-counting/backgrounds/bg_001.png
+    place: { kinnu: 0.24, gappu: 0.76 }
+    enter: { gappu: right }
+    lines:
+      - { who: kinnu, text: "Hi friends! I am Kinnu." }
+      - { who: gappu, text: "And I am Gappu! Let's learn together." }
+      - { who: kinnu, text: "Today we will count the stars, from one to ten!" }
+  - bg: build/k02-star-bridge-counting/backgrounds/bg_006.png
+    place: { kinnu: 0.3, gappu: 0.7 }
+    lines:
+      - { who: gappu, text: "Wow Kinnu, we did it! Nine, ten!" }
+      - { who: kinnu, text: "Great job everyone! See you next time." }
