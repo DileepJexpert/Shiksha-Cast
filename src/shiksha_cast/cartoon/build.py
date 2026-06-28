@@ -8,6 +8,7 @@ music bed, masters to -14 LUFS, and writes captions. No GPU at runtime.
 from __future__ import annotations
 
 import math
+import os
 import shutil
 import subprocess
 import tempfile
@@ -65,6 +66,85 @@ def _schedule(scene):
     return out
 
 
+# ---- per-frame rendering (module-level so worker processes can pickle it) ----
+def _mouth_from_levels(levels, fps, lt):
+    i = int(lt * fps)
+    if i < 0 or i >= len(levels):
+        return "closed"
+    v = levels[i]
+    return "closed" if v < 0.12 else ("half" if v < 0.45 else "open")
+
+
+def _build_frame(t, ctx, cache):
+    W, H, fps, scene_dur = ctx["W"], ctx["H"], ctx["fps"], ctx["scene_dur"]
+    frame = cache["_bg"].copy()
+    for cinfo in ctx["present"]:
+        cid = cinfo["id"]; ch = cache.get(cid)
+        if ch is None:
+            continue
+        pos = cinfo.get("pos", [0.5, 0.96])
+        x_frac, ground_y = float(pos[0]), float(pos[1]) * H
+        char_h = float(cinfo.get("scale", 1.0)) * 0.72 * H
+        facing = cinfo.get("facing", "right"); phase_off = (hash(cid) % 7) * 0.5
+        base = motion.idle(t, phase_off)
+        angles = dict(base["angles"]); bob = base["bob"]; mouth = "closed"; x_cur = x_frac
+        for a in ctx["actions"]:
+            if a.get("who") != cid or not (a["start"] <= t < a.get("end", a["start"])):
+                continue
+            do = a.get("do"); lt = t - a["start"]
+            if do in ("walk", "enter"):
+                w = motion.walk(lt * motion.WALK_RATE); angles.update(w["angles"]); bob = w["bob"]
+                if do == "enter":
+                    dur = max(0.3, a["end"] - a["start"]); frm = a.get("from", "left")
+                    sx = -0.18 if frm == "left" else 1.18
+                    x_cur = sx + (x_frac - sx) * min(1.0, lt / dur)
+                    facing = "right" if frm == "left" else "left"
+            elif do == "wave":
+                angles.update(motion.wave(lt))
+            elif do == "point":
+                angles.update(motion.point(a.get("side", "right")))
+            elif do == "jump":
+                bob += motion.jump_bob(lt / max(0.3, a["end"] - a["start"]))
+            elif do == "talk":
+                mouth = _mouth_from_levels(a["levels"], fps, lt)
+        eye = motion.blink_state(t + phase_off)
+        ch.place(frame, {"angles": angles, "mouth": mouth, "eye": eye},
+                 x_cur, ground_y, char_h, facing=facing, bob=bob)
+    cam = ctx.get("cam") or {}
+    if cam:
+        pr = t / scene_dur if scene_dur else 0.0
+        z = _lerp(cam["zoom"][0], cam["zoom"][1], pr) if cam.get("zoom") else 1.0
+        panx = _lerp(cam["pan"][0], cam["pan"][1], pr) if cam.get("pan") else 0.0
+        if z != 1.0 or panx:
+            cw, chh = W / z, H / z
+            x0 = min(max((W - cw) / 2 + panx * W, 0), W - cw); y0 = (H - chh) / 2
+            frame = frame.crop((int(x0), int(y0), int(x0 + cw), int(y0 + chh))).resize((W, H), Image.LANCZOS)
+    return frame
+
+
+_WORK: dict = {}
+
+
+def _worker_init(char_dirs):
+    from shiksha_cast.cartoon.character import Character
+    _WORK["chars"] = {cid: Character(d) for cid, d in char_dirs.items()}
+    _WORK["bgs"] = {}
+
+
+def _worker_frames(args):
+    tmp, idxs, ctx = args
+    bgp = ctx["bg_path"]
+    bg = _WORK["bgs"].get(bgp)
+    if bg is None:
+        bg = Image.open(bgp).convert("RGBA")
+        _WORK["bgs"][bgp] = bg
+    cache = dict(_WORK["chars"])
+    cache["_bg"] = bg
+    for f in idxs:
+        _build_frame(f / ctx["fps"], ctx, cache).convert("RGB").save(str(Path(tmp) / f"f_{f:05d}.png"))
+    return len(idxs)
+
+
 def build_episode(scene_path: str, project_root: Path, out: str | None = None) -> Path:
     spec = yaml.safe_load(open(scene_path, encoding="utf-8"))
     cfg = load_channel_config(project_root)
@@ -88,6 +168,19 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
     clip_paths, captions = [], []
     scene_offset = 0.0
     line_no = 0
+
+    # One persistent worker pool for the whole episode (loads the cast once).
+    workers = min((os.cpu_count() or 2), 12)
+    pool = None
+    if workers >= 2:
+        try:
+            from concurrent.futures import ProcessPoolExecutor
+            all_dirs = {cid: str(project_root / CHARS_DIR / cid) for cid in cast
+                        if (project_root / CHARS_DIR / cid / "rig.json").exists()}
+            pool = ProcessPoolExecutor(max_workers=workers, initializer=_worker_init, initargs=(all_dirs,))
+        except Exception as e:  # noqa: BLE001
+            print(f"[no parallel pool -> sequential: {e}]")
+            pool = None
 
     for si, scene in enumerate(spec.get("scenes", []), 1):
         bg = _bg(project_root, scene.get("background"), W, H)
@@ -125,66 +218,35 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
         scene_wav = work / "audio" / f"scene_{si:03d}.wav"
         sf.write(str(scene_wav), track[:int(scene_dur * sr)], sr)
 
-        # --- render frames ---
+        # --- render frames (multi-core when worthwhile, else sequential) ---
+        char_dirs = {cid: str(project_root / CHARS_DIR / cid) for cid in present if cid in chars}
+        bg_path = str(clips_dir / f"_bg_{si:03d}.png")
+        bg.save(bg_path)
+        actions_ser = []
+        for a in actions:
+            aa = {k: v for k, v in a.items() if not k.startswith("_")}
+            if a.get("do") == "talk":
+                aa["levels"] = a["_ls"].levels.tolist()
+            actions_ser.append(aa)
+        ctx = {"present": [{**c} for c in scene.get("characters", []) if c["id"] in chars],
+               "actions": actions_ser, "W": W, "H": H, "fps": fps,
+               "scene_dur": scene_dur, "cam": cam, "bg_path": bg_path}
         total = int(scene_dur * fps)
         tmp = tempfile.mkdtemp()
         try:
-            for f in range(total):
-                t = f / fps
-                frame = bg.copy()
-                for cid, cinfo in present.items():
-                    ch = chars.get(cid)
-                    if ch is None:
-                        continue
-                    pos = cinfo.get("pos", [0.5, 0.96])
-                    x_frac, ground_frac = float(pos[0]), float(pos[1])
-                    ground_y = ground_frac * H
-                    char_h = float(cinfo.get("scale", 1.0)) * 0.72 * H
-                    facing = cinfo.get("facing", "right")
-                    phase_off = (hash(cid) % 7) * 0.5
-
-                    base = motion.idle(t, phase_off)
-                    angles = dict(base["angles"]); bob = base["bob"]; mouth = "closed"
-                    x_cur = x_frac
-
-                    for a in actions:
-                        if a.get("who") != cid:
-                            continue
-                        if not (a["start"] <= t < a.get("end", a["start"])):
-                            continue
-                        do = a.get("do"); lt = t - a["start"]
-                        if do in ("walk", "enter"):
-                            ph = lt * motion.WALK_RATE
-                            w = motion.walk(ph); angles.update(w["angles"]); bob = w["bob"]
-                            if do == "enter":
-                                dur = max(0.3, a["end"] - a["start"])
-                                frm = a.get("from", "left")
-                                start_x = -0.18 if frm == "left" else 1.18
-                                x_cur = start_x + (x_frac - start_x) * min(1.0, lt / dur)
-                                facing = "right" if frm == "left" else "left"
-                        elif do == "wave":
-                            angles.update(motion.wave(lt))
-                        elif do == "point":
-                            angles.update(motion.point(a.get("side", "right")))
-                        elif do == "jump":
-                            dur = max(0.3, a["end"] - a["start"])
-                            bob += motion.jump_bob(lt / dur)
-                        elif do == "talk":
-                            mouth = a["_ls"].mouth_at(lt)
-
-                    eye = motion.blink_state(t + phase_off)
-                    pose = {"angles": angles, "mouth": mouth, "eye": eye}
-                    ch.place(frame, pose, x_cur, ground_y, char_h, facing=facing, bob=bob)
-                if cam:
-                    pr = t / scene_dur if scene_dur else 0.0
-                    z = _lerp(cam["zoom"][0], cam["zoom"][1], pr) if cam.get("zoom") else 1.0
-                    panx = _lerp(cam["pan"][0], cam["pan"][1], pr) if cam.get("pan") else 0.0
-                    if z != 1.0 or panx:
-                        cw, chh = W / z, H / z
-                        x0 = min(max((W - cw) / 2 + panx * W, 0), W - cw)
-                        y0 = (H - chh) / 2
-                        frame = frame.crop((int(x0), int(y0), int(x0 + cw), int(y0 + chh))).resize((W, H), Image.LANCZOS)
-                frame.convert("RGB").save(Path(tmp) / f"f_{f:05d}.png")
+            rendered = False
+            if pool is not None and total >= workers * 4:
+                try:
+                    chunks = [list(range(i, total, workers)) for i in range(workers)]
+                    list(pool.map(_worker_frames, [(tmp, c, ctx) for c in chunks]))
+                    rendered = True
+                except Exception as e:  # noqa: BLE001
+                    print(f"[parallel render failed -> sequential: {e}]")
+            if not rendered:
+                cache = {cid: chars[cid] for cid in char_dirs}
+                cache["_bg"] = bg
+                for f in range(total):
+                    _build_frame(f / fps, ctx, cache).convert("RGB").save(str(Path(tmp) / f"f_{f:05d}.png"))
 
             clip = clips_dir / f"clip_{si:03d}.mp4"
             trans = scene.get("transition") or {}
@@ -208,6 +270,8 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
         scene_offset += scene_dur
         print(f"[scene {si}] {scene_dur:.1f}s rendered")
 
+    if pool is not None:
+        pool.shutdown()
     close = getattr(tts, "close", None)
     if close:
         close()
