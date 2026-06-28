@@ -43,6 +43,8 @@ def main():
     ap.add_argument("name")
     ap.add_argument("color", help="outfit R,G,B")
     ap.add_argument("--bow", default=None, help="bow R,G,B (optional)")
+    ap.add_argument("--scale", type=float, default=1.0,
+                    help="height multiplier vs other characters (e.g. 0.72 for a toddler)")
     a = ap.parse_args()
     target = tuple(int(x) for x in a.color.split(","))
     bow = tuple(int(x) for x in a.bow.split(",")) if a.bow else None
@@ -52,11 +54,11 @@ def main():
     for state in ("closed", "half", "open"):
         src = SRC / f"{state}.png"
         recolor(Image.open(src), target, bow).save(out / f"{state}.png")
-    json.dump(
-        {"frames": {"closed": "closed.png", "half": "half.png", "open": "open.png"}},
-        open(out / "rig.json", "w"), indent=2,
-    )
-    print(f"{a.name} -> {out}")
+    rig = {"frames": {"closed": "closed.png", "half": "half.png", "open": "open.png"}}
+    if a.scale != 1.0:
+        rig["scale"] = a.scale
+    json.dump(rig, open(out / "rig.json", "w"), indent=2)
+    print(f"{a.name} -> {out} (scale={a.scale})")
 
 
 def register_kinnu():

@@ -71,9 +71,30 @@ DEFAULT_CHARACTERS = [
     StoryCharacter(
         id="gappu",
         name="Gappu",
-        voice="agastya",
+        voice="am_michael",
         rig="assets/characters/gappu/rig.json",
         description="cute friendly boy stickman friend, playful and asks questions",
+    ),
+    StoryCharacter(
+        id="prinshu",
+        name="Prinshu",
+        voice="am_adam",
+        rig="assets/characters/prinshu/rig.json",
+        description="clever boy stickman with glasses, explains the smart details",
+    ),
+    StoryCharacter(
+        id="anshu",
+        name="Anshu",
+        voice="af_bella",
+        rig="assets/characters/anshu/rig.json",
+        description="cheerful girl stickman, encouraging and full of energy",
+    ),
+    StoryCharacter(
+        id="vibhu",
+        name="Vibhu",
+        voice="af_nicole",
+        rig="assets/characters/vibhu/rig.json",
+        description="cute little TODDLER stickman, short and adorable, says simple words",
     ),
 ]
 

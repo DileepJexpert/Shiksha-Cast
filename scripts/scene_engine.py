@@ -22,6 +22,7 @@ Usage: python scripts/scene_engine.py content/scenes/<id>/scene.yaml [--out dist
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import shutil
 import subprocess
@@ -50,7 +51,9 @@ def _load_char(name: str):
     frames_mode, assets, _ = _load_rig(str(rigdir))
     if not frames_mode:
         raise ValueError(f"Character {name} must be a frames-mode rig (closed/half/open).")
-    return assets  # {closed, half, open} PIL RGBA
+    rig = json.loads((rigdir / "rig.json").read_text(encoding="utf-8"))
+    scale = float(rig.get("scale", 1.0))  # per-character height (e.g. 0.72 = toddler)
+    return assets, scale  # ({closed, half, open} PIL RGBA, scale)
 
 
 def _scaled(assets, char_h_px):
@@ -80,7 +83,10 @@ def render(scene_path: str, out: str | None = None):
     clips_dir = work / "clips"; clips_dir.mkdir(parents=True, exist_ok=True)
 
     cast = spec.get("cast", {})
-    char_assets = {name: _scaled(_load_char(name), char_h_px) for name in cast}
+    char_assets = {}
+    for name in cast:
+        assets, cscale = _load_char(name)
+        char_assets[name] = _scaled(assets, int(char_h_px * cscale))
 
     tts = KokoroTTSProvider()
     clip_paths = []
