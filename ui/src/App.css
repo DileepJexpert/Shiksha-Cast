@@ -1168,6 +1168,8 @@ body {
 .cat-caret { width:14px; color:#7c5cff; }
 .cat-label { flex:1; text-align:left; }
 .cat-group .chapter-grid { margin-top:10px; }
+.chapter-card.is-cartoon { cursor:default; border-left:4px solid #ff7a3c; }
+.tag-cartoon { background:#ffe7d6; color:#c2531a; }
 
 /* Maintenance / tools panel */
 .tools-panel { background:#fff; border:1px solid #e6e8ef; border-radius:10px; padding:0.7rem 1rem; margin-bottom:1rem; }

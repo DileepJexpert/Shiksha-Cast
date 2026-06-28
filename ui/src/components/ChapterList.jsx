@@ -3,6 +3,7 @@ import { getChapters, downloadUrl, srtUrl } from '../api.js';
 
 // Friendly "pillars" mapped from the raw content/ folders.
 const PILLARS = [
+  { key: 'cartoon', label: '🎬 Cartoons', cats: ['cartoon'] },
   { key: 'kids', label: '🧒 Kids / Kinnu', cats: ['kinnu', 'kids-learning'] },
   { key: 'how', label: '🔬 How It Works', cats: ['how-it-works'] },
   { key: 'class', label: '📚 Class Tutorials', cats: ['class-chapter', 'science', 'comparisons'] },
@@ -123,8 +124,9 @@ export default function ChapterList({ onSelect, onNew, onNewTopic }) {
               {g.items.map((ch) => (
                 <div
                   key={ch.id}
-                  className={`chapter-card ${ch.build_status === 'running' ? 'building' : ''}`}
-                  onClick={() => onSelect(ch)}
+                  className={`chapter-card ${ch.build_status === 'running' ? 'building' : ''} ${ch.is_cartoon ? 'is-cartoon' : ''}`}
+                  onClick={() => !ch.is_cartoon && onSelect(ch)}
+                  title={ch.is_cartoon ? 'Cartoon episode — build via CLI: python -m shiksha_cast cartoon-build -c ' + ch.id : undefined}
                 >
                   <div className="chapter-card-top">
                     <span className="chapter-id">{ch.id}</span>
@@ -132,9 +134,10 @@ export default function ChapterList({ onSelect, onNew, onNewTopic }) {
                   </div>
                   <h3 className="chapter-title">{ch.title}</h3>
                   <div className="chapter-meta">
-                    <span>{ch.slide_count} slides</span>
+                    <span>{ch.slide_count} {ch.is_cartoon ? 'scenes' : 'slides'}</span>
+                    {ch.is_cartoon && <span className="tag tag-cartoon">Cartoon</span>}
                     {ch.has_pdf && <span className="tag tag-pdf">PDF</span>}
-                    {ch.has_script && <span className="tag tag-script">Script</span>}
+                    {!ch.is_cartoon && ch.has_script && <span className="tag tag-script">Script</span>}
                     {ch.has_video && <span className="tag tag-video">Video</span>}
                   </div>
                   {ch.has_video && (

@@ -226,6 +226,29 @@ async def list_chapters():
         info["build_status"] = job.get("status", "idle")
 
         chapters.append(info)
+
+    # Also surface cutout-cartoon episodes (scenes.yaml) so they're browsable.
+    for sp in content_dir.glob("**/scenes.yaml"):
+        d = sp.parent
+        ch_id = d.name
+        try:
+            with open(sp, encoding="utf-8") as f:
+                data = yaml.safe_load(f) or {}
+        except Exception:
+            data = {}
+        video = PROJECT_ROOT / "dist" / f"{ch_id}.mp4"
+        chapters.append({
+            "id": ch_id,
+            "category": "cartoon",
+            "is_cartoon": True,
+            "has_pdf": False,
+            "has_script": True,
+            "has_video": video.exists(),
+            "slide_count": len(data.get("scenes", [])),
+            "title": data.get("title", ch_id),
+            "build_status": _build_jobs.get(ch_id, {}).get("status", "idle"),
+        })
+
     return {"chapters": chapters}
 
 
