@@ -1,0 +1,54 @@
+episode: sharing-day
+title: Kinnu and Gappu Learn Sharing
+fps: 30
+cast:
+  kinnu: af_heart
+  gappu: am_michael
+scenes:
+  - id: s1
+    background: null
+    transition: { in: 0.5 }
+    props:
+      - { asset: apple.png, pos: [0.70, 0.55], scale: 0.14, anim: pop, start: 0.3 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: gappu, pos: [0.72, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu, do: wave, start: 0.2, end: 1.6 }
+      - { who: kinnu, do: talk, start: 0.4, text: "Hi friends! Look, Gappu has one big yummy apple!" }
+      - { who: gappu, do: talk, text: "Mmm, it looks so tasty. But Kinnu has none." }
+
+  - id: s2
+    background: null
+    transition: { in: 0.4, out: 0.4 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: gappu, pos: [0.72, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: gappu, do: talk, text: "Hmm, should I eat it all by myself, or should I share?" }
+      - { who: kinnu, do: talk, text: "Sharing with friends makes everyone happy!" }
+
+  - id: s3
+    background: null
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.05] }
+    props:
+      - { asset: heart.png, pos: [0.5, 0.30], scale: 0.18, anim: pop, start: 0.4 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: gappu, pos: [0.72, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: gappu, do: walkto, to: 0.45, start: 0.0, end: 1.6 }
+      - { who: gappu, do: talk, start: 1.6, text: "You are right! Here Kinnu, let's share the apple together." }
+      - { who: kinnu, do: talk, text: "Thank you, Gappu! You are so kind." }
+
+  - id: s4
+    background: null
+    transition: { in: 0.4, out: 0.6 }
+    characters:
+      - { id: kinnu, pos: [0.38, 0.98], scale: 0.9, facing: right }
+      - { id: gappu, pos: [0.60, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu, do: cheer, start: 0.0, end: 2.0 }
+      - { who: gappu, do: cheer, start: 0.0, end: 2.0 }
+      - { who: kinnu, do: talk, text: "Remember friends, sharing is caring! Bye bye!" }

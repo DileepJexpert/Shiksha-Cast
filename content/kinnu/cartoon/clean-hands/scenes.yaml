@@ -1,0 +1,56 @@
+episode: clean-hands
+title: Kinnu Learns Clean Hands
+fps: 30
+cast:
+  kinnu: af_heart
+  vibhu: af_nicole
+  prinshu: am_adam
+scenes:
+  - id: s1
+    background: null
+    transition: { in: 0.5 }
+    characters:
+      - { id: kinnu, pos: [0.24, 0.98], scale: 0.9, facing: right }
+      - { id: vibhu, pos: [0.52, 0.98], scale: 1.0, facing: left }
+    actions:
+      - { who: kinnu, do: wave, start: 0.2, end: 1.6 }
+      - { who: kinnu, do: talk, start: 0.4, text: "Hi friends! Vibhu, did you wash your hands before eating?" }
+      - { who: vibhu, do: talk, text: "Oops! Not yet, didi!" }
+
+  - id: s2
+    background: null
+    transition: { in: 0.4, out: 0.4 }
+    props:
+      - { asset: soap.png, pos: [0.5, 0.40], scale: 0.16, anim: pop, start: 0.4 }
+    characters:
+      - { id: kinnu, pos: [0.22, 0.98], scale: 0.9, facing: right }
+      - { id: vibhu, pos: [0.50, 0.98], scale: 1.0, facing: left }
+      - { id: prinshu, pos: [0.76, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: prinshu, do: enter, from: right, start: 0.0, end: 1.6 }
+      - { who: prinshu, do: talk, start: 1.6, text: "I can help! Use soap and clean water, like this." }
+      - { who: kinnu, do: talk, text: "First, make lots of bubbles with the soap!" }
+
+  - id: s3
+    background: null
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.05] }
+    characters:
+      - { id: kinnu, pos: [0.22, 0.98], scale: 0.9, facing: right }
+      - { id: vibhu, pos: [0.50, 0.98], scale: 1.0, facing: left }
+      - { id: prinshu, pos: [0.76, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: prinshu, do: talk, text: "Now rub, rub, rub for twenty seconds! Front, back, and between the fingers." }
+      - { who: vibhu, do: talk, text: "Rub, rub, rub! This is fun!" }
+
+  - id: s4
+    background: null
+    transition: { in: 0.4, out: 0.6 }
+    characters:
+      - { id: kinnu, pos: [0.24, 0.98], scale: 0.9, facing: right }
+      - { id: vibhu, pos: [0.52, 0.98], scale: 1.0, facing: left }
+      - { id: prinshu, pos: [0.78, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: vibhu, do: cheer, start: 0.0, end: 2.0 }
+      - { who: vibhu, do: talk, text: "Yay! Now my hands are clean and germ free!" }
+      - { who: kinnu, do: talk, text: "Always wash your hands, friends. Stay clean, stay healthy! Bye bye!" }

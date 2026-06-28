@@ -75,9 +75,39 @@ def _mouth_from_levels(levels, fps, lt):
     return "closed" if v < 0.12 else ("half" if v < 0.45 else "open")
 
 
+_PROP_CACHE: dict = {}
+
+
+def _prop_img(path):
+    im = _PROP_CACHE.get(path)
+    if im is None:
+        im = Image.open(path).convert("RGBA")
+        _PROP_CACHE[path] = im
+    return im
+
+
+def _draw_props(frame, ctx, t, which):
+    W, H = ctx["W"], ctx["H"]
+    for p in ctx.get("props", []):
+        if p.get("z", "front") != which or not (p["start"] <= t < p["end"]):
+            continue
+        im = _prop_img(p["path"]); lt = t - p["start"]
+        sc = p.get("scale", 0.12) * H / im.height
+        if p.get("anim") == "pop":
+            sc *= min(1.0, lt / 0.3)
+        w_, h_ = max(1, int(im.width * sc)), max(1, int(im.height * sc))
+        pim = im.resize((w_, h_), Image.LANCZOS)
+        px = int(p["pos"][0] * W - w_ / 2)
+        py = int(p["pos"][1] * H - h_ / 2)
+        if p.get("anim") == "float":
+            py += int(8 * math.sin(lt * 3))
+        frame.alpha_composite(pim, (px, py))
+
+
 def _build_frame(t, ctx, cache):
     W, H, fps, scene_dur = ctx["W"], ctx["H"], ctx["fps"], ctx["scene_dur"]
     frame = cache["_bg"].copy()
+    _draw_props(frame, ctx, t, "back")
     for cinfo in ctx["present"]:
         cid = cinfo["id"]; ch = cache.get(cid)
         if ch is None:
@@ -105,11 +135,22 @@ def _build_frame(t, ctx, cache):
                 angles.update(motion.point(a.get("side", "right")))
             elif do == "jump":
                 bob += motion.jump_bob(lt / max(0.3, a["end"] - a["start"]))
+            elif do == "cheer":
+                angles.update(motion.cheer(lt))
+            elif do == "hold":
+                angles.update(motion.hold(a.get("side", "right")))
+            elif do == "walkto":
+                dur = max(0.3, a["end"] - a["start"])
+                w = motion.walk(lt * motion.WALK_RATE); angles.update(w["angles"]); bob = w["bob"]
+                to = float(a.get("to", x_frac))
+                x_cur = x_frac + (to - x_frac) * min(1.0, lt / dur)
+                facing = "right" if to >= x_frac else "left"
             elif do == "talk":
                 mouth = _mouth_from_levels(a["levels"], fps, lt)
         eye = motion.blink_state(t + phase_off)
         ch.place(frame, {"angles": angles, "mouth": mouth, "eye": eye},
                  x_cur, ground_y, char_h, facing=facing, bob=bob)
+    _draw_props(frame, ctx, t, "front")
     cam = ctx.get("cam") or {}
     if cam:
         pr = t / scene_dur if scene_dur else 0.0
@@ -228,8 +269,18 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
             if a.get("do") == "talk":
                 aa["levels"] = a["_ls"].levels.tolist()
             actions_ser.append(aa)
+        props_ser = []
+        for p in scene.get("props", []):
+            ap = Path(p["asset"])
+            path = ap if (ap.is_absolute() or ap.exists()) else (project_root / "assets" / "cartoon" / "props" / p["asset"])
+            if not path.exists():
+                continue
+            props_ser.append({"path": str(path), "pos": p.get("pos", [0.5, 0.5]),
+                              "scale": float(p.get("scale", 0.12)), "anim": p.get("anim", "none"),
+                              "z": p.get("z", "front"), "start": float(p.get("start", 0.0)),
+                              "end": float(p.get("end", scene_dur))})
         ctx = {"present": [{**c} for c in scene.get("characters", []) if c["id"] in chars],
-               "actions": actions_ser, "W": W, "H": H, "fps": fps,
+               "actions": actions_ser, "props": props_ser, "W": W, "H": H, "fps": fps,
                "scene_dur": scene_dur, "cam": cam, "bg_path": bg_path}
         total = int(scene_dur * fps)
         tmp = tempfile.mkdtemp()

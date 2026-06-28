@@ -42,6 +42,17 @@ def point(side: str = "right") -> dict:
     return {"arm_right": -52} if side == "right" else {"arm_left": 52}
 
 
+def cheer(lt: float) -> dict:
+    """Both arms up, wiggling — celebration."""
+    w = 16 * math.sin(lt * 8.0)
+    return {"arm_left": 120 + w, "arm_right": -120 - w}
+
+
+def hold(side: str = "right") -> dict:
+    """Arm out (roughly horizontal) to hold/show a prop."""
+    return {"arm_right": -80} if side == "right" else {"arm_left": 80}
+
+
 def jump_bob(prog: float) -> float:
     """prog 0..1 -> upward bob (px) following a parabola."""
     return math.sin(min(1.0, max(0.0, prog)) * math.pi) * 60.0

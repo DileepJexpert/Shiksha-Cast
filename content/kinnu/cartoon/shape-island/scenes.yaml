@@ -1,0 +1,72 @@
+episode: shape-island
+title: Kinnu and Anshu Learn Shapes
+fps: 30
+cast:
+  kinnu: af_heart
+  anshu: af_bella
+scenes:
+  - id: s1
+    background: null
+    transition: { in: 0.5 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: anshu, pos: [0.70, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu, do: enter, from: left, start: 0.0, end: 1.8 }
+      - { who: kinnu, do: wave, start: 1.8, end: 3.0 }
+      - { who: kinnu, do: talk, start: 2.0, text: "Hi friends! Today we will learn shapes with my friend Anshu!" }
+      - { who: anshu, do: talk, text: "Hello everyone! Let's find shapes all around us!" }
+
+  - id: s2
+    background: null
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.06] }
+    props:
+      - { asset: circle.png, pos: [0.5, 0.34], scale: 0.26, anim: pop, start: 0.3 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: anshu, pos: [0.70, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu, do: point, side: right, start: 0.3, end: 2.5 }
+      - { who: kinnu, do: talk, text: "This is a circle. It is round, like the sun and the moon!" }
+      - { who: anshu, do: talk, text: "A circle has no corners at all!" }
+
+  - id: s3
+    background: null
+    transition: { in: 0.4, out: 0.4 }
+    props:
+      - { asset: square.png, pos: [0.5, 0.34], scale: 0.26, anim: pop, start: 0.3 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: anshu, pos: [0.70, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu, do: talk, text: "This is a square. It has four equal sides!" }
+      - { who: anshu, do: talk, text: "Let's count them. One, two, three, four!" }
+
+  - id: s4
+    background: null
+    transition: { in: 0.4, out: 0.4 }
+    props:
+      - { asset: triangle.png, pos: [0.5, 0.34], scale: 0.26, anim: pop, start: 0.3 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: anshu, pos: [0.70, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu, do: talk, text: "And this is a triangle. Three sides and three corners!" }
+      - { who: anshu, do: cheer, start: 3.0, end: 5.0 }
+      - { who: anshu, do: talk, text: "Triangles look like little mountains!" }
+
+  - id: s5
+    background: null
+    transition: { in: 0.4, out: 0.6 }
+    props:
+      - { asset: circle.png, pos: [0.40, 0.34], scale: 0.16, anim: float }
+      - { asset: square.png, pos: [0.52, 0.34], scale: 0.16, anim: float }
+      - { asset: triangle.png, pos: [0.64, 0.34], scale: 0.16, anim: float }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.98], scale: 0.9, facing: right }
+      - { id: anshu, pos: [0.70, 0.98], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu, do: cheer, start: 0.0, end: 2.0 }
+      - { who: kinnu, do: talk, text: "Circle, square, and triangle! You did great, friends!" }
+      - { who: anshu, do: talk, text: "Bye bye! See you next time!" }
