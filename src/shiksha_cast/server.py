@@ -179,7 +179,11 @@ def _find_script_path(chapter_dir: Path) -> Path | None:
 
 
 @app.get("/api/chapters")
-async def list_chapters():
+def list_chapters():
+    # NOTE: sync def on purpose — this does heavy blocking file I/O (globbing every
+    # episode + a recursive scenes.yaml scan). As `async def` it blocked the event
+    # loop and, with the dashboard polling every 8s, requests piled up and hung.
+    # FastAPI runs a sync endpoint in a threadpool, so polls no longer starve the loop.
     from shiksha_cast.config import iter_episode_dirs
 
     content_dir = PROJECT_ROOT / "content"
