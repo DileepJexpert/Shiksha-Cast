@@ -1,20 +1,20 @@
 episode: demo-cartoon
-title: Kinnu and Minku Say Hello
+title: Kinnu and Gappu Say Hello
 fps: 30
 cast:
-  kinnu2d: af_heart
-  minku2d: am_michael
+  kinnu: af_heart
+  gappu: am_michael
 scenes:
   - id: s1
     background: null            # null = auto sky+field background
     characters:
-      - { id: kinnu2d, pos: [0.33, 0.97], scale: 1.0, facing: right }
-      - { id: minku2d, pos: [0.70, 0.97], scale: 1.0, facing: left }
+      - { id: kinnu, pos: [0.33, 0.97], scale: 1.0, facing: right }
+      - { id: gappu, pos: [0.70, 0.97], scale: 1.0, facing: left }
     actions:
-      - { who: kinnu2d, do: enter, from: left, start: 0.0, end: 1.8 }
-      - { who: kinnu2d, do: wave,  start: 1.8, end: 3.0 }
-      - { who: kinnu2d, do: talk,  start: 2.0, text: "Hi friends! I am Kinnu." }
-      - { who: minku2d, do: talk,  text: "And I am Minku! Let's play and learn." }
-      - { who: kinnu2d, do: talk,  text: "Today we will count to three. One! Two! Three!" }
-      - { who: minku2d, do: jump,  start: 9.0, end: 9.8 }
-      - { who: minku2d, do: talk,  text: "Yay! That was so much fun!" }
+      - { who: kinnu, do: enter, from: left, start: 0.0, end: 1.8 }
+      - { who: kinnu, do: wave,  start: 1.8, end: 3.0 }
+      - { who: kinnu, do: talk,  start: 2.0, text: "Hi friends! I am Kinnu." }
+      - { who: gappu, do: talk,  text: "And I am Gappu! Let's play and learn." }
+      - { who: kinnu, do: talk,  text: "Today we will count to three. One! Two! Three!" }
+      - { who: gappu, do: jump,  start: 9.0, end: 9.8 }
+      - { who: gappu, do: talk,  text: "Yay! That was so much fun!" }

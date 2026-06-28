@@ -29,7 +29,7 @@ def rr(d, box, r, fill, outline=INK, w=8):
 
 
 def make(name, skin, hair, top, bottom, shoe, *, style="girl", bow=None,
-         bindi=False, scale=1.0):
+         bindi=False, glasses=False, scale=1.0):
     out = ROOT / "assets" / "cartoon" / "characters" / name
     out.mkdir(parents=True, exist_ok=True)
     def S(img, fn): img.save(out / fn)
@@ -96,6 +96,11 @@ def make(name, skin, hair, top, bottom, shoe, *, style="girl", bow=None,
                     d.line([(ex + s * 26, ey - 26), (ex + s * 36, ey - 34)], fill=INK, width=5)
             else:
                 d.arc([ex - 26, ey - 16, ex + 26, ey + 16], 0, 180, fill=INK, width=6)
+        if glasses:
+            for s in (-1, 1):
+                ex, ey = HX + s * 54, HY + 2
+                d.ellipse([ex - 36, ey - 34, ex + 36, ey + 36], outline=(45, 42, 55, 255), width=8)
+            d.line([(HX - 18, HY - 4), (HX + 18, HY - 4)], fill=(45, 42, 55, 255), width=7)
         S(img, f"eye_{state}.png")
 
     # ---------- MOUTHS ----------
@@ -152,13 +157,18 @@ def make(name, skin, hair, top, bottom, shoe, *, style="girl", bow=None,
     print(f"{name} ({style}) -> {out}")
 
 
+# Canonical cast: Kinnu, Gappu, Vibhu (toddler), Anshu, Prinshu (glasses).
 PRESETS = {
-    "kinnu2d": dict(skin=(255, 214, 176), hair=(45, 35, 42), top=(247, 195, 50),
-                    bottom=(60, 120, 230), shoe=(50, 90, 200), style="girl", bow=(240, 90, 120)),
-    "minku2d": dict(skin=(235, 185, 140), hair=(30, 26, 32), top=(40, 175, 95),
-                    bottom=(55, 60, 80), shoe=(40, 90, 200), style="boy"),
-    "tara2d": dict(skin=(245, 200, 160), hair=(28, 24, 30), top=(210, 70, 120),
-                   bottom=(60, 55, 90), shoe=(120, 70, 50), style="teacher", bindi=True, scale=1.12),
+    "kinnu": dict(skin=(255, 214, 176), hair=(45, 35, 42), top=(247, 195, 50),
+                  bottom=(60, 120, 230), shoe=(50, 90, 200), style="girl", bow=(240, 90, 120)),
+    "gappu": dict(skin=(235, 185, 140), hair=(30, 26, 32), top=(40, 175, 95),
+                  bottom=(55, 60, 80), shoe=(40, 90, 200), style="boy"),
+    "vibhu": dict(skin=(255, 205, 165), hair=(40, 32, 38), top=(245, 120, 70),
+                  bottom=(120, 90, 200), shoe=(230, 90, 90), style="boy", scale=0.72),
+    "anshu": dict(skin=(248, 200, 158), hair=(38, 30, 40), top=(170, 90, 205),
+                  bottom=(60, 55, 90), shoe=(230, 120, 150), style="girl", bow=(110, 200, 240)),
+    "prinshu": dict(skin=(238, 190, 150), hair=(28, 24, 30), top=(70, 130, 230),
+                    bottom=(60, 55, 75), shoe=(200, 120, 60), style="boy", glasses=True),
 }
 
 if __name__ == "__main__":
