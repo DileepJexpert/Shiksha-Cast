@@ -1,0 +1,153 @@
+episode: kinnu-count-10min
+title: Kinnu's Big Counting Adventure — Count 1 to 10 (Full Episode)
+fps: 30
+cast:
+  kinnu_hd: af_heart
+scenes:
+  - id: s01
+    background: classroom.png
+    transition: { in: 0.5 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: enter, from: left, start: 0.0, end: 1.8 }
+      - { who: kinnu_hd, do: wave, start: 1.8, end: 3.4 }
+      - { who: kinnu_hd, do: talk, start: 2.0, text: "Hello friends! I am Kinnu! Are you ready to learn and have lots of fun today?" }
+
+  - id: s02
+    background: classroom.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.3, end: 3.0 }
+      - { who: kinnu_hd, do: talk, text: "Today we are going to count all the way from one to ten. Counting is so much fun!" }
+
+  - id: s03
+    background: night_sky.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.05, 1.0] }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: talk, text: "Look! A magical Star Bridge has appeared in the night sky. Let's go on an adventure!" }
+
+  - id: s04
+    background: build/k02-star-bridge-counting/backgrounds/bg_001.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "The Star Bridge opens only when we count its stars correctly. Let's begin together!" }
+
+  - id: s05
+    background: build/k02-star-bridge-counting/backgrounds/bg_002.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.06] }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Here is the very first star. This is number one. Can you say it with me? One!" }
+
+  - id: s06
+    background: build/k02-star-bridge-counting/backgrounds/bg_002.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: talk, text: "Let's say it one more time, nice and loud. One! Great job, friends!" }
+
+  - id: s07
+    background: build/k02-star-bridge-counting/backgrounds/bg_003.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Now look, two more stars are glowing. One, two, three! We are on number three!" }
+
+  - id: s08
+    background: build/k02-star-bridge-counting/backgrounds/bg_003.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: talk, text: "You are counting so well. Keep going, you can do it!" }
+
+  - id: s09
+    background: build/k02-star-bridge-counting/backgrounds/bg_004.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Four! Five! We are halfway across the bridge. Well done, my friends!" }
+
+  - id: s10
+    background: build/k02-star-bridge-counting/backgrounds/bg_004.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: talk, text: "Say them with me. Four... five! Wonderful counting!" }
+
+  - id: s11
+    background: build/k02-star-bridge-counting/backgrounds/bg_005.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Six! Seven! Eight! The stars are shining brighter and brighter!" }
+
+  - id: s12
+    background: build/k02-star-bridge-counting/backgrounds/bg_005.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: talk, text: "Almost there now, friends. You are doing amazing!" }
+
+  - id: s13
+    background: build/k02-star-bridge-counting/backgrounds/bg_006.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.06] }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: talk, text: "Nine! Ten! Hooray! We counted all ten stars and crossed the magic bridge!" }
+
+  - id: s14
+    background: build/k02-star-bridge-counting/backgrounds/bg_007.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 5.0 }
+      - { who: kinnu_hd, do: talk, text: "Now it is your turn! Point at each star and count with me. One, two, three, four, five!" }
+
+  - id: s15
+    background: build/k02-star-bridge-counting/backgrounds/bg_007.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 5.0 }
+      - { who: kinnu_hd, do: talk, text: "Six, seven, eight, nine, ten! Fantastic counting, you are a counting star!" }
+
+  - id: s16
+    background: garden.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.3, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "We can count everywhere! In the garden, let's count flowers. One flower, two flowers, three flowers!" }
+
+  - id: s17
+    background: classroom.png
+    transition: { in: 0.4, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: talk, text: "Let's remember all our numbers together. One, two, three, four, five, six, seven, eight, nine, ten!" }
+
+  - id: s18
+    background: night_sky.png
+    transition: { in: 0.4, out: 0.7 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.9, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: talk, text: "You did a super job today, friends! Come back for more fun with Kinnu. Please like and subscribe. Bye bye!" }
