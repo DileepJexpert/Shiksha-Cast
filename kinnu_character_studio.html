@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kinnu Character Studio</title>
+<style>
+  :root{
+    --bg1:#1b1140; --bg2:#3a1f6e; --panel:#ffffff; --ink:#23204a; --muted:#6b6790;
+    --accent:#ff4d8d; --accent2:#3aa0ff; --accent3:#ffc23a; --ok:#27c08a;
+    --ring:#7c5cff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    color:var(--ink);
+    background:radial-gradient(1200px 700px at 50% -10%, #4a2a8f 0%, var(--bg1) 60%, #100a28 100%);
+    min-height:100%;
+    display:flex;flex-direction:column;align-items:center;
+    padding:18px 14px 40px;gap:14px;
+  }
+  h1{margin:2px 0 0;color:#fff;font-size:clamp(20px,3.2vw,30px);letter-spacing:.3px;
+     text-shadow:0 2px 0 rgba(0,0,0,.25)}
+  .sub{margin:0 0 4px;color:#cfc6ff;font-size:13px}
+  .stage{
+    width:min(960px,96vw);aspect-ratio:16/9;position:relative;
+    border-radius:20px;overflow:hidden;
+    box-shadow:0 18px 50px rgba(0,0,0,.45), inset 0 0 0 3px rgba(255,255,255,.08);
+    background:#bfe9ff;
+  }
+  canvas{display:block;width:100%;height:100%}
+  .panel{
+    width:min(960px,96vw);background:var(--panel);border-radius:18px;
+    padding:14px 14px 16px;box-shadow:0 12px 30px rgba(0,0,0,.3);
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .grow{flex:1 1 240px;min-width:180px}
+  input[type=text]{
+    width:100%;padding:11px 13px;border:2px solid #e7e4f5;border-radius:12px;
+    font-size:15px;outline:none;transition:border-color .15s,box-shadow .15s;background:#fbfaff;
+  }
+  input[type=text]:focus{border-color:var(--ring);box-shadow:0 0 0 4px rgba(124,92,255,.18)}
+  button{
+    border:0;border-radius:12px;padding:11px 16px;font-size:14px;font-weight:700;
+    cursor:pointer;color:#fff;background:var(--accent);transition:transform .08s,filter .15s;
+    box-shadow:0 4px 0 rgba(0,0,0,.12);
+  }
+  button:hover{filter:brightness(1.06)} button:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.12)}
+  button.ghost{background:#efeafe;color:#5a4bd6;box-shadow:0 4px 0 #dcd2fb}
+  button.blue{background:var(--accent2)} button.gold{background:#f0a81f}
+  .chip{background:#f1eeff;color:#5a4bd6;border-radius:999px;padding:8px 13px;font-weight:600;
+        font-size:13px;box-shadow:0 3px 0 #ddd4fa}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  label.toggle{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);
+    background:#f6f4ff;padding:8px 12px;border-radius:12px;cursor:pointer;user-select:none}
+  label.toggle input{width:18px;height:18px;accent-color:var(--ring)}
+  .slider{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--muted);font-size:13px}
+  input[type=range]{accent-color:var(--accent);width:150px}
+  select{padding:9px 11px;border:2px solid #e7e4f5;border-radius:12px;background:#fbfaff;
+    font-size:14px;color:var(--ink);outline:none;max-width:230px}
+  .hint{color:var(--muted);font-size:12px;margin-top:-4px}
+  @media (max-width:560px){ .slider input[type=range]{width:110px} }
+</style>
+</head>
+<body>
+  <h1>🎬 Kinnu Character Studio</h1>
+  <p class="sub">A procedurally-drawn cartoon kid that walks &amp; talks — type something and press Speak.</p>
+
+  <div class="stage"><canvas id="c"></canvas></div>
+
+  <div class="panel">
+    <div class="row">
+      <div class="grow"><input id="text" type="text" maxlength="240"
+        value="Hi friends! I am Kinnu. Let's learn and have fun together!" /></div>
+      <button id="speak">▶ Speak</button>
+      <button id="stop" class="ghost">■ Stop</button>
+    </div>
+
+    <div class="chips" id="presets"></div>
+
+    <div class="row">
+      <label class="toggle"><input type="checkbox" id="walk" checked> Walking</label>
+      <div class="slider">Speed <input type="range" id="speed" min="0.2" max="2.2" step="0.05" value="1"></div>
+      <button id="shuffle" class="gold">🎨 Shuffle colors</button>
+      <select id="voice" title="Speech voice"></select>
+    </div>
+    <p class="hint">Tip: lip-sync uses your browser's voices. If none speak aloud, the mouth still animates (silent fallback).</p>
+  </div>
+
+<script>
+(() => {
+"use strict";
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---------- responsive canvas (devicePixelRatio aware) ----------
+let W = 0, H = 0, DPR = 1;
+function resize(){
+  const r = cv.getBoundingClientRect();
+  DPR = Math.min(2.5, window.devicePixelRatio || 1);
+  W = Math.max(1, Math.round(r.width));
+  H = Math.max(1, Math.round(r.height));
+  cv.width = Math.round(W * DPR);
+  cv.height = Math.round(H * DPR);
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+new ResizeObserver(resize).observe(cv);
+resize();
+
+// ---------- palettes ----------
+const PALETTES = [
+  {skin:'#ffd9b8',hair:'#2b2b3a',shirt:'#ff5d8f',pants:'#3b6ef0',shoe:'#ffd23a',cheek:'#ff9bb6'},
+  {skin:'#ffe0c2',hair:'#5a2d12',shirt:'#22b07a',pants:'#2a3550',shoe:'#ff7a3c',cheek:'#ffb0a0'},
+  {skin:'#f7c9a3',hair:'#1c1c28',shirt:'#7c5cff',pants:'#ffb02e',shoe:'#23d3a0',cheek:'#ffa6c0'},
+  {skin:'#ffcfa0',hair:'#3a1f0f',shirt:'#19a7ce',pants:'#e23e6b',shoe:'#ffd23a',cheek:'#ff9aa8'},
+  {skin:'#ffd9b8',hair:'#0f1230',shirt:'#ff8c1a',pants:'#1f9d55',shoe:'#3b6ef0',cheek:'#ffb3c1'},
+];
+let pal = PALETTES[0];
+
+// ---------- state ----------
+const S = {
+  walking: true,
+  speed: 1,
+  walkPhase: 0,
+  t: 0,
+  blink: 0, nextBlink: 1.5,
+  mouthOpen: 0, mouthWidth: 0.5, mouthTarget: 0, widthTarget: 0.5, round: 0, roundTarget: 0,
+  talking: false,
+  scroll: 0,
+};
+
+// ---------- scene props ----------
+const clouds = Array.from({length:5}, (_,i)=>({x:Math.random(),y:0.10+Math.random()*0.22,s:0.6+Math.random()*0.8,sp:0.004+Math.random()*0.01}));
+const tufts = Array.from({length:26}, (_,i)=>({x:Math.random(),h:0.5+Math.random()*0.9,flower:Math.random()<0.35,c:['#ff5d8f','#ffd23a','#fff','#ff8c1a'][i%4]}));
+const hill1 = makeHill(7, 0.62), hill2 = makeHill(5, 0.72);
+function makeHill(n, base){ const a=[]; for(let i=0;i<=n;i++) a.push(base - 0.05 - Math.random()*0.10); return a; }
+
+// =========================================================
+//  LIP SYNC
+// =========================================================
+function visemeFor(ch){
+  ch = ch.toLowerCase();
+  if ('aá'.includes(ch)) return {o:1.00,w:0.92,r:0};
+  if ('e'.includes(ch))  return {o:0.55,w:0.86,r:0};
+  if ('i'.includes(ch))  return {o:0.34,w:1.00,r:0};   // wide smile
+  if ('o'.includes(ch))  return {o:0.72,w:0.46,r:1};   // rounded
+  if ('u'.includes(ch))  return {o:0.50,w:0.36,r:1};   // narrow round
+  if ('mbp'.includes(ch))return {o:0.00,w:0.55,r:0};   // lips closed
+  if ('fv'.includes(ch)) return {o:0.16,w:0.62,r:0};   // small gap
+  if (ch===' '||",.!?;:\n".includes(ch)) return {o:0.0,w:0.5,r:0};
+  if (/[a-z]/.test(ch))  return {o:0.30,w:0.60,r:0};   // generic consonant
+  return {o:0.0,w:0.5,r:0};
+}
+function durFor(ch){
+  if (ch===' ') return 90;
+  if (",.!?;:".includes(ch)) return 170;
+  if ('aeiou'.includes(ch.toLowerCase())) return 95;
+  return 62;
+}
+let timeline = [];   // [{ci, start, end, v}]
+let speakStart = 0, totalDur = 0, timeShift = 0, fallbackTimer = null;
+
+function buildTimeline(text){
+  timeline = []; let t = 0;
+  for (let i=0;i<text.length;i++){
+    const ch = text[i];
+    const d = durFor(ch);
+    timeline.push({ci:i, start:t, end:t+d, v:visemeFor(ch)});
+    t += d;
+  }
+  totalDur = t;
+}
+function visemeAtChar(ci){
+  for (const seg of timeline) if (seg.ci===ci) return seg;
+  return null;
+}
+function currentTargetViseme(){
+  const pos = (performance.now() - speakStart) - timeShift;
+  if (pos < 0) return {o:0,w:0.5,r:0};
+  for (const seg of timeline) if (pos>=seg.start && pos<seg.end) return seg.v;
+  return null; // past the end
+}
+
+let voices = [];
+function loadVoices(){
+  voices = (window.speechSynthesis ? speechSynthesis.getVoices() : []).filter(v=>/^en/i.test(v.lang));
+  const sel = document.getElementById('voice');
+  const prev = sel.value;
+  sel.innerHTML = '';
+  if (!voices.length){ const o=document.createElement('option'); o.textContent='(no browser voice — silent)'; sel.appendChild(o); return; }
+  voices.forEach((v,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=`${v.name} (${v.lang})`; sel.appendChild(o); });
+  if (prev) sel.value = prev;
+}
+if (window.speechSynthesis){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+
+function speak(text){
+  text = (text||'').trim(); if(!text) return;
+  stopSpeak();
+  buildTimeline(text);
+  bubble.text = text; bubble.show = true;
+  S.talking = true; speakStart = performance.now(); timeShift = 0;
+
+  const synth = window.speechSynthesis;
+  const haveVoice = synth && voices.length;
+  if (haveVoice){
+    const u = new SpeechSynthesisUtterance(text);
+    const vi = parseInt(document.getElementById('voice').value);
+    if (!isNaN(vi) && voices[vi]) u.voice = voices[vi];
+    u.rate = 1.0; u.pitch = 1.12;
+    u.onboundary = (e)=>{               // resync mouth to the REAL audio position
+      if (e.name && e.name!=='word' && e.charIndex==null) return;
+      const seg = visemeAtChar(e.charIndex|0) || timeline.find(s=>s.ci>=(e.charIndex|0));
+      if (seg){ const elapsed = performance.now()-speakStart; timeShift = elapsed - seg.start; }
+    };
+    u.onend = endSpeak;
+    try{ synth.cancel(); synth.speak(u); }catch(_){}
+    fallbackTimer = setTimeout(endSpeak, totalDur*1.6 + 1200); // safety net
+  } else {
+    // silent fallback: drive purely off the timeline clock
+    fallbackTimer = setTimeout(endSpeak, totalDur + 300);
+  }
+}
+function endSpeak(){
+  S.talking = false; bubble.show = false;
+  S.mouthTarget = 0; S.roundTarget = 0; S.widthTarget = 0.5;
+  if (fallbackTimer){ clearTimeout(fallbackTimer); fallbackTimer=null; }
+}
+function stopSpeak(){ try{ window.speechSynthesis && speechSynthesis.cancel(); }catch(_){} endSpeak(); }
+
+// ---------- speech bubble ----------
+const bubble = {show:false, text:''};
+
+// =========================================================
+//  DRAW HELPERS
+// =========================================================
+function rrect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+function limb(x,y,a1,a2,l1,l2,wd,col,foot){
+  ctx.save(); ctx.translate(x,y); ctx.rotate(a1);
+  ctx.fillStyle=col; ctx.strokeStyle='rgba(0,0,0,.85)'; ctx.lineWidth=wd*0.32; ctx.lineJoin='round';
+  rrect(-wd/2,0,wd,l1,wd/2); ctx.fill(); ctx.stroke();
+  ctx.translate(0,l1); ctx.rotate(a2);
+  rrect(-wd/2,0,wd,l2,wd/2); ctx.fill(); ctx.stroke();
+  if (foot){ ctx.translate(0,l2); ctx.fillStyle=foot; rrect(-wd*0.75,-wd*0.2,wd*1.7,wd*0.95,wd*0.45); ctx.fill(); ctx.stroke(); }
+  ctx.restore();
+}
+
+// =========================================================
+//  SCENE
+// =========================================================
+function drawScene(dt){
+  // sky
+  const g = ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,'#9ad7ff'); g.addColorStop(0.55,'#cdeeff'); g.addColorStop(1,'#eafaff');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  // sun
+  ctx.save(); ctx.globalAlpha=.9; const sx=W*0.84, sy=H*0.2, sr=H*0.085;
+  const sg=ctx.createRadialGradient(sx,sy,2,sx,sy,sr*2.4); sg.addColorStop(0,'#fff7c2'); sg.addColorStop(1,'rgba(255,225,120,0)');
+  ctx.fillStyle=sg; ctx.beginPath(); ctx.arc(sx,sy,sr*2.4,0,7); ctx.fill();
+  ctx.fillStyle='#ffd23a'; ctx.beginPath(); ctx.arc(sx,sy,sr,0,7); ctx.fill(); ctx.restore();
+
+  const moveScale = reduceMotion?0.3:1;
+  const drift = (S.walking? S.speed:0.15)*moveScale;
+
+  // clouds
+  for (const c of clouds){
+    c.x += c.sp*dt*(0.4+drift*0.6); if (c.x>1.2) c.x=-0.2;
+    drawCloud(c.x*W, c.y*H, H*0.06*c.s);
+  }
+  // hills (two parallax layers)
+  drawHills(hill1,'#7fd08a', 0.40*drift, 0.62);
+  drawHills(hill2,'#56b97a', 0.75*drift, 0.72);
+  // ground
+  ctx.fillStyle='#49a564'; ctx.fillRect(0,H*0.80,W,H*0.2);
+  ctx.fillStyle='#3f9457'; ctx.fillRect(0,H*0.80,W,H*0.02);
+
+  // foreground grass/flowers (fast scroll)
+  S.scroll += drift*dt*0.00028*W*4;
+  for (const tf of tufts){
+    let px = ((tf.x - (S.scroll/(W*1.4))) % 1 + 1)%1;
+    drawTuft(px*W, H*0.86 + tf.h*H*0.02, H*0.05*tf.h, tf.flower, tf.c);
+  }
+}
+function drawCloud(x,y,r){
+  ctx.fillStyle='rgba(255,255,255,.95)';
+  for (const [dx,dy,rr] of [[-r,0,r],[0,-r*0.6,r*1.2],[r,0,r],[0,r*0.2,r*1.3]]){
+    ctx.beginPath(); ctx.arc(x+dx,y+dy,rr,0,7); ctx.fill();
+  }
+}
+function drawHills(profile,color,par,base){
+  const n=profile.length-1; const off=-(S.scroll*par*0.02)%(W/n);
+  ctx.fillStyle=color; ctx.beginPath(); ctx.moveTo(-W*0.2,H);
+  for (let i=0;i<=n;i++){ const x=off-(W/n)+ (i*(W/n)); ctx.lineTo(x, profile[i]*H);
+    if(i<n){ const nx=off-(W/n)+((i+1)*(W/n)); ctx.quadraticCurveTo((x+nx)/2, (profile[i]-0.03)*H, nx, profile[i+1]*H);} }
+  ctx.lineTo(W*1.3,H); ctx.closePath(); ctx.fill();
+}
+function drawTuft(x,y,h,flower,c){
+  ctx.strokeStyle='#2f8b4a'; ctx.lineWidth=Math.max(2,h*0.18); ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-h*0.3,y-h); ctx.moveTo(x,y); ctx.lineTo(x,y-h*1.2); ctx.moveTo(x,y); ctx.lineTo(x+h*0.3,y-h); ctx.stroke();
+  if (flower){ ctx.fillStyle=c; for(let k=0;k<5;k++){const a=k/5*6.28; ctx.beginPath(); ctx.arc(x+Math.cos(a)*h*0.28, y-h*1.2+Math.sin(a)*h*0.28, h*0.2,0,7); ctx.fill();}
+    ctx.fillStyle='#ffd23a'; ctx.beginPath(); ctx.arc(x,y-h*1.2,h*0.16,0,7); ctx.fill(); }
+}
+
+// =========================================================
+//  CHARACTER
+// =========================================================
+function drawCharacter(dt){
+  const unit = H/540;                     // design scale
+  const cx = W*0.36;
+  const groundY = H*0.92;
+  const thigh=58*unit, shin=54*unit, legW=26*unit;
+  const upArm=44*unit, loArm=40*unit, armW=20*unit;
+  const bodyW=92*unit, bodyH=104*unit, headR=64*unit;
+
+  // walk-cycle / idle kinematics
+  let p = S.walkPhase;
+  const moving = S.walking && !reduceMotion;
+  const swing = moving?0.62:0.0;
+  const bob = moving? Math.abs(Math.sin(p))*9*unit : (reduceMotion?0:Math.sin(S.t*1.6)*2*unit);
+  const sway = (!moving && !reduceMotion)? Math.sin(S.t*1.4)*0.04 : 0;
+
+  const hipY = groundY - shin - thigh + bob;
+  const bodyTop = hipY - bodyH;
+  const headCy = bodyTop - headR*0.72;
+
+  // ---- legs (behind body): opposite phase, knees bend ----
+  function legAngles(ph){
+    const thA = swing*Math.sin(ph);
+    const knee = moving? Math.max(0, Math.sin(ph - 0.5))*0.85 : 0.06; // bend while lifting
+    return [thA, -knee];
+  }
+  const hipX = cx;
+  const [lT,lK] = legAngles(p+Math.PI);
+  const [rT,rK] = legAngles(p);
+  limb(hipX-legW*0.5, hipY, lT, lK, thigh, shin, legW, pal.pants, pal.shoe); // back leg (left)
+  // body
+  ctx.save(); ctx.translate(cx, bodyTop+bodyH*0.5); ctx.rotate(sway);
+  ctx.fillStyle=pal.shirt; ctx.strokeStyle='rgba(0,0,0,.85)'; ctx.lineWidth=4*unit; ctx.lineJoin='round';
+  rrect(-bodyW/2,-bodyH/2,bodyW,bodyH,bodyW*0.34); ctx.fill(); ctx.stroke();
+  // little collar
+  ctx.fillStyle='rgba(255,255,255,.35)'; rrect(-bodyW*0.22,-bodyH*0.46,bodyW*0.44,bodyH*0.14,8*unit); ctx.fill();
+  ctx.restore();
+  // front leg (right)
+  limb(hipX+legW*0.5, hipY, rT, rK, thigh, shin, legW, pal.pants, pal.shoe);
+
+  // ---- arms (opposite to legs) ----
+  const shY = bodyTop + bodyH*0.20, shX = bodyW*0.42;
+  const aSwingL =  swing*0.9*Math.sin(p);             // opposite of left leg
+  const aSwingR =  swing*0.9*Math.sin(p+Math.PI);
+  limb(cx-shX, shY, Math.PI*0.02 + aSwingL, 0.25, upArm, loArm, armW, pal.shirt, null); // back arm
+  // hands as skin balls handled by drawing a circle at end — quick approximation:
+  drawHandAtLimb(cx-shX, shY, Math.PI*0.02 + aSwingL, 0.25, upArm, loArm, armW);
+
+  // ---- head (front-facing) ----
+  drawHead(cx, headCy, headR, unit, sway);
+
+  // front arm (over body)
+  limb(cx+shX, shY, -Math.PI*0.02 + aSwingR, 0.25, upArm, loArm, armW, pal.shirt, null);
+  drawHandAtLimb(cx+shX, shY, -Math.PI*0.02 + aSwingR, 0.25, upArm, loArm, armW);
+
+  // speech bubble
+  if (bubble.show) drawBubble(cx+headR*0.7, headCy-headR*1.1, bubble.text, unit);
+}
+
+function drawHandAtLimb(x,y,a1,a2,l1,l2,wd){
+  // compute end point of two-segment limb to place a hand (skin ball)
+  const ex = x + Math.sin(a1)*l1 + Math.sin(a1+a2)*l2;
+  const ey = y + Math.cos(a1)*l1 + Math.cos(a1+a2)*l2;
+  ctx.fillStyle=pal.skin; ctx.strokeStyle='rgba(0,0,0,.8)'; ctx.lineWidth=wd*0.28;
+  ctx.beginPath(); ctx.arc(ex,ey,wd*0.62,0,7); ctx.fill(); ctx.stroke();
+}
+
+function drawHead(cx,cy,R,unit,sway){
+  ctx.save(); ctx.translate(cx,cy); ctx.rotate(sway*0.6);
+  // ears
+  ctx.fillStyle=pal.skin; ctx.strokeStyle='rgba(0,0,0,.82)'; ctx.lineWidth=4*unit;
+  for (const s of [-1,1]){ ctx.beginPath(); ctx.arc(s*R*0.92, R*0.06, R*0.2,0,7); ctx.fill(); ctx.stroke(); }
+  // face
+  ctx.fillStyle=pal.skin; ctx.beginPath(); ctx.arc(0,0,R,0,7); ctx.fill(); ctx.stroke();
+  // hair cap + fringe bumps
+  ctx.fillStyle=pal.hair;
+  ctx.beginPath(); ctx.arc(0,0,R*1.02, Math.PI*1.02, Math.PI*2-0.02); ctx.fill();
+  ctx.beginPath();
+  const bumps=5;
+  for(let i=0;i<=bumps;i++){ const t=i/bumps; const x=(-1+2*t)*R*0.86; const y=-R*0.18 + Math.sin(t*Math.PI)*6*unit; if(i===0)ctx.moveTo(x,-R*0.2); ctx.quadraticCurveTo(x, -R*0.55, x+R*0.17, -R*0.12); }
+  ctx.lineTo(R*0.86,-R); ctx.lineTo(-R*0.86,-R); ctx.closePath(); ctx.fillStyle=pal.hair; ctx.fill();
+  // cheeks
+  ctx.fillStyle=pal.cheek; ctx.globalAlpha=.7;
+  for (const s of [-1,1]){ ctx.beginPath(); ctx.ellipse(s*R*0.5, R*0.28, R*0.18, R*0.12,0,0,7); ctx.fill(); }
+  ctx.globalAlpha=1;
+  // eyebrows
+  ctx.strokeStyle=pal.hair; ctx.lineWidth=5*unit; ctx.lineCap='round';
+  for (const s of [-1,1]){ ctx.beginPath(); ctx.moveTo(s*R*0.42-R*0.12, -R*0.30); ctx.quadraticCurveTo(s*R*0.42, -R*0.40, s*R*0.42+R*0.12, -R*0.30); ctx.stroke(); }
+  // eyes (white + pupil + highlight), blink => squash
+  const eo = 1 - S.blink;
+  for (const s of [-1,1]){
+    const ex=s*R*0.40, ey=-R*0.05;
+    ctx.fillStyle='#fff'; ctx.strokeStyle='rgba(0,0,0,.8)'; ctx.lineWidth=3*unit;
+    ctx.beginPath(); ctx.ellipse(ex,ey,R*0.22,R*0.27*eo+0.001,0,0,7); ctx.fill(); ctx.stroke();
+    if (eo>0.25){
+      ctx.fillStyle='#23204a'; ctx.beginPath(); ctx.arc(ex+R*0.03, ey+R*0.03, R*0.11*eo,0,7); ctx.fill();
+      ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(ex-R*0.02, ey-R*0.03, R*0.04,0,7); ctx.fill();
+    }
+  }
+  // mouth
+  drawMouth(0, R*0.46, R, unit);
+  ctx.restore();
+}
+
+function drawMouth(x,y,R,unit){
+  const open = S.mouthOpen;                 // 0..1
+  const wide = 0.35 + S.mouthWidth*0.55;    // width factor
+  const round = S.round;                    // 0..1 (o/u rounding)
+  ctx.save(); ctx.translate(x,y);
+  if (open < 0.06){
+    // closed smile
+    ctx.strokeStyle='#a23b53'; ctx.lineWidth=5*unit; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(-R*0.22, 0); ctx.quadraticCurveTo(0, R*0.14, R*0.22, 0); ctx.stroke();
+  } else {
+    const w = R*(0.40*wide) * (1-round*0.45);
+    const h = R*(0.10 + open*0.34);
+    ctx.fillStyle='#7a2233';                // dark mouth
+    ctx.beginPath(); ctx.ellipse(0,0,w,h,0,0,7); ctx.fill();
+    // upper teeth strip
+    ctx.save(); ctx.beginPath(); ctx.ellipse(0,0,w,h,0,0,7); ctx.clip();
+    ctx.fillStyle='#fff'; rrect(-w, -h, w*2, h*0.55, h*0.2); ctx.fill();
+    // tongue
+    ctx.fillStyle='#ef6b86'; ctx.beginPath(); ctx.ellipse(0, h*0.55, w*0.7, h*0.5,0,0,7); ctx.fill();
+    ctx.restore();
+    ctx.strokeStyle='rgba(0,0,0,.55)'; ctx.lineWidth=3*unit; ctx.beginPath(); ctx.ellipse(0,0,w,h,0,0,7); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawBubble(x,y,text,unit){
+  ctx.font = `${Math.round(15*unit*1.2)}px "Segoe UI",sans-serif`;
+  const maxW = Math.min(W*0.5, 360*unit);
+  const words = text.split(/\s+/); const lines=[]; let line='';
+  for (const w of words){ const test=line?line+' '+w:w; if (ctx.measureText(test).width>maxW && line){lines.push(line);line=w;} else line=test; }
+  if (line) lines.push(line);
+  const lh = 20*unit, padX=16*unit, padY=12*unit;
+  const bw = Math.min(maxW, Math.max(...lines.map(l=>ctx.measureText(l).width)))+padX*2;
+  const bh = lines.length*lh + padY*2;
+  let bx = Math.min(x, W-bw-10), by = Math.max(8, y-bh);
+  ctx.fillStyle='#fff'; ctx.strokeStyle='#23204a'; ctx.lineWidth=4*unit; ctx.lineJoin='round';
+  rrect(bx,by,bw,bh,18*unit); ctx.fill(); ctx.stroke();
+  // tail
+  ctx.beginPath(); ctx.moveTo(bx+bw*0.2,by+bh-2); ctx.lineTo(bx+bw*0.12,by+bh+18*unit); ctx.lineTo(bx+bw*0.34,by+bh-2); ctx.closePath(); ctx.fillStyle='#fff'; ctx.fill(); ctx.stroke();
+  ctx.fillStyle='#23204a'; ctx.textBaseline='top';
+  lines.forEach((l,i)=> ctx.fillText(l, bx+padX, by+padY+i*lh));
+}
+
+// =========================================================
+//  LOOP
+// =========================================================
+let last = performance.now();
+function frame(now){
+  const dt = Math.min(0.05, (now-last)/1000); last=now;
+  S.t += dt;
+
+  // walk phase + speed
+  if (S.walking && !reduceMotion) S.walkPhase += dt * 6.5 * S.speed;
+
+  // blinks
+  S.nextBlink -= dt;
+  if (S.nextBlink<=0){ S.blink = 1; S.nextBlink = 2 + Math.random()*3.5; }
+  if (S.blink>0) S.blink = Math.max(0, S.blink - dt*9);
+
+  // mouth target from lip-sync
+  if (S.talking){
+    const v = currentTargetViseme();
+    if (v===null){ endSpeak(); }
+    else { S.mouthTarget=v.o; S.widthTarget=v.w; S.roundTarget=v.r; }
+  } else { S.mouthTarget=0; S.widthTarget=0.5; S.roundTarget=0; }
+  // smooth interpolation
+  const k = 1 - Math.pow(0.0001, dt);
+  S.mouthOpen += (S.mouthTarget - S.mouthOpen)*Math.min(1,k*1.6);
+  S.mouthWidth += (S.widthTarget - S.mouthWidth)*Math.min(1,k*1.4);
+  S.round += (S.roundTarget - S.round)*Math.min(1,k*1.4);
+
+  drawScene(dt);
+  drawCharacter(dt);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+// =========================================================
+//  CONTROLS
+// =========================================================
+const PRESETS = ["Two plus three is five!","Let's count to ten!","Why is the sky blue?","Wow, that was amazing!","See you next time, friends!"];
+const pc = document.getElementById('presets');
+PRESETS.forEach(p=>{ const b=document.createElement('button'); b.className='chip'; b.textContent=p;
+  b.onclick=()=>{ document.getElementById('text').value=p; speak(p); }; pc.appendChild(b); });
+
+document.getElementById('speak').onclick = ()=> speak(document.getElementById('text').value);
+document.getElementById('stop').onclick = stopSpeak;
+document.getElementById('text').addEventListener('keydown', e=>{ if(e.key==='Enter') speak(e.target.value); });
+document.getElementById('walk').onchange = e=> S.walking = e.target.checked;
+document.getElementById('speed').oninput = e=> S.speed = parseFloat(e.target.value);
+document.getElementById('shuffle').onclick = ()=>{ let n; do{ n=PALETTES[Math.floor(Math.random()*PALETTES.length)]; }while(n===pal); pal=n; };
+addEventListener('beforeunload', stopSpeak);
+})();
+</script>
+</body>
+</html>
