@@ -16,7 +16,7 @@ import json
 import math
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 # Skeleton in the rig's own coordinate space (scaled at place()-time).
 SPACE = (760, 1060)
@@ -35,6 +35,8 @@ PIVOT = {  # (fx, fy) fraction of each part image = its joint/rotation point (me
     "thigh": (0.5, 0.03), "shin": (0.5, 0.03),
 }
 BONE = {"upper_arm": 0.97, "forearm": 0.0, "thigh": 0.97, "shin": 0.0}  # elbow/knee at ~97% of segment
+NECK_RAISE = 30  # lift the head this many px above the neck joint to reveal a neck
+INK = (35, 32, 40, 255)
 
 
 class SkeletalCharacter:
@@ -64,6 +66,16 @@ class SkeletalCharacter:
             tmp = tmp.rotate(-angle_deg, resample=Image.BICUBIC, center=C)
         canvas.alpha_composite(tmp, (int(world_xy[0] - C[0]), int(world_xy[1] - C[1])))
 
+    def _skin(self):
+        if getattr(self, "_skin_rgba", None) is None:
+            im = self._img("upper_arm_left"); w, h = im.size
+            self._skin_rgba = (250, 221, 184, 255)
+            for y in range(h // 3, h):
+                px = im.getpixel((w // 2, y))
+                if len(px) == 4 and px[3] > 200:
+                    self._skin_rgba = (px[0], px[1], px[2], 255); break
+        return self._skin_rgba
+
     def _pv(self, name, key):
         im = self._img(name)
         fx, fy = PIVOT[key]
@@ -89,17 +101,22 @@ class SkeletalCharacter:
         self._limb(c, "thigh_left", "shin_left", JOINTS["hip_left"], ll[0], ll[1], "thigh", "shin")
         # front leg (right) behind torso too
         self._limb(c, "thigh_right", "shin_right", JOINTS["hip_right"], lr[0], lr[1], "thigh", "shin")
-        # torso
+        nx, ny = JOINTS["neck"]
+        # neck stub (skin) — drawn before torso & head so the dress + chin tuck over it
+        ImageDraw.Draw(c).rounded_rectangle(
+            [nx - 24, ny - NECK_RAISE - 6, nx + 24, ny + 14], radius=12,
+            fill=self._skin(), outline=INK, width=5)
+        # torso (dress covers the lower neck)
         self._place_rot(c, self._img("torso"), self._pv("torso", "torso"),
-                        (CX, JOINTS["neck"][1] + self._img("torso").height * 0.5 - 8), 0)
-        # head + face (nods together)
+                        (CX, ny + self._img("torso").height * 0.5 - 8), 0)
+        # head + face (raised by NECK_RAISE to reveal the neck; nods together)
         ha = pose.get("head", 0.0)
-        self._place_rot(c, self._img("head"), self._pv("head", "head"), JOINTS["neck"], ha)
+        self._place_rot(c, self._img("head"), self._pv("head", "head"), (nx, ny - NECK_RAISE), ha)
         for layer, key in (("brows_" + pose.get("brows", "neutral"), "brows"),
                            ("eyes_" + pose.get("eyes", "open"), "eyes"),
                            ("mouth_" + pose.get("mouth", "X"), "mouth")):
             im = self._img(layer)
-            self._place_rot(c, im, (im.width / 2, im.height / 2), FACE[key], ha)
+            self._place_rot(c, im, (im.width / 2, im.height / 2), (FACE[key][0], FACE[key][1] - NECK_RAISE), ha)
         # front arm (right) over torso
         self._limb(c, "upper_arm_right", "forearm_right", JOINTS["shoulder_right"], ar[0], ar[1], "upper_arm", "forearm")
         return c
