@@ -1,0 +1,77 @@
+episode: missing-10-stars
+title: Kinnu and the Missing 10 Stars
+fps: 30
+cast:
+  kinnu2d: af_heart
+  minku2d: am_michael
+scenes:
+  - id: s1
+    background: build/k02-star-bridge-counting/backgrounds/bg_001.png
+    transition: { in: 0.5 }
+    camera: { zoom: [1.0, 1.05] }
+    characters:
+      - { id: kinnu2d, pos: [0.27, 0.99], scale: 0.85, facing: right }
+      - { id: minku2d, pos: [0.73, 0.99], scale: 0.85, facing: left }
+    actions:
+      - { who: kinnu2d, do: enter, from: left, start: 0.0, end: 1.8 }
+      - { who: kinnu2d, do: wave, start: 1.8, end: 3.0 }
+      - { who: kinnu2d, do: talk, start: 2.0, text: "Hi friends! I am Kinnu." }
+      - { who: minku2d, do: talk, text: "And I am Minku! Let's cross the magic Star Bridge!" }
+      - { who: kinnu2d, do: talk, text: "But the bridge opens only if we count from one to ten!" }
+
+  - id: s2
+    background: build/k02-star-bridge-counting/backgrounds/bg_002.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.05, 1.0] }
+    characters:
+      - { id: kinnu2d, pos: [0.27, 0.99], scale: 0.85, facing: right }
+      - { id: minku2d, pos: [0.73, 0.99], scale: 0.85, facing: left }
+    actions:
+      - { who: minku2d, do: talk, text: "Easy! One, two, four, seven!" }
+      - { who: kinnu2d, do: talk, text: "Oh no, Minku! Those numbers are out of order." }
+
+  - id: s3
+    background: build/k02-star-bridge-counting/backgrounds/bg_003.png
+    transition: { in: 0.4, out: 0.4 }
+    characters:
+      - { id: kinnu2d, pos: [0.27, 0.99], scale: 0.85, facing: right }
+      - { id: minku2d, pos: [0.73, 0.99], scale: 0.85, facing: left }
+    actions:
+      - { who: kinnu2d, do: point, side: right, start: 0.2, end: 2.0 }
+      - { who: kinnu2d, do: talk, text: "Let's count together, slowly. One! Two! Three!" }
+      - { who: minku2d, do: jump, start: 4.6, end: 5.4 }
+      - { who: minku2d, do: talk, text: "Oh, I see! One, two, three!" }
+
+  - id: s4
+    background: build/k02-star-bridge-counting/backgrounds/bg_004.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.06] }
+    characters:
+      - { id: kinnu2d, pos: [0.27, 0.99], scale: 0.85, facing: right }
+      - { id: minku2d, pos: [0.73, 0.99], scale: 0.85, facing: left }
+    actions:
+      - { who: kinnu2d, do: talk, text: "Four! Five! We are halfway across!" }
+      - { who: minku2d, do: talk, text: "Wow, counting is fun!" }
+
+  - id: s5
+    background: build/k02-star-bridge-counting/backgrounds/bg_006.png
+    transition: { in: 0.4, out: 0.4 }
+    camera: { zoom: [1.0, 1.05] }
+    characters:
+      - { id: kinnu2d, pos: [0.27, 0.99], scale: 0.85, facing: right }
+      - { id: minku2d, pos: [0.73, 0.99], scale: 0.85, facing: left }
+    actions:
+      - { who: kinnu2d, do: talk, text: "Six! Seven! Eight! Nine! Ten!" }
+      - { who: minku2d, do: wave, start: 0.0, end: 3.0 }
+      - { who: minku2d, do: talk, text: "Hooray! We crossed the Star Bridge!" }
+
+  - id: s6
+    background: build/k02-star-bridge-counting/backgrounds/bg_008.png
+    transition: { in: 0.4, out: 0.6 }
+    characters:
+      - { id: kinnu2d, pos: [0.27, 0.99], scale: 0.85, facing: right }
+      - { id: minku2d, pos: [0.73, 0.99], scale: 0.85, facing: left }
+    actions:
+      - { who: kinnu2d, do: wave, start: 0.0, end: 2.0 }
+      - { who: kinnu2d, do: talk, text: "Great job, friends! Count with us again next time." }
+      - { who: minku2d, do: talk, text: "Bye bye! See you soon!" }

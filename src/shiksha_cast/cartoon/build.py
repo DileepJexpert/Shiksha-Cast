@@ -29,11 +29,16 @@ CHARS_DIR = "assets/cartoon/characters"
 BG_DIR = "assets/cartoon/backgrounds"
 
 
+def _lerp(a, b, t):
+    return a + (b - a) * t
+
+
 def _bg(project_root: Path, name, W, H):
     if name:
-        p = project_root / BG_DIR / name
-        if p.exists():
-            return Image.open(p).convert("RGBA").resize((W, H))
+        p = Path(name)
+        cand = p if (p.is_absolute() or p.exists()) else (project_root / BG_DIR / name)
+        if cand.exists():
+            return Image.open(cand).convert("RGBA").resize((W, H))
     img = Image.new("RGBA", (W, H), (170, 220, 255, 255))
     d = ImageDraw.Draw(img)
     d.ellipse([W * 0.78, H * 0.08, W * 0.92, H * 0.30], fill=(255, 220, 90, 255))
@@ -88,6 +93,7 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
         bg = _bg(project_root, scene.get("background"), W, H)
         present = {c["id"]: c for c in scene.get("characters", [])}
         actions = _schedule(scene)
+        cam = scene.get("camera") or {}
 
         # --- synth talk audio + finalize talk windows (auto-chained) ---
         talk_cursor = 0.0
@@ -169,17 +175,33 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
                     eye = motion.blink_state(t + phase_off)
                     pose = {"angles": angles, "mouth": mouth, "eye": eye}
                     ch.place(frame, pose, x_cur, ground_y, char_h, facing=facing, bob=bob)
+                if cam:
+                    pr = t / scene_dur if scene_dur else 0.0
+                    z = _lerp(cam["zoom"][0], cam["zoom"][1], pr) if cam.get("zoom") else 1.0
+                    panx = _lerp(cam["pan"][0], cam["pan"][1], pr) if cam.get("pan") else 0.0
+                    if z != 1.0 or panx:
+                        cw, chh = W / z, H / z
+                        x0 = min(max((W - cw) / 2 + panx * W, 0), W - cw)
+                        y0 = (H - chh) / 2
+                        frame = frame.crop((int(x0), int(y0), int(x0 + cw), int(y0 + chh))).resize((W, H), Image.LANCZOS)
                 frame.convert("RGB").save(Path(tmp) / f"f_{f:05d}.png")
 
             clip = clips_dir / f"clip_{si:03d}.mp4"
-            subprocess.run(
-                ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
-                 "-framerate", str(fps), "-i", str(Path(tmp) / "f_%05d.png"),
-                 "-i", str(scene_wav),
-                 "-c:v", "libx264", "-pix_fmt", "yuv420p", "-r", str(fps),
-                 "-c:a", "aac", "-b:a", "192k", "-t", f"{scene_dur:.3f}", "-shortest",
-                 "-movflags", "+faststart", str(clip)],
-                check=True)
+            trans = scene.get("transition") or {}
+            vf = []
+            if trans.get("in"):
+                vf.append(f"fade=t=in:st=0:d={float(trans['in'])}")
+            if trans.get("out"):
+                vf.append(f"fade=t=out:st={max(0.0, scene_dur - float(trans['out'])):.3f}:d={float(trans['out'])}")
+            cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+                   "-framerate", str(fps), "-i", str(Path(tmp) / "f_%05d.png"),
+                   "-i", str(scene_wav)]
+            if vf:
+                cmd += ["-vf", ",".join(vf)]
+            cmd += ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-r", str(fps),
+                    "-c:a", "aac", "-b:a", "192k", "-t", f"{scene_dur:.3f}", "-shortest",
+                    "-movflags", "+faststart", str(clip)]
+            subprocess.run(cmd, check=True)
             clip_paths.append(clip)
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
