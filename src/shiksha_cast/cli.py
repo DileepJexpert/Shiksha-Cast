@@ -480,6 +480,27 @@ def cartoon_build(
     rprint(f"[bold green]Cartoon ready:[/bold green] {p}")
 
 
+@app.command(name="cartoon-build-3d")
+def cartoon_build_3d(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Cartoon episode id (folder with scenes.yaml)"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output MP4 path"),
+) -> None:
+    """Render a 3D-CARTOON episode: a VRoid VRM character (Blender, posed + lip-synced)
+    over the 2D backgrounds, with the same TTS/music/captions pipeline."""
+    import glob
+
+    from shiksha_cast.cartoon.build3d import build_episode_3d
+
+    project_root = root or _find_project_root()
+    matches = glob.glob(str(project_root / "content" / "**" / chapter / "scenes.yaml"), recursive=True)
+    if not matches:
+        raise typer.BadParameter(f"No scenes.yaml found for cartoon episode '{chapter}' under content/.")
+    rprint(f"[bold]Building 3D cartoon {chapter}[/bold] from {matches[0]}")
+    p = build_episode_3d(matches[0], project_root, out=str(out) if out else None)
+    rprint(f"[bold green]3D cartoon ready:[/bold green] {p}")
+
+
 def main() -> None:
     app()
 

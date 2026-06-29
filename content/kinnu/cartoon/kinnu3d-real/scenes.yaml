@@ -1,0 +1,28 @@
+episode: kinnu3d-real
+title: Kinnu 3D-look Test
+fps: 30
+cast:
+  kinnu_3d: af_heart
+scenes:
+  - id: s1
+    background: garden.png
+    transition: { in: 0.4 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_3d, pos: [0.30, 0.99], scale: 1.15, facing: right }]
+    actions:
+      - { who: kinnu_3d, do: wave, start: 0.3, end: 3.4 }
+      - { who: kinnu_3d, do: talk, start: 0.6, text: "Hello friends! I am Kinnu. Let us learn and count together today!" }
+  - id: s2
+    background: classroom.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_3d, pos: [0.30, 0.99], scale: 1.15, facing: right }]
+    actions:
+      - { who: kinnu_3d, do: point, side: right, start: 0.2, end: 4.0 }
+      - { who: kinnu_3d, do: talk, text: "Look here! One, two, three. Counting is so much fun!" }
+  - id: s3
+    background: night_sky.png
+    transition: { in: 0.3, out: 0.5 }
+    characters: [{ id: kinnu_3d, pos: [0.30, 0.99], scale: 1.15, facing: right }]
+    actions:
+      - { who: kinnu_3d, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_3d, do: talk, text: "Hooray! You did it. Great job, my friends! Bye bye!" }

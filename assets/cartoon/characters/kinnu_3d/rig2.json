@@ -1,0 +1,79 @@
+{
+  "type": "skeletal",
+  "scale": 1.0,
+  "space": [
+    640,
+    1080
+  ],
+  "feet_y": 1044,
+  "cx": 320,
+  "neck_raise": 0,
+  "neck_stub": false,
+  "overlay_only": true,
+  "torso_dy": -20,
+  "joints": {
+    "neck": [
+      320,
+      420
+    ],
+    "shoulder_left": [
+      232,
+      470
+    ],
+    "shoulder_right": [
+      408,
+      470
+    ],
+    "hip_left": [
+      278,
+      700
+    ],
+    "hip_right": [
+      362,
+      700
+    ]
+  },
+  "_comment_mouth": "overlay mouth disabled: the baked 3D head has its own smile; overlaying a flat viseme on a tilted 3D face doubles the mouth, and erasing the baked one smudges the shaded skin. Use the VRoid 3D track for real lip-sync.",
+  "face": {},
+  "pivot": {
+    "head": [
+      0.5,
+      0.95
+    ],
+    "torso": [
+      0.5,
+      0.5
+    ],
+    "upper_arm": [
+      0.5,
+      0.06
+    ],
+    "forearm": [
+      0.5,
+      0.08
+    ],
+    "thigh": [
+      0.5,
+      0.06
+    ],
+    "shin": [
+      0.5,
+      0.1
+    ]
+  },
+  "bone": {
+    "upper_arm": 0.88,
+    "forearm": 0.0,
+    "thigh": 0.9,
+    "shin": 0.0
+  },
+  "part_scale": {
+    "head": 1.0,
+    "torso": 1.0,
+    "upper_arm": 0.4,
+    "forearm": 0.4,
+    "thigh": 0.5,
+    "shin": 0.5,
+    "mouth": 0.36
+  }
+}

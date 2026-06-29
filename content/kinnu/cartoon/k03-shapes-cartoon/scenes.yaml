@@ -1,0 +1,90 @@
+episode: k03-shapes-cartoon
+title: Kinnu & Shape Island - Learn Shapes in English | Katixo
+fps: 30
+cast:
+  kinnu_hd: af_heart
+scenes:
+  - id: s1
+    background: garden.png
+    transition: { in: 0.4, out: 0.3 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_hd, pos: [0.30, 0.99], scale: 0.95, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: wave, start: 0.2, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Kinnu has reached a magical island. This is Shape Island. Today, we will learn circle, square, triangle, and rectangle with Kinnu." }
+
+  - id: s2
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: shape_circle.png, pos: [0.68, 0.46], scale: 0.36, anim: pop, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.5 }
+      - { who: kinnu_hd, do: talk, text: "This is a circle. A circle is round like a ball. Say it with Kinnu: circle." }
+
+  - id: s3
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: shape_square.png, pos: [0.68, 0.46], scale: 0.36, anim: pop, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.5 }
+      - { who: kinnu_hd, do: talk, text: "This is a square. A square has four equal sides. Say it with Kinnu: square." }
+
+  - id: s4
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: shape_triangle.png, pos: [0.68, 0.46], scale: 0.36, anim: pop, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.5 }
+      - { who: kinnu_hd, do: talk, text: "This is a triangle. A triangle has three sides. Count with Kinnu: one, two, three." }
+
+  - id: s5
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: shape_rectangle.png, pos: [0.68, 0.48], scale: 0.40, anim: pop, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 7.5 }
+      - { who: kinnu_hd, do: talk, text: "This is a rectangle. A rectangle looks like a long box. A door, a book, and a TV can look like a rectangle." }
+
+  - id: s6
+    background: garden.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: shape_circle.png, pos: [0.55, 0.30], scale: 0.20, anim: float, start: 0.3 }
+      - { asset: shape_square.png, pos: [0.74, 0.32], scale: 0.20, anim: float, start: 0.4 }
+      - { asset: shape_triangle.png, pos: [0.55, 0.62], scale: 0.20, anim: float, start: 0.5 }
+      - { asset: shape_rectangle.png, pos: [0.76, 0.64], scale: 0.22, anim: float, start: 0.6 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 7.0 }
+      - { who: kinnu_hd, do: talk, text: "Now it is shape hunt time. Look around with Kinnu. Can you find a circle, a square, a triangle, and a rectangle?" }
+
+  - id: s7
+    background: classroom.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: shape_square.png, pos: [0.52, 0.40], scale: 0.22, anim: pop, start: 0.3 }
+      - { asset: shape_triangle.png, pos: [0.70, 0.40], scale: 0.22, anim: pop, start: 0.5 }
+      - { asset: shape_circle.png, pos: [0.88, 0.40], scale: 0.22, anim: pop, start: 0.7 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 8.0 }
+      - { who: kinnu_hd, do: talk, text: "Now it is your turn. Look at the screen and tell Kinnu: which one is a triangle? Pause the video and say the answer." }
+
+  - id: s8
+    background: garden.png
+    transition: { in: 0.3, out: 0.5 }
+    camera: { zoom: [1.05, 1.0] }
+    characters: [{ id: kinnu_hd, pos: [0.30, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: shape_triangle.png, pos: [0.74, 0.40], scale: 0.22, anim: float, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.6 }
+      - { who: kinnu_hd, do: talk, text: "Great job. Today we learned circle, square, triangle, and rectangle. See you again with Kinnu. Like and subscribe. A Katixo channel." }

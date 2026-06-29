@@ -1,0 +1,24 @@
+title: Why is the sky blue
+cast:
+  kinnu: af_heart
+  gappu: am_michael
+char_height: 0.6
+scenes:
+- bg: C:\dileepkm\Learning\Shiksha-Cast\build\scene-why-is-the-sky-blue\backgrounds\bg_001.png
+  place:
+    kinnu: 0.25
+    gappu: 0.75
+  lines:
+  - who: gappu
+    text: Kinnu, why is the sky blue?
+  - who: kinnu
+    text: Great question Gappu! Let me show you.
+- bg: C:\dileepkm\Learning\Shiksha-Cast\build\scene-why-is-the-sky-blue\backgrounds\bg_002.png
+  place:
+    kinnu: 0.3
+    gappu: 0.7
+  lines:
+  - who: kinnu
+    text: Sunlight is made of many colors mixed together.
+  - who: gappu
+    text: Wow, blue light scatters the most. Now I get it!

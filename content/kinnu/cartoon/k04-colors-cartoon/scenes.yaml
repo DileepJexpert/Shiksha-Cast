@@ -1,0 +1,94 @@
+episode: k04-colors-cartoon
+title: Kinnu & Color Balloon Rescue - Learn Colors in English | Katixo
+fps: 30
+cast:
+  kinnu_hd: af_heart
+scenes:
+  - id: s1
+    background: garden.png
+    transition: { in: 0.4, out: 0.3 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_red.png, pos: [0.58, 0.24], scale: 0.20, anim: float, start: 0.2 }
+      - { asset: balloon_blue.png, pos: [0.74, 0.20], scale: 0.20, anim: float, start: 0.3 }
+      - { asset: balloon_green.png, pos: [0.88, 0.26], scale: 0.20, anim: float, start: 0.4 }
+    actions:
+      - { who: kinnu_hd, do: point_up, start: 0.2, end: 5.5 }
+      - { who: kinnu_hd, do: talk, text: "Oh no. Kinnu's color balloons flew away. Let us help Kinnu rescue the balloons and learn colors." }
+
+  - id: s2
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_red.png, pos: [0.68, 0.42], scale: 0.40, anim: float, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.0 }
+      - { who: kinnu_hd, do: talk, text: "The first balloon is red. An apple can be red. Say it with Kinnu: red." }
+
+  - id: s3
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_yellow.png, pos: [0.68, 0.42], scale: 0.40, anim: float, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.0 }
+      - { who: kinnu_hd, do: talk, text: "The next balloon is yellow. The sun can be yellow. Say it with Kinnu: yellow." }
+
+  - id: s4
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_blue.png, pos: [0.68, 0.42], scale: 0.40, anim: float, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.0 }
+      - { who: kinnu_hd, do: talk, text: "This balloon is blue. The sky can be blue. Say it with Kinnu: blue." }
+
+  - id: s5
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_green.png, pos: [0.68, 0.42], scale: 0.40, anim: float, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.0 }
+      - { who: kinnu_hd, do: talk, text: "This balloon is green. Leaves can be green. Say it with Kinnu: green." }
+
+  - id: s6
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_orange.png, pos: [0.68, 0.42], scale: 0.40, anim: float, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.0 }
+      - { who: kinnu_hd, do: talk, text: "This balloon is orange. An orange fruit is orange. Say it with Kinnu: orange." }
+
+  - id: s7
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.26, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_purple.png, pos: [0.68, 0.42], scale: 0.40, anim: float, start: 0.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.0 }
+      - { who: kinnu_hd, do: talk, text: "This balloon is purple. Grapes can be purple. Say it with Kinnu: purple." }
+
+  - id: s8
+    background: garden.png
+    transition: { in: 0.3, out: 0.5 }
+    camera: { zoom: [1.05, 1.0] }
+    characters: [{ id: kinnu_hd, pos: [0.28, 0.99], scale: 0.95, facing: right }]
+    props:
+      - { asset: balloon_red.png, pos: [0.56, 0.26], scale: 0.16, anim: float, start: 0.3 }
+      - { asset: balloon_yellow.png, pos: [0.66, 0.22], scale: 0.16, anim: float, start: 0.4 }
+      - { asset: balloon_blue.png, pos: [0.76, 0.26], scale: 0.16, anim: float, start: 0.5 }
+      - { asset: balloon_green.png, pos: [0.86, 0.22], scale: 0.16, anim: float, start: 0.6 }
+      - { asset: balloon_orange.png, pos: [0.62, 0.40], scale: 0.16, anim: float, start: 0.7 }
+      - { asset: balloon_purple.png, pos: [0.82, 0.42], scale: 0.16, anim: float, start: 0.8 }
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.6 }
+      - { who: kinnu_hd, do: talk, text: "Great job. Today we learned red, yellow, blue, green, orange, and purple. See you again with Kinnu. Like and subscribe. A Katixo channel." }

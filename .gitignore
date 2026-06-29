@@ -19,6 +19,13 @@ _backup_files*/
 slides_png/
 voice_samples/
 
+# Loose scratch downloads / temp artifacts in the repo root (UUID pngs, zips, etc.)
+/*.png
+/*.zip
+/sky_test.json
+tmp/
+chatgptsamples/*.zip
+
 # Allow curated episode source/demo assets under content/ to be committed.
 # Use this for small slide PNG decks and PDF decks that belong to an episode.
 !content/**/*.png

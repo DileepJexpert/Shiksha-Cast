@@ -1,0 +1,21 @@
+episode: kinnu3dlook-test
+title: Kinnu 3D-look Test
+fps: 30
+cast:
+  kinnu_3dlook: af_heart
+scenes:
+  - id: s1
+    background: garden.png
+    transition: { in: 0.4 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_3dlook, pos: [0.30, 0.99], scale: 0.95, facing: right }]
+    actions:
+      - { who: kinnu_3dlook, do: wave, start: 0.3, end: 3.4 }
+      - { who: kinnu_3dlook, do: talk, start: 0.6, text: "Hello friends! I am Kinnu. Let us learn and count together today!" }
+  - id: s2
+    background: night_sky.png
+    transition: { in: 0.3, out: 0.5 }
+    characters: [{ id: kinnu_3dlook, pos: [0.30, 0.99], scale: 0.95, facing: right }]
+    actions:
+      - { who: kinnu_3dlook, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_3dlook, do: talk, text: "You did it! One, two, three. Great job, my friends!" }

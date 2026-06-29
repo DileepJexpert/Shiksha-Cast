@@ -97,47 +97,86 @@ def _viseme(levels, fps, lt):
     return "D"
 
 
+def _smooth(e):
+    """smoothstep ease 0..1 (no overshoot, so no spring)."""
+    e = 0.0 if e < 0 else (1.0 if e > 1 else e)
+    return e * e * (3 - 2 * e)
+
+
+def _envelope(lt, dur, ramp=0.45):
+    """Ease a gesture IN over `ramp`s, hold, then ease back OUT in the last `ramp`s.
+    This is what removes the snap-to-pose 'spring' feel."""
+    ramp = min(ramp, dur / 2.0) if dur > 0 else ramp
+    if ramp <= 0:
+        return 1.0
+    return min(_smooth(lt / ramp), _smooth((dur - lt) / ramp))
+
+
+def _mix(a, b, w):
+    return (a[0] + (b[0] - a[0]) * w, a[1] + (b[1] - a[1]) * w)
+
+
 def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
-    """Build a rig2 (skeletal) pose for an advanced character from active actions."""
-    sway = math.sin(t * 1.4 + phase_off)
-    pose = {"arm_left": (6 * sway, 0), "arm_right": (-6 * sway, 0),
-            "leg_left": (0, 0), "leg_right": (0, 0), "head": 1.5 * sway,
-            "eyes": "open", "mouth": "X", "brows": "neutral"}
-    bob = 0.0; x_cur = x_frac; facing = facing0
+    """Build a rig2 (skeletal) pose. Motion is eased (smoothstep envelopes) and arms stay
+    fairly straight so joints read as one body instead of springy separated cutouts."""
+    # --- soft idle: breathing lives in the vertical BOB only; arms HANG calmly.
+    # (A swing on the shoulder angle makes the hand dangle like a spring, so we keep
+    #  the resting arm angle nearly constant with just a very slow, tiny drift.) ---
+    breathe = math.sin(t * 1.2 + phase_off)          # slow breath -> bob + faint shrug
+    drift = math.sin(t * 0.5 + phase_off)            # very slow arm drift, low amplitude
+    al = (1.6 + 0.7 * drift, 2.5); ar = (-1.6 - 0.7 * drift, -2.5)
+    ll = (0.0, 0.0); lr = (0.0, 0.0)
+    head = 0.9 * math.sin(t * 0.7 + phase_off)
+    bob = 1.4 * breathe  # gentle breathing rise/fall (vertical only)
+    eyes = "open"; mouth = "X"; brows = "neutral"
+    x_cur = x_frac; facing = facing0
     for a in actions:
         if a.get("who") != cid or not (a["start"] <= t < a.get("end", a["start"])):
             continue
         do = a.get("do"); lt = t - a["start"]
+        dur = max(0.3, a.get("end", a["start"] + 1.4) - a["start"])
+        e = _envelope(lt, dur)
         if do == "talk":
-            pose["mouth"] = _viseme(a["levels"], fps, lt)
+            mouth = _viseme(a["levels"], fps, lt)
         elif do == "wave":
-            pose["arm_right"] = (-125 + 6 * math.sin(lt * 9), -15); pose["eyes"] = "happy"; pose["brows"] = "happy"
+            # whole arm raised near the head, fairly straight; slow gentle hand sway
+            sway = math.sin(lt * 2.2)
+            ar = _mix(ar, (-116 + 4 * sway, -14 + 7 * sway), e)
+            eyes = "happy"; brows = "happy"
         elif do == "point":
             if a.get("side") == "left":
-                pose["arm_left"] = (95, 6)
+                al = _mix(al, (90, 6), e)
             else:
-                pose["arm_right"] = (-95, -6)
+                ar = _mix(ar, (-90, -6), e)
         elif do == "point_up":
-            pose["arm_right"] = (-150, -8)
+            ar = _mix(ar, (-146, -6), e)
         elif do == "cheer":
-            pose["arm_left"] = (150, 15); pose["arm_right"] = (-150, -15)
-            pose["eyes"] = "happy"; pose["brows"] = "happy"; pose["mouth"] = "D"
+            lift = 6 * math.sin(lt * 3.0)
+            al = _mix(al, (140 + lift, 8), e); ar = _mix(ar, (-140 - lift, -8), e)
+            eyes = "happy"; brows = "happy"
+            if mouth == "X":
+                mouth = "D"
         elif do == "sad":
-            pose["brows"] = "sad"
+            brows = "sad"
         elif do == "surprise":
-            pose["brows"] = "surprised"
+            brows = "surprised"
         elif do in ("enter", "walkto"):
-            dur = max(0.3, a["end"] - a["start"])
+            p = _smooth(min(1.0, lt / dur))
             if do == "enter":
                 frm = a.get("from", "left"); sx = -0.18 if frm == "left" else 1.18
-                x_cur = sx + (x_frac - sx) * min(1.0, lt / dur); facing = "right" if frm == "left" else "left"
+                x_cur = sx + (x_frac - sx) * p; facing = "right" if frm == "left" else "left"
             else:
-                to = float(a.get("to", x_frac)); x_cur = x_frac + (to - x_frac) * min(1.0, lt / dur)
-                facing = "right" if to >= x_frac else "left"
-            sw = 16 * math.sin(lt * 8)
-            pose["leg_left"] = (sw, 0); pose["leg_right"] = (-sw, 0); bob = abs(math.sin(lt * 8)) * 7
+                to = float(a.get("to", x_frac))
+                x_cur = x_frac + (to - x_frac) * p; facing = "right" if to >= x_frac else "left"
+            # smooth walk cycle (slower stride, small bob, arms counter-swing)
+            stride = math.sin(lt * 5.0)
+            ll = (16 * stride, 0.0); lr = (-16 * stride, 0.0)
+            al = (-10 * stride, 4.0); ar = (10 * stride, -4.0)
+            bob = abs(math.sin(lt * 5.0)) * 4.0
         elif do == "jump":
-            bob += motion.jump_bob(lt / max(0.3, a["end"] - a["start"])); pose["eyes"] = "happy"
+            bob += motion.jump_bob(lt / dur); eyes = "happy"
+    pose = {"arm_left": al, "arm_right": ar, "leg_left": ll, "leg_right": lr,
+            "head": head, "eyes": eyes, "mouth": mouth, "brows": brows}
     if pose["eyes"] == "open" and motion.blink_state(t + phase_off) == "closed":
         pose["eyes"] = "closed"
     return pose, x_cur, facing, bob
