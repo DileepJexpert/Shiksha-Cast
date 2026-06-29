@@ -1,0 +1,86 @@
+version: 1
+library: Kinnu cartoon asset library
+
+characters:
+  kinnu_hd:
+    path: assets/cartoon/characters/kinnu_hd
+    purpose: Main reusable Kinnu rig. Keep fixed for brand consistency.
+    expected_parts:
+      - body.png
+      - head.png
+      - mouth_closed.png
+      - mouth_open.png
+      - eyes_open.png
+      - eyes_closed.png
+      - arm_left.png
+      - arm_right.png
+      - leg_left.png
+      - leg_right.png
+  gappu_hd:
+    path: assets/cartoon/characters/gappu_hd
+    purpose: Reusable funny friend character.
+  teacher_tara_hd:
+    path: assets/cartoon/characters/teacher_tara_hd
+    purpose: Reusable teacher/explainer character.
+
+backgrounds:
+  forest_village.png:
+    path: assets/cartoon/backgrounds/forest_village.png
+    purpose: Forest/village story episodes.
+  school_classroom.png:
+    path: assets/cartoon/backgrounds/school_classroom.png
+    purpose: Classroom lessons.
+  playground.png:
+    path: assets/cartoon/backgrounds/playground.png
+    purpose: Outdoor games and moral stories.
+  market.png:
+    path: assets/cartoon/backgrounds/market.png
+    purpose: Fruits, money, shopping and counting lessons.
+  kitchen.png:
+    path: assets/cartoon/backgrounds/kitchen.png
+    purpose: Food, hygiene and daily routine lessons.
+  science_lab.png:
+    path: assets/cartoon/backgrounds/science_lab.png
+    purpose: Science experiments.
+  farm.png:
+    path: assets/cartoon/backgrounds/farm.png
+    purpose: Animals, crops, food and nature.
+  space.png:
+    path: assets/cartoon/backgrounds/space.png
+    purpose: Planets, counting stars and sky facts.
+  road.png:
+    path: assets/cartoon/backgrounds/road.png
+    purpose: Safety, vehicles and travel.
+  river_side.png:
+    path: assets/cartoon/backgrounds/river_side.png
+    purpose: Water, nature and village scenes.
+
+props:
+  tree.png:
+    path: assets/cartoon/props/tree.png
+  river.png:
+    path: assets/cartoon/props/river.png
+  hut.png:
+    path: assets/cartoon/props/hut.png
+  bird.png:
+    path: assets/cartoon/props/bird.png
+  apple.png:
+    path: assets/cartoon/props/apple.png
+  book.png:
+    path: assets/cartoon/props/book.png
+  pencil.png:
+    path: assets/cartoon/props/pencil.png
+  number_1.png:
+    path: assets/cartoon/props/number_1.png
+  number_2.png:
+    path: assets/cartoon/props/number_2.png
+  circle.png:
+    path: assets/cartoon/props/circle.png
+  square.png:
+    path: assets/cartoon/props/square.png
+  triangle.png:
+    path: assets/cartoon/props/triangle.png
+  magnet.png:
+    path: assets/cartoon/props/magnet.png
+  microscope.png:
+    path: assets/cartoon/props/microscope.png
