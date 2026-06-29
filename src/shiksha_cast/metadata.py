@@ -48,6 +48,8 @@ BASE_TAGS = [
     "study with fun",
 ]
 
+UPLOAD_SECTIONS = ("Title", "Description", "Hashtags", "Tags", "Category", "Audience")
+
 
 @dataclass
 class Chapter:
@@ -98,6 +100,40 @@ def build_pinned_comment(clean: str, playlist: str) -> str:
         f"🤔 Quick question: {q}? — comment your answer below! 👇\n\n"
         f"📚 More like this in our '{playlist}' playlist.\n"
         "🔔 Subscribe + hit the bell for a new 'why & how' every week!"
+    )
+
+
+def _parse_upload_metadata(path: Path) -> dict[str, str]:
+    """Read a hand-written UPLOAD_METADATA.md file when an episode has one."""
+    if not path.exists():
+        return {}
+    data: dict[str, list[str]] = {}
+    current: str | None = None
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        heading = line.rstrip(":")
+        if line.endswith(":") and heading in UPLOAD_SECTIONS:
+            current = heading
+            data.setdefault(current, [])
+            continue
+        if current is not None:
+            data[current].append(raw)
+    return {k: "\n".join(v).strip() for k, v in data.items()}
+
+
+def _kids_title_variants(title: str) -> dict[str, str]:
+    base = title.strip()
+    return {
+        "searchable": base[:100],
+        "curiosity": f"{base.split('|')[0].strip()} | Fun Kids Learning"[:100],
+        "short": f"Learn with Kinnu | {base.split('|')[0].strip()}"[:100],
+    }
+
+
+def _kids_pinned_comment(clean: str) -> str:
+    return (
+        "What did you learn with Kinnu today? Tell us in the comments.\n\n"
+        "Subscribe for more fun kids learning videos from Kinnu."
     )
 
 
@@ -230,6 +266,34 @@ def build_metadata(chapter: str, project_root: Path) -> EpisodeMetadata:
     if intro_offset > 0 and chapters:
         chapters = [Chapter(c.start_s + intro_offset, c.label) for c in chapters]
         chapters.insert(0, Chapter(0.0, "Intro"))
+
+    upload_meta = _parse_upload_metadata(chapter_dir / "UPLOAD_METADATA.md")
+    if upload_meta:
+        title = upload_meta.get("Title", title).splitlines()[0].strip()
+        description_parts = [upload_meta.get("Description", "").strip()]
+        hashtags = upload_meta.get("Hashtags", "").strip()
+        if hashtags:
+            description_parts += ["", hashtags]
+        if chapters:
+            description_parts += ["", "Chapters:"]
+            description_parts += [f"{_fmt_ts(ch.start_s)} {ch.label}" for ch in chapters]
+        description = "\n".join(part for part in description_parts if part is not None).strip()
+
+        raw_tags = upload_meta.get("Tags", "")
+        tags = [t.strip() for t in raw_tags.replace("\n", ",").split(",") if t.strip()]
+        if not tags:
+            tags = [w.lower() for w in re.findall(r"[A-Za-z]{4,}", clean)][:15]
+
+        return EpisodeMetadata(
+            chapter_id=chapter_dir.name,
+            title=title[:100],
+            description=description,
+            tags=tags[:25],
+            chapters=chapters,
+            title_variants=_kids_title_variants(title),
+            pinned_comment=_kids_pinned_comment(clean),
+            chapter_warnings=validate_chapters(chapters),
+        )
 
     # ---- Description ----
     lines: list[str] = []

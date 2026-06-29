@@ -80,6 +80,12 @@ A finished episode should have, not just "character on a background":
 - Per-character rig geometry lives in each `assets/cartoon/characters/<id>/rig2.json`
   (joints, pivots, bone lengths, part_scale, padding). `rig2.py` reads it.
 
+## YouTube metadata
+- Drop an **`UPLOAD_METADATA.md`** in an episode folder with `Title:` / `Description:` /
+  `Hashtags:` / `Tags:` sections and `build_metadata()` uses it verbatim (auto-appends
+  chapters) instead of the auto-template. Use this for kids episodes — the generic
+  auto-template produced wrong (Hinglish-science) metadata for the English videos.
+
 ## Repo hygiene
 - `build/`, `dist/`, `*.mp4`, `*.wav` are gitignored. Loose root UUID pngs / zips / `tmp/`
   are gitignored too — never commit them.
