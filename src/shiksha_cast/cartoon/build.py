@@ -116,7 +116,7 @@ def _mix(a, b, w):
     return (a[0] + (b[0] - a[0]) * w, a[1] + (b[1] - a[1]) * w)
 
 
-MOVE_ACTIONS = {"enter", "walk", "walkto", "run", "runto"}
+MOVE_ACTIONS = {"enter", "walk", "walkto", "run", "runto", "swim", "swimto"}
 
 
 def _move_state(cid, actions, t, x_frac, facing0):
@@ -136,7 +136,7 @@ def _move_state(cid, actions, t, x_frac, facing0):
             start_x = -0.18 if frm == "left" else 1.18
             end_x = x_frac
             target_facing = "right" if frm == "left" else "left"
-        elif do in ("walkto", "runto") or a.get("to") is not None:
+        elif do in ("walkto", "runto", "swimto") or a.get("to") is not None:
             start_x = x_cur
             end_x = float(a.get("to", x_cur))
             target_facing = "right" if end_x >= start_x else "left"
@@ -153,7 +153,7 @@ def _move_state(cid, actions, t, x_frac, facing0):
         p = _smooth(min(1.0, (t - start) / dur))
         x_cur = start_x + (end_x - start_x) * p
         facing = target_facing
-        gait = {"lt": t - start, "run": do in ("run", "runto")}
+        gait = {"lt": t - start, "run": do in ("run", "runto"), "do": do}
         break
     return x_cur, facing, gait
 
@@ -173,7 +173,16 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
     bob = 1.4 * breathe  # gentle breathing rise/fall (vertical only)
     eyes = "open"; mouth = "X"; brows = "neutral"
     x_cur, facing, gait = _move_state(cid, actions, t, x_frac, facing0)
-    if gait:
+    if gait and gait.get("do") in ("swim", "swimto"):
+        # swimming: alternating overhead arm strokes + small leg flutter + floating bob
+        ph = gait["lt"] * 4.0
+        al = (62 + 52 * math.sin(ph + math.pi), 6.0)
+        ar = (-62 - 52 * math.sin(ph), -6.0)
+        ll = (10 * math.sin(ph * 2), 0.0); lr = (-10 * math.sin(ph * 2 + math.pi), 0.0)
+        bob = 5.0 * math.sin(ph)
+        head = -4.0
+        eyes = "happy"
+    elif gait:
         # Smooth locomotion cycle. Run is faster and wider; walk stays gentle.
         rate = 9.5 if gait["run"] else 5.0
         leg = 24.0 if gait["run"] else 16.0
@@ -184,6 +193,8 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
         ll = (leg * stride, 0.0); lr = (-leg * stride, 0.0)
         al = (-arm * stride, elbow); ar = (arm * stride, -elbow)
         bob = abs(math.sin(gait["lt"] * rate)) * lift
+        if gait["run"]:
+            head = -5.0 + 2.0 * math.sin(gait["lt"] * rate * 2)  # slight forward lean
     for a in actions:
         if a.get("who") != cid or not (a["start"] <= t < a.get("end", a["start"])):
             continue
@@ -218,6 +229,42 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
             brows = "surprised"
         elif do == "jump":
             bob += motion.jump_bob(lt / dur); eyes = "happy"
+        elif do == "clap":
+            c = math.sin(lt * 8.0)
+            al = _mix(al, (52 + 8 * c, 28), e); ar = _mix(ar, (-52 - 8 * c, -28), e)
+            eyes = "happy"; brows = "happy"
+        elif do == "dance":
+            sw = math.sin(lt * 4.0)
+            al = _mix(al, (72 + 26 * sw, 10), e); ar = _mix(ar, (-72 + 26 * sw, -10), e)
+            ll = (10 * sw, 0.0); lr = (-10 * sw, 0.0)
+            bob = abs(math.sin(lt * 4.0)) * 6.0
+            head = 6 * sw; eyes = "happy"; brows = "happy"
+            if mouth == "X":
+                mouth = "C"
+        elif do == "think":
+            ar = _mix(ar, (-100, -58), e)  # hand up near the chin
+            head = 7; brows = "surprised"
+        elif do == "laugh":
+            bob += abs(math.sin(lt * 9.0)) * 5.0
+            al = _mix(al, (42, 20), e); ar = _mix(ar, (-42, -20), e)
+            head = 8; eyes = "happy"; brows = "happy"; mouth = "D"
+        elif do == "bounce":
+            bob += abs(math.sin(lt * 6.0)) * 28.0; eyes = "happy"
+        elif do == "nod":  # 2D rig can't pitch; fake a nod with a small vertical bob
+            bob += math.sin(lt * 6.0) * 6.0
+        elif do == "shake":  # "no" head wobble
+            head = 11 * math.sin(lt * 8.0)
+        elif do == "spin":  # celebratory hop, arms out (true spin needs flipping)
+            al = _mix(al, (92, 10), e); ar = _mix(ar, (-92, -10), e)
+            bob += abs(math.sin(lt * 5.0)) * 16.0; eyes = "happy"
+        elif do == "slip":  # comedic slip: flail arms up, lean, drop
+            f = _smooth(min(1.0, lt / max(0.2, dur)))
+            al = _mix(al, (150, 10), e); ar = _mix(ar, (-150, -10), e)
+            head = 18 * math.sin(lt * 10.0); bob -= 10 * f
+            ll = (28, 0.0); lr = (-18, 0.0)
+            eyes = "closed"; brows = "surprised"
+            if mouth == "X":
+                mouth = "D"
     pose = {"arm_left": al, "arm_right": ar, "leg_left": ll, "leg_right": lr,
             "head": head, "eyes": eyes, "mouth": mouth, "brows": brows}
     if pose["eyes"] == "open" and motion.blink_state(t + phase_off) == "closed":

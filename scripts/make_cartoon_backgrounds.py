@@ -27,6 +27,11 @@ PRESETS = {
     "garden": "a colorful garden with flowers, trees, a winding path and butterflies on a sunny day",
     "night_sky": "a magical deep blue and purple night sky full of glowing twinkling stars",
     "market": "a colorful Indian vegetable market with stalls full of fruits and vegetables",
+    "classroom_full": ("a bright cheerful kindergarten classroom, big green chalkboard on the wall, "
+                       "colorful alphabet and number charts, a globe and books on wooden shelves, "
+                       "small student desks along the sides, large sunny windows, wooden floor"),
+    "pool": ("a sunny outdoor swimming pool with clear sparkling blue water, light blue pool tiles, "
+             "green palm trees and a bright blue sky with fluffy clouds, summer day"),
 }
 
 OUT = ROOT / "assets" / "cartoon" / "backgrounds"
@@ -34,19 +39,36 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 
 def main():
-    args = sys.argv[1:] or list(PRESETS)
+    args = sys.argv[1:]
+    # --upscale: AI-upscale (Real-ESRGAN) to 1080p instead of a plain LANCZOS resize
+    use_upscale = "--upscale" in args
+    args = [a for a in args if a != "--upscale"] or list(PRESETS)
+
     prov = SDXLImageProvider()  # SDXL-Turbo, 4 steps, CPU-offload
+    raws = []  # (raw_path, final_path)
     for a in args:
         name = a if a in PRESETS else "custom_" + "".join(c for c in a.lower()[:20] if c.isalnum() or c == "_")
         prompt = PRESETS.get(a, a)
         raw = OUT / f"_{name}_raw.png"
         prov.generate(f"{prompt}, {STYLE}", raw, width=1024, height=576)
-        Image.open(raw).convert("RGB").resize((1920, 1080), Image.LANCZOS).save(OUT / f"{name}.png")
-        raw.unlink(missing_ok=True)
-        print("saved", OUT / f"{name}.png")
+        raws.append((raw, OUT / f"{name}.png"))
     unload = getattr(prov, "unload", None)
     if unload:
-        unload()
+        unload()  # free VRAM before the upscaler loads
+
+    if use_upscale:
+        from shiksha_cast.imagegen.upscale import Upscaler  # noqa: E402
+        up = Upscaler()
+        for raw, final in raws:
+            up.upscale_file(raw, final, to_size=(1920, 1080))
+            raw.unlink(missing_ok=True)
+            print("saved (AI-upscaled)", final)
+        up.unload()
+    else:
+        for raw, final in raws:
+            Image.open(raw).convert("RGB").resize((1920, 1080), Image.LANCZOS).save(final)
+            raw.unlink(missing_ok=True)
+            print("saved", final)
 
 
 if __name__ == "__main__":

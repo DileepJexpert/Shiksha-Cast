@@ -19,6 +19,9 @@ _backup_files*/
 slides_png/
 voice_samples/
 
+# Downloaded model weights (re-fetched on demand by the code)
+assets/models/
+
 # Loose scratch downloads / temp artifacts in the repo root (UUID pngs, zips, etc.)
 /*.png
 /*.zip

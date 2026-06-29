@@ -32,19 +32,24 @@ IMG_ENCODER_SUBFOLDER = "models/image_encoder"
 
 # Anchor Kinnu's identity + exact colors in TEXT too, so IP-Adapter's strong color
 # transfer (which otherwise tints the bow/shoes with the dominant yellow) is corrected.
+# Tuned so the IP-Adapter keeps Kinnu ON-BRAND. Lessons (see SKILL.md):
+#  - say "plain SOLID yellow dress" — "vibrant colors" in the style made a rainbow dress.
+#  - put rainbow/multicolor/striped in the NEGATIVE or it invents a patterned dress.
+#  - ip_scale ~0.8 keeps the yellow dress + single subject; lower (0.6) drifts off-brand.
 KINNU_DESC = (
-    "a cute toddler girl with warm brown skin, black hair in a ponytail with a bright "
-    "PINK bow, big round brown eyes, wearing a yellow dress and BLUE shoes"
+    "a cute Indian toddler girl named Kinnu, wearing a plain SOLID bright YELLOW dress, "
+    "warm brown skin, black hair in a high ponytail with a small PINK bow, "
+    "big round brown eyes, blue shoes"
 )
 DEFAULT_STYLE = (
-    "Pixar-style 3D cartoon, soft toy render, smooth shading, clean, vibrant, "
+    "Pixar-style 3D cartoon, soft toy render, smooth shading, clean, plain solid colors, "
     "studio lighting, high quality, single character, full body, centered"
 )
 DEFAULT_NEGATIVE = (
-    "two girls, twins, duplicate, clone, multiple people, extra person, "
-    "two heads, extra limbs, extra arms, deformed, mutated, blurry, low quality, "
-    "text, watermark, logo, scary, realistic photo, adult, ugly, distorted face, "
-    "extra fingers, yellow bow, yellow shoes"
+    "multicolor dress, rainbow dress, patterned dress, polka dots, striped dress, "
+    "pink dress, blue dress, two girls, twins, duplicate, clone, multiple people, "
+    "extra person, two heads, extra limbs, extra arms, deformed, mutated, blurry, "
+    "low quality, text, watermark, logo, scary, realistic photo, adult, ugly, distorted face"
 )
 
 
@@ -104,7 +109,7 @@ class KinnuRemixer:
         prompt: str,
         output_path: Path,
         *,
-        ip_scale: float = 0.6,
+        ip_scale: float = 0.8,
         width: int = 832,
         height: int = 1216,
         steps: int | None = None,
