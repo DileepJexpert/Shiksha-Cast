@@ -1,0 +1,533 @@
+episode: k03-friction-10min-2d
+title: Kinnu Learns Friction - Why We Slip, Grip, and Stop
+fps: 15
+cast:
+  kinnu_hd: af_heart
+scenes:
+  - id: s01
+    background: build/k03-friction/backgrounds/bg_001.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.3, start: 0.2, end: 2.4 }
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: talk, text: "Hello friends, I am Kinnu, and today something funny happened in our science classroom." }
+      - { who: kinnu_hd, do: talk, text: "I stepped on a shiny wet floor, my feet slid forward, and I shouted, Oops, why am I slipping?" }
+
+  - id: s02
+    background: build/k03-friction/backgrounds/bg_002.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.58, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "First, look carefully at this smooth wet floor. It looks shiny, but it can be tricky." }
+      - { who: kinnu_hd, do: talk, text: "When my shoe touches this floor, there is not much grip between the shoe and the tile." }
+
+  - id: s03
+    background: build/k03-friction/backgrounds/bg_003.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.42, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Now let us compare two surfaces, one smooth and one rough, like a real science experiment." }
+      - { who: kinnu_hd, do: talk, text: "A smooth surface has tiny bumps too, but the bumps are very small and easy to slide over." }
+
+  - id: s04
+    background: build/k03-friction/backgrounds/bg_004.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.5, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Let us test a toy car. I push it on smooth tile, and it rolls for a long distance." }
+      - { who: kinnu_hd, do: talk, text: "The wheels still touch the floor, but the friction is small, so the car keeps moving longer." }
+
+  - id: s05
+    background: build/k03-friction/backgrounds/bg_005.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: talk, text: "Friction is not only about stopping toys. Friction helps us walk without falling." }
+      - { who: kinnu_hd, do: talk, text: "Look at the bottom of shoes. You will see lines, grooves, dots, or rough patterns." }
+
+  - id: s06
+    background: build/k03-friction/backgrounds/bg_006.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.6, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Now try a tiny experiment with your hands. Rub your palms together quickly for five seconds." }
+      - { who: kinnu_hd, do: talk, text: "One, two, three, four, five. Stop. Do your palms feel warmer now?" }
+
+  - id: s07
+    background: build/k03-friction/backgrounds/bg_007.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Let us play a quick quiz. Which has more friction, ice or sandpaper?" }
+      - { who: kinnu_hd, do: talk, text: "Think for a moment. Ice is smooth and slippery, so it has less friction." }
+
+  - id: s08
+    background: build/k03-friction/backgrounds/bg_008.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.72, start: 0.0, end: 1.8 }
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.8 }
+      - { who: kinnu_hd, do: talk, text: "Friction can be our friend. It helps shoes grip, pencils write, brakes stop, and hands hold." }
+      - { who: kinnu_hd, do: talk, text: "But friction can also slow bicycles, make machines hot, and wear down moving parts." }
+
+  - id: s09
+    background: build/k03-friction/backgrounds/bg_001.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.3, start: 0.2, end: 2.4 }
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: talk, text: "That funny slip is the perfect way to learn a powerful science word: friction." }
+      - { who: kinnu_hd, do: talk, text: "Friction is invisible, but it helps us walk, stop, hold things, write, ride, and play safely." }
+
+  - id: s10
+    background: build/k03-friction/backgrounds/bg_002.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.58, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "Less grip means less friction, and with less friction my foot can slide instead of stopping." }
+      - { who: kinnu_hd, do: talk, text: "That is why wet bathroom floors, polished tiles, and ice can feel slippery under our feet." }
+
+  - id: s11
+    background: build/k03-friction/backgrounds/bg_003.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.42, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "A rough surface has bigger tiny bumps, and those bumps catch, rub, and slow things down." }
+      - { who: kinnu_hd, do: talk, text: "More rubbing means more friction. Less rubbing means less friction. That is the key idea." }
+
+  - id: s12
+    background: build/k03-friction/backgrounds/bg_004.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.5, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Now I push the same toy car on carpet. It slows down quickly and stops much earlier." }
+      - { who: kinnu_hd, do: talk, text: "The carpet has many soft rough fibers. Those fibers push against the wheels and create more friction." }
+
+  - id: s13
+    background: build/k03-friction/backgrounds/bg_005.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: talk, text: "Those patterns dig gently into the ground and give our feet grip with every step." }
+      - { who: kinnu_hd, do: talk, text: "Sports shoes, school shoes, and sandals all use friction to help us stand and move safely." }
+
+  - id: s14
+    background: build/k03-friction/backgrounds/bg_006.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.6, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "That warmth came because friction changed some movement energy into heat." }
+      - { who: kinnu_hd, do: talk, text: "This is why sliding down a rope too fast can burn your hand, and why brakes can become hot." }
+
+  - id: s15
+    background: build/k03-friction/backgrounds/bg_007.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Sandpaper is rough, scratchy, and full of tiny bumps, so it has more friction." }
+      - { who: kinnu_hd, do: talk, text: "Next question: why can we write with a pencil on paper?" }
+
+  - id: s16
+    background: build/k03-friction/backgrounds/bg_008.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.72, start: 0.0, end: 1.8 }
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.8 }
+      - { who: kinnu_hd, do: talk, text: "So engineers do not simply say friction is good or bad. They ask how much friction is needed." }
+      - { who: kinnu_hd, do: talk, text: "For walking, we want more grip. For sliding on a playground slide, we want less grip." }
+
+  - id: s17
+    background: build/k03-friction/backgrounds/bg_001.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.3, start: 0.2, end: 2.4 }
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: talk, text: "In this full episode, we will test smooth floors, rough floors, shoes, tyres, heat, and a few brainy quizzes." }
+      - { who: kinnu_hd, do: talk, text: "Stay with me till the end, because you will become a friction detective in your own home." }
+
+  - id: s18
+    background: build/k03-friction/backgrounds/bg_002.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.58, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "Slipping is not magic. It is just a sign that friction has become too small to hold us." }
+      - { who: kinnu_hd, do: talk, text: "Whenever you see a wet floor sign, walk slowly, because your shoes need time to grip." }
+
+  - id: s19
+    background: build/k03-friction/backgrounds/bg_003.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.42, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Imagine sliding your palm on glass, then on a rough doormat. The doormat pulls your hand back more." }
+      - { who: kinnu_hd, do: talk, text: "That pull-back feeling is friction working between your hand and the surface." }
+
+  - id: s20
+    background: build/k03-friction/backgrounds/bg_004.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.5, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "This is why the same push can give different results on different surfaces." }
+      - { who: kinnu_hd, do: talk, text: "Science detective rule number one: always ask, what surfaces are touching each other?" }
+
+  - id: s21
+    background: build/k03-friction/backgrounds/bg_005.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: talk, text: "Car tyres also have grooves. The grooves push water away and help the tyre touch the road better." }
+      - { who: kinnu_hd, do: talk, text: "When tyres become too smooth, they lose grip, and that can be dangerous on wet roads." }
+
+  - id: s22
+    background: build/k03-friction/backgrounds/bg_006.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.6, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Friction can warm things up. Sometimes that is useful, and sometimes we need to control it." }
+      - { who: kinnu_hd, do: talk, text: "Machines use oil or grease to reduce friction, so parts do not get too hot or wear out fast." }
+
+  - id: s23
+    background: build/k03-friction/backgrounds/bg_007.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "The paper rubs against the pencil tip. Friction pulls tiny pencil particles onto the paper." }
+      - { who: kinnu_hd, do: talk, text: "Without friction, the pencil would slide around and writing would be almost impossible." }
+
+  - id: s24
+    background: build/k03-friction/backgrounds/bg_008.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.72, start: 0.0, end: 1.8 }
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.8 }
+      - { who: kinnu_hd, do: talk, text: "For car brakes, we want strong friction. For engine parts, we use oil to reduce friction." }
+      - { who: kinnu_hd, do: talk, text: "Smart science means choosing the right amount of friction for the job." }
+
+  - id: s25
+    background: build/k03-friction/backgrounds/bg_001.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.3, start: 0.2, end: 2.4 }
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: Hello friends, I am Kinnu, and today something funny happened in our science classroom." }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: I stepped on a shiny wet floor, my feet slid forward, and I shouted, Oops, why am I slipping?" }
+
+  - id: s26
+    background: build/k03-friction/backgrounds/bg_002.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.58, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: First, look carefully at this smooth wet floor. It looks shiny, but it can be tricky." }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: When my shoe touches this floor, there is not much grip between the shoe and the tile." }
+
+  - id: s27
+    background: build/k03-friction/backgrounds/bg_003.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.42, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: Now let us compare two surfaces, one smooth and one rough, like a real science experiment." }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: A smooth surface has tiny bumps too, but the bumps are very small and easy to slide over." }
+
+  - id: s28
+    background: build/k03-friction/backgrounds/bg_004.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.5, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: Let us test a toy car. I push it on smooth tile, and it rolls for a long distance." }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: The wheels still touch the floor, but the friction is small, so the car keeps moving longer." }
+
+  - id: s29
+    background: build/k03-friction/backgrounds/bg_005.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: Friction is not only about stopping toys. Friction helps us walk without falling." }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: Look at the bottom of shoes. You will see lines, grooves, dots, or rough patterns." }
+
+  - id: s30
+    background: build/k03-friction/backgrounds/bg_006.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.6, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: Now try a tiny experiment with your hands. Rub your palms together quickly for five seconds." }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: One, two, three, four, five. Stop. Do your palms feel warmer now?" }
+
+  - id: s31
+    background: build/k03-friction/backgrounds/bg_007.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: Let us play a quick quiz. Which has more friction, ice or sandpaper?" }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: Think for a moment. Ice is smooth and slippery, so it has less friction." }
+
+  - id: s32
+    background: build/k03-friction/backgrounds/bg_008.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.72, start: 0.0, end: 1.8 }
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.8 }
+      - { who: kinnu_hd, do: talk, text: "Practice round: Friction can be our friend. It helps shoes grip, pencils write, brakes stop, and hands hold." }
+      - { who: kinnu_hd, do: talk, text: "Say it with me: But friction can also slow bicycles, make machines hot, and wear down moving parts." }
+
+  - id: s33
+    background: build/k03-friction/backgrounds/bg_001.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.3, start: 0.2, end: 2.4 }
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: That funny slip is the perfect way to learn a powerful science word: friction." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: Friction is invisible, but it helps us walk, stop, hold things, write, ride, and play safely." }
+
+  - id: s34
+    background: build/k03-friction/backgrounds/bg_002.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.58, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Less grip means less friction, and with less friction my foot can slide instead of stopping." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: That is why wet bathroom floors, polished tiles, and ice can feel slippery under our feet." }
+
+  - id: s35
+    background: build/k03-friction/backgrounds/bg_003.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.42, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: A rough surface has bigger tiny bumps, and those bumps catch, rub, and slow things down." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: More rubbing means more friction. Less rubbing means less friction. That is the key idea." }
+
+  - id: s36
+    background: build/k03-friction/backgrounds/bg_004.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.5, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Now I push the same toy car on carpet. It slows down quickly and stops much earlier." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: The carpet has many soft rough fibers. Those fibers push against the wheels and create more friction." }
+
+  - id: s37
+    background: build/k03-friction/backgrounds/bg_005.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Those patterns dig gently into the ground and give our feet grip with every step." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: Sports shoes, school shoes, and sandals all use friction to help us stand and move safely." }
+
+  - id: s38
+    background: build/k03-friction/backgrounds/bg_006.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.6, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: That warmth came because friction changed some movement energy into heat." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: This is why sliding down a rope too fast can burn your hand, and why brakes can become hot." }
+
+  - id: s39
+    background: build/k03-friction/backgrounds/bg_007.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Sandpaper is rough, scratchy, and full of tiny bumps, so it has more friction." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: Next question: why can we write with a pencil on paper?" }
+
+  - id: s40
+    background: build/k03-friction/backgrounds/bg_008.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.72, start: 0.0, end: 1.8 }
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.8 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: So engineers do not simply say friction is good or bad. They ask how much friction is needed." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: For walking, we want more grip. For sliding on a playground slide, we want less grip." }
+
+  - id: s41
+    background: build/k03-friction/backgrounds/bg_001.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.3, start: 0.2, end: 2.4 }
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: That funny slip is the perfect way to learn a powerful science word: friction." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: Friction is invisible, but it helps us walk, stop, hold things, write, ride, and play safely." }
+
+  - id: s42
+    background: build/k03-friction/backgrounds/bg_002.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.58, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Less grip means less friction, and with less friction my foot can slide instead of stopping." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: That is why wet bathroom floors, polished tiles, and ice can feel slippery under our feet." }
+
+  - id: s43
+    background: build/k03-friction/backgrounds/bg_003.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.42, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: A rough surface has bigger tiny bumps, and those bumps catch, rub, and slow things down." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: More rubbing means more friction. Less rubbing means less friction. That is the key idea." }
+
+  - id: s44
+    background: build/k03-friction/backgrounds/bg_004.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.5, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Now I push the same toy car on carpet. It slows down quickly and stops much earlier." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: The carpet has many soft rough fibers. Those fibers push against the wheels and create more friction." }
+
+  - id: s45
+    background: build/k03-friction/backgrounds/bg_005.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Those patterns dig gently into the ground and give our feet grip with every step." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: Sports shoes, school shoes, and sandals all use friction to help us stand and move safely." }
+
+  - id: s46
+    background: build/k03-friction/backgrounds/bg_006.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.6, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.0 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: That warmth came because friction changed some movement energy into heat." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: This is why sliding down a rope too fast can burn your hand, and why brakes can become hot." }
+
+  - id: s47
+    background: build/k03-friction/backgrounds/bg_007.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: Sandpaper is rough, scratchy, and full of tiny bumps, so it has more friction." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: Next question: why can we write with a pencil on paper?" }
+
+  - id: s48
+    background: build/k03-friction/backgrounds/bg_008.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.0, 1.04] }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: run, to: 0.72, start: 0.0, end: 1.8 }
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.8 }
+      - { who: kinnu_hd, do: talk, text: "Quick recap: So engineers do not simply say friction is good or bad. They ask how much friction is needed." }
+      - { who: kinnu_hd, do: talk, text: "Remember this: For walking, we want more grip. For sliding on a playground slide, we want less grip." }
+
+  - id: s49
+    background: build/k03-friction/backgrounds/bg_001.png
+    transition: { in: 0.25, out: 0.25 }
+    camera: { zoom: [1.04, 1.0] }
+    characters: [{ id: kinnu_hd, pos: [0.28, 0.99], scale: 0.88, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 3.0 }
+      - { who: kinnu_hd, do: talk, text: "Fantastic work, science explorer. Today you learned that friction is the grip between touching surfaces." }
+      - { who: kinnu_hd, do: talk, text: "Less friction can make things slide. More friction can help things stop, hold, and stay safe." }
+      - { who: kinnu_hd, do: talk, text: "Look around your room today and find three places where friction is helping you." }
+      - { who: kinnu_hd, do: talk, text: "Like and subscribe for more learning with Kinnu. Bye bye, and keep exploring science!" }

@@ -1,4 +1,3 @@
-import tempfile
 from pathlib import Path
 
 from shiksha_cast.cache import BuildManifest, content_hash, file_hash

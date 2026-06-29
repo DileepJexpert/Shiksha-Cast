@@ -2,7 +2,6 @@ from pathlib import Path
 
 from shiksha_cast.config import (
     ChannelConfig,
-    ScriptFile,
     SlideScript,
     VoiceConfig,
     find_chapter_dir,

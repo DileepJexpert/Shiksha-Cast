@@ -48,7 +48,6 @@ def bg(d):
         t = y / H
         d.line([(0, y), (W, y)], fill=tuple(int(BG_TOP[i] + (BG_BOT[i] - BG_TOP[i]) * t) for i in range(3)))
     # confetti dots
-    import math
     for i in range(36):
         x = (i * 137) % W
         yy = (i * 89) % H

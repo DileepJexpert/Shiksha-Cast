@@ -7,12 +7,14 @@ from __future__ import annotations
 import math
 
 WALK_RATE = 7.5  # radians/sec of the walk cycle
+RUN_RATE = 11.5  # radians/sec of the run cycle
 
 
 def idle(t: float, phase_off: float = 0.0) -> dict:
     s = math.sin(t * 1.4 + phase_off)
     return {
-        "angles": {"arm_left": 8 + 2 * s, "arm_right": -8 - 2 * s, "head": 1.5 * s,
+        # Keep arms still while standing; shoulder drift makes hands look springy.
+        "angles": {"arm_left": 0.0, "arm_right": 0.0, "head": 0.9 * s,
                    "leg_left": 0.0, "leg_right": 0.0},
         "bob": 0.0,
     }
@@ -33,9 +35,24 @@ def walk(phase: float) -> dict:
     }
 
 
+def run(phase: float) -> dict:
+    """A faster, larger walk cycle for run actions."""
+    leg, arm = 34.0, 26.0
+    return {
+        "angles": {
+            "leg_left": leg * math.sin(phase + math.pi),
+            "leg_right": leg * math.sin(phase),
+            "arm_left": arm * math.sin(phase),
+            "arm_right": arm * math.sin(phase + math.pi),
+            "head": 3.0 * math.sin(phase * 2),
+        },
+        "bob": abs(math.sin(phase)) * 14.0,
+    }
+
+
 def wave(lt: float) -> dict:
     """Raise the right arm overhead and wiggle it (lt = local time in the action)."""
-    return {"arm_right": -128 + 20 * math.sin(lt * 9.0)}
+    return {"arm_right": -124 + 8 * math.sin(lt * 4.2)}
 
 
 def point(side: str = "right") -> dict:
@@ -44,7 +61,7 @@ def point(side: str = "right") -> dict:
 
 def cheer(lt: float) -> dict:
     """Both arms up, wiggling — celebration."""
-    w = 16 * math.sin(lt * 8.0)
+    w = 6 * math.sin(lt * 3.6)
     return {"arm_left": 120 + w, "arm_right": -120 - w}
 
 

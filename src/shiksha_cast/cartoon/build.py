@@ -116,32 +116,88 @@ def _mix(a, b, w):
     return (a[0] + (b[0] - a[0]) * w, a[1] + (b[1] - a[1]) * w)
 
 
+MOVE_ACTIONS = {"enter", "walk", "walkto", "run", "runto"}
+
+
+def _move_state(cid, actions, t, x_frac, facing0):
+    """Resolve persistent x/facing plus any currently active walk/run cycle."""
+    x_cur = x_frac
+    facing = facing0
+    gait = None
+    for a in sorted(actions, key=lambda z: z.get("start", 0.0)):
+        if a.get("who") != cid or a.get("do") not in MOVE_ACTIONS:
+            continue
+        do = a.get("do")
+        start = float(a.get("start", 0.0))
+        end = float(a.get("end", start + 1.4))
+        dur = max(0.3, end - start)
+        if do == "enter":
+            frm = a.get("from", "left")
+            start_x = -0.18 if frm == "left" else 1.18
+            end_x = x_frac
+            target_facing = "right" if frm == "left" else "left"
+        elif do in ("walkto", "runto") or a.get("to") is not None:
+            start_x = x_cur
+            end_x = float(a.get("to", x_cur))
+            target_facing = "right" if end_x >= start_x else "left"
+        else:
+            start_x = x_cur
+            end_x = x_cur
+            target_facing = facing
+        if t < start:
+            continue
+        if t >= end:
+            x_cur = end_x
+            facing = target_facing
+            continue
+        p = _smooth(min(1.0, (t - start) / dur))
+        x_cur = start_x + (end_x - start_x) * p
+        facing = target_facing
+        gait = {"lt": t - start, "run": do in ("run", "runto")}
+        break
+    return x_cur, facing, gait
+
+
 def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
     """Build a rig2 (skeletal) pose. Motion is eased (smoothstep envelopes) and arms stay
     fairly straight so joints read as one body instead of springy separated cutouts."""
     # --- soft idle: breathing lives in the vertical BOB only; arms HANG calmly.
     # (A swing on the shoulder angle makes the hand dangle like a spring, so we keep
     #  the resting arm angle nearly constant with just a very slow, tiny drift.) ---
-    breathe = math.sin(t * 1.2 + phase_off)          # slow breath -> bob + faint shrug
-    drift = math.sin(t * 0.5 + phase_off)            # very slow arm drift, low amplitude
-    al = (1.6 + 0.7 * drift, 2.5); ar = (-1.6 - 0.7 * drift, -2.5)
+    breathe = math.sin(t * 1.2 + phase_off)          # slow breath -> vertical bob only
+    # Keep resting arms locked. Even tiny shoulder drift reads as springy hands
+    # on a cutout rig because the palm is far from the shoulder pivot.
+    al = (0.0, 2.0); ar = (0.0, -2.0)
     ll = (0.0, 0.0); lr = (0.0, 0.0)
     head = 0.9 * math.sin(t * 0.7 + phase_off)
     bob = 1.4 * breathe  # gentle breathing rise/fall (vertical only)
     eyes = "open"; mouth = "X"; brows = "neutral"
-    x_cur = x_frac; facing = facing0
+    x_cur, facing, gait = _move_state(cid, actions, t, x_frac, facing0)
+    if gait:
+        # Smooth locomotion cycle. Run is faster and wider; walk stays gentle.
+        rate = 9.5 if gait["run"] else 5.0
+        leg = 24.0 if gait["run"] else 16.0
+        arm = 16.0 if gait["run"] else 10.0
+        elbow = 7.0 if gait["run"] else 4.0
+        lift = 7.0 if gait["run"] else 4.0
+        stride = math.sin(gait["lt"] * rate)
+        ll = (leg * stride, 0.0); lr = (-leg * stride, 0.0)
+        al = (-arm * stride, elbow); ar = (arm * stride, -elbow)
+        bob = abs(math.sin(gait["lt"] * rate)) * lift
     for a in actions:
         if a.get("who") != cid or not (a["start"] <= t < a.get("end", a["start"])):
             continue
         do = a.get("do"); lt = t - a["start"]
         dur = max(0.3, a.get("end", a["start"] + 1.4) - a["start"])
         e = _envelope(lt, dur)
+        if do in MOVE_ACTIONS:
+            continue
         if do == "talk":
             mouth = _viseme(a["levels"], fps, lt)
         elif do == "wave":
             # whole arm raised near the head, fairly straight; slow gentle hand sway
-            sway = math.sin(lt * 2.2)
-            ar = _mix(ar, (-116 + 4 * sway, -14 + 7 * sway), e)
+            sway = math.sin(lt * 1.8)
+            ar = _mix(ar, (-114 + 2 * sway, -12 + 3 * sway), e)
             eyes = "happy"; brows = "happy"
         elif do == "point":
             if a.get("side") == "left":
@@ -151,7 +207,7 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
         elif do == "point_up":
             ar = _mix(ar, (-146, -6), e)
         elif do == "cheer":
-            lift = 6 * math.sin(lt * 3.0)
+            lift = 3 * math.sin(lt * 2.0)
             al = _mix(al, (140 + lift, 8), e); ar = _mix(ar, (-140 - lift, -8), e)
             eyes = "happy"; brows = "happy"
             if mouth == "X":
@@ -160,19 +216,6 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
             brows = "sad"
         elif do == "surprise":
             brows = "surprised"
-        elif do in ("enter", "walkto"):
-            p = _smooth(min(1.0, lt / dur))
-            if do == "enter":
-                frm = a.get("from", "left"); sx = -0.18 if frm == "left" else 1.18
-                x_cur = sx + (x_frac - sx) * p; facing = "right" if frm == "left" else "left"
-            else:
-                to = float(a.get("to", x_frac))
-                x_cur = x_frac + (to - x_frac) * p; facing = "right" if to >= x_frac else "left"
-            # smooth walk cycle (slower stride, small bob, arms counter-swing)
-            stride = math.sin(lt * 5.0)
-            ll = (16 * stride, 0.0); lr = (-16 * stride, 0.0)
-            al = (-10 * stride, 4.0); ar = (10 * stride, -4.0)
-            bob = abs(math.sin(lt * 5.0)) * 4.0
         elif do == "jump":
             bob += motion.jump_bob(lt / dur); eyes = "happy"
     pose = {"arm_left": al, "arm_right": ar, "leg_left": ll, "leg_right": lr,
@@ -229,19 +272,21 @@ def _build_frame(t, ctx, cache):
             ch.place(frame, pose, x_cur, ground_y, char_h, facing=facing, bob=bob)
             continue
         base = motion.idle(t, phase_off)
-        angles = dict(base["angles"]); bob = base["bob"]; mouth = "closed"; x_cur = x_frac
+        x_cur, facing, gait = _move_state(cid, ctx["actions"], t, x_frac, facing)
+        angles = dict(base["angles"]); bob = base["bob"]; mouth = "closed"
+        if gait:
+            if gait["run"]:
+                w = motion.run(gait["lt"] * motion.RUN_RATE)
+            else:
+                w = motion.walk(gait["lt"] * motion.WALK_RATE)
+            angles.update(w["angles"]); bob = w["bob"]
         for a in ctx["actions"]:
             if a.get("who") != cid or not (a["start"] <= t < a.get("end", a["start"])):
                 continue
             do = a.get("do"); lt = t - a["start"]
-            if do in ("walk", "enter"):
-                w = motion.walk(lt * motion.WALK_RATE); angles.update(w["angles"]); bob = w["bob"]
-                if do == "enter":
-                    dur = max(0.3, a["end"] - a["start"]); frm = a.get("from", "left")
-                    sx = -0.18 if frm == "left" else 1.18
-                    x_cur = sx + (x_frac - sx) * min(1.0, lt / dur)
-                    facing = "right" if frm == "left" else "left"
-            elif do == "wave":
+            if do in MOVE_ACTIONS:
+                continue
+            if do == "wave":
                 angles.update(motion.wave(lt))
             elif do == "point":
                 angles.update(motion.point(a.get("side", "right")))
@@ -251,12 +296,6 @@ def _build_frame(t, ctx, cache):
                 angles.update(motion.cheer(lt))
             elif do == "hold":
                 angles.update(motion.hold(a.get("side", "right")))
-            elif do == "walkto":
-                dur = max(0.3, a["end"] - a["start"])
-                w = motion.walk(lt * motion.WALK_RATE); angles.update(w["angles"]); bob = w["bob"]
-                to = float(a.get("to", x_frac))
-                x_cur = x_frac + (to - x_frac) * min(1.0, lt / dur)
-                facing = "right" if to >= x_frac else "left"
             elif do == "talk":
                 mouth = _mouth_from_levels(a["levels"], fps, lt)
         eye = motion.blink_state(t + phase_off)

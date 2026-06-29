@@ -17,7 +17,7 @@ def test_render_produces_pngs():
 
 
 def test_render_cache():
-    r1 = render_chapter("ch03", PROJECT_ROOT)
+    render_chapter("ch03", PROJECT_ROOT)
     r2 = render_chapter("ch03", PROJECT_ROOT)
     assert r2.cached_count == 3
     assert r2.rendered_count == 0

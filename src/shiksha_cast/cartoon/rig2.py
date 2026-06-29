@@ -69,6 +69,9 @@ class SkeletalCharacter:
         self.overlay_only = bool(cfg.get("overlay_only", False))  # head has baked eyes/brows
         self.neck_stub = bool(cfg.get("neck_stub", True))
         self.torso_dy = float(cfg.get("torso_dy", -8))  # torso vertical nudge from neck
+        # Extra transparent canvas around the rig prevents hands/props from being
+        # clipped when arms point sideways or cheer overhead.
+        self.render_padding = int(cfg.get("render_padding", 220))
 
     def _img(self, name: str) -> Image.Image:
         im = self._cache.get(name)
@@ -116,22 +119,38 @@ class SkeletalCharacter:
     def _has(self, name):
         return (self.dir / f"{name}.png").exists()
 
-    def compose(self, pose: dict) -> Image.Image:
-        c = Image.new("RGBA", self.space, (0, 0, 0, 0))
+    def compose(self, pose: dict, padding: int = 0) -> Image.Image:
+        c = Image.new(
+            "RGBA",
+            (int(self.space[0] + padding * 2), int(self.space[1] + padding * 2)),
+            (0, 0, 0, 0),
+        )
+        def off(point):
+            return (point[0] + padding, point[1] + padding)
+
         al = pose.get("arm_left", (0, 0)); ar = pose.get("arm_right", (0, 0))
         ll = pose.get("leg_left", (0, 0)); lr = pose.get("leg_right", (0, 0))
         J = self.joints
-        self._limb(c, "upper_arm_left", "forearm_left", J["shoulder_left"], al[0], al[1], "upper_arm", "forearm")
-        self._limb(c, "thigh_left", "shin_left", J["hip_left"], ll[0], ll[1], "thigh", "shin")
-        self._limb(c, "thigh_right", "shin_right", J["hip_right"], lr[0], lr[1], "thigh", "shin")
-        nx, ny = J["neck"]
+        self._limb(
+            c, "upper_arm_left", "forearm_left",
+            off(J["shoulder_left"]), al[0], al[1], "upper_arm", "forearm",
+        )
+        self._limb(
+            c, "thigh_left", "shin_left",
+            off(J["hip_left"]), ll[0], ll[1], "thigh", "shin",
+        )
+        self._limb(
+            c, "thigh_right", "shin_right",
+            off(J["hip_right"]), lr[0], lr[1], "thigh", "shin",
+        )
+        nx, ny = off(J["neck"])
         nr = self.neck_raise
         if self.neck_stub:
             ImageDraw.Draw(c).rounded_rectangle(
                 [nx - 24, ny - nr - 6, nx + 24, ny + 14], radius=12,
                 fill=self._skin(), outline=INK, width=5)
         self._place_rot(c, self._img("torso"), self._pv("torso", "torso"),
-                        (self.cx, ny + self._img("torso").height * 0.5 + self.torso_dy), 0)
+                        (self.cx + padding, ny + self._img("torso").height * 0.5 + self.torso_dy), 0)
         ha = pose.get("head", 0.0)
         self._place_rot(c, self._img("head"), self._pv("head", "head"), (nx, ny - nr), ha)
         # face overlays
@@ -146,18 +165,25 @@ class SkeletalCharacter:
                 continue
             im = self._img(layer)
             self._place_rot(c, im, (im.width / 2, im.height / 2),
-                            (self.face[key][0], self.face[key][1] - nr), ha)
-        self._limb(c, "upper_arm_right", "forearm_right", J["shoulder_right"], ar[0], ar[1], "upper_arm", "forearm")
+                            (self.face[key][0] + padding, self.face[key][1] + padding - nr), ha)
+        self._limb(
+            c, "upper_arm_right", "forearm_right",
+            off(J["shoulder_right"]), ar[0], ar[1], "upper_arm", "forearm",
+        )
         return c
 
     def place(self, frame, pose, x_frac, ground_y, char_h_px, facing="right", bob=0.0):
-        canvas = self.compose(pose)
-        feetx, feety = self.cx, self.feet_y
+        padding = self.render_padding
+        canvas = self.compose(pose, padding=padding)
+        feetx, feety = self.cx + padding, self.feet_y + padding
         if facing == "left":
             canvas = canvas.transpose(Image.FLIP_LEFT_RIGHT)
-            feetx = self.space[0] - feetx
+            feetx = canvas.width - feetx
         s = (char_h_px * self.scale_self) / self.space[1]
-        canvas = canvas.resize((max(1, int(self.space[0] * s)), max(1, int(self.space[1] * s))), Image.LANCZOS)
+        canvas = canvas.resize(
+            (max(1, int(canvas.width * s)), max(1, int(canvas.height * s))),
+            Image.LANCZOS,
+        )
         px = int(x_frac * frame.width - feetx * s)
         py = int(ground_y - feety * s - bob)
         frame.alpha_composite(canvas, (px, py))

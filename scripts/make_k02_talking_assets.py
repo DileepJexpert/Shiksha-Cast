@@ -160,7 +160,6 @@ def title_bg(img: Image.Image, text: str, size: int = 66):
 
 
 def draw_wrong_numbers(img: Image.Image):
-    d = ImageDraw.Draw(img)
     for text, x, y, ang, color in [
         ("1", 1045, 255, -16, (255, 233, 72)),
         ("2", 1440, 345, 19, (89, 210, 255)),

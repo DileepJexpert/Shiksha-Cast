@@ -8,7 +8,6 @@ Output: assets/cartoon/characters/<name>/{parts + eye/mouth states + rig.json}
 Usage (presets): python scripts/make_cartoon_character.py            # builds kinnu/minku/tara
 """
 import json
-import math
 from pathlib import Path
 
 from PIL import Image, ImageDraw

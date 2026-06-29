@@ -36,7 +36,6 @@ def blobs(img, min_frac=0.004):
 def rows_then_cols(items, n_rows):
     """Cluster items into n_rows by cy, then sort each row by cx; return flat list."""
     items = sorted(items, key=lambda b: b["cy"])
-    ys = [b["cy"] for b in items]
     # simple k-row split by gaps
     per = max(1, round(len(items) / n_rows))
     rows = [items[i:i + per] for i in range(0, len(items), per)]

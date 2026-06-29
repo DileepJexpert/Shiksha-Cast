@@ -110,7 +110,7 @@ def build(
         raise typer.Exit(code=1)
 
     rprint()
-    rprint(f"[bold green]Build complete![/bold green]")
+    rprint("[bold green]Build complete![/bold green]")
     rprint(f"  Slides: {result.render.rendered_count} rendered, {result.render.cached_count} cached")
     rprint(f"  Audio:  {result.speak.synthesized_count} synthesized, {result.speak.cached_count} cached")
     rprint(f"  Video:  {result.assemble.video_path}")
@@ -143,7 +143,7 @@ def ai_build(
         raise typer.Exit(code=1)
 
     rprint()
-    rprint(f"[bold green]AI Build complete![/bold green]")
+    rprint("[bold green]AI Build complete![/bold green]")
     rprint(f"  Images: {result.visuals.generated_count} generated, {result.visuals.cached_count} cached")
     rprint(f"  Audio:  {result.speak.synthesized_count} synthesized, {result.speak.cached_count} cached")
     rprint(f"  Video:  {result.assemble.video_path}")
@@ -406,7 +406,7 @@ def new_story(
     rprint(f"  Scenes: {len(story.get('scenes', []))}")
     rprint(f"[dim]Current build path:[/dim] python -m shiksha_cast ai-build -c {ep_id}")
     rprint(f"[dim]Talking-host path:[/dim] python scripts/build_talking_episode.py {ep_id}")
-    rprint(f"[dim]Future path:[/dim] multi-character renderer will consume story.yaml directly.")
+    rprint("[dim]Future path:[/dim] multi-character renderer will consume story.yaml directly.")
 
 
 @app.command()

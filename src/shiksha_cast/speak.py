@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from shiksha_cast.cache import BuildManifest, content_hash
-from shiksha_cast.config import ChannelConfig, ScriptFile, SlideScript
+from shiksha_cast.config import ChannelConfig, ScriptFile
 from shiksha_cast.tts.base import TTSProvider
 
 # In-slide two-host dialogue: lines beginning with a speaker tag are voiced by
