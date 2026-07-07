@@ -1,0 +1,81 @@
+episode: k05-forest-village-counting
+title: Kinnu in Forest Village
+resolution: [1920, 1080]
+fps: 30
+
+required_assets:
+  characters:
+    - kinnu_hd
+  backgrounds:
+    - forest_village.png
+  props:
+    - tree.png
+    - river.png
+    - hut.png
+    - bird.png
+    - number_1.png
+    - number_2.png
+
+scenes:
+  - id: scene_001
+    duration: 8
+    background: forest_village.png
+    characters:
+      - id: kinnu
+        asset: kinnu_hd
+        position: [520, 780]
+        scale: 1.0
+        action: wave
+    props:
+      - asset: tree.png
+        position: [1400, 650]
+        scale: 1.0
+      - asset: hut.png
+        position: [1150, 710]
+        scale: 0.8
+    narration: "Today Kinnu visits a forest village."
+
+  - id: scene_002
+    duration: 10
+    background: forest_village.png
+    characters:
+      - id: kinnu
+        asset: kinnu_hd
+        position: [600, 780]
+        scale: 1.0
+        action: point
+    props:
+      - asset: river.png
+        position: [980, 820]
+        scale: 1.0
+      - asset: bird.png
+        position: [1320, 240]
+        scale: 0.5
+      - asset: number_1.png
+        position: [820, 430]
+        scale: 0.7
+    narration: "Kinnu sees one bird near the river. Let us count one."
+
+  - id: scene_003
+    duration: 10
+    background: forest_village.png
+    characters:
+      - id: kinnu
+        asset: kinnu_hd
+        position: [560, 780]
+        scale: 1.0
+        action: talk
+    props:
+      - asset: tree.png
+        position: [1350, 650]
+        scale: 1.0
+      - asset: bird.png
+        position: [1260, 250]
+        scale: 0.5
+      - asset: bird.png
+        position: [1450, 330]
+        scale: 0.5
+      - asset: number_2.png
+        position: [900, 430]
+        scale: 0.7
+    narration: "Now Kinnu finds two birds on the tree. Count with Kinnu: one, two."
