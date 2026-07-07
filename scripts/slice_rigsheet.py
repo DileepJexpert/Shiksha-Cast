@@ -9,8 +9,13 @@ The only assumption is the canonical *order* of parts (see NAMES) — which the
 KINNU_ART_WORKFLOW.md generation prompt locks in — and that each part has a little
 whitespace between it and its text label (so labels fall in their own thin bands).
 
+Accepts a PNG **or an SVG** (e.g. the "Download Vector Rig Sheet" export from the
+AI Studio rig app). SVGs get their <text> labels stripped before rasterizing, so an
+oversized part overlapping its label can never bake the label into the artwork.
+SVG rasterizing needs `pip install playwright` plus a Chromium/Chrome browser.
+
 Usage:
-    python scripts/slice_rigsheet.py [SHEET.png] [OUT_DIR]
+    python scripts/slice_rigsheet.py [SHEET.png|SHEET.svg] [OUT_DIR]
 
 Output: <OUT_DIR>/<name>.png  +  parts_montage.png  +  parts_detected.png (debug)
 Default OUT_DIR: assets/cartoon/source/parts
@@ -224,11 +229,54 @@ def _write_montage(out_dir: Path, names: list[str], path: Path) -> None:
     print(f"montage -> {path.name}")
 
 
+def rasterize_svg(src: Path, scale: int = 3) -> Path:
+    """Strip <text> labels from an SVG rig sheet and rasterize it to a PNG next to it.
+    Labels are re-derived by position during slicing, so removing them makes the
+    slice immune to a part overlapping its label."""
+    import re
+
+    svg = src.read_text(encoding="utf-8")
+    svg = re.sub(r"<text\b[^>]*>.*?</text>", "", svg, flags=re.DOTALL)
+    m = re.search(r'viewBox="0 0 (\d+(?:\.\d+)?) (\d+(?:\.\d+)?)"', svg)
+    if not m:
+        raise SystemExit("[error] SVG has no viewBox — cannot determine render size")
+    w, h = int(float(m.group(1))), int(float(m.group(2)))
+    stripped = src.with_name(src.stem + "_nolabels.svg")
+    stripped.write_text(svg, encoding="utf-8")
+    png = src.with_suffix(".png")
+
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        raise SystemExit(
+            "[error] rasterizing SVG needs playwright: pip install playwright\n"
+            "        (or export the sheet as PNG and slice that instead)"
+        ) from None
+    import os
+    exe = os.environ.get("PLAYWRIGHT_CHROMIUM")  # explicit browser path override
+    with sync_playwright() as p:
+        launcher = p.chromium
+        try:
+            browser = launcher.launch(executable_path=exe) if exe else launcher.launch()
+        except Exception:
+            browser = launcher.launch(channel="chrome")  # fall back to installed Chrome
+        page = browser.new_page(viewport={"width": w, "height": h}, device_scale_factor=scale)
+        page.goto(stripped.resolve().as_uri())
+        page.wait_for_timeout(300)
+        page.screenshot(path=str(png))
+        browser.close()
+    stripped.unlink(missing_ok=True)
+    print(f"rasterized {src.name} (labels stripped) -> {png.name} at {scale}x")
+    return png
+
+
 def main() -> None:
     src = Path(sys.argv[1]) if len(sys.argv) > 1 else SRC
     out_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else PARTS
     if not src.exists():
         raise SystemExit(f"[error] sheet not found: {src}")
+    if src.suffix.lower() == ".svg":
+        src = rasterize_svg(src)
     saved = slice_sheet(src, out_dir)
     expected = sum(len(r) for r in NAMES)
     print(f"saved {len(saved)}/{expected} parts -> {out_dir}")

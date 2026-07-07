@@ -47,13 +47,27 @@ Export the result as a PNG and save it over
 > frame for expression and lip-sync, so they must be separate pieces layered onto a
 > featureless head.
 
+### Alternative: the AI Studio "Rig Studio" app
+
+Asking AI Studio (Build mode) for the rig sheet may produce an **interactive web app**
+that draws the sheet as vector SVGs with a "Download Vector Rig Sheet" button. That
+works great too — run it (`npm install && npm run dev`), click the download button,
+and feed the downloaded **.svg straight to the slicer** (Step 2). The slicer strips
+the text labels from the SVG before rasterizing, so parts can never collide with
+their labels. To iterate on the art, just tell the app what to change (e.g. "side
+ponytail with pink bow, thicker arms") and download again.
+
 ## Step 2 — Slice it into parts (automatic)
 
 ```
 python scripts/slice_rigsheet.py
-# or, for a sheet elsewhere:
+# or, for a sheet elsewhere (PNG or SVG):
 python scripts/slice_rigsheet.py path/to/sheet.png assets/cartoon/source/parts
+python scripts/slice_rigsheet.py path/to/kinnu_character_rigsheet.svg
 ```
+
+> SVG input needs `pip install playwright` + Chrome/Chromium (used to rasterize at
+> 3× resolution). PNG input has no extra requirements.
 
 The slicer **auto-detects** every part — no pixel coordinates to edit — using the
 canonical part order (the 26 names above) and these robust rules:
