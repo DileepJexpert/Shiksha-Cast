@@ -23,6 +23,7 @@ from shiksha_cast.assemble import concat_clips, mix_music_bed, normalize_loudnes
 from shiksha_cast.asset_paths import resolve_background_path, resolve_character_dir
 from shiksha_cast.cartoon import motion, overlay
 from shiksha_cast.cartoon.character import Character
+from shiksha_cast.cartoon import rhubarb
 from shiksha_cast.cartoon.lipsync import Lipsync
 from shiksha_cast.config import load_channel_config
 
@@ -91,6 +92,23 @@ def _viseme(levels, fps, lt):
     if v < 0.55:
         return "E"
     return "D"
+
+
+def _talk_viseme(a, fps, lt):
+    """Mouth shape (A-H/X) for an advanced rig during a talk action. Prefers the
+    phoneme-accurate rhubarb timeline when present; else amplitude visemes."""
+    cues = a.get("visemes")
+    if cues:
+        return rhubarb.viseme_at(cues, lt)
+    return _viseme(a["levels"], fps, lt)
+
+
+def _talk_simple(a, fps, lt):
+    """Mouth state (closed/half/open) for the simple rig during a talk action."""
+    cues = a.get("visemes")
+    if cues:
+        return rhubarb.simple_at(cues, lt)
+    return _mouth_from_levels(a["levels"], fps, lt)
 
 
 def _smooth(e):
@@ -234,7 +252,7 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
         if do in MOVE_ACTIONS:
             continue
         if do == "talk":
-            mouth = _viseme(a["levels"], fps, lt)
+            mouth = _talk_viseme(a, fps, lt)
             tail += 8.0 * math.sin(lt * 6.0) * e
         elif do == "wave":
             # whole arm raised near the head, fairly straight; slow gentle hand sway
@@ -432,7 +450,7 @@ def _build_frame(t, ctx, cache):
             elif do == "hold":
                 angles.update(motion.hold(a.get("side", "right")))
             elif do == "talk":
-                mouth = _mouth_from_levels(a["levels"], fps, lt)
+                mouth = _talk_simple(a, fps, lt)
         eye = motion.blink_state(t + phase_off)
         ch.place(frame, {"angles": angles, "mouth": mouth, "eye": eye},
                  x_cur, ground_y, char_h, facing=facing, bob=bob)
@@ -485,6 +503,11 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
     ep = spec.get("episode") or Path(scene_path).parent.name
     cast = spec.get("cast", {})
     tts_provider = str(spec.get("tts_provider") or cfg.voice.provider or "kokoro").lower()
+
+    if rhubarb.available():
+        print("[lipsync] rhubarb (phoneme visemes)")
+    else:
+        print("[lipsync] amplitude (install rhubarb for phoneme-accurate mouths)")
 
     chars = {}
     adv: set = set()
@@ -544,6 +567,7 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
                 a["start"] = start
                 a["end"] = start + ls.dur + 0.25
                 a["_wav"] = str(wav); a["_ls"] = ls
+                a["_visemes"] = rhubarb.visemes_for_wav(wav)
                 talk_cursor = a["end"] + 0.15
                 captions.append((a["who"], a["text"], scene_offset + start, scene_offset + start + ls.dur))
                 gesture = a.get("gesture")
@@ -578,6 +602,8 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
             aa = {k: v for k, v in a.items() if not k.startswith("_")}
             if a.get("do") == "talk":
                 aa["levels"] = a["_ls"].levels.tolist()
+                if a.get("_visemes"):
+                    aa["visemes"] = a["_visemes"]
             actions_ser.append(aa)
         props_ser = []
         for p in scene.get("props", []):
