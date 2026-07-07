@@ -1,0 +1,67 @@
+title: "Paper Leak: Sach Ka Sawal"
+story_id: social-paper-leak-sample
+fps: 24
+universe: social_universe
+tts_provider: veena
+default_voice: kavya
+background: public_office.png
+scale: 0.62
+description: "A short fictional social-awareness story about exam paper leaks, courage, and honest reporting."
+cast:
+  ravi: student_hd
+  father: common_man_hd
+  journalist: journalist_hd
+  clerk: clerk_hd
+  officer: officer_hd
+  netaji: politician_hd
+voices:
+  ravi: agastya
+  father: vinaya
+  journalist: kavya
+  clerk: vinaya
+  officer: agastya
+  netaji: vinaya
+scenes:
+  - id: s1_student_worry
+    banner: "Paper Leak: Sach Ka Sawal"
+    place:
+      ravi: left
+      father: right
+    dialogue:
+      - who: ravi
+        text: "Papa, exam se pehle paper market mein kaise aa gaya? Maine imandari se padhai ki thi."
+      - who: father
+        text: "Beta, jab system chup rahe, tab awaaz uthana zaroori hota hai."
+
+  - id: s2_clerk_pressure
+    place:
+      clerk: left
+      journalist: right
+    dialogue:
+      - who: clerk
+        text: "Madam, yeh file band kar dijiye. Upar se pressure hai."
+      - who: journalist
+        text: "Pressure se sach nahi badalta. Students ka future koi deal nahi hai."
+
+  - id: s3_officer_action
+    place:
+      journalist: left
+      officer: right
+    dialogue:
+      - who: journalist
+        text: "Sir, yeh list aur call records saboot ho sakte hain."
+      - who: officer
+        text: "Investigation turant shuru hogi. Jo bhi zimmedar hoga, bach nahi payega."
+
+  - id: s4_public_message
+    place:
+      ravi: left
+      officer: center
+      netaji: right
+    dialogue:
+      - who: netaji
+        text: "Hum jaanch ka swagat karte hain. Public ko sach milna chahiye."
+      - who: officer
+        text: "Sirf statement nahi, action chahiye. Paper leak bachchon ke sapne todta hai."
+      - who: ravi
+        text: "Aaj mujhe samajh aaya. Chup rehna bhi galat ko himmat deta hai."

@@ -1,0 +1,40 @@
+{
+  "id": "story_father_hd",
+  "display_name": "Papa / Suresh",
+  "universe": "story",
+  "asset_route": "option_c_external_part_sheet",
+  "source_assets": {
+    "front_parts_sheet": "assets/cartoon/source/story_father_parts_sheet.png",
+    "side_walk_reference": "assets/cartoon/source/story_father_side_walk.png"
+  },
+  "capabilities": {
+    "talk": true,
+    "mouth_visemes": [
+      "X",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "sad"
+    ],
+    "front_gestures": [
+      "idle",
+      "talk",
+      "wave",
+      "point",
+      "sad",
+      "look_left"
+    ],
+    "side_walk_sprite": true,
+    "side_walk_cycle_frames": false
+  },
+  "notes": [
+    "Front art is used for talking and simple gestures.",
+    "Side art is used for walking/running to avoid awkward front-view leg crossing.",
+    "Next upgrade for true walking: replace side_walk.png with 4-8 same-style side cycle frames."
+  ]
+}

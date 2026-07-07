@@ -1,0 +1,126 @@
+episode: social-paper-leak-sample
+title: 'Paper Leak: Sach Ka Sawal'
+fps: 24
+cast:
+  social_universe/student_hd: am_adam
+  social_universe/common_man_hd: am_michael
+  social_universe/journalist_hd: af_heart
+  social_universe/clerk_hd: am_puck
+  social_universe/officer_hd: am_echo
+  social_universe/politician_hd: am_michael
+scenes:
+- id: s1_student_worry
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/student_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.62
+    facing: right
+  - id: social_universe/common_man_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.62
+    facing: left
+  actions:
+  - who: social_universe/student_hd
+    do: talk
+    text: Papa, exam se pehle paper market mein kaise aa gaya? Maine imandari se padhai ki thi.
+  - who: social_universe/common_man_hd
+    do: talk
+    text: Beta, jab system chup rahe, tab awaaz uthana zaroori hota hai.
+  overlays:
+  - type: banner
+    text: 'Paper Leak: Sach Ka Sawal'
+    start: 0.0
+    end: 3.5
+    color: yellow
+- id: s2_clerk_pressure
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/clerk_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.62
+    facing: right
+  - id: social_universe/journalist_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.62
+    facing: left
+  actions:
+  - who: social_universe/clerk_hd
+    do: talk
+    text: Madam, yeh file band kar dijiye. Upar se pressure hai.
+  - who: social_universe/journalist_hd
+    do: talk
+    text: Pressure se sach nahi badalta. Students ka future koi deal nahi hai.
+- id: s3_officer_action
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/journalist_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.62
+    facing: right
+  - id: social_universe/officer_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.62
+    facing: left
+  actions:
+  - who: social_universe/journalist_hd
+    do: talk
+    text: Sir, yeh list aur call records saboot ho sakte hain.
+  - who: social_universe/officer_hd
+    do: talk
+    text: Investigation turant shuru hogi. Jo bhi zimmedar hoga, bach nahi payega.
+- id: s4_public_message
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/politician_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.62
+    facing: left
+  - id: social_universe/officer_hd
+    pos:
+    - 0.5
+    - 0.99
+    scale: 0.62
+    facing: right
+  - id: social_universe/student_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.62
+    facing: right
+  actions:
+  - who: social_universe/politician_hd
+    do: talk
+    text: Hum jaanch ka swagat karte hain. Public ko sach milna chahiye.
+  - who: social_universe/officer_hd
+    do: talk
+    text: Sirf statement nahi, action chahiye. Paper leak bachchon ke sapne todta hai.
+  - who: social_universe/student_hd
+    do: talk
+    text: Aaj mujhe samajh aaya. Chup rehna bhi galat ko himmat deta hai.

@@ -1,0 +1,35 @@
+{
+  "id": "story_young_hd",
+  "display_name": "Ravi / Young Man",
+  "universe": "story",
+  "asset_route": "local_hybrid_talking_figure_plus_side_walk",
+  "source_assets": {
+    "front_talking_figure": "dist/_spike_story/man_young_full.png",
+    "side_walk_reference": "dist/_spike_story/story_young_side_walk.png"
+  },
+  "capabilities": {
+    "talk": true,
+    "mouth_visemes": [
+      "X",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "sad"
+    ],
+    "front_gestures": [
+      "idle",
+      "talk"
+    ],
+    "side_walk_sprite": true,
+    "side_walk_cycle_frames": false
+  },
+  "notes": [
+    "Hybrid checkpoint: realistic talk plus side-walk, not a full gesture puppet.",
+    "Replace with option_c_external_part_sheet when a clean separated sheet arrives."
+  ]
+}

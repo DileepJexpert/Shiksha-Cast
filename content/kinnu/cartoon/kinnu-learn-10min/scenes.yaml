@@ -1,0 +1,1255 @@
+﻿episode: kinnu-learn-10min
+title: Kinnu's Big Learning Video - Numbers, Shapes & Colors for Kids | Katixo
+fps: 30
+cast:
+  kinnu_hd: af_heart
+scenes:
+- id: s01
+  background: garden.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.95
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: wave
+    start: 0.2
+    end: 5.0
+  - who: kinnu_hd
+    do: talk
+    text: Hello friends! I am Kinnu. Welcome back to our learning corner!
+  - who: kinnu_hd
+    do: talk
+    text: Today we will learn numbers, shapes, and colors together. Are you ready?
+  camera:
+    zoom:
+    - 1.0
+    - 1.05
+- id: s02
+  background: garden.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.28
+    - 0.99
+    scale: 0.95
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: cheer
+    start: 0.2
+    end: 3.0
+  - who: kinnu_hd
+    do: talk
+    text: Let us begin! Clap your hands and learn with Kinnu. Here we go!
+- id: s03
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number one.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one.'
+  - who: kinnu_hd
+    do: talk
+    text: One! Can you say one?
+  props:
+  - asset: num_1.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+- id: s04
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number two.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two.'
+  - who: kinnu_hd
+    do: talk
+    text: Two! Can you say two?
+  props:
+  - asset: num_2.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+- id: s05
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number three.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three.'
+  - who: kinnu_hd
+    do: talk
+    text: Three! Can you say three?
+  props:
+  - asset: num_3.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+- id: s06
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number four.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three, four.'
+  - who: kinnu_hd
+    do: talk
+    text: Four! Can you say four?
+  props:
+  - asset: num_4.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.66
+- id: s07
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number five.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three, four, five.'
+  - who: kinnu_hd
+    do: talk
+    text: Five! Can you say five?
+  props:
+  - asset: num_5.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.66
+  - asset: balloon_orange.png
+    pos:
+    - 0.76
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.78
+- id: s08
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number six.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three, four, five, six.'
+  - who: kinnu_hd
+    do: talk
+    text: Six! Can you say six?
+  props:
+  - asset: num_6.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.66
+  - asset: balloon_orange.png
+    pos:
+    - 0.76
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.78
+  - asset: balloon_purple.png
+    pos:
+    - 0.845
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.9
+- id: s09
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number seven.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three, four, five, six, seven.'
+  - who: kinnu_hd
+    do: talk
+    text: Seven! Can you say seven?
+  props:
+  - asset: num_7.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.66
+  - asset: balloon_orange.png
+    pos:
+    - 0.76
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.78
+  - asset: balloon_purple.png
+    pos:
+    - 0.845
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.9
+- id: s10
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number eight.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three, four, five, six, seven, eight.'
+  - who: kinnu_hd
+    do: talk
+    text: Eight! Can you say eight?
+  props:
+  - asset: num_8.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.66
+  - asset: balloon_orange.png
+    pos:
+    - 0.76
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.78
+  - asset: balloon_purple.png
+    pos:
+    - 0.845
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.9
+- id: s11
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number nine.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three, four, five, six, seven, eight, nine.'
+  - who: kinnu_hd
+    do: talk
+    text: Nine! Can you say nine?
+  props:
+  - asset: num_9.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.66
+  - asset: balloon_orange.png
+    pos:
+    - 0.76
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.78
+  - asset: balloon_purple.png
+    pos:
+    - 0.845
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.9
+- id: s12
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is number ten.
+  - who: kinnu_hd
+    do: talk
+    text: 'Let us count with Kinnu: one, two, three, four, five, six, seven, eight, nine, ten.'
+  - who: kinnu_hd
+    do: talk
+    text: Ten! Can you say ten?
+  props:
+  - asset: num_10.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.34
+    anim: pop
+    start: 0.3
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.66
+  - asset: balloon_orange.png
+    pos:
+    - 0.76
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.78
+  - asset: balloon_purple.png
+    pos:
+    - 0.845
+    - 0.24
+    scale: 0.15
+    anim: float
+    start: 0.9
+- id: s13
+  background: night_sky.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point_up
+    start: 0.2
+    end: 5.5
+  - who: kinnu_hd
+    do: talk
+    text: Now let us count all the way from one to ten, faster!
+  - who: kinnu_hd
+    do: talk
+    text: One, two, three, four, five, six, seven, eight, nine, ten!
+  - who: kinnu_hd
+    do: talk
+    text: Wonderful counting, my friends!
+- id: s14
+  background: night_sky.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: cheer
+    start: 0.2
+    end: 3.0
+  - who: kinnu_hd
+    do: talk
+    text: One more time! One, two, three, four, five. Six, seven, eight, nine, ten!
+- id: s15
+  background: classroom.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is a circle.
+  - who: kinnu_hd
+    do: talk
+    text: A circle is round like a ball.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: circle.'
+  props:
+  - asset: shape_circle.png
+    pos:
+    - 0.7
+    - 0.45
+    scale: 0.36
+    anim: pop
+    start: 0.3
+- id: s16
+  background: classroom.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is a square.
+  - who: kinnu_hd
+    do: talk
+    text: A square has four equal sides.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: square.'
+  props:
+  - asset: shape_square.png
+    pos:
+    - 0.7
+    - 0.45
+    scale: 0.36
+    anim: pop
+    start: 0.3
+- id: s17
+  background: classroom.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is a triangle.
+  - who: kinnu_hd
+    do: talk
+    text: A triangle has three sides. One, two, three.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: triangle.'
+  props:
+  - asset: shape_triangle.png
+    pos:
+    - 0.7
+    - 0.45
+    scale: 0.36
+    anim: pop
+    start: 0.3
+- id: s18
+  background: classroom.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This is a rectangle.
+  - who: kinnu_hd
+    do: talk
+    text: A rectangle looks like a long box, like a door or a book.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: rectangle.'
+  props:
+  - asset: shape_rectangle.png
+    pos:
+    - 0.7
+    - 0.45
+    scale: 0.4
+    anim: pop
+    start: 0.3
+- id: s19
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This balloon is red. An apple can be red.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: red.'
+  props:
+  - asset: balloon_red.png
+    pos:
+    - 0.68
+    - 0.42
+    scale: 0.4
+    anim: float
+    start: 0.3
+- id: s20
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This balloon is yellow. The sun can be yellow.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: yellow.'
+  props:
+  - asset: balloon_yellow.png
+    pos:
+    - 0.68
+    - 0.42
+    scale: 0.4
+    anim: float
+    start: 0.3
+- id: s21
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This balloon is blue. The sky can be blue.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: blue.'
+  props:
+  - asset: balloon_blue.png
+    pos:
+    - 0.68
+    - 0.42
+    scale: 0.4
+    anim: float
+    start: 0.3
+- id: s22
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This balloon is green. Leaves can be green.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: green.'
+  props:
+  - asset: balloon_green.png
+    pos:
+    - 0.68
+    - 0.42
+    scale: 0.4
+    anim: float
+    start: 0.3
+- id: s23
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This balloon is orange. An orange fruit is orange.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: orange.'
+  props:
+  - asset: balloon_orange.png
+    pos:
+    - 0.68
+    - 0.42
+    scale: 0.4
+    anim: float
+    start: 0.3
+- id: s24
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.24
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: This balloon is purple. Grapes can be purple.
+  - who: kinnu_hd
+    do: talk
+    text: 'Say it with Kinnu: purple.'
+  props:
+  - asset: balloon_purple.png
+    pos:
+    - 0.68
+    - 0.42
+    scale: 0.4
+    anim: float
+    start: 0.3
+- id: s25
+  background: classroom.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: Now it is your turn! Look at the screen.
+  - who: kinnu_hd
+    do: talk
+    text: Which shape is a triangle? Point to it and tell Kinnu!
+  - who: kinnu_hd
+    do: talk
+    text: Pause the video and say your answer out loud.
+  props:
+  - asset: shape_square.png
+    pos:
+    - 0.52
+    - 0.4
+    scale: 0.22
+    anim: pop
+    start: 0.3
+  - asset: shape_triangle.png
+    pos:
+    - 0.7
+    - 0.4
+    scale: 0.22
+    anim: pop
+    start: 0.5
+  - asset: shape_circle.png
+    pos:
+    - 0.88
+    - 0.4
+    scale: 0.22
+    anim: pop
+    start: 0.7
+- id: s26
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.22
+    - 0.99
+    scale: 0.92
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    start: 0.2
+    end: 5.5
+    side: right
+  - who: kinnu_hd
+    do: talk
+    text: Here is one more! How many balloons can you count?
+  - who: kinnu_hd
+    do: talk
+    text: 'Count them with Kinnu: one, two, three, four!'
+  - who: kinnu_hd
+    do: talk
+    text: Did you get four? Great job!
+  props:
+  - asset: balloon_red.png
+    pos:
+    - 0.42
+    - 0.34
+    scale: 0.15
+    anim: float
+    start: 0.3
+  - asset: balloon_yellow.png
+    pos:
+    - 0.505
+    - 0.34
+    scale: 0.15
+    anim: float
+    start: 0.42
+  - asset: balloon_blue.png
+    pos:
+    - 0.59
+    - 0.34
+    scale: 0.15
+    anim: float
+    start: 0.54
+  - asset: balloon_green.png
+    pos:
+    - 0.675
+    - 0.34
+    scale: 0.15
+    anim: float
+    start: 0.66
+- id: s27
+  background: garden.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.28
+    - 0.99
+    scale: 0.95
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: cheer
+    start: 0.2
+    end: 3.0
+  - who: kinnu_hd
+    do: talk
+    text: Hooray! Today we learned our numbers, shapes, and colors.
+  - who: kinnu_hd
+    do: talk
+    text: You did such a great job, my friends!
+  camera:
+    zoom:
+    - 1.05
+    - 1.0
+- id: s28
+  background: garden.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.95
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: wave
+    start: 0.2
+    end: 5.0
+  - who: kinnu_hd
+    do: talk
+    text: See you again soon with Kinnu. Please like and subscribe.
+  - who: kinnu_hd
+    do: talk
+    text: Bye bye! A Katixo channel.
+  camera:
+    zoom:
+    - 1.0
+    - 1.04

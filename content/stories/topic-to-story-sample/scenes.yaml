@@ -1,0 +1,94 @@
+episode: topic-to-story-sample
+title: 'Truthful Tales: Kinnu and the Magic Ball'
+fps: 30
+cast:
+  kinnu_hd: af_bella
+  gappu_hd: am_michael
+scenes:
+- id: s1
+  background: home.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.58
+    facing: right
+  - id: gappu_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.58
+    facing: left
+  actions:
+  - who: kinnu_hd
+    do: talk
+    text: Gappu, look at this!
+    gesture: point
+  - who: gappu_hd
+    do: talk
+    text: Why did it stop?
+    gesture: think
+  overlays:
+  - type: banner
+    text: 'Truthful Tales: Kinnu and the Magic Ball'
+    start: 0.0
+    end: 3.5
+    color: yellow
+- id: s2
+  background: home.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.58
+    facing: right
+  - id: gappu_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.58
+    facing: left
+  actions:
+  - who: kinnu_hd
+    do: talk
+    text: What if I say the ball stopped by itself?
+    gesture: point
+  - who: gappu_hd
+    do: talk
+    text: But that's not true, is it?
+    gesture: think
+- id: s3
+  background: playground.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.58
+    facing: right
+  - id: gappu_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.58
+    facing: left
+  actions:
+  - who: kinnu_hd
+    do: talk
+    text: I should just say I kicked it.
+    gesture: point
+  - who: gappu_hd
+    do: talk
+    text: That's better!
+    gesture: jump

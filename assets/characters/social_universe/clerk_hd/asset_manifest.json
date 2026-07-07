@@ -1,0 +1,15 @@
+{
+  "id": "social_universe/clerk_hd",
+  "display_name": "File Clerk",
+  "universe": "social_universe",
+  "style": "realistic_talking_figure",
+  "source_asset": "assets/source/social_universe/2100544c-f21e-496a-bccf-c8bdc2edec91.png",
+  "capabilities": {
+    "talk": true,
+    "walk": false,
+    "gesture": false
+  },
+  "notes": [
+    "Sample talking rig from a complete full-body PNG; not final articulated puppet."
+  ]
+}

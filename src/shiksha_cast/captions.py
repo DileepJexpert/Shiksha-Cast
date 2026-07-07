@@ -25,6 +25,7 @@ def generate_srt(
     pad_after_s: float = 0.7,
     min_slide_s: float = 4.0,
     start_offset_s: float = 0.0,
+    min_slide_s_values: list[float | None] | None = None,
 ) -> str:
     """Generate SRT subtitle content from narration text and audio durations.
 
@@ -35,8 +36,13 @@ def generate_srt(
     cue_index = 1
     timeline = start_offset_s
 
-    for narration, audio_dur in zip(narrations, durations):
-        slide_dur = max(min_slide_s, pad_before_s + audio_dur + pad_after_s)
+    for i, (narration, audio_dur) in enumerate(zip(narrations, durations)):
+        slide_min = (
+            min_slide_s_values[i]
+            if min_slide_s_values and i < len(min_slide_s_values) and min_slide_s_values[i]
+            else min_slide_s
+        )
+        slide_dur = max(slide_min, pad_before_s + audio_dur + pad_after_s)
         caption_start = timeline + pad_before_s
         caption_end = timeline + pad_before_s + audio_dur
 
@@ -76,13 +82,20 @@ def write_captions(
     pad_after_s: float = 0.7,
     min_slide_s: float = 4.0,
     start_offset_s: float = 0.0,
+    min_slide_s_values: list[float | None] | None = None,
 ) -> Path:
     dist_dir = project_root / "dist"
     dist_dir.mkdir(parents=True, exist_ok=True)
     srt_path = dist_dir / f"{chapter}.srt"
 
     content = generate_srt(
-        narrations, durations, pad_before_s, pad_after_s, min_slide_s, start_offset_s
+        narrations,
+        durations,
+        pad_before_s,
+        pad_after_s,
+        min_slide_s,
+        start_offset_s,
+        min_slide_s_values,
     )
     srt_path.write_text(content, encoding="utf-8")
     return srt_path

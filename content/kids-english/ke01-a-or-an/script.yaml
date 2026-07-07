@@ -1,0 +1,78 @@
+chapter: "Kids English 01 - A or An"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn a small but very useful English rule: when to use a and when to use an."
+    visual:
+      kind: title
+      title: "A or An?"
+      subtitle: "Small words before naming words"
+      icons: [apple, ball, egg, umbrella]
+  - n: 2
+    narration: "Use a before words that begin with a consonant sound, like a ball, a cat, and a book."
+    visual:
+      kind: rule
+      title: "Rule 1"
+      rule: "Use A before a consonant sound."
+      bullets:
+        - "a ball"
+        - "a cat"
+        - "a book"
+  - n: 3
+    narration: "Use an before words that begin with a vowel sound, like an apple, an egg, and an umbrella."
+    visual:
+      kind: rule
+      title: "Rule 2"
+      rule: "Use AN before a vowel sound."
+      bullets:
+        - "an apple"
+        - "an egg"
+        - "an umbrella"
+  - n: 4
+    narration: "Look carefully. A ball, a cat, an apple, and an egg. The small word comes before the naming word."
+    visual:
+      kind: examples
+      title: "Look and Say"
+      items:
+        - {article: "a", word: "ball", icon: "ball"}
+        - {article: "a", word: "cat", icon: "cat"}
+        - {article: "an", word: "apple", icon: "apple"}
+        - {article: "an", word: "egg", icon: "egg"}
+  - n: 5
+    narration: "Your turn. Which one is correct: a apple or an apple? The answer is an apple."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "___ apple"
+      choices: ["a", "an"]
+      answer: "an"
+      hint: "apple starts with a vowel sound"
+  - n: 6
+    narration: "Try one more. Which one is correct: a book or an book? The answer is a book."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "___ book"
+      choices: ["a", "an"]
+      answer: "a"
+      hint: "book starts with a consonant sound"
+  - n: 7
+    narration: "Read these sentences aloud: I see a cat. I eat an apple. I have a pencil."
+    visual:
+      kind: sentences
+      title: "Read Aloud"
+      lines:
+        - "I see a cat."
+        - "I eat an apple."
+        - "I have a pencil."
+  - n: 8
+    narration: "Remember: a goes before consonant sounds. An goes before vowel sounds. Now you can use a and an correctly."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "A + consonant sound"
+        - "AN + vowel sound"
+        - "Say the word aloud first"
+        - "Then choose a or an"

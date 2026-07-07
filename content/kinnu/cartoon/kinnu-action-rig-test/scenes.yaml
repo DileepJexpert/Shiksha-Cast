@@ -1,0 +1,79 @@
+episode: kinnu-action-rig-test
+title: Kinnu's Action Day - rig capability test
+fps: 15
+cast:
+  kinnu_hd: af_heart
+scenes:
+  # 1. talk + blink + idle (standing still, resting arms must NOT spring; blink fires)
+  - id: s1
+    background: classroom_full.png
+    transition: { in: 0.3, out: 0.2 }
+    characters: [{ id: kinnu_hd, pos: [0.5, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: talk, text: "Hello friends! I am Kinnu. Today is my action day. Watch what I can do!" }
+
+  # 2. walkto: left -> center, must stay (no snap back)
+  - id: s2
+    background: playground.png
+    transition: { in: 0.2, out: 0.2 }
+    characters: [{ id: kinnu_hd, pos: [0.12, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.5, start: 0.2, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "First, I can walk to the middle and stay here." }
+
+  # 3. runto: center -> right, must not snap back; legs should not cross badly
+  - id: s3
+    background: playground.png
+    transition: { in: 0.2, out: 0.2 }
+    characters: [{ id: kinnu_hd, pos: [0.5, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: runto, to: 0.85, start: 0.2, end: 3.5 }
+      - { who: kinnu_hd, do: talk, text: "Now watch me run fast to the right!" }
+
+  # 4. point: horizontal raised arm + hand/palm stability
+  - id: s4
+    background: classroom_full.png
+    transition: { in: 0.2, out: 0.2 }
+    characters: [{ id: kinnu_hd, pos: [0.28, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 7 }
+      - { who: kinnu_hd, do: talk, text: "Look over here! I can point and keep my hand steady while I explain." }
+
+  # 5. cheer + laugh (both arms overhead; then laugh action + Ha ha ha)
+  - id: s5
+    background: garden.png
+    transition: { in: 0.2, out: 0.2 }
+    characters: [{ id: kinnu_hd, pos: [0.5, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: laugh, start: 2.5, end: 6.5 }
+      - { who: kinnu_hd, do: talk, text: "Hooray! Ha ha ha! This is so much fun!" }
+
+  # 6. cry expression (sad brows + frown mouth + tears)
+  - id: s6
+    background: home.png
+    transition: { in: 0.2, out: 0.2 }
+    characters: [{ id: kinnu_hd, pos: [0.4, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cry, start: 0.2, end: 6 }
+      - { who: kinnu_hd, do: talk, text: "Oh no... sometimes I cry a little tear." }
+
+  # 7. swim (implemented): pool bg, swim stroke across
+  - id: s7
+    background: pool.png
+    transition: { in: 0.2, out: 0.2 }
+    characters: [{ id: kinnu_hd, pos: [0.42, 0.75], scale: 0.68, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: swimto, to: 0.64, start: 0.2, end: 5.5 }
+      - { who: kinnu_hd, do: talk, text: "And I can swim in the pool. Splash, splash!" }
+
+  # 8. wrap-up: jump -> clap -> wave combo
+  - id: s8
+    background: garden.png
+    transition: { in: 0.2, out: 0.4 }
+    characters: [{ id: kinnu_hd, pos: [0.4, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: jump, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: clap, start: 2.2, end: 4.2 }
+      - { who: kinnu_hd, do: wave, start: 4.2, end: 8 }
+      - { who: kinnu_hd, do: talk, text: "Let us jump, clap, and wave! That was my action day. Bye bye!" }

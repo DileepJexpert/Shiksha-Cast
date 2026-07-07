@@ -1,0 +1,23 @@
+chapter: 'Truthful Tales: Kinnu and the Magic Ball'
+slides:
+- n: 1
+  narration: 'F: Gappu, look at this!
+
+    M: Why did it stop?'
+  visual_prompt: bright cartoon classroom floor with a toy ball, no characters, open space at left and
+    right. No characters, no people, no mascot, leave space for overlays.
+  motion: kenburns
+- n: 2
+  narration: 'F: What if I say the ball stopped by itself?
+
+    M: But that''s not true, is it?'
+  visual_prompt: classroom with a whiteboard and chairs, no characters, room has books and toys. No characters,
+    no people, no mascot, leave space for overlays.
+  motion: kenburns
+- n: 3
+  narration: 'F: I should just say I kicked it.
+
+    M: That''s better!'
+  visual_prompt: outdoor playground with swings and slides, no characters, sunny day. No characters, no
+    people, no mascot, leave space for overlays.
+  motion: kenburns

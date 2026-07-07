@@ -282,6 +282,7 @@ def assemble_chapter(
     music_db: float = -18.0,
     sample_rate: int = 24000,
     motion: str = "kenburns",
+    min_slide_s_values: list[float | None] | None = None,
 ) -> AssembleResult:
     """Assemble per-slide clips, optional intro/outro bumpers and music bed.
 
@@ -299,6 +300,11 @@ def assemble_chapter(
     use_motion = (motion or "").lower() in ("kenburns", "zoom", "motion", "kb")
     for i, (slide, audio, dur) in enumerate(zip(slide_paths, audio_paths, durations)):
         clip_path = clips_dir / f"clip_{i + 1:03d}.mp4"
+        clip_min_slide_s = (
+            min_slide_s_values[i]
+            if min_slide_s_values and i < len(min_slide_s_values) and min_slide_s_values[i]
+            else min_slide_s
+        )
         print(f"[PROGRESS] Encoding clip {i + 1}/{total}...")
         if use_motion:
             clip_dur = build_slide_motion_clip(
@@ -307,7 +313,7 @@ def assemble_chapter(
                 effect_index=i,
                 pad_before_s=pad_before_s,
                 pad_after_s=pad_after_s,
-                min_slide_s=min_slide_s,
+                min_slide_s=clip_min_slide_s,
                 fps=fps,
             )
         else:
@@ -316,7 +322,7 @@ def assemble_chapter(
                 duration=dur,
                 pad_before_s=pad_before_s,
                 pad_after_s=pad_after_s,
-                min_slide_s=min_slide_s,
+                min_slide_s=clip_min_slide_s,
                 fps=fps,
             )
         clip_paths.append(clip_path)

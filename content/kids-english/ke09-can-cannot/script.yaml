@@ -1,0 +1,79 @@
+chapter: "Kids English 09 - Can and Cannot"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn can and cannot. These words tell what someone is able or not able to do."
+    visual:
+      kind: title
+      title: "Can and Cannot"
+      subtitle: "Words for ability"
+      icons: [ball, book, pencil]
+  - n: 2
+    narration: "Use can when someone is able to do something. I can read. She can jump."
+    visual:
+      kind: rule
+      title: "CAN"
+      rule: "CAN means able to do."
+      bullets:
+        - "I can read."
+        - "She can jump."
+        - "They can play."
+  - n: 3
+    narration: "Use cannot when someone is not able to do something. I cannot fly. A fish cannot walk."
+    visual:
+      kind: rule
+      title: "CANNOT"
+      rule: "CANNOT means not able to do."
+      bullets:
+        - "I cannot fly."
+        - "A fish cannot walk."
+        - "A baby cannot drive."
+  - n: 4
+    narration: "In speaking, cannot often becomes can't. I can't fly means I cannot fly."
+    visual:
+      kind: sentences
+      title: "Short Form"
+      lines:
+        - "cannot = can't"
+        - "I cannot fly."
+        - "I can't fly."
+  - n: 5
+    narration: "Your turn. I blank read a book. Which word fits? The answer is can."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "I ___ read a book."
+      choices: ["can", "cannot"]
+      answer: "can"
+      hint: "Reading is possible"
+  - n: 6
+    narration: "Try again. A cat blank speak English. Which word fits? The answer is cannot."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "A cat ___ speak English."
+      choices: ["can", "cannot"]
+      answer: "cannot"
+      hint: "A cat is not able to speak English"
+  - n: 7
+    narration: "Read aloud: I can write. We can play. A bird can fly. A ball cannot sing."
+    visual:
+      kind: sentences
+      title: "Read Aloud"
+      lines:
+        - "I can write."
+        - "We can play."
+        - "A bird can fly."
+        - "A ball cannot sing."
+  - n: 8
+    narration: "Remember: can means able to do. Cannot means not able to do. Can't is the short form."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "CAN = able"
+        - "CANNOT = not able"
+        - "CAN'T = short form"
+        - "Use simple action words after can"
+

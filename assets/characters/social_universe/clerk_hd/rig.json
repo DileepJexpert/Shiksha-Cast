@@ -1,0 +1,33 @@
+{
+  "space": [
+    720,
+    1040
+  ],
+  "feet": [
+    360,
+    1010
+  ],
+  "scale": 1.0,
+  "parts": [
+    {
+      "name": "body",
+      "img": "body.png",
+      "pivot": [
+        360,
+        520
+      ],
+      "z": 0
+    }
+  ],
+  "eyes": {
+    "open": "transparent.png",
+    "closed": "transparent.png",
+    "z": 10
+  },
+  "mouths": {
+    "closed": "mouth_closed.png",
+    "half": "mouth_half.png",
+    "open": "mouth_open.png",
+    "z": 20
+  }
+}

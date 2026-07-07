@@ -99,6 +99,44 @@ DEFAULT_CHARACTERS = [
 ]
 
 
+DEFAULT_STORY_STYLE = "Simple clear English, funny and warm, like a playful learning cartoon"
+
+DEFAULT_RENDER_CAST = {"kinnu": "kinnu_hd", "gappu": "gappu_hd"}
+DEFAULT_RENDER_VOICES = {"kinnu": "af_bella", "gappu": "am_michael"}
+
+ACTION_TO_GESTURE = {
+    "enter_left": "walk",
+    "enter_right": "walk",
+    "explain": "point",
+    "happy": "smile",
+    "happy_jump": "jump",
+    "idle": None,
+    "idle_bob": None,
+    "look_at_object": "point",
+    "object_rolls": None,
+    "object_stops": None,
+    "present": "point",
+    "surprised": "surprise",
+    "surprise": "surprise",
+    "talk": None,
+    "thinking": "think",
+}
+
+
+def _gesture_from_action(action: str | None, speaker: str | None = None) -> str | None:
+    if not action:
+        return None
+    key = str(action).strip().lower().replace("-", "_").replace(" ", "_")
+    if not key or key in {"none", "talk", "speak", "idle", "idle_bob"}:
+        return None
+    gesture = ACTION_TO_GESTURE.get(key, key)
+    if str(speaker or "").lower() == "gappu" and gesture in {"jump", "point", "point_up", "cheer"}:
+        # Current Gappu art is fine for listening/talking, but wide arm poses
+        # and jumps look awkward until his sheet is replaced with a final asset.
+        return "think" if gesture == "point" else "smile"
+    return gesture
+
+
 def _story_prompt(topic: str, n_scenes: int, audience: str, style: str) -> str:
     characters_json = json.dumps([c.model_dump() for c in DEFAULT_CHARACTERS], ensure_ascii=False)
     return f"""You are the offline story director for a local kids YouTube animation pipeline.
@@ -124,6 +162,7 @@ Rules:
 - Every scene needs 2 to 5 short dialogue lines.
 - Dialogue speaker IDs must be only "kinnu" or "gappu".
 - Kinnu explains with warmth. Gappu asks questions or reacts with playful curiosity.
+- Use clear English unless the style explicitly asks for Hindi or Hinglish.
 - Background prompts must describe the scene ONLY. Do not include Kinnu, Gappu,
   people, mascot, slide number, or character in background_prompt.
 - Use reusable animation actions like: enter_left, enter_right, idle_bob, point,
@@ -197,7 +236,7 @@ def generate_story_dict(
     cfg: GeneratorConfig,
     n_scenes: int = 6,
     audience: str = "kids age 5-10",
-    style: str = "Hinglish, funny and warm, like a playful science cartoon",
+    style: str = DEFAULT_STORY_STYLE,
     model: Optional[str] = None,
 ) -> dict:
     use_model = model or cfg.model
@@ -249,6 +288,97 @@ def script_from_story(story: dict) -> dict:
     return script
 
 
+def render_story_from_story(story: dict, episode_slug: str | None = None) -> dict:
+    """Convert a rich generated story plan into the compact renderer story.yaml.
+
+    The local Ollama planner is allowed to think in a readable storyboard format,
+    but the animation engine needs a concrete cast/background/dialogue file. This
+    bridge is the missing "topic -> final animated story" step.
+    """
+    speakers: list[str] = []
+    for scene in story.get("scenes", []):
+        for dialogue in scene.get("dialogue", []):
+            speaker = str(dialogue.get("speaker", "")).lower()
+            if speaker in DEFAULT_RENDER_CAST and speaker not in speakers:
+                speakers.append(speaker)
+    if not speakers:
+        speakers = ["kinnu", "gappu"]
+    for speaker in ("kinnu", "gappu"):
+        if speaker not in speakers:
+            speakers.append(speaker)
+
+    compact_scenes = []
+    for idx, scene in enumerate(story.get("scenes", []), start=1):
+        dialogue_items = []
+        for dialogue in scene.get("dialogue", []):
+            speaker = str(dialogue.get("speaker", "")).lower()
+            text = str(dialogue.get("text", "")).strip()
+            if speaker not in DEFAULT_RENDER_CAST or not text:
+                continue
+            item = {"who": speaker, "text": text}
+            gesture = _gesture_from_action(dialogue.get("action"), speaker)
+            if gesture:
+                item["gesture"] = gesture
+            dialogue_items.append(item)
+
+        compact = {
+            "id": f"s{idx}",
+            "background": _background_for_scene(scene),
+            "place": _place_for_scene(scene, speakers),
+            "dialogue": dialogue_items,
+        }
+        if idx == 1:
+            compact["banner"] = str(story.get("chapter") or story.get("topic") or "Kinnu Story")
+        compact_scenes.append(compact)
+
+    title = str(story.get("chapter") or story.get("topic") or "Kinnu Story").strip()
+    return {
+        "title": title,
+        "story_id": episode_slug or slugify(title),
+        "fps": 30,
+        "background": "classroom_full.png",
+        "scale": 0.58,
+        "cast": {name: DEFAULT_RENDER_CAST[name] for name in speakers},
+        "voices": {name: DEFAULT_RENDER_VOICES[name] for name in speakers},
+        "description": (
+            f"{title} - a short animated Kinnu and Gappu learning story made locally "
+            "with reusable character rigs, lip-sync, gestures, captions and music."
+        ),
+        "scenes": compact_scenes,
+    }
+
+
+def _background_for_scene(scene: dict) -> str:
+    prompt = str(scene.get("background_prompt", "")).lower()
+    if any(word in prompt for word in ("garden", "tree", "park", "flower")):
+        return "garden.png"
+    if any(word in prompt for word in ("playground", "slide", "swing")):
+        return "playground.png"
+    if any(word in prompt for word in ("home", "room", "kitchen", "living")):
+        return "home.png"
+    if any(word in prompt for word in ("market", "shop", "store")):
+        return "market.png"
+    if any(word in prompt for word in ("night", "star", "moon")):
+        return "night_sky.png"
+    if any(word in prompt for word in ("pool", "water", "swim")):
+        return "pool.png"
+    return "classroom_full.png"
+
+
+def _place_for_scene(scene: dict, speakers: list[str]) -> dict[str, str]:
+    raw = scene.get("characters") or {}
+    places: dict[str, str] = {}
+    fallback = {"kinnu": "left", "gappu": "right"}
+    for name in speakers:
+        info = raw.get(name) or {}
+        x = info.get("x")
+        if isinstance(x, (int, float)):
+            places[name] = "left" if x < 0.5 else "right"
+        else:
+            places[name] = fallback.get(name, "center")
+    return places
+
+
 def _unique_dir(base: Path, slug: str) -> Path:
     target = base / slug
     n = 2
@@ -266,9 +396,9 @@ def write_story_episode(
     slug: Optional[str] = None,
     n_scenes: int = 6,
     audience: str = "kids age 5-10",
-    style: str = "Hinglish, funny and warm, like a playful science cartoon",
+    style: str = DEFAULT_STORY_STYLE,
     model: Optional[str] = None,
-) -> tuple[Path, dict, dict]:
+) -> tuple[Path, dict, dict, dict]:
     story = generate_story_dict(topic, cfg, n_scenes, audience, style, model)
     script = script_from_story(story)
 
@@ -279,10 +409,13 @@ def write_story_episode(
 
     ep_dir = _unique_dir(base, slug or slugify(topic))
     ep_dir.mkdir(parents=True, exist_ok=True)
+    render_story = render_story_from_story(story, ep_dir.name)
 
-    with open(ep_dir / "story.yaml", "w", encoding="utf-8") as f:
+    with open(ep_dir / "story_plan.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump(story, f, allow_unicode=True, sort_keys=False, width=100)
+    with open(ep_dir / "story.yaml", "w", encoding="utf-8") as f:
+        yaml.safe_dump(render_story, f, allow_unicode=True, sort_keys=False, width=100)
     with open(ep_dir / "script.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump(script, f, allow_unicode=True, sort_keys=False, width=100)
 
-    return ep_dir, story, script
+    return ep_dir, story, script, render_story

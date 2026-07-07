@@ -28,6 +28,7 @@ class KokoroTTSProvider(TTSProvider):
 
     def __init__(self, voice: str = "af_heart", device: str | None = None, speed: float = 1.0):
         self._voice = voice or "af_heart"
+        self._speed = float(speed or 1.0)
         self._proc: subprocess.Popen | None = None
         atexit.register(self.close)
 
@@ -70,13 +71,24 @@ class KokoroTTSProvider(TTSProvider):
         self._ensure()
         assert self._proc is not None and self._proc.stdin and self._proc.stdout
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        req = json.dumps({"text": text, "voice": self._voice, "out": str(output_path)})
+        req = json.dumps({
+            "text": text,
+            "voice": self._voice,
+            "speed": self._speed,
+            "out": str(output_path),
+        })
         self._proc.stdin.write(req + "\n")
         self._proc.stdin.flush()
-        resp = self._proc.stdout.readline()
-        if not resp:
-            raise RuntimeError("Kokoro worker died during synthesis")
-        data = json.loads(resp)
+        while True:
+            resp = self._proc.stdout.readline()
+            if not resp:
+                raise RuntimeError("Kokoro worker died during synthesis")
+            try:
+                data = json.loads(resp)
+                break
+            except json.JSONDecodeError:
+                logger.warning("Ignoring noisy Kokoro worker stdout: %s", resp.strip())
+                continue
         if "error" in data:
             raise RuntimeError(f"Kokoro synthesis failed: {data['error']}")
         return float(data["duration"])

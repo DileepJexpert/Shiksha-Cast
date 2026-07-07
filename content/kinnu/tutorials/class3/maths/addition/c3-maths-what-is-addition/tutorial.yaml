@@ -1,0 +1,113 @@
+class: 3
+subject: Maths
+chapter: Addition
+topic: What is Addition?
+language: English
+episode_id: c3-maths-what-is-addition
+fps: 15
+characters:
+  teacher: kinnu_hd
+  student: vibhu_hd
+voices:
+  teacher: af_heart
+  student: am_adam
+background: classroom_full.png
+
+beats:
+  hook:
+    banner: "Let's Learn Addition!"
+    say:
+      - "Hello friends! I am Kinnu, and this is my little brother Vibhu."
+      - "Have you ever put all your toys into one big box and counted them?"
+      - "Or counted all the chocolates from two of your friends together?"
+      - "When we put things together and count them all, that is called addition!"
+      - "Today we will learn: what is addition? Let us begin!"
+
+  concept:
+    board:
+      title: "What is Addition?"
+      lines:
+        - "Addition means PUTTING TOGETHER"
+        - "We find HOW MANY in all"
+        - "The sign for addition is  +"
+        - "We read  +  as  PLUS"
+        - "2 + 3  means  2 plus 3"
+    say:
+      - "Look at our blackboard. Addition means putting things together."
+      - "When we add, we want to find how many there are in all, altogether."
+      - "We use a special sign for addition. It looks like a small cross. This is the plus sign."
+      - "We read the plus sign as the word plus."
+      - "So when we see two plus three, it means we put two and three together."
+
+  example:
+    props: [apple.png, apple.png, apple.png, apple.png, apple.png]
+    callout: "count them all!"
+    board:
+      title: "2 + 3 = ?"
+      lines:
+        - "First group:  2 apples"
+        - "Second group:  3 apples"
+        - "Put them together and count"
+        - "1, 2, 3, 4, 5"
+        - "2 + 3 = 5 apples"
+    say:
+      - "Let us try an example with apples. Here are two red apples in the first group."
+      - "And here are three more apples in the second group."
+      - "Now we put them together. Let us count them all, one by one."
+      - "One, two, three, four, five. There are five apples in all!"
+      - "So two plus three equals five. Well done!"
+
+  question:
+    banner: "Your Turn!"
+    say:
+      - "Now it is your turn to think, just like Vibhu."
+      - "Can you tell me, what is four plus one?"
+      - "Take a moment. Count it in your head, or use your fingers."
+      - "Ready? Let us solve it together on the board."
+
+  solve:
+    callouts: ["start at 4", "count 1 more", "the answer!"]
+    board:
+      title: "4 + 1 = ?"
+      steps:
+        - "Start with 4"
+        - "Count just 1 more"
+        - "4 ... then 5"
+        - "4 + 1 = 5"
+    say:
+      - "Let us solve four plus one, step by step."
+      - "First, we start with the bigger number, four."
+      - "Now we count just one more. After four comes five."
+      - "So four plus one equals five. You did it!"
+      - "When we add one, we just say the next counting number. That is a handy trick!"
+
+  recap:
+    board:
+      title: "Remember!"
+      lines:
+        - "Addition = putting together"
+        - "+  means  PLUS"
+        - "We count HOW MANY in all"
+        - "Adding 1 = the next number"
+    say:
+      - "Let us quickly remember what we learned today."
+      - "Addition means putting things together."
+      - "The plus sign means plus, and it tells us to add."
+      - "We count to find how many there are in all."
+      - "And adding one just gives us the next counting number."
+
+  practice:
+    outro: "Great job today, friends! Please like and subscribe, and see you next time with Kinnu. Bye bye! A Katixo channel."
+    board:
+      title: "Practice Time!"
+      lines:
+        - "1)  2 + 2 = ?"
+        - "2)  3 + 1 = ?"
+        - "3)  5 + 0 = ?"
+        - "4)  4 + 3 = ?"
+    say:
+      - "Now here is some practice for you to try at home."
+      - "Pause the video and solve these four sums in your notebook."
+      - "Number one, two plus two. Number two, three plus one."
+      - "Number three, five plus zero. And number four, four plus three."
+      - "Remember, you can count on your fingers or draw little circles to help."

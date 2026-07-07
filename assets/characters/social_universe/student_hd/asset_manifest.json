@@ -1,0 +1,15 @@
+{
+  "id": "social_universe/student_hd",
+  "display_name": "Ravi - Student",
+  "universe": "social_universe",
+  "style": "realistic_talking_figure",
+  "source_asset": "assets/source/social_universe/00ccae56-eb62-4be1-a9ad-0262652be851.png",
+  "capabilities": {
+    "talk": true,
+    "walk": false,
+    "gesture": false
+  },
+  "notes": [
+    "Sample talking rig from a complete full-body PNG; not final articulated puppet."
+  ]
+}

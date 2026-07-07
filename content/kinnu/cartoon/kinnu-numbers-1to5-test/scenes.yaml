@@ -1,0 +1,125 @@
+episode: kinnu-numbers-1to5-test
+title: Learn Numbers 1 to 5 with Kinnu | Counting for Kids | Katixo
+fps: 30
+cast:
+  kinnu_hd: af_heart
+scenes:
+  - id: s01
+    background: classroom_full.png
+    transition: { in: 0.4, out: 0.3 }
+    camera: { zoom: [1.0, 1.05] }
+    characters: [{ id: kinnu_hd, pos: [0.28, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: enter, from: left, start: 0.0, end: 2.6 }
+      - { who: kinnu_hd, do: wave, start: 2.6, end: 6 }
+      - { who: kinnu_hd, do: talk, text: "Hello friends! I am Kinnu. Welcome to our classroom!" }
+      - { who: kinnu_hd, do: talk, text: "Today we are going to learn our numbers, from one to five. Are you ready? Let us count together!" }
+
+  - id: s02
+    background: classroom_full.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: num_1.png, pos: [0.70, 0.40], scale: 0.34, anim: pop, start: 0.3 }
+      - { asset: balloon_red.png, pos: [0.50, 0.30], scale: 0.16, anim: float, start: 0.5 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 8 }
+      - { who: kinnu_hd, do: talk, text: "This is number one. One!" }
+      - { who: kinnu_hd, do: talk, text: "Here is one red balloon. Can you say one with Kinnu?" }
+
+  - id: s03
+    background: classroom_full.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: num_2.png, pos: [0.70, 0.40], scale: 0.34, anim: pop, start: 0.3 }
+      - { asset: balloon_blue.png, pos: [0.46, 0.30], scale: 0.15, anim: float, start: 0.5 }
+      - { asset: balloon_green.png, pos: [0.56, 0.30], scale: 0.15, anim: float, start: 0.7 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 8 }
+      - { who: kinnu_hd, do: talk, text: "This is number two. One, two!" }
+      - { who: kinnu_hd, do: talk, text: "Two balloons! Say it with Kinnu: two." }
+
+  - id: s04
+    background: classroom_full.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: num_3.png, pos: [0.70, 0.40], scale: 0.34, anim: pop, start: 0.3 }
+      - { asset: balloon_red.png, pos: [0.44, 0.30], scale: 0.14, anim: float, start: 0.5 }
+      - { asset: balloon_yellow.png, pos: [0.53, 0.30], scale: 0.14, anim: float, start: 0.7 }
+      - { asset: balloon_purple.png, pos: [0.62, 0.30], scale: 0.14, anim: float, start: 0.9 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 8 }
+      - { who: kinnu_hd, do: talk, text: "This is number three. One, two, three!" }
+      - { who: kinnu_hd, do: talk, text: "Three colorful balloons. Three!" }
+
+  - id: s05
+    background: classroom_full.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: num_4.png, pos: [0.72, 0.40], scale: 0.34, anim: pop, start: 0.3 }
+      - { asset: balloon_red.png, pos: [0.40, 0.30], scale: 0.13, anim: float, start: 0.5 }
+      - { asset: balloon_blue.png, pos: [0.48, 0.30], scale: 0.13, anim: float, start: 0.7 }
+      - { asset: balloon_green.png, pos: [0.56, 0.30], scale: 0.13, anim: float, start: 0.9 }
+      - { asset: balloon_orange.png, pos: [0.64, 0.30], scale: 0.13, anim: float, start: 1.1 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 8 }
+      - { who: kinnu_hd, do: talk, text: "This is number four. One, two, three, four!" }
+      - { who: kinnu_hd, do: talk, text: "Four balloons floating up high. Four!" }
+
+  - id: s06
+    background: garden.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.22, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: num_5.png, pos: [0.72, 0.40], scale: 0.34, anim: pop, start: 0.3 }
+      - { asset: balloon_red.png, pos: [0.40, 0.28], scale: 0.12, anim: float, start: 0.5 }
+      - { asset: balloon_yellow.png, pos: [0.47, 0.28], scale: 0.12, anim: float, start: 0.7 }
+      - { asset: balloon_blue.png, pos: [0.54, 0.28], scale: 0.12, anim: float, start: 0.9 }
+      - { asset: balloon_green.png, pos: [0.61, 0.28], scale: 0.12, anim: float, start: 1.1 }
+      - { asset: balloon_purple.png, pos: [0.68, 0.28], scale: 0.12, anim: float, start: 1.3 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 8 }
+      - { who: kinnu_hd, do: talk, text: "This is number five. One, two, three, four, five!" }
+      - { who: kinnu_hd, do: talk, text: "Five balloons! Great counting, my friends. Five!" }
+
+  - id: s07
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.5, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: bounce, start: 0.2, end: 7 }
+      - { who: kinnu_hd, do: talk, text: "Now let us count all together and jump! One, two, three, four, five!" }
+
+  - id: s08
+    background: classroom_full.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.24, 0.99], scale: 0.92, facing: right }]
+    props:
+      - { asset: num_3.png, pos: [0.55, 0.40], scale: 0.26, anim: pop, start: 0.3 }
+      - { asset: num_5.png, pos: [0.78, 0.40], scale: 0.26, anim: pop, start: 0.6 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 9 }
+      - { who: kinnu_hd, do: talk, text: "Now it is your turn! Look at the numbers." }
+      - { who: kinnu_hd, do: talk, text: "Which number is five? Point to it and tell Kinnu. Pause the video and say the answer!" }
+
+  - id: s09
+    background: garden.png
+    transition: { in: 0.3, out: 0.3 }
+    characters: [{ id: kinnu_hd, pos: [0.3, 0.99], scale: 0.92, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: clap, start: 0.2, end: 7 }
+      - { who: kinnu_hd, do: talk, text: "Wonderful! Today we learned to count: one, two, three, four, five." }
+
+  - id: s10
+    background: garden.png
+    transition: { in: 0.3, out: 0.5 }
+    camera: { zoom: [1.05, 1.0] }
+    characters: [{ id: kinnu_hd, pos: [0.30, 0.99], scale: 0.95, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.0, end: 3 }
+      - { who: kinnu_hd, do: talk, text: "You did a great job, my friends!" }
+      - { who: kinnu_hd, do: wave, start: 3.0, end: 8 }
+      - { who: kinnu_hd, do: talk, text: "See you again soon with Kinnu. Please like and subscribe. Bye bye! A Katixo channel." }

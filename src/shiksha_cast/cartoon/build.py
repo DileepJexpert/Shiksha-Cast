@@ -20,14 +20,11 @@ import yaml
 from PIL import Image, ImageDraw
 
 from shiksha_cast.assemble import concat_clips, mix_music_bed, normalize_loudness
-from shiksha_cast.cartoon import motion
+from shiksha_cast.asset_paths import resolve_background_path, resolve_character_dir
+from shiksha_cast.cartoon import motion, overlay
 from shiksha_cast.cartoon.character import Character
 from shiksha_cast.cartoon.lipsync import Lipsync
 from shiksha_cast.config import load_channel_config
-from shiksha_cast.tts.kokoro import KokoroTTSProvider
-
-CHARS_DIR = "assets/cartoon/characters"
-BG_DIR = "assets/cartoon/backgrounds"
 
 
 def _is_adv(d: Path) -> bool:
@@ -41,8 +38,7 @@ def _lerp(a, b, t):
 
 def _bg(project_root: Path, name, W, H):
     if name:
-        p = Path(name)
-        cand = p if (p.is_absolute() or p.exists()) else (project_root / BG_DIR / name)
+        cand = resolve_background_path(project_root, name)
         if cand.exists():
             return Image.open(cand).convert("RGBA").resize((W, H))
     img = Image.new("RGBA", (W, H), (170, 220, 255, 255))
@@ -119,6 +115,22 @@ def _mix(a, b, w):
 MOVE_ACTIONS = {"enter", "walk", "walkto", "run", "runto", "swim", "swimto"}
 
 
+def _make_tts_provider(provider: str, default_voice: str, speed: float = 1.0):
+    name = (provider or "kokoro").lower()
+    if name == "veena":
+        from shiksha_cast.tts.veena import VeenaTTSProvider
+        return VeenaTTSProvider(speaker=default_voice or "kavya")
+    if name == "kokoro":
+        from shiksha_cast.tts.kokoro import KokoroTTSProvider
+        voice = default_voice if default_voice and "_" in default_voice and "/" not in default_voice else "af_heart"
+        return KokoroTTSProvider(voice=voice, speed=speed)
+    raise ValueError(f"Unsupported cartoon/story TTS provider: {provider}")
+
+
+def _default_voice(provider: str) -> str:
+    return "kavya" if (provider or "").lower() == "veena" else "af_heart"
+
+
 def _move_state(cid, actions, t, x_frac, facing0):
     """Resolve persistent x/facing plus any currently active walk/run cycle."""
     x_cur = x_frac
@@ -171,18 +183,35 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
     ll = (0.0, 0.0); lr = (0.0, 0.0)
     head = 0.9 * math.sin(t * 0.7 + phase_off)
     bob = 1.4 * breathe  # gentle breathing rise/fall (vertical only)
-    eyes = "open"; mouth = "X"; brows = "neutral"
+    eyes = "open"; mouth = "X"; brows = "neutral"; head_turn = "center"
+    tail = 4.0 * math.sin(t * 2.1 + phase_off)
+    body_angle = 0.0
+    body_anchor = "feet"
+    water_tint = False
+    side_sprite = None
     x_cur, facing, gait = _move_state(cid, actions, t, x_frac, facing0)
     if gait and gait.get("do") in ("swim", "swimto"):
-        # swimming: alternating overhead arm strokes + small leg flutter + floating bob
-        ph = gait["lt"] * 4.0
-        al = (62 + 52 * math.sin(ph + math.pi), 6.0)
-        ar = (-62 - 52 * math.sin(ph), -6.0)
-        ll = (10 * math.sin(ph * 2), 0.0); lr = (-10 * math.sin(ph * 2 + math.pi), 0.0)
-        bob = 5.0 * math.sin(ph)
-        head = -4.0
+        # swimming: rotate the full body sideways, then cycle arms front/back
+        # and flutter-kick the legs. This reads as lying in water instead of
+        # walking upright across the river.
+        ph = gait["lt"] * 5.4
+        body_angle = -82.0 if facing == "right" else 82.0
+        body_anchor = "center"
+        water_tint = True
+        al = (126 + 34 * math.sin(ph), 10.0)
+        ar = (-126 - 34 * math.sin(ph + math.pi), -10.0)
+        ll = (18 * math.sin(ph * 1.7), -14.0)
+        lr = (-18 * math.sin(ph * 1.7), 14.0)
+        bob = 8.0 * math.sin(ph * 0.8)
+        head = -8.0 if facing == "right" else 8.0
+        tail = 12.0 * math.sin(ph * 1.3)
         eyes = "happy"
     elif gait:
+        side_sprite = "side_walk"
+        # Face the direction of travel while walking/running. The rig renderer
+        # flips the whole character for left-facing movement, so a right-side
+        # facial shift here becomes left-looking after the flip.
+        head_turn = "right"
         # Smooth locomotion cycle. Run is faster and wider; walk stays gentle.
         rate = 9.5 if gait["run"] else 5.0
         leg = 24.0 if gait["run"] else 16.0
@@ -193,6 +222,7 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
         ll = (leg * stride, 0.0); lr = (-leg * stride, 0.0)
         al = (-arm * stride, elbow); ar = (arm * stride, -elbow)
         bob = abs(math.sin(gait["lt"] * rate)) * lift
+        tail = (26.0 if gait["run"] else 16.0) * math.sin(gait["lt"] * rate * 1.4)
         if gait["run"]:
             head = -5.0 + 2.0 * math.sin(gait["lt"] * rate * 2)  # slight forward lean
     for a in actions:
@@ -205,10 +235,12 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
             continue
         if do == "talk":
             mouth = _viseme(a["levels"], fps, lt)
+            tail += 8.0 * math.sin(lt * 6.0) * e
         elif do == "wave":
             # whole arm raised near the head, fairly straight; slow gentle hand sway
             sway = math.sin(lt * 1.8)
             ar = _mix(ar, (-114 + 2 * sway, -12 + 3 * sway), e)
+            tail += 14.0 * math.sin(lt * 7.0) * e
             eyes = "happy"; brows = "happy"
         elif do == "point":
             if a.get("side") == "left":
@@ -220,15 +252,33 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
         elif do == "cheer":
             lift = 3 * math.sin(lt * 2.0)
             al = _mix(al, (140 + lift, 8), e); ar = _mix(ar, (-140 - lift, -8), e)
+            tail += 18.0 * math.sin(lt * 8.0) * e
             eyes = "happy"; brows = "happy"
             if mouth == "X":
                 mouth = "D"
         elif do == "sad":
             brows = "sad"
+            if mouth == "X":
+                mouth = "sad"
+        elif do == "cry":
+            brows = "sad"; eyes = "closed"; mouth = "sad"
+            bob += abs(math.sin(lt * 8.0)) * 3.0
         elif do == "surprise":
             brows = "surprised"
         elif do == "jump":
-            bob += motion.jump_bob(lt / dur); eyes = "happy"
+            prog = min(1.0, max(0.0, lt / dur))
+            lift = motion.jump_bob(prog)
+            bob += lift * 1.35
+            # Tuck the legs on the way up/down so jump reads as airborne, not
+            # just a standing character translated upward.
+            tuck = math.sin(prog * math.pi)
+            ll = _mix(ll, (-48, 74), e * tuck)
+            lr = _mix(lr, (48, -74), e * tuck)
+            al = _mix(al, (76, 18), e * tuck)
+            ar = _mix(ar, (-76, -18), e * tuck)
+            head = -7 * tuck
+            tail += 10.0 * math.sin(lt * 7.0) * e
+            eyes = "happy"; brows = "happy"
         elif do == "clap":
             c = math.sin(lt * 8.0)
             al = _mix(al, (52 + 8 * c, 28), e); ar = _mix(ar, (-52 - 8 * c, -28), e)
@@ -247,13 +297,22 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
         elif do == "laugh":
             bob += abs(math.sin(lt * 9.0)) * 5.0
             al = _mix(al, (42, 20), e); ar = _mix(ar, (-42, -20), e)
-            head = 8; eyes = "happy"; brows = "happy"; mouth = "D"
+            tail += 20.0 * math.sin(lt * 10.0) * e
+            head = 8; eyes = "open"; brows = "happy"; mouth = "D"
         elif do == "bounce":
             bob += abs(math.sin(lt * 6.0)) * 28.0; eyes = "happy"
         elif do == "nod":  # 2D rig can't pitch; fake a nod with a small vertical bob
             bob += math.sin(lt * 6.0) * 6.0
         elif do == "shake":  # "no" head wobble
             head = 11 * math.sin(lt * 8.0)
+        elif do in ("look_left", "turn_left"):
+            head_turn = "left"; head = _lerp(head, -4.0, e)
+        elif do in ("look_right", "turn_right"):
+            head_turn = "right"; head = _lerp(head, 4.0, e)
+        elif do in ("look_back", "turn_back"):
+            head_turn = "back"; head = _lerp(head, 0.0, e)
+        elif do in ("look_center", "look_straight", "turn_center", "turn_straight"):
+            head_turn = "center"
         elif do == "spin":  # celebratory hop, arms out (true spin needs flipping)
             al = _mix(al, (92, 10), e); ar = _mix(ar, (-92, -10), e)
             bob += abs(math.sin(lt * 5.0)) * 16.0; eyes = "happy"
@@ -265,8 +324,35 @@ def _adv_pose(cid, actions, t, fps, phase_off, x_frac, facing0):
             eyes = "closed"; brows = "surprised"
             if mouth == "X":
                 mouth = "D"
+        elif do == "smile":  # happy face, gentle wag (great for the dog idling sweetly)
+            eyes = "happy"; brows = "happy"
+            tail += 12.0 * math.sin(lt * 5.0) * e
+        elif do == "bark":  # rhythmic open/close mouth + head bob + excited wag
+            op = math.sin(lt * 9.0)
+            mouth = "D" if op > 0 else "X"
+            bob += abs(op) * 6.0
+            head = -4.0 + 3.0 * op
+            eyes = "happy"; brows = "happy"
+            tail += 18.0 * math.sin(lt * 8.0) * e
+        elif do == "shout":  # loud sustained bark: big open mouth, lean forward
+            mouth = "D"; brows = "surprised"; eyes = "open"
+            head = -8.0
+            al = _mix(al, (32, 12), e); ar = _mix(ar, (-32, -12), e)
+            bob += abs(math.sin(lt * 5.0)) * 4.0
+            tail += 14.0 * math.sin(lt * 6.0) * e
+        elif do == "growl":  # low "guurr": lowered brows, bared mouth, stiff low tail
+            mouth = "G"; brows = "sad"; eyes = "open"
+            head = 5.0 * math.sin(lt * 3.0)
+            tail = -16.0 + 4.0 * math.sin(lt * 4.0)
+    tears = any(
+        a.get("who") == cid and a.get("do") == "cry" and a["start"] <= t < a.get("end", a["start"])
+        for a in actions
+    )
     pose = {"arm_left": al, "arm_right": ar, "leg_left": ll, "leg_right": lr,
-            "head": head, "eyes": eyes, "mouth": mouth, "brows": brows}
+            "head": head, "eyes": eyes, "mouth": mouth, "brows": brows,
+            "body_angle": body_angle, "body_anchor": body_anchor,
+            "water_tint": water_tint, "head_turn": head_turn,
+            "tail": tail, "tears": tears, "side_sprite": side_sprite}
     if pose["eyes"] == "open" and motion.blink_state(t + phase_off) == "closed":
         pose["eyes"] = "closed"
     return pose, x_cur, facing, bob
@@ -305,6 +391,8 @@ def _build_frame(t, ctx, cache):
     W, H, fps, scene_dur = ctx["W"], ctx["H"], ctx["fps"], ctx["scene_dur"]
     frame = cache["_bg"].copy()
     _draw_props(frame, ctx, t, "back")
+    if ctx.get("board"):
+        overlay.draw_board(frame, ctx["board"], t, W, H)
     adv = set(ctx.get("adv", []))
     for cinfo in ctx["present"]:
         cid = cinfo["id"]; ch = cache.get(cid)
@@ -358,6 +446,8 @@ def _build_frame(t, ctx, cache):
             cw, chh = W / z, H / z
             x0 = min(max((W - cw) / 2 + panx * W, 0), W - cw); y0 = (H - chh) / 2
             frame = frame.crop((int(x0), int(y0), int(x0 + cw), int(y0 + chh))).resize((W, H), Image.LANCZOS)
+    if ctx.get("overlays"):
+        overlay.draw_overlays(frame, ctx["overlays"], t, W, H)
     return frame
 
 
@@ -394,11 +484,12 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
     sr = cfg.voice.sample_rate
     ep = spec.get("episode") or Path(scene_path).parent.name
     cast = spec.get("cast", {})
+    tts_provider = str(spec.get("tts_provider") or cfg.voice.provider or "kokoro").lower()
 
     chars = {}
     adv: set = set()
     for name in cast:
-        d = project_root / CHARS_DIR / name
+        d = resolve_character_dir(project_root, name)
         if _is_adv(d):
             from shiksha_cast.cartoon.rig2 import SkeletalCharacter
             chars[name] = SkeletalCharacter(d); adv.add(name)
@@ -408,19 +499,23 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
     work = project_root / "build" / ep
     (work / "audio").mkdir(parents=True, exist_ok=True)
     clips_dir = work / "clips"; clips_dir.mkdir(parents=True, exist_ok=True)
-    tts = KokoroTTSProvider()
+    default_voice = str(spec.get("default_voice") or cfg.voice.model or "")
+    tts_speed = float(spec.get("tts_speed") or cfg.voice.speed or 1.0)
+    tts = _make_tts_provider(tts_provider, default_voice, tts_speed)
 
     clip_paths, captions = [], []
     scene_offset = 0.0
     line_no = 0
 
     # One persistent worker pool for the whole episode (loads the cast once).
-    workers = min((os.cpu_count() or 2), 12)
+    # Veena is intentionally single-worker because the local Hindi model is large;
+    # parallel frame workers can leave too little memory for ffmpeg on modest GPUs/RAM.
+    workers = 1 if tts_provider == "veena" else min((os.cpu_count() or 2), 12)
     pool = None
     if workers >= 2:
         try:
             from concurrent.futures import ProcessPoolExecutor
-            all_dirs = {cid: str(project_root / CHARS_DIR / cid) for cid in chars}
+            all_dirs = {cid: str(resolve_character_dir(project_root, cid)) for cid in chars}
             pool = ProcessPoolExecutor(max_workers=workers, initializer=_worker_init, initargs=(all_dirs, adv))
         except Exception as e:  # noqa: BLE001
             print(f"[no parallel pool -> sequential: {e}]")
@@ -434,10 +529,13 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
 
         # --- synth talk audio + finalize talk windows (auto-chained) ---
         talk_cursor = 0.0
+        gesture_actions = []
         for a in actions:
             if a.get("do") == "talk":
+                if tts is None:
+                    tts = _make_tts_provider(tts_provider, default_voice, tts_speed)
                 line_no += 1
-                voice = cast.get(a["who"], "af_heart")
+                voice = cast.get(a["who"], _default_voice(tts_provider))
                 wav = work / "audio" / f"line_{line_no:03d}.wav"
                 tts.set_speaker(voice)
                 tts.synthesize(a["text"], "", wav)
@@ -448,6 +546,15 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
                 a["_wav"] = str(wav); a["_ls"] = ls
                 talk_cursor = a["end"] + 0.15
                 captions.append((a["who"], a["text"], scene_offset + start, scene_offset + start + ls.dur))
+                gesture = a.get("gesture")
+                if gesture:
+                    gesture_actions.append({
+                        "who": a["who"],
+                        "do": gesture,
+                        "start": start,
+                        "end": min(a["end"], start + max(1.2, min(2.6, ls.dur))),
+                    })
+        actions.extend(gesture_actions)
 
         scene_dur = max([2.0] + [a["end"] for a in actions])
 
@@ -463,7 +570,7 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
         sf.write(str(scene_wav), track[:int(scene_dur * sr)], sr)
 
         # --- render frames (multi-core when worthwhile, else sequential) ---
-        char_dirs = {cid: str(project_root / CHARS_DIR / cid) for cid in present if cid in chars}
+        char_dirs = {cid: str(resolve_character_dir(project_root, cid)) for cid in present if cid in chars}
         bg_path = str(clips_dir / f"_bg_{si:03d}.png")
         bg.save(bg_path)
         actions_ser = []
@@ -482,9 +589,26 @@ def build_episode(scene_path: str, project_root: Path, out: str | None = None) -
                               "scale": float(p.get("scale", 0.12)), "anim": p.get("anim", "none"),
                               "z": p.get("z", "front"), "start": float(p.get("start", 0.0)),
                               "end": float(p.get("end", scene_dur))})
+        # teaching graphics: chalkboard (world space) + UI overlays (banners/callouts)
+        board_ser = None
+        if scene.get("board"):
+            board_ser = dict(scene["board"])
+            norm_lines = []
+            for i, ln in enumerate(board_ser.get("lines", [])):
+                ln = {"text": ln} if isinstance(ln, str) else dict(ln)
+                ln.setdefault("at", round(0.6 + i * 1.4, 2))
+                norm_lines.append(ln)
+            board_ser["lines"] = norm_lines
+        overlays_ser = []
+        for ov in scene.get("overlays", []):
+            ov = dict(ov)
+            ov["start"] = float(ov.get("start", 0.0))
+            ov["end"] = float(ov.get("end", scene_dur))
+            overlays_ser.append(ov)
         ctx = {"present": [{**c} for c in scene.get("characters", []) if c["id"] in chars],
                "actions": actions_ser, "props": props_ser, "adv": list(adv), "W": W, "H": H, "fps": fps,
-               "scene_dur": scene_dur, "cam": cam, "bg_path": bg_path}
+               "scene_dur": scene_dur, "cam": cam, "bg_path": bg_path,
+               "board": board_ser, "overlays": overlays_ser}
         total = int(scene_dur * fps)
         tmp = tempfile.mkdtemp()
         try:

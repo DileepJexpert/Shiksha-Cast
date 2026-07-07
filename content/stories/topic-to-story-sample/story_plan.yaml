@@ -1,0 +1,108 @@
+chapter: 'Truthful Tales: Kinnu and the Magic Ball'
+topic: Kinnu learns why we should tell the truth
+audience: kids age 5-10
+style: Simple clear English, funny and warm, like a playful learning cartoon
+characters:
+- id: kinnu
+  name: Kinnu
+  voice: kavya
+  description: curious friendly girl stickman host
+  rig: assets/characters/kinnu/rig.json
+- id: gappu
+  name: Gappu
+  voice: am_michael
+  description: cute friendly boy stickman friend, playful and asks questions
+  rig: assets/characters/gappu/rig.json
+scenes:
+- n: 1
+  title: Hook
+  background_prompt: bright cartoon classroom floor with a toy ball, no characters, open space at left
+    and right
+  learning_point: why honesty is important in everyday scenarios
+  characters:
+    kinnu:
+      x: 0.22
+      y: 0.86
+      height: 0.62
+      pose: happy
+      facing: right
+    gappu:
+      x: 0.74
+      y: 0.86
+      height: 0.62
+      pose: confused
+      facing: left
+  dialogue:
+  - speaker: kinnu
+    text: Gappu, look at this!
+    emotion: happy
+    action: point
+  - speaker: gappu
+    text: Why did it stop?
+    emotion: confused
+    action: think
+  animation_notes:
+  - Kinnu enters from left
+  - Gappu tilts head while listening
+- n: 2
+  title: The Magic of Honesty
+  background_prompt: classroom with a whiteboard and chairs, no characters, room has books and toys
+  learning_point: how lying can cause bigger problems than the original issue
+  characters:
+    kinnu:
+      x: 0.22
+      y: 0.86
+      height: 0.62
+      pose: pointing
+      facing: right
+    gappu:
+      x: 0.74
+      y: 0.86
+      height: 0.62
+      pose: thinking
+      facing: left
+  dialogue:
+  - speaker: kinnu
+    text: What if I say the ball stopped by itself?
+    emotion: thoughtful
+    action: point
+  - speaker: gappu
+    text: But that's not true, is it?
+    emotion: confused
+    action: think
+  animation_notes:
+  - Kinnu points at the ball
+  - Gappu looks confused
+- n: 3
+  title: The Truth Revealed
+  background_prompt: outdoor playground with swings and slides, no characters, sunny day
+  learning_point: how admitting mistakes can lead to solutions and growth
+  characters:
+    kinnu:
+      x: 0.22
+      y: 0.86
+      height: 0.62
+      pose: happy
+      facing: right
+    gappu:
+      x: 0.74
+      y: 0.86
+      height: 0.62
+      pose: smiling
+      facing: left
+  dialogue:
+  - speaker: kinnu
+    text: I should just say I kicked it.
+    emotion: happy
+    action: point
+  - speaker: gappu
+    text: That's better!
+    emotion: smiling
+    action: happy_jump
+  animation_notes:
+  - Kinnu points at herself smiling
+  - Gappu jumps happily
+asset_needs:
+- backgrounds without characters
+- Kinnu rig with mouth states
+- Gappu rig with mouth states

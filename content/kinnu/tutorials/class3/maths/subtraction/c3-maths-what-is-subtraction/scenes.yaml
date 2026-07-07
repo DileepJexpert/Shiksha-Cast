@@ -1,0 +1,544 @@
+episode: c3-maths-what-is-subtraction
+title: What is Subtraction? | Class 3 Maths | Kinnu Learning
+fps: 15
+cast:
+  kinnu_hd: af_heart
+  vibhu_hd: am_adam
+scenes:
+- id: s1_hook
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.32
+    - 0.99
+    scale: 0.9
+    facing: right
+  - id: vibhu_hd
+    pos:
+    - 0.82
+    - 0.99
+    scale: 0.86
+    facing: left
+  actions:
+  - who: kinnu_hd
+    do: wave
+    start: 0.0
+    end: 3.5
+  - who: vibhu_hd
+    do: wave
+    start: 0.4
+    end: 3.5
+  - who: kinnu_hd
+    do: talk
+    text: Hello friends! I am Kinnu, and this is my little brother Vibhu. Welcome back to our classroom!
+  - who: kinnu_hd
+    do: talk
+    text: Yesterday we learned how to put things together. That was addition.
+  - who: kinnu_hd
+    do: talk
+    text: But what happens when we take some things away?
+  - who: kinnu_hd
+    do: talk
+    text: Imagine you have five toffees, and you give two toffees to your friend. How many are left with
+      you?
+  - who: kinnu_hd
+    do: talk
+    text: When we take things away and find how many are left, that is called subtraction!
+  - who: kinnu_hd
+    do: talk
+    text: It is a magic word that we use almost every day.
+  - who: kinnu_hd
+    do: talk
+    text: 'Today we will learn: what is subtraction? So sit up straight, keep your eyes on the board,
+      and let us begin!'
+  overlays:
+  - type: banner
+    text: Let's Learn Subtraction!
+    start: 0.0
+    end: 4.0
+- id: s2_concept
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 9.0
+  - who: kinnu_hd
+    do: talk
+    text: Look carefully at our blackboard, friends.
+  - who: kinnu_hd
+    do: talk
+    text: Subtraction means taking some things away from a group.
+  - who: kinnu_hd
+    do: talk
+    text: When we subtract, we want to find how many are left behind.
+  - who: kinnu_hd
+    do: talk
+    text: We do subtraction every single day, without even knowing it.
+  - who: kinnu_hd
+    do: talk
+    text: When you eat one biscuit from a packet, the packet has fewer biscuits left. That is subtraction!
+  - who: kinnu_hd
+    do: talk
+    text: When a bird flies away from a tree, there are fewer birds on the tree. That is subtraction too!
+  - who: kinnu_hd
+    do: talk
+    text: We use a special sign for subtraction. It is a small line, like this.
+  - who: kinnu_hd
+    do: talk
+    text: This is called the minus sign.
+  - who: kinnu_hd
+    do: talk
+    text: We read the minus sign as the word minus.
+  - who: kinnu_hd
+    do: talk
+    text: So when we see five minus two, it means we start with five and take two away.
+  - who: kinnu_hd
+    do: talk
+    text: Addition makes a group bigger. But subtraction makes a group smaller.
+  - who: kinnu_hd
+    do: talk
+    text: Remember that, and you will never get confused between them!
+  board:
+    title: What is Subtraction?
+    lines:
+    - text: Subtraction means TAKING AWAY
+      at: 0.5
+    - text: We find HOW MANY are LEFT
+      at: 1.9
+    - text: The sign for subtraction is  -
+      at: 3.3
+    - text: We read  -  as  MINUS
+      at: 4.7
+    - text: 5 - 2  means  5 minus 2
+      at: 6.1
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+- id: s3_example
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 10.0
+  - who: kinnu_hd
+    do: talk
+    text: Let us try an example with apples, just like before.
+  - who: kinnu_hd
+    do: talk
+    text: Here we have five red apples on the table. Let us count them slowly. One, two, three, four,
+      five.
+  - who: kinnu_hd
+    do: talk
+    text: Five apples in all. Now watch carefully what happens.
+  - who: kinnu_hd
+    do: talk
+    text: Vibhu feels hungry, so he takes away two apples to eat.
+  - who: kinnu_hd
+    do: talk
+    text: We take the first apple away. And we take the second apple away.
+  - who: kinnu_hd
+    do: talk
+    text: Now let us count how many apples are still left on the table.
+  - who: kinnu_hd
+    do: talk
+    text: One, two, three. There are three apples left!
+  - who: kinnu_hd
+    do: talk
+    text: So five minus two equals three. Shabaash, Vibhu!
+  - who: kinnu_hd
+    do: talk
+    text: Did you see? We started with five, and we ended with a smaller number, three.
+  - who: kinnu_hd
+    do: talk
+    text: That is exactly what subtraction does. It makes the number smaller.
+  - who: kinnu_hd
+    do: talk
+    text: Let us say it together one more time. Five apples, take away two apples, leaves three apples.
+  - who: kinnu_hd
+    do: talk
+    text: Whenever you take something away, just count what is left. That is the secret of subtraction!
+  board:
+    title: 5 - 2 = ?
+    lines:
+    - text: 'We start with:  5 apples'
+      at: 0.5
+    - text: 'We take away:  2 apples'
+      at: 1.9
+    - text: Count how many are LEFT
+      at: 3.3
+    - text: 5 ... take 2 ... 3 left
+      at: 4.7
+    - text: 5 - 2 = 3 apples
+      at: 6.1
+    pos:
+    - 0.66
+    - 0.47
+    size:
+    - 0.56
+    - 0.5
+  overlays:
+  - type: callout
+    text: take 2 away!
+    pos:
+    - 0.29
+    - 0.58
+    start: 1.0
+    end: 8.0
+    color: pink
+  props:
+  - asset: apple.png
+    pos:
+    - 0.42
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 0.4
+  - asset: apple.png
+    pos:
+    - 0.545
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 0.7
+  - asset: apple.png
+    pos:
+    - 0.67
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 1.0
+  - asset: apple.png
+    pos:
+    - 0.795
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 1.3
+  - asset: apple.png
+    pos:
+    - 0.92
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 1.6
+- id: s4_question
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.32
+    - 0.99
+    scale: 0.9
+    facing: right
+  - id: vibhu_hd
+    pos:
+    - 0.82
+    - 0.99
+    scale: 0.86
+    facing: left
+  actions:
+  - who: kinnu_hd
+    do: think
+    start: 0.2
+    end: 2.0
+  - who: vibhu_hd
+    do: think
+    start: 0.5
+    end: 6.0
+  - who: kinnu_hd
+    do: talk
+    text: Now it is your turn to think, just like Vibhu is thinking.
+  - who: kinnu_hd
+    do: talk
+    text: Here is a question for you. Listen carefully.
+  - who: kinnu_hd
+    do: talk
+    text: You have six colourful balloons in your hand, holding them tight.
+  - who: kinnu_hd
+    do: talk
+    text: Suddenly, two balloons slip away and fly up into the sky!
+  - who: kinnu_hd
+    do: talk
+    text: Can you tell me, what is six minus two?
+  - who: kinnu_hd
+    do: talk
+    text: Take a moment. Count it in your head, or use your fingers to help.
+  - who: kinnu_hd
+    do: talk
+    text: Do not worry if it feels hard. We will do it together, slowly.
+  - who: kinnu_hd
+    do: talk
+    text: Ready? Let us solve it on the board, step by step.
+  overlays:
+  - type: banner
+    text: Your Turn!
+    start: 0.0
+    end: 4.0
+    color: blue
+- id: s5_solve
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 12.0
+  - who: kinnu_hd
+    do: talk
+    text: Let us solve six minus two, step by step, all together.
+  - who: kinnu_hd
+    do: talk
+    text: First, we start with the bigger number, six.
+  - who: kinnu_hd
+    do: talk
+    text: Now, to subtract, we count backwards. We jump back two steps.
+  - who: kinnu_hd
+    do: talk
+    text: From six we go back one step to five. Then back one more step to four.
+  - who: kinnu_hd
+    do: talk
+    text: So six minus two equals four. You did it, well done!
+  - who: kinnu_hd
+    do: talk
+    text: Let us check our answer. Four balloons are left, and two flew away. Four and two make six. Perfect!
+  - who: kinnu_hd
+    do: talk
+    text: Here is a handy trick to always remember.
+  - who: kinnu_hd
+    do: talk
+    text: For addition we count forward, and for subtraction we count back. Forward to add, back to subtract!
+  - who: kinnu_hd
+    do: talk
+    text: Whenever you feel stuck, just use your fingers and count backwards slowly.
+  board:
+    title: 6 - 2 = ?
+    lines:
+    - text: Start with 6
+      at: 0.5
+    - text: Jump back 2 steps
+      at: 1.9
+    - text: 6 ... 5 ... 4
+      at: 3.3
+    - text: 6 - 2 = 4
+      at: 4.7
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+  overlays:
+  - type: callout
+    text: start at 6
+    pos:
+    - 0.29
+    - 0.56
+    start: 1.5
+    end: 4.0
+    color: yellow
+  - type: callout
+    text: count 2 back
+    pos:
+    - 0.29
+    - 0.56
+    start: 4.0
+    end: 6.5
+    color: yellow
+  - type: callout
+    text: the answer!
+    pos:
+    - 0.29
+    - 0.56
+    start: 6.5
+    end: 9.0
+    color: yellow
+- id: s6_recap
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: clap
+    start: 0.0
+    end: 2.5
+  - who: kinnu_hd
+    do: talk
+    text: Let us quickly remember everything we learned today.
+  - who: kinnu_hd
+    do: talk
+    text: Subtraction means taking things away from a group.
+  - who: kinnu_hd
+    do: talk
+    text: The minus sign tells us to subtract, and we read it as minus.
+  - who: kinnu_hd
+    do: talk
+    text: We count to find how many are left behind.
+  - who: kinnu_hd
+    do: talk
+    text: And the smart trick is to count backwards when we subtract.
+  - who: kinnu_hd
+    do: talk
+    text: After subtraction, our answer always becomes smaller than what we started with.
+  - who: kinnu_hd
+    do: talk
+    text: Addition adds more, and subtraction takes away. They are like two best friends in maths.
+  - who: kinnu_hd
+    do: talk
+    text: You learned so much today, friends. I am very proud of you!
+  board:
+    title: Remember!
+    lines:
+    - text: Subtraction = taking away
+      at: 0.5
+    - text: '-  means  MINUS'
+      at: 1.9
+    - text: We count HOW MANY are LEFT
+      at: 3.3
+    - text: Subtraction = count BACKWARDS
+      at: 4.7
+    - text: The answer gets SMALLER
+      at: 6.1
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+- id: s7_practice
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.5
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  - id: vibhu_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.86
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 9.0
+  - who: kinnu_hd
+    do: talk
+    text: Now here is some practice for you to try at home.
+  - who: kinnu_hd
+    do: talk
+    text: Pause the video and solve these four sums in your notebook.
+  - who: kinnu_hd
+    do: talk
+    text: Number one, four minus one. Number two, five minus three.
+  - who: kinnu_hd
+    do: talk
+    text: Number three, seven minus two. And number four, six minus six.
+  - who: kinnu_hd
+    do: talk
+    text: For the last one, think carefully. If you take away everything, how many are left? That is right,
+      zero!
+  - who: kinnu_hd
+    do: talk
+    text: Remember, you can count backwards on your fingers, or draw little circles and cross them out.
+  - who: kinnu_hd
+    do: talk
+    text: Practice a little every day, and subtraction will become very, very easy for you.
+  - who: kinnu_hd
+    do: talk
+    text: Show your answers to your parents, and ask them to give you two more sums to solve.
+  - who: kinnu_hd
+    do: talk
+    text: You all did wonderfully today. Learning is fun when we do it together!
+  - who: kinnu_hd
+    do: talk
+    text: Come back tomorrow, because Kinnu has a brand new lesson waiting just for you.
+  - who: kinnu_hd
+    do: wave
+    start: 9.0
+    end: 14.0
+  - who: kinnu_hd
+    do: talk
+    text: Great job today, friends! If you liked learning with us, please like and subscribe, and tell
+      your friends about Kinnu. See you tomorrow with a new lesson. Bye bye! A Katixo channel.
+  board:
+    title: Practice Time!
+    lines:
+    - text: 1)  4 - 1 = ?
+      at: 0.5
+    - text: 2)  5 - 3 = ?
+      at: 1.9
+    - text: 3)  7 - 2 = ?
+      at: 3.3
+    - text: 4)  6 - 6 = ?
+      at: 4.7
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+  overlays:
+  - type: banner
+    text: Practice Time!
+    start: 0.0
+    end: 4.0
+    color: green

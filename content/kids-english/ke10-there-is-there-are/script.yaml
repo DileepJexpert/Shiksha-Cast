@@ -1,0 +1,80 @@
+chapter: "Kids English 10 - There Is and There Are"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn there is and there are. These words tell that something exists or is present."
+    visual:
+      kind: title
+      title: "There Is / There Are"
+      subtitle: "One thing or many things?"
+      icons: [book, ball, bag]
+  - n: 2
+    narration: "Use there is for one thing. There is a book. There is a ball."
+    visual:
+      kind: rule
+      title: "There is"
+      rule: "Use THERE IS for one thing."
+      bullets:
+        - "There is a book."
+        - "There is a ball."
+        - "There is one cat."
+  - n: 3
+    narration: "Use there are for many things. There are two books. There are many balls."
+    visual:
+      kind: rule
+      title: "There are"
+      rule: "Use THERE ARE for many things."
+      bullets:
+        - "There are two books."
+        - "There are many balls."
+        - "There are five pencils."
+  - n: 4
+    narration: "Compare them. There is one apple. There are many apples."
+    visual:
+      kind: sentences
+      title: "Compare"
+      lines:
+        - "There is one apple."
+        - "There are many apples."
+        - "There is a bag."
+        - "There are three bags."
+  - n: 5
+    narration: "Your turn. Blank a book on the table. Which phrase fits? The answer is there is."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "___ a book on the table."
+      choices: ["There is", "There are"]
+      answer: "There is"
+      hint: "one book"
+  - n: 6
+    narration: "Try again. Blank two pencils in the bag. Which phrase fits? The answer is there are."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "___ two pencils in the bag."
+      choices: ["There is", "There are"]
+      answer: "There are"
+      hint: "two pencils means many"
+  - n: 7
+    narration: "Read aloud: There is a cat. There are three balls. There is one pencil. There are many books."
+    visual:
+      kind: sentences
+      title: "Read Aloud"
+      lines:
+        - "There is a cat."
+        - "There are three balls."
+        - "There is one pencil."
+        - "There are many books."
+  - n: 8
+    narration: "Remember: there is for one, there are for many. Count first, then choose the correct phrase."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "There is = one"
+        - "There are = many"
+        - "Count first"
+        - "Then say the sentence"
+

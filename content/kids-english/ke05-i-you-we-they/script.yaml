@@ -1,0 +1,80 @@
+chapter: "Kids English 05 - I, You, We, They"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn four useful pronouns: I, you, we, and they."
+    visual:
+      kind: title
+      title: "I, You, We, They"
+      subtitle: "Words for people in a sentence"
+      icons: [book, pencil, bag]
+  - n: 2
+    narration: "Use I when you talk about yourself. I am happy. I have a pencil."
+    visual:
+      kind: rule
+      title: "I"
+      rule: "Use I for yourself."
+      bullets:
+        - "I am happy."
+        - "I have a pencil."
+        - "I can read."
+  - n: 3
+    narration: "Use you when you talk to the listener. You are kind. You have a book."
+    visual:
+      kind: rule
+      title: "YOU"
+      rule: "Use YOU for the listener."
+      bullets:
+        - "You are kind."
+        - "You have a book."
+        - "You can write."
+  - n: 4
+    narration: "Use we when you and others are together. We are friends. We play together."
+    visual:
+      kind: rule
+      title: "WE"
+      rule: "Use WE for you plus others."
+      bullets:
+        - "We are friends."
+        - "We play together."
+        - "We learn English."
+  - n: 5
+    narration: "Use they for other people, animals, or things. They are students. They are balls."
+    visual:
+      kind: rule
+      title: "THEY"
+      rule: "Use THEY for many others."
+      bullets:
+        - "They are students."
+        - "They are balls."
+        - "They can run."
+  - n: 6
+    narration: "Your turn. Blank am ready. Which word fits? The answer is I."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "___ am ready."
+      choices: ["I", "You", "They"]
+      answer: "I"
+      hint: "I goes with am"
+  - n: 7
+    narration: "Try again. Blank are my friends. Which word fits? The answer is they."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "___ are my friends."
+      choices: ["I", "He", "They"]
+      answer: "They"
+      hint: "many friends means they"
+  - n: 8
+    narration: "Remember: I means myself, you means listener, we means us together, and they means many others."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "I = myself"
+        - "You = listener"
+        - "We = us together"
+        - "They = many others"
+

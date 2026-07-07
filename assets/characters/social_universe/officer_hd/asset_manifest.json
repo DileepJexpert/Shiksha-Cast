@@ -1,0 +1,15 @@
+{
+  "id": "social_universe/officer_hd",
+  "display_name": "Honest Officer",
+  "universe": "social_universe",
+  "style": "realistic_talking_figure",
+  "source_asset": "assets/source/social_universe/db52d846-35ac-4b50-9890-df1f37d2acce.png",
+  "capabilities": {
+    "talk": true,
+    "walk": false,
+    "gesture": false
+  },
+  "notes": [
+    "Sample talking rig from a complete full-body PNG; not final articulated puppet."
+  ]
+}

@@ -1,0 +1,146 @@
+class: 3
+subject: Maths
+chapter: Subtraction
+topic: What is Subtraction?
+language: English
+episode_id: c3-maths-what-is-subtraction
+fps: 15
+characters:
+  teacher: kinnu_hd
+  student: vibhu_hd
+voices:
+  teacher: af_heart
+  student: am_adam
+background: classroom_full.png
+
+beats:
+  hook:
+    banner: "Let's Learn Subtraction!"
+    say:
+      - "Hello friends! I am Kinnu, and this is my little brother Vibhu. Welcome back to our classroom!"
+      - "Yesterday we learned how to put things together. That was addition."
+      - "But what happens when we take some things away?"
+      - "Imagine you have five toffees, and you give two toffees to your friend. How many are left with you?"
+      - "When we take things away and find how many are left, that is called subtraction!"
+      - "It is a magic word that we use almost every day."
+      - "Today we will learn: what is subtraction? So sit up straight, keep your eyes on the board, and let us begin!"
+
+  concept:
+    board:
+      title: "What is Subtraction?"
+      lines:
+        - "Subtraction means TAKING AWAY"
+        - "We find HOW MANY are LEFT"
+        - "The sign for subtraction is  -"
+        - "We read  -  as  MINUS"
+        - "5 - 2  means  5 minus 2"
+    say:
+      - "Look carefully at our blackboard, friends."
+      - "Subtraction means taking some things away from a group."
+      - "When we subtract, we want to find how many are left behind."
+      - "We do subtraction every single day, without even knowing it."
+      - "When you eat one biscuit from a packet, the packet has fewer biscuits left. That is subtraction!"
+      - "When a bird flies away from a tree, there are fewer birds on the tree. That is subtraction too!"
+      - "We use a special sign for subtraction. It is a small line, like this."
+      - "This is called the minus sign."
+      - "We read the minus sign as the word minus."
+      - "So when we see five minus two, it means we start with five and take two away."
+      - "Addition makes a group bigger. But subtraction makes a group smaller."
+      - "Remember that, and you will never get confused between them!"
+
+  example:
+    props: [apple.png, apple.png, apple.png, apple.png, apple.png]
+    callout: "take 2 away!"
+    board:
+      title: "5 - 2 = ?"
+      lines:
+        - "We start with:  5 apples"
+        - "We take away:  2 apples"
+        - "Count how many are LEFT"
+        - "5 ... take 2 ... 3 left"
+        - "5 - 2 = 3 apples"
+    say:
+      - "Let us try an example with apples, just like before."
+      - "Here we have five red apples on the table. Let us count them slowly. One, two, three, four, five."
+      - "Five apples in all. Now watch carefully what happens."
+      - "Vibhu feels hungry, so he takes away two apples to eat."
+      - "We take the first apple away. And we take the second apple away."
+      - "Now let us count how many apples are still left on the table."
+      - "One, two, three. There are three apples left!"
+      - "So five minus two equals three. Shabaash, Vibhu!"
+      - "Did you see? We started with five, and we ended with a smaller number, three."
+      - "That is exactly what subtraction does. It makes the number smaller."
+      - "Let us say it together one more time. Five apples, take away two apples, leaves three apples."
+      - "Whenever you take something away, just count what is left. That is the secret of subtraction!"
+
+  question:
+    banner: "Your Turn!"
+    say:
+      - "Now it is your turn to think, just like Vibhu is thinking."
+      - "Here is a question for you. Listen carefully."
+      - "You have six colourful balloons in your hand, holding them tight."
+      - "Suddenly, two balloons slip away and fly up into the sky!"
+      - "Can you tell me, what is six minus two?"
+      - "Take a moment. Count it in your head, or use your fingers to help."
+      - "Do not worry if it feels hard. We will do it together, slowly."
+      - "Ready? Let us solve it on the board, step by step."
+
+  solve:
+    callouts: ["start at 6", "count 2 back", "the answer!"]
+    board:
+      title: "6 - 2 = ?"
+      steps:
+        - "Start with 6"
+        - "Jump back 2 steps"
+        - "6 ... 5 ... 4"
+        - "6 - 2 = 4"
+    say:
+      - "Let us solve six minus two, step by step, all together."
+      - "First, we start with the bigger number, six."
+      - "Now, to subtract, we count backwards. We jump back two steps."
+      - "From six we go back one step to five. Then back one more step to four."
+      - "So six minus two equals four. You did it, well done!"
+      - "Let us check our answer. Four balloons are left, and two flew away. Four and two make six. Perfect!"
+      - "Here is a handy trick to always remember."
+      - "For addition we count forward, and for subtraction we count back. Forward to add, back to subtract!"
+      - "Whenever you feel stuck, just use your fingers and count backwards slowly."
+
+  recap:
+    board:
+      title: "Remember!"
+      lines:
+        - "Subtraction = taking away"
+        - "-  means  MINUS"
+        - "We count HOW MANY are LEFT"
+        - "Subtraction = count BACKWARDS"
+        - "The answer gets SMALLER"
+    say:
+      - "Let us quickly remember everything we learned today."
+      - "Subtraction means taking things away from a group."
+      - "The minus sign tells us to subtract, and we read it as minus."
+      - "We count to find how many are left behind."
+      - "And the smart trick is to count backwards when we subtract."
+      - "After subtraction, our answer always becomes smaller than what we started with."
+      - "Addition adds more, and subtraction takes away. They are like two best friends in maths."
+      - "You learned so much today, friends. I am very proud of you!"
+
+  practice:
+    outro: "Great job today, friends! If you liked learning with us, please like and subscribe, and tell your friends about Kinnu. See you tomorrow with a new lesson. Bye bye! A Katixo channel."
+    board:
+      title: "Practice Time!"
+      lines:
+        - "1)  4 - 1 = ?"
+        - "2)  5 - 3 = ?"
+        - "3)  7 - 2 = ?"
+        - "4)  6 - 6 = ?"
+    say:
+      - "Now here is some practice for you to try at home."
+      - "Pause the video and solve these four sums in your notebook."
+      - "Number one, four minus one. Number two, five minus three."
+      - "Number three, seven minus two. And number four, six minus six."
+      - "For the last one, think carefully. If you take away everything, how many are left? That is right, zero!"
+      - "Remember, you can count backwards on your fingers, or draw little circles and cross them out."
+      - "Practice a little every day, and subtraction will become very, very easy for you."
+      - "Show your answers to your parents, and ask them to give you two more sums to solve."
+      - "You all did wonderfully today. Learning is fun when we do it together!"
+      - "Come back tomorrow, because Kinnu has a brand new lesson waiting just for you."

@@ -1,0 +1,39 @@
+title: The Borrowed Book
+story_id: story-the-borrowed-book
+fps: 30
+background: story_living_room.png
+cast:
+  papa: story_father_hd
+  ravi: story_young_hd
+voices:
+  papa: am_michael
+  ravi: am_adam
+
+scenes:
+  - id: s1
+    banner: "The Borrowed Book"
+    place: { papa: left, ravi: right }
+    dialogue:
+      - { who: papa, text: "Ravi beta, come here for a minute." }
+      - { who: ravi, text: "Yes papa, what happened?" }
+      - { who: papa, text: "Last week you borrowed a book from your friend Aman. Have you returned it?" }
+
+  - id: s2
+    dialogue:
+      - { who: ravi, text: "Not yet papa. I forgot all about it. I will return it next week." }
+      - { who: papa, text: "Beta, when we borrow something, we must return it on time." }
+      - { who: papa, text: "Aman trusted you. If you keep his book too long, he may not trust you again." }
+
+  - id: s3
+    dialogue:
+      - { who: ravi, text: "You are right, papa. I did not think about how Aman feels." }
+      - { who: ravi, text: "I will go and return his book today itself." }
+      - { who: papa, text: "Very good, beta. That is the honest thing to do." }
+
+  - id: s4
+    banner: "The next day"
+    dialogue:
+      - { who: ravi, text: "Papa, I returned the book and said sorry to Aman." }
+      - { who: ravi, text: "He was so happy that he lent me another one!" }
+      - { who: papa, text: "See beta? When we are honest and careful, people trust us even more." }
+      - { who: papa, text: "Always return what you borrow, on time. That is the mark of a good person." }

@@ -1,0 +1,51 @@
+title: 'Truthful Tales: Kinnu and the Magic Ball'
+story_id: topic-to-story-sample
+fps: 30
+background: classroom_full.png
+scale: 0.58
+cast:
+  kinnu: kinnu_hd
+  gappu: gappu_hd
+voices:
+  kinnu: af_bella
+  gappu: am_michael
+description: 'Truthful Tales: Kinnu and the Magic Ball - a short animated Kinnu and Gappu learning story
+  made locally with reusable character rigs, lip-sync, gestures, captions and music.'
+scenes:
+- id: s1
+  background: home.png
+  place:
+    kinnu: left
+    gappu: right
+  dialogue:
+  - who: kinnu
+    text: Gappu, look at this!
+    gesture: point
+  - who: gappu
+    text: Why did it stop?
+    gesture: think
+  banner: 'Truthful Tales: Kinnu and the Magic Ball'
+- id: s2
+  background: home.png
+  place:
+    kinnu: left
+    gappu: right
+  dialogue:
+  - who: kinnu
+    text: What if I say the ball stopped by itself?
+    gesture: point
+  - who: gappu
+    text: But that's not true, is it?
+    gesture: think
+- id: s3
+  background: playground.png
+  place:
+    kinnu: left
+    gappu: right
+  dialogue:
+  - who: kinnu
+    text: I should just say I kicked it.
+    gesture: point
+  - who: gappu
+    text: That's better!
+    gesture: jump

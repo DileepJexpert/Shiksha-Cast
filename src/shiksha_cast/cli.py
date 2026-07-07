@@ -363,16 +363,18 @@ def new_story(
     model: Optional[str] = typer.Option(None, "--model", help="Ollama model override"),
     audience: str = typer.Option("kids age 5-10", "--audience", help="Target audience"),
     style: str = typer.Option(
-        "Hinglish, funny and warm, like a playful science cartoon",
+        "Simple clear English, funny and warm, like a playful learning cartoon",
         "--style",
         help="Story/directing style",
     ),
+    build: bool = typer.Option(False, "--build", help="Compile and render the story MP4 immediately"),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output MP4 path when --build is used"),
     root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
 ) -> None:
-    """Generate a two-character story plan with local Ollama.
+    """Generate a two-character Kinnu/Gappu story with local Ollama.
 
-    Writes both story.yaml (future multi-character animator) and script.yaml
-    (current TTS/build-compatible dialogue with F:/M: speaker tags).
+    Writes story_plan.yaml (readable AI plan), story.yaml (renderer-ready
+    animation spec), and script.yaml (legacy slide-compatible dialogue).
     """
     from shiksha_cast.config import load_channel_config
     from shiksha_cast.story import StoryUnavailable, write_story_episode
@@ -383,7 +385,7 @@ def new_story(
     rprint(f'[bold]Generating local story for:[/bold] "{topic}"')
     rprint(f"[dim]via Ollama ({model or cfg.generator.model}); no cloud API is used.[/dim]")
     try:
-        ep_dir, story, script = write_story_episode(
+        ep_dir, story, _script, render_story = write_story_episode(
             topic,
             project_root,
             cfg.generator,
@@ -400,13 +402,21 @@ def new_story(
 
     ep_id = ep_dir.name
     rprint(f"[bold green]Created:[/bold green] {ep_dir}")
+    rprint(f"  plan:   {ep_dir / 'story_plan.yaml'}")
     rprint(f"  story:  {ep_dir / 'story.yaml'}")
     rprint(f"  script: {ep_dir / 'script.yaml'}")
     rprint(f"  Title:  {story.get('chapter')}")
-    rprint(f"  Scenes: {len(story.get('scenes', []))}")
-    rprint(f"[dim]Current build path:[/dim] python -m shiksha_cast ai-build -c {ep_id}")
-    rprint(f"[dim]Talking-host path:[/dim] python scripts/build_talking_episode.py {ep_id}")
-    rprint("[dim]Future path:[/dim] multi-character renderer will consume story.yaml directly.")
+    rprint(f"  Scenes: {len(render_story.get('scenes', []))}")
+    rprint(f"[dim]Render with:[/dim] python -m shiksha_cast story-build -c {ep_id}")
+
+    if build:
+        from shiksha_cast.cartoon import story as story_compiler
+        from shiksha_cast.cartoon.build import build_episode
+
+        info = story_compiler.generate(ep_dir / "story.yaml")
+        rprint(f"[bold]Generated[/bold] {info['n_scenes']} scenes -> {info['scenes_path']}")
+        p = build_episode(str(info["scenes_path"]), project_root, out=str(out) if out else None)
+        rprint(f"[bold green]Story video ready:[/bold green] {p}")
 
 
 @app.command()
@@ -499,6 +509,77 @@ def cartoon_build_3d(
     rprint(f"[bold]Building 3D cartoon {chapter}[/bold] from {matches[0]}")
     p = build_episode_3d(matches[0], project_root, out=str(out) if out else None)
     rprint(f"[bold green]3D cartoon ready:[/bold green] {p}")
+
+
+@app.command(name="tutorial-build")
+def tutorial_build(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Tutorial id (folder with tutorial.yaml)"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output MP4 path"),
+    scenes_only: bool = typer.Option(False, "--scenes-only", help="Only generate scenes.yaml + metadata, do not render"),
+) -> None:
+    """Generate a 7-beat lesson (scenes.yaml + YouTube metadata) from a compact
+    tutorial.yaml, then render it with the cutout-cartoon pipeline. This is the
+    Kinnu Learning Academy factory: one fixed teaching format, reusable classroom
+    + blackboard, per-subject props."""
+    import glob
+
+    from shiksha_cast.cartoon import tutorial
+    from shiksha_cast.cartoon.build import build_episode
+
+    project_root = root or _find_project_root()
+    matches = glob.glob(str(project_root / "content" / "**" / chapter / "tutorial.yaml"), recursive=True)
+    if not matches:
+        raise typer.BadParameter(f"No tutorial.yaml found for tutorial '{chapter}' under content/.")
+    info = tutorial.generate(matches[0])
+    rprint(f"[bold]Generated[/bold] {info['n_scenes']} scenes -> {info['scenes_path']}")
+    rprint(f"[dim]metadata:[/dim] {info['metadata_path']}")
+    if scenes_only:
+        rprint(f"[dim]Render with:[/dim] python -m shiksha_cast cartoon-build -c {chapter}")
+        return
+    p = build_episode(str(info["scenes_path"]), project_root, out=str(out) if out else None)
+    rprint(f"[bold green]Tutorial ready:[/bold green] {p}")
+
+
+@app.command(name="story-build")
+def story_build(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Story id (folder with story.yaml)"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output MP4 path"),
+    scenes_only: bool = typer.Option(False, "--scenes-only", help="Only generate scenes.yaml + metadata, do not render"),
+) -> None:
+    """Compile a human-authored multi-character story.yaml into scenes.yaml (+ YouTube
+    metadata) and render it with the cutout-cartoon pipeline. This is the STORY UNIVERSE
+    factory (semi-realistic adult humans; moral/funny/normal stories), separate from the
+    Kinnu kids cast."""
+    import glob
+
+    from shiksha_cast.cartoon import story
+    from shiksha_cast.cartoon.build import build_episode
+
+    project_root = root or _find_project_root()
+    matches = glob.glob(str(project_root / "content" / "**" / chapter / "story.yaml"), recursive=True)
+    if not matches:
+        raise typer.BadParameter(f"No story.yaml found for story '{chapter}' under content/.")
+    info = story.generate(matches[0])
+    rprint(f"[bold]Generated[/bold] {info['n_scenes']} scenes -> {info['scenes_path']}")
+    rprint(f"[dim]metadata:[/dim] {info['metadata_path']}")
+    if scenes_only:
+        rprint(f"[dim]Render with:[/dim] python -m shiksha_cast story-build -c {chapter}")
+        return
+    p = build_episode(str(info["scenes_path"]), project_root, out=str(out) if out else None)
+    rprint(f"[bold green]Story ready:[/bold green] {p}")
+
+
+@app.command(name="social-build")
+def social_build(
+    chapter: str = typer.Option(..., "--chapter", "-c", help="Social story id (folder with story.yaml)"),
+    root: Optional[Path] = typer.Option(None, "--root", "-r", help="Project root directory"),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output MP4 path"),
+    scenes_only: bool = typer.Option(False, "--scenes-only", help="Only generate scenes.yaml + metadata, do not render"),
+) -> None:
+    """Alias for story-build when working on the realistic/social-awareness universe."""
+    story_build(chapter=chapter, root=root, out=out, scenes_only=scenes_only)
 
 
 def main() -> None:

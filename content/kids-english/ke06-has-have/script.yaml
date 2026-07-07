@@ -1,0 +1,80 @@
+chapter: "Kids English 06 - Has and Have"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn has and have. These words tell what someone owns or carries."
+    visual:
+      kind: title
+      title: "Has and Have"
+      subtitle: "Words for owning something"
+      icons: [book, pencil, bag]
+  - n: 2
+    narration: "Use have with I, you, we, and they. I have a book. We have bags."
+    visual:
+      kind: rule
+      title: "Use HAVE"
+      rule: "I / You / We / They + have"
+      bullets:
+        - "I have a book."
+        - "You have a pencil."
+        - "We have bags."
+        - "They have balls."
+  - n: 3
+    narration: "Use has with he, she, and it. He has a bag. She has a pencil. It has a tail."
+    visual:
+      kind: rule
+      title: "Use HAS"
+      rule: "He / She / It + has"
+      bullets:
+        - "He has a bag."
+        - "She has a pencil."
+        - "It has a tail."
+  - n: 4
+    narration: "Look and say: I have a book, she has a pencil, they have balls."
+    visual:
+      kind: sentences
+      title: "Look and Say"
+      lines:
+        - "I have a book."
+        - "She has a pencil."
+        - "They have balls."
+  - n: 5
+    narration: "Your turn. She blank a bag. Which word fits? The answer is has."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "She ___ a bag."
+      choices: ["has", "have"]
+      answer: "has"
+      hint: "She goes with has"
+  - n: 6
+    narration: "Try again. They blank books. Which word fits? The answer is have."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "They ___ books."
+      choices: ["has", "have"]
+      answer: "have"
+      hint: "They goes with have"
+  - n: 7
+    narration: "Read aloud: I have a pencil. He has a ball. We have books. It has wheels."
+    visual:
+      kind: sentences
+      title: "Read Aloud"
+      lines:
+        - "I have a pencil."
+        - "He has a ball."
+        - "We have books."
+        - "It has wheels."
+  - n: 8
+    narration: "Remember: I, you, we, and they use have. He, she, and it use has."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "I / You / We / They = have"
+        - "He / She / It = has"
+        - "Has and have show owning"
+        - "Read the subject first"
+

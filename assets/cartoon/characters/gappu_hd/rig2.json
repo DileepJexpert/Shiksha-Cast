@@ -1,0 +1,10 @@
+{
+  "type": "skeletal",
+  "scale": 1.0,
+  "pivot": {
+    "head": [
+      0.5,
+      0.95
+    ]
+  }
+}

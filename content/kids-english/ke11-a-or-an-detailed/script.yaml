@@ -1,0 +1,161 @@
+chapter: "Kinnu English 11 - A or An Detailed Class"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Hello, my little friends. I am Kinnu. Today we will learn a small English rule: A or An. Do not worry. We will go slowly, and we will practise together."
+    min_slide_s: 15
+    visual:
+      kind: title
+      title: "Kinnu's English Class"
+      subtitle: "Today: A or An?"
+      icons: [star, apple, ball, umbrella]
+
+  - n: 2
+    narration: "A and An are small words. We use them before one thing. Listen: one ball, a ball. One apple, an apple. The small word comes before the naming word."
+    min_slide_s: 18
+    visual:
+      kind: examples
+      title: "A or An?"
+      items:
+        - {article: "a", word: "ball", icon: "ball"}
+        - {article: "an", word: "apple", icon: "apple"}
+
+  - n: 3
+    narration: "Look at these five letters. A, E, I, O, U. These are vowel letters. Say them slowly with Kinnu. A. E. I. O. U."
+    min_slide_s: 18
+    visual:
+      kind: rule
+      title: "Vowel Letters"
+      rule: "A  E  I  O  U"
+      bullets:
+        - "Say them slowly."
+        - "A, E, I, O, U"
+        - "These are vowel letters."
+
+  - n: 4
+    narration: "Beginner rule number one. Use An before A, E, I, O, U. Say it with me: An before vowel letters. Again: An before A, E, I, O, U."
+    min_slide_s: 19
+    visual:
+      kind: rule
+      title: "Rule 1"
+      rule: "AN before A E I O U"
+      bullets:
+        - "AN + apple"
+        - "AN + egg"
+        - "AN + umbrella"
+
+  - n: 5
+    narration: "Beginner rule number two. Use A before other letters. B, C, D, M, K, and S use A in our examples. Say it with Kinnu: A before other letters."
+    min_slide_s: 19
+    visual:
+      kind: rule
+      title: "Rule 2"
+      rule: "A before other letters"
+      bullets:
+        - "A + ball"
+        - "A + cat"
+        - "A + dog"
+
+  - n: 6
+    narration: "Now let us practise An. Apple starts with A. A is a vowel letter. So we say: an apple. Repeat after Kinnu: an apple. Very good."
+    min_slide_s: 18
+    visual:
+      kind: examples
+      title: "Say It"
+      items:
+        - {article: "an", word: "apple", icon: "apple"}
+
+  - n: 7
+    narration: "Egg starts with E. E is a vowel letter. So we say: an egg. Not a egg. Say the correct answer slowly: an egg."
+    min_slide_s: 18
+    visual:
+      kind: examples
+      title: "Say It"
+      items:
+        - {article: "an", word: "egg", icon: "egg"}
+
+  - n: 8
+    narration: "Ice cream starts with I. I is a vowel letter. So we say: an ice cream. Listen again: an ice cream. Now you say it."
+    min_slide_s: 18
+    visual:
+      kind: examples
+      title: "Say It"
+      items:
+        - {article: "an", word: "ice cream", icon: "ice cream"}
+
+  - n: 9
+    narration: "Let us repeat our An examples. An apple. An egg. An ice cream. An orange. An umbrella. When the word starts with A, E, I, O, or U, we use An in this beginner rule."
+    min_slide_s: 24
+    visual:
+      kind: examples
+      title: "AN Examples"
+      items:
+        - {article: "an", word: "apple", icon: "apple"}
+        - {article: "an", word: "egg", icon: "egg"}
+        - {article: "an", word: "ice cream", icon: "ice cream"}
+        - {article: "an", word: "umbrella", icon: "umbrella"}
+
+  - n: 10
+    narration: "Now let us practise A. Ball starts with B. B is not one of A, E, I, O, U. So we say: a ball. Repeat: a ball."
+    min_slide_s: 18
+    visual:
+      kind: examples
+      title: "Say It"
+      items:
+        - {article: "a", word: "ball", icon: "ball"}
+
+  - n: 11
+    narration: "Cat starts with C, so we say: a cat. Dog starts with D, so we say: a dog. Listen carefully: a cat, a dog. Now repeat."
+    min_slide_s: 19
+    visual:
+      kind: examples
+      title: "A Examples"
+      items:
+        - {article: "a", word: "cat", icon: "cat"}
+        - {article: "a", word: "dog", icon: "dog"}
+
+  - n: 12
+    narration: "Mango starts with M, so we say: a mango. Kite starts with K, so we say: a kite. School starts with S, so we say: a school. You are doing well."
+    min_slide_s: 22
+    visual:
+      kind: examples
+      title: "More A Examples"
+      items:
+        - {article: "a", word: "mango", icon: "mango"}
+        - {article: "a", word: "kite", icon: "kite"}
+        - {article: "a", word: "school", icon: "school"}
+
+  - n: 13
+    narration: "Quiz time. Look at the word apple. Apple starts with A. A is a vowel letter. Should we say a apple, or an apple? Think. The answer is: an apple."
+    min_slide_s: 26
+    visual:
+      kind: quiz
+      title: "Quiz Time"
+      prompt: "___ apple"
+      choices: ["a", "an"]
+      answer: "an"
+      hint: "apple starts with A"
+
+  - n: 14
+    narration: "Let us try two more. Cat starts with C. We say: a cat. Umbrella starts with U. We say: an umbrella. Read both with Kinnu: a cat, an umbrella."
+    min_slide_s: 25
+    visual:
+      kind: quiz
+      title: "Quick Practice"
+      prompt: "___ cat    /    ___ umbrella"
+      choices: ["a cat", "an umbrella"]
+      answer: "a cat"
+      hint: "C uses A. U uses AN."
+
+  - n: 15
+    narration: "Great job, my friends. Remember the beginner rule: An before A, E, I, O, U. A before other letters. Today we learned an apple, an egg, a ball, and a cat. Bye-bye from Kinnu. Keep practising."
+    min_slide_s: 27
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "AN before A E I O U"
+        - "A before other letters"
+        - "an apple, an egg"
+        - "a ball, a cat"

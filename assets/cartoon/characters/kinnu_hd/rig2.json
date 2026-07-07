@@ -1,1 +1,10 @@
-{"type":"skeletal","scale":1.0}
+{
+  "type": "skeletal",
+  "scale": 1.0,
+  "pivot": {
+    "head": [0.387, 0.95]
+  },
+  "joint_caps": {
+    "knee": false
+  }
+}

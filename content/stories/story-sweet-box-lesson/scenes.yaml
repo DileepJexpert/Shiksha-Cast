@@ -1,0 +1,122 @@
+episode: story-sweet-box-lesson
+title: The Sweet Box Lesson
+fps: 30
+cast:
+  story_father_v2_hd: am_michael
+  story_mother_hd: af_heart
+  story_grandmother_hd: af_bella
+scenes:
+- id: s1
+  background: story_living_room.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: story_mother_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.68
+    facing: left
+  - id: story_father_v2_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.68
+    facing: right
+  - id: story_grandmother_hd
+    pos:
+    - 0.5
+    - 0.99
+    scale: 0.68
+    facing: right
+  actions:
+  - who: story_mother_hd
+    do: talk
+    text: I kept a box of sweets here for the guests. Where did it go?
+  - who: story_father_v2_hd
+    do: talk
+    text: Maybe someone moved it. Let us check calmly.
+  - who: story_grandmother_hd
+    do: talk
+    text: Before blaming anyone, we should ask with love.
+  overlays:
+  - type: banner
+    text: The Sweet Box Lesson
+    start: 0.0
+    end: 3.5
+    color: yellow
+- id: s2
+  background: story_living_room.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: story_mother_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.68
+    facing: left
+  - id: story_father_v2_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.68
+    facing: right
+  - id: story_grandmother_hd
+    pos:
+    - 0.5
+    - 0.99
+    scale: 0.68
+    facing: right
+  actions:
+  - who: story_mother_hd
+    do: talk
+    text: I was worried, but you are right, Maaji.
+  - who: story_father_v2_hd
+    do: talk
+    text: Sometimes small mistakes become big fights when we speak angrily.
+  - who: story_grandmother_hd
+    do: talk
+    text: Sweet words are more important than sweet food.
+- id: s3
+  background: story_living_room.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: story_mother_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.68
+    facing: left
+  - id: story_father_v2_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.68
+    facing: right
+  - id: story_grandmother_hd
+    pos:
+    - 0.5
+    - 0.99
+    scale: 0.68
+    facing: right
+  actions:
+  - who: story_mother_hd
+    do: talk
+    text: Oh! I remember now. I kept the sweets in the kitchen cupboard.
+  - who: story_father_v2_hd
+    do: talk
+    text: Good thing we did not blame anyone.
+  - who: story_grandmother_hd
+    do: talk
+    text: Patience saves relationships. That is the real sweetness of a family.
+  overlays:
+  - type: banner
+    text: A few minutes later
+    start: 0.0
+    end: 3.5
+    color: yellow

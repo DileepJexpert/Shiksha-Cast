@@ -1,0 +1,81 @@
+chapter: "Kids English 08 - Was and Were"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn was and were. These words talk about the past."
+    visual:
+      kind: title
+      title: "Was and Were"
+      subtitle: "Helping words for the past"
+      icons: [book, cat, ball]
+  - n: 2
+    narration: "Use was with I, he, she, and it. I was happy. She was at school."
+    visual:
+      kind: rule
+      title: "Use WAS"
+      rule: "I / He / She / It + was"
+      bullets:
+        - "I was happy."
+        - "He was tired."
+        - "She was at school."
+        - "It was red."
+  - n: 3
+    narration: "Use were with you, we, and they. You were kind. We were ready. They were happy."
+    visual:
+      kind: rule
+      title: "Use WERE"
+      rule: "You / We / They + were"
+      bullets:
+        - "You were kind."
+        - "We were ready."
+        - "They were happy."
+  - n: 4
+    narration: "Look and say: I was small. We were friends. It was cold. They were ready."
+    visual:
+      kind: sentences
+      title: "Look and Say"
+      lines:
+        - "I was small."
+        - "We were friends."
+        - "It was cold."
+        - "They were ready."
+  - n: 5
+    narration: "Your turn. She blank happy yesterday. Which word fits? The answer is was."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "She ___ happy yesterday."
+      choices: ["was", "were"]
+      answer: "was"
+      hint: "She goes with was"
+  - n: 6
+    narration: "Try again. They blank at school. Which word fits? The answer is were."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "They ___ at school."
+      choices: ["was", "were"]
+      answer: "were"
+      hint: "They goes with were"
+  - n: 7
+    narration: "Read aloud: I was ready. You were late. It was sunny. We were happy."
+    visual:
+      kind: sentences
+      title: "Read Aloud"
+      lines:
+        - "I was ready."
+        - "You were late."
+        - "It was sunny."
+        - "We were happy."
+  - n: 8
+    narration: "Remember: was and were talk about the past. I, he, she, and it use was. You, we, and they use were."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "WAS / WERE = past"
+        - "I / He / She / It = was"
+        - "You / We / They = were"
+        - "Look at the subject first"
+

@@ -113,6 +113,7 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
         music_db=cfg.music.duck_db,
         sample_rate=cfg.voice.sample_rate,
         motion=cfg.imagegen.effective_motion(),
+        min_slide_s_values=[s.min_slide_s for s in script.slides],
     )
     print(f"[PROGRESS] Video assembled: {assemble_result.slide_count} clips, {assemble_result.total_duration:.1f}s total")
 
@@ -129,6 +130,7 @@ def run_build(chapter: str, project_root: Path, force: bool = False) -> BuildRes
         pad_after_s=cfg.timing.pad_after_ms / 1000,
         min_slide_s=cfg.timing.min_slide_s,
         start_offset_s=intro_offset,
+        min_slide_s_values=[s.min_slide_s for s in script.slides],
     )
     print(f"[PROGRESS] Captions written to {srt_path}")
 

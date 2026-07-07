@@ -1,0 +1,64 @@
+episode: kinnu-puppy-movement-demo
+title: Moti Puppy Movement Demo
+fps: 15
+cast:
+  moti_hd: am_michael
+scenes:
+  - id: hello_bark
+    background: playground.png
+    transition: { in: 0.2, out: 0.2 }
+    characters:
+      - { id: moti_hd, pos: [0.38, 0.99], scale: 0.74, facing: right }
+    overlays:
+      - { type: banner, text: "Moti puppy rig demo", color: yellow, start: 0.0, end: 4.0 }
+      - { type: label, text: "bark + tail wag", pos: [0.38, 0.24], color: white, start: 0.5, end: 4.5 }
+    actions:
+      - { who: moti_hd, do: smile, start: 0.0, end: 1.0 }
+      - { who: moti_hd, do: bark, start: 1.0, end: 4.5 }
+
+  - id: walk
+    background: playground.png
+    transition: { in: 0.2, out: 0.2 }
+    characters:
+      - { id: moti_hd, pos: [0.18, 0.99], scale: 0.74, facing: right }
+    overlays:
+      - { type: label, text: "walk cycle", pos: [0.50, 0.18], color: yellow, start: 0.0, end: 4.6 }
+    actions:
+      - { who: moti_hd, do: walkto, to: 0.56, start: 0.2, end: 4.4 }
+      - { who: moti_hd, do: smile, start: 0.0, end: 4.6 }
+
+  - id: run
+    background: garden.png
+    transition: { in: 0.2, out: 0.2 }
+    characters:
+      - { id: moti_hd, pos: [0.18, 0.99], scale: 0.74, facing: right }
+    overlays:
+      - { type: label, text: "run cycle", pos: [0.50, 0.18], color: yellow, start: 0.0, end: 3.6 }
+    actions:
+      - { who: moti_hd, do: runto, to: 0.82, start: 0.1, end: 3.4 }
+      - { who: moti_hd, do: bark, start: 0.4, end: 3.2 }
+
+  - id: jump
+    background: garden.png
+    transition: { in: 0.2, out: 0.2 }
+    characters:
+      - { id: moti_hd, pos: [0.50, 0.99], scale: 0.74, facing: right }
+    overlays:
+      - { type: label, text: "jump + leg tuck", pos: [0.50, 0.18], color: yellow, start: 0.0, end: 3.4 }
+    actions:
+      - { who: moti_hd, do: jump, start: 0.0, end: 1.4 }
+      - { who: moti_hd, do: jump, start: 1.5, end: 2.9 }
+      - { who: moti_hd, do: smile, start: 0.0, end: 3.4 }
+
+  - id: expressions
+    background: home.png
+    transition: { in: 0.2, out: 0.4 }
+    characters:
+      - { id: moti_hd, pos: [0.50, 0.99], scale: 0.74, facing: right }
+    overlays:
+      - { type: label, text: "look back, growl, happy bark", pos: [0.50, 0.18], color: yellow, start: 0.0, end: 6.0 }
+    actions:
+      - { who: moti_hd, do: look_back, start: 0.2, end: 1.8 }
+      - { who: moti_hd, do: growl, start: 1.8, end: 3.1 }
+      - { who: moti_hd, do: look_straight, start: 3.1, end: 3.6 }
+      - { who: moti_hd, do: bark, start: 3.6, end: 6.0 }

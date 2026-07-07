@@ -1,0 +1,65 @@
+episode: kinnu-buddy-talk-demo
+title: Kinnu and Buddy — Talking Mouth Demo
+fps: 30
+cast:
+  kinnu: af_heart
+  buddy_hd: am_michael
+scenes:
+  - id: s1_intro
+    background: garden.png
+    transition: { in: 0.4, out: 0.3 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.99], scale: 0.92, facing: right }
+      - { id: buddy_hd, pos: [0.66, 0.99], scale: 0.70, facing: left }
+    overlays:
+      - { type: banner, text: "Buddy can talk now!", color: yellow, start: 0.0, end: 3.2 }
+    actions:
+      - { who: kinnu, do: wave, start: 0.2, end: 1.6 }
+      - { who: kinnu, do: talk, start: 0.3, text: "Hi friends! This is my puppy Buddy. Say hello, Buddy!" }
+      - { who: buddy_hd, do: smile, start: 0.0, end: 6.0 }
+
+  - id: s2_buddy_talks
+    background: garden.png
+    transition: { in: 0.3, out: 0.3 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.99], scale: 0.92, facing: right }
+      - { id: buddy_hd, pos: [0.66, 0.99], scale: 0.70, facing: left }
+    overlays:
+      - { type: label, text: "watch the mouth open and close", pos: [0.50, 0.16], color: white, start: 0.4, end: 6.5 }
+    actions:
+      - { who: buddy_hd, do: talk, start: 0.2, text: "Hello everyone! I am Buddy, and I love to play and learn with Kinnu!" }
+      - { who: kinnu, do: nod, start: 0.4, end: 2.0 }
+
+  - id: s3_bark
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    characters:
+      - { id: buddy_hd, pos: [0.50, 0.99], scale: 0.78, facing: right }
+    overlays:
+      - { type: label, text: "bark + tail wag", pos: [0.50, 0.16], color: yellow, start: 0.0, end: 4.0 }
+    actions:
+      - { who: buddy_hd, do: bark, start: 0.2, end: 4.0 }
+
+  - id: s4_growl
+    background: home.png
+    transition: { in: 0.3, out: 0.3 }
+    characters:
+      - { id: buddy_hd, pos: [0.50, 0.99], scale: 0.78, facing: right }
+    overlays:
+      - { type: label, text: "growl... guurr", pos: [0.50, 0.16], color: pink, start: 0.0, end: 3.6 }
+    actions:
+      - { who: buddy_hd, do: growl, start: 0.0, end: 2.0 }
+      - { who: buddy_hd, do: bark, start: 2.0, end: 3.6 }
+
+  - id: s5_outro
+    background: garden.png
+    transition: { in: 0.3, out: 0.5 }
+    characters:
+      - { id: kinnu, pos: [0.30, 0.99], scale: 0.92, facing: right }
+      - { id: buddy_hd, pos: [0.66, 0.99], scale: 0.70, facing: left }
+    overlays:
+      - { type: banner, text: "See you next time!", color: yellow, start: 0.0, end: 4.0 }
+    actions:
+      - { who: kinnu, do: talk, start: 0.3, text: "Good boy, Buddy! See you next time, friends!" }
+      - { who: buddy_hd, do: smile, start: 0.0, end: 2.4 }
+      - { who: buddy_hd, do: bark, start: 2.4, end: 4.5 }

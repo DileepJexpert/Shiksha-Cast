@@ -105,7 +105,7 @@ def _get_provider(cfg: ChannelConfig) -> TTSProvider:
         voice = cfg.voice.model
         if not voice or "/" in voice:
             voice = "af_heart"
-        return KokoroTTSProvider(voice=voice)
+        return KokoroTTSProvider(voice=voice, speed=cfg.voice.speed)
     elif name == "veena":
         from shiksha_cast.tts.veena import VeenaTTSProvider
 
@@ -157,7 +157,13 @@ def _speak_slides(provider, script, cfg, audio_dir, manifest, result, force) -> 
         slide_voice = getattr(slide, "voice", None)
         # Per-slide voice is appended to the key ONLY when set, so slides without it
         # keep the same hash (backward compatible with existing caches).
-        key_parts = [slide.narration, voice_desc, provider.name(), str(cfg.voice.sample_rate)]
+        key_parts = [
+            slide.narration,
+            voice_desc,
+            provider.name(),
+            str(cfg.voice.sample_rate),
+            f"speed={cfg.voice.speed:.3f}",
+        ]
         if slide_voice:
             key_parts.append(slide_voice)
         cache_key = content_hash(*key_parts)

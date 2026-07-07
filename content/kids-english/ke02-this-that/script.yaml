@@ -1,0 +1,78 @@
+chapter: "Kids English 02 - This and That"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn two useful words: this and that. They help us talk about things near and far."
+    visual:
+      kind: title
+      title: "This and That"
+      subtitle: "Near or far?"
+      icons: [near, far]
+  - n: 2
+    narration: "Use this for one thing that is near you. This ball is near me."
+    visual:
+      kind: rule
+      title: "THIS = Near"
+      rule: "Use THIS for one thing near you."
+      bullets:
+        - "This ball is near."
+        - "This book is in my hand."
+  - n: 3
+    narration: "Use that for one thing that is far from you. That bag is far away."
+    visual:
+      kind: rule
+      title: "THAT = Far"
+      rule: "Use THAT for one thing far from you."
+      bullets:
+        - "That bag is far."
+        - "That tree is over there."
+  - n: 4
+    narration: "Compare them. This means near. That means far. Point and say the sentence."
+    visual:
+      kind: contrast
+      title: "Compare"
+      left_title: "THIS"
+      left_icon: "near"
+      left_text: "near me"
+      right_title: "THAT"
+      right_icon: "far"
+      right_text: "far from me"
+  - n: 5
+    narration: "Your turn. The book is near. Should we say this book or that book? The answer is this book."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "The book is near: ___ book"
+      choices: ["This", "That"]
+      answer: "This"
+      hint: "Near means this"
+  - n: 6
+    narration: "Now the schoolbag is far. Should we say this bag or that bag? The answer is that bag."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "The bag is far: ___ bag"
+      choices: ["This", "That"]
+      answer: "That"
+      hint: "Far means that"
+  - n: 7
+    narration: "Read aloud: This is my pencil. That is your bag. This is a book. That is a tree."
+    visual:
+      kind: sentences
+      title: "Read Aloud"
+      lines:
+        - "This is my pencil."
+        - "That is your bag."
+        - "This is a book."
+        - "That is a tree."
+  - n: 8
+    narration: "Remember: this is for near, that is for far. Point, look, and choose the right word."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "THIS = near"
+        - "THAT = far"
+        - "Use them for one thing"
+        - "Point and say it aloud"

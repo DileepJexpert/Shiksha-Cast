@@ -1,0 +1,79 @@
+chapter: "Kids English 04 - He, She, It"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn three small pronouns: he, she, and it. These words help us talk about one person, animal, or thing."
+    visual:
+      kind: title
+      title: "He, She, It"
+      subtitle: "Small words for one person or thing"
+      icons: [boy, girl, ball]
+  - n: 2
+    narration: "Use he for one boy or one man. He is happy. He is my brother."
+    visual:
+      kind: rule
+      title: "HE"
+      rule: "Use HE for one boy or man."
+      bullets:
+        - "He is happy."
+        - "He is my brother."
+        - "He has a book."
+  - n: 3
+    narration: "Use she for one girl or one woman. She is kind. She is my sister."
+    visual:
+      kind: rule
+      title: "SHE"
+      rule: "Use SHE for one girl or woman."
+      bullets:
+        - "She is kind."
+        - "She is my sister."
+        - "She has a pencil."
+  - n: 4
+    narration: "Use it for one animal or one thing. It is a cat. It is a ball."
+    visual:
+      kind: rule
+      title: "IT"
+      rule: "Use IT for one animal or thing."
+      bullets:
+        - "It is a cat."
+        - "It is a ball."
+        - "It is red."
+  - n: 5
+    narration: "Look and say: he, she, it. He for a boy, she for a girl, and it for a thing."
+    visual:
+      kind: examples
+      title: "Look and Say"
+      items:
+        - {article: "he", word: "boy", icon: "boy"}
+        - {article: "she", word: "girl", icon: "girl"}
+        - {article: "it", word: "ball", icon: "ball"}
+  - n: 6
+    narration: "Your turn. Blank is my sister. Which word fits? The answer is she."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "___ is my sister."
+      choices: ["He", "She", "It"]
+      answer: "She"
+      hint: "sister means she"
+  - n: 7
+    narration: "Try again. Blank is a red ball. Which word fits? The answer is it."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "___ is a red ball."
+      choices: ["He", "She", "It"]
+      answer: "It"
+      hint: "ball is a thing"
+  - n: 8
+    narration: "Remember: he for a boy or man, she for a girl or woman, and it for an animal or thing."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "HE = one boy or man"
+        - "SHE = one girl or woman"
+        - "IT = one animal or thing"
+        - "Use these instead of names"
+

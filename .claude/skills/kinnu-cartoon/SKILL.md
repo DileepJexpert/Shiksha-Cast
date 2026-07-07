@@ -91,8 +91,36 @@ A finished episode should have, not just "character on a background":
   are gitignored too — never commit them.
 - Commit/push **only when asked**. End commits with the Co-Authored-By trailer.
 
+## Tutorial factory (Kinnu Learning Academy) — `tutorial-build`
+- `python -m shiksha_cast tutorial-build -c <id>` reads `content/**/<id>/tutorial.yaml`
+  (a compact, curriculum-grounded lesson spec), generates `scenes.yaml` +
+  `UPLOAD_METADATA.md` via `cartoon/tutorial.py`, then renders with `cartoon-build`.
+  `--scenes-only` to generate without rendering.
+- Fixed **7-beat format** → scenes: hook, concept, example, question, solve, recap,
+  practice. Lesson CONTENT is human-authored (later: Ollama from NCERT + review);
+  `tutorial.py` owns only the STRUCTURE (board reveals, banners/callouts, props,
+  teacher/student actions). Class-wise taxonomy: `content/<ch>/tutorials/classN/<subject>/<chapter>/<id>/`.
+- First pack: `c3-maths-what-is-addition` (Class 3 Maths). Duration gotcha applies —
+  it rendered ~2.5 min from ~28 lines; add lines/examples to hit 6–10 min.
+
+## In-scene teaching graphics — `cartoon/overlay.py` (DONE, was backlog)
+- `draw_board`: chalkboard with a title + lines that reveal over time (`at:` secs);
+  world-space (behind characters, moves with camera). `draw_overlays`: timed UI
+  `banner`/`callout`/`label` with fade. Scenes accept `board:` and `overlays:` keys.
+- Keep callouts in the **left gap** (x≈0.29) so they don't cover board text; put prop
+  counters in a clear band (y≈0.11) above a slightly-lowered board.
+
+## Castmates (DONE)
+- `gappu_hd` (boy, green/blue) + `vibhu_hd` (little brother, bigger head, light-blue,
+  smaller `scale`) reuse Kinnu's exact skeleton geometry. Regenerate via
+  `scripts/make_kinnu_castmates.py`. Kinnu is never modified.
+
 ## Backlog / open
-- Add the **overlay/graphics layer** to `build.py` as a first-class scene feature.
+- Hindi/Hinglish tutorial track: route `language:` to **Veena** (`.venv-veena`) TTS;
+  verify Devanagari/Hinglish quality before building a Hindi factory.
+- NCERT-PDF → local Ollama lesson draft → **human review** → `tutorial.yaml` (don't
+  auto-render unreviewed scripts; they break the girl/cast/canon rules).
+- Subject styles beyond Maths (English phonics, Hindi अक्षर cards, EVS diagrams, GK maps).
 - Finish the IP-Adapter stills factory (SDXL base) → thumbnails + nicer cutout parts.
 - User will export the final VRoid Kinnu VRM → then re-render the real-3D track.
 

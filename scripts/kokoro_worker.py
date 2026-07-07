@@ -5,7 +5,7 @@ the main env's Python. We run it out-of-process over a one-JSON-per-line protoco
 like the Veena worker.
 
 Protocol (UTF-8):
-  stdin : {"text": "...", "voice": "af_heart", "out": "abs/path.wav"}
+  stdin : {"text": "...", "voice": "af_heart", "speed": 1.0, "out": "abs/path.wav"}
   stdout: {"duration": 12.3}   on success  |  {"error": "..."}  on failure
 Loads KPipeline once, serves until stdin closes. Diagnostics -> stderr only.
 """
@@ -44,10 +44,10 @@ pipe_for("af_heart")  # warm up default American English
 log("kokoro loaded.")
 
 
-def synth(text: str, voice: str, out_path: str) -> float:
+def synth(text: str, voice: str, out_path: str, speed: float = 1.0) -> float:
     pipe = pipe_for(voice)
     chunks = []
-    for _g, _p, audio in pipe(text, voice=voice, speed=1.0):
+    for _g, _p, audio in pipe(text, voice=voice, speed=speed):
         if audio is None:
             continue
         a = audio.detach().cpu().numpy() if hasattr(audio, "detach") else np.asarray(audio)
@@ -78,7 +78,7 @@ while True:
         continue
     try:
         req = json.loads(line)
-        d = synth(req["text"], req.get("voice", "af_heart"), req["out"])
+        d = synth(req["text"], req.get("voice", "af_heart"), req["out"], float(req.get("speed", 1.0)))
         print(json.dumps({"duration": d}), flush=True)
     except Exception as e:  # noqa: BLE001
         log("ERROR:", repr(e))

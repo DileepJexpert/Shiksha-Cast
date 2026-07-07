@@ -7,7 +7,7 @@ fps: 30
 generator:
   # Local LLM that writes a script from a topic (`new-episode` command).
   provider: ollama
-  model: llama3.1:latest
+  model: qwen2.5:14b-instruct
   url: http://localhost:11434
   slides: 14
 imagegen:
@@ -35,6 +35,7 @@ voice:
     noise.
 
     '
-  model: af_heart
+  model: af_bella
   provider: kokoro
   sample_rate: 24000
+  speed: 0.82

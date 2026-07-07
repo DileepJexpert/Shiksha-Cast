@@ -1,0 +1,22 @@
+{
+  "id": "story_father_v2_hd",
+  "display_name": "Papa / Suresh",
+  "universe": "story",
+  "asset_route": "sample_talking_figure_from_option_c_sheet",
+  "source_assets": {
+    "front_parts_sheet": "assets/cartoon/source/story_father_parts_sheet_v2.png"
+  },
+  "capabilities": {
+    "talk": true,
+    "front_gestures": [
+      "idle",
+      "talk"
+    ],
+    "side_walk_sprite": false,
+    "side_walk_cycle_frames": false
+  },
+  "notes": [
+    "Sample video rig only.",
+    "Replace with a full sliced Option-C rig before production use."
+  ]
+}

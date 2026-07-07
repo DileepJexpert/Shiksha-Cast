@@ -1,0 +1,15 @@
+{
+  "id": "social_universe/politician_hd",
+  "display_name": "Netaji",
+  "universe": "social_universe",
+  "style": "realistic_talking_figure",
+  "source_asset": "assets/source/social_universe/35d0de70-5088-4ec2-9dae-75ef96a9579d.png",
+  "capabilities": {
+    "talk": true,
+    "walk": false,
+    "gesture": false
+  },
+  "notes": [
+    "Sample talking rig from a complete full-body PNG; not final articulated puppet."
+  ]
+}

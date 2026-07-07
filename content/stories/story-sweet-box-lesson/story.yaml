@@ -1,0 +1,40 @@
+title: The Sweet Box Lesson
+story_id: story-sweet-box-lesson
+fps: 30
+background: story_living_room.png
+scale: 0.68
+description: A short family story about speaking calmly before blaming others.
+
+cast:
+  papa: story_father_v2_hd
+  mummy: story_mother_hd
+  dadiji: story_grandmother_hd
+
+voices:
+  papa: am_michael
+  mummy: af_heart
+  dadiji: af_bella
+
+scenes:
+  - id: s1
+    banner: "The Sweet Box Lesson"
+    place: { papa: left, dadiji: center, mummy: right }
+    dialogue:
+      - { who: mummy, text: "I kept a box of sweets here for the guests. Where did it go?" }
+      - { who: papa, text: "Maybe someone moved it. Let us check calmly." }
+      - { who: dadiji, text: "Before blaming anyone, we should ask with love." }
+
+  - id: s2
+    place: { papa: left, dadiji: center, mummy: right }
+    dialogue:
+      - { who: mummy, text: "I was worried, but you are right, Maaji." }
+      - { who: papa, text: "Sometimes small mistakes become big fights when we speak angrily." }
+      - { who: dadiji, text: "Sweet words are more important than sweet food." }
+
+  - id: s3
+    banner: "A few minutes later"
+    place: { papa: left, dadiji: center, mummy: right }
+    dialogue:
+      - { who: mummy, text: "Oh! I remember now. I kept the sweets in the kitchen cupboard." }
+      - { who: papa, text: "Good thing we did not blame anyone." }
+      - { who: dadiji, text: "Patience saves relationships. That is the real sweetness of a family." }

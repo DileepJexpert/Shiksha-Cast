@@ -1,0 +1,80 @@
+chapter: "Kids English 07 - Do and Does"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn do and does. These words help us ask simple questions."
+    visual:
+      kind: title
+      title: "Do and Does"
+      subtitle: "Helping words for questions"
+      icons: [book, pencil, bag]
+  - n: 2
+    narration: "Use do with I, you, we, and they. Do you play? Do they read?"
+    visual:
+      kind: rule
+      title: "Use DO"
+      rule: "I / You / We / They + do"
+      bullets:
+        - "Do you play?"
+        - "Do they read?"
+        - "Do we sing?"
+  - n: 3
+    narration: "Use does with he, she, and it. Does he play? Does she read?"
+    visual:
+      kind: rule
+      title: "Use DOES"
+      rule: "He / She / It + does"
+      bullets:
+        - "Does he play?"
+        - "Does she read?"
+        - "Does it work?"
+  - n: 4
+    narration: "Look carefully. Do you like apples? Does she like apples? The action word stays simple."
+    visual:
+      kind: sentences
+      title: "Look and Say"
+      lines:
+        - "Do you like apples?"
+        - "Does she like apples?"
+        - "Do they play?"
+        - "Does he run?"
+  - n: 5
+    narration: "Your turn. Blank she read books? Which word fits? The answer is does."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "___ she read books?"
+      choices: ["Do", "Does"]
+      answer: "Does"
+      hint: "She goes with does"
+  - n: 6
+    narration: "Try again. Blank they play football? Which word fits? The answer is do."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "___ they play football?"
+      choices: ["Do", "Does"]
+      answer: "Do"
+      hint: "They goes with do"
+  - n: 7
+    narration: "Read aloud: Do you sing? Does he dance? Do we learn? Does it work?"
+    visual:
+      kind: sentences
+      title: "Read Aloud"
+      lines:
+        - "Do you sing?"
+        - "Does he dance?"
+        - "Do we learn?"
+        - "Does it work?"
+  - n: 8
+    narration: "Remember: I, you, we, and they use do. He, she, and it use does."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "I / You / We / They = do"
+        - "He / She / It = does"
+        - "Use do and does in questions"
+        - "Keep the action word simple"
+

@@ -12,6 +12,7 @@ class VoiceConfig(BaseModel):
     model: str = "ai4bharat/indic-parler-tts"
     description: str = ""
     sample_rate: int = 44100
+    speed: float = 1.0
 
 
 class TimingConfig(BaseModel):

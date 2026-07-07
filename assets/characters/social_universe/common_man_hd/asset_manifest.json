@@ -1,0 +1,15 @@
+{
+  "id": "social_universe/common_man_hd",
+  "display_name": "Common Man",
+  "universe": "social_universe",
+  "style": "realistic_talking_figure",
+  "source_asset": "assets/source/social_universe/0fbc86ee-2997-40c0-9a79-bd48ac6a4132.png",
+  "capabilities": {
+    "talk": true,
+    "walk": false,
+    "gesture": false
+  },
+  "notes": [
+    "Sample talking rig from a complete full-body PNG; not final articulated puppet."
+  ]
+}

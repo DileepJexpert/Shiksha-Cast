@@ -1,0 +1,442 @@
+episode: c3-maths-what-is-addition
+title: What is Addition? | Class 3 Maths | Kinnu Learning
+fps: 15
+cast:
+  kinnu_hd: af_heart
+  vibhu_hd: am_adam
+scenes:
+- id: s1_hook
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.32
+    - 0.99
+    scale: 0.9
+    facing: right
+  - id: vibhu_hd
+    pos:
+    - 0.82
+    - 0.99
+    scale: 0.86
+    facing: left
+  actions:
+  - who: kinnu_hd
+    do: wave
+    start: 0.0
+    end: 3.5
+  - who: vibhu_hd
+    do: wave
+    start: 0.4
+    end: 3.5
+  - who: kinnu_hd
+    do: talk
+    text: Hello friends! I am Kinnu, and this is my little brother Vibhu.
+  - who: kinnu_hd
+    do: talk
+    text: Have you ever put all your toys into one big box and counted them?
+  - who: kinnu_hd
+    do: talk
+    text: Or counted all the chocolates from two of your friends together?
+  - who: kinnu_hd
+    do: talk
+    text: When we put things together and count them all, that is called addition!
+  - who: kinnu_hd
+    do: talk
+    text: 'Today we will learn: what is addition? Let us begin!'
+  overlays:
+  - type: banner
+    text: Let's Learn Addition!
+    start: 0.0
+    end: 4.0
+- id: s2_concept
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 9.0
+  - who: kinnu_hd
+    do: talk
+    text: Look at our blackboard. Addition means putting things together.
+  - who: kinnu_hd
+    do: talk
+    text: When we add, we want to find how many there are in all, altogether.
+  - who: kinnu_hd
+    do: talk
+    text: We use a special sign for addition. It looks like a small cross. This is the plus sign.
+  - who: kinnu_hd
+    do: talk
+    text: We read the plus sign as the word plus.
+  - who: kinnu_hd
+    do: talk
+    text: So when we see two plus three, it means we put two and three together.
+  board:
+    title: What is Addition?
+    lines:
+    - text: Addition means PUTTING TOGETHER
+      at: 0.5
+    - text: We find HOW MANY in all
+      at: 1.9
+    - text: The sign for addition is  +
+      at: 3.3
+    - text: We read  +  as  PLUS
+      at: 4.7
+    - text: 2 + 3  means  2 plus 3
+      at: 6.1
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+- id: s3_example
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 10.0
+  - who: kinnu_hd
+    do: talk
+    text: Let us try an example with apples. Here are two red apples in the first group.
+  - who: kinnu_hd
+    do: talk
+    text: And here are three more apples in the second group.
+  - who: kinnu_hd
+    do: talk
+    text: Now we put them together. Let us count them all, one by one.
+  - who: kinnu_hd
+    do: talk
+    text: One, two, three, four, five. There are five apples in all!
+  - who: kinnu_hd
+    do: talk
+    text: So two plus three equals five. Well done!
+  board:
+    title: 2 + 3 = ?
+    lines:
+    - text: 'First group:  2 apples'
+      at: 0.5
+    - text: 'Second group:  3 apples'
+      at: 1.9
+    - text: Put them together and count
+      at: 3.3
+    - text: 1, 2, 3, 4, 5
+      at: 4.7
+    - text: 2 + 3 = 5 apples
+      at: 6.1
+    pos:
+    - 0.66
+    - 0.47
+    size:
+    - 0.56
+    - 0.5
+  overlays:
+  - type: callout
+    text: count them all!
+    pos:
+    - 0.29
+    - 0.58
+    start: 1.0
+    end: 8.0
+    color: pink
+  props:
+  - asset: apple.png
+    pos:
+    - 0.42
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 0.4
+  - asset: apple.png
+    pos:
+    - 0.545
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 0.7
+  - asset: apple.png
+    pos:
+    - 0.67
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 1.0
+  - asset: apple.png
+    pos:
+    - 0.795
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 1.3
+  - asset: apple.png
+    pos:
+    - 0.92
+    - 0.11
+    scale: 0.09
+    anim: pop
+    start: 1.6
+- id: s4_question
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.32
+    - 0.99
+    scale: 0.9
+    facing: right
+  - id: vibhu_hd
+    pos:
+    - 0.82
+    - 0.99
+    scale: 0.86
+    facing: left
+  actions:
+  - who: kinnu_hd
+    do: think
+    start: 0.2
+    end: 2.0
+  - who: vibhu_hd
+    do: think
+    start: 0.5
+    end: 6.0
+  - who: kinnu_hd
+    do: talk
+    text: Now it is your turn to think, just like Vibhu.
+  - who: kinnu_hd
+    do: talk
+    text: Can you tell me, what is four plus one?
+  - who: kinnu_hd
+    do: talk
+    text: Take a moment. Count it in your head, or use your fingers.
+  - who: kinnu_hd
+    do: talk
+    text: Ready? Let us solve it together on the board.
+  overlays:
+  - type: banner
+    text: Your Turn!
+    start: 0.0
+    end: 4.0
+    color: blue
+- id: s5_solve
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 12.0
+  - who: kinnu_hd
+    do: talk
+    text: Let us solve four plus one, step by step.
+  - who: kinnu_hd
+    do: talk
+    text: First, we start with the bigger number, four.
+  - who: kinnu_hd
+    do: talk
+    text: Now we count just one more. After four comes five.
+  - who: kinnu_hd
+    do: talk
+    text: So four plus one equals five. You did it!
+  - who: kinnu_hd
+    do: talk
+    text: When we add one, we just say the next counting number. That is a handy trick!
+  board:
+    title: 4 + 1 = ?
+    lines:
+    - text: Start with 4
+      at: 0.5
+    - text: Count just 1 more
+      at: 1.9
+    - text: 4 ... then 5
+      at: 3.3
+    - text: 4 + 1 = 5
+      at: 4.7
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+  overlays:
+  - type: callout
+    text: start at 4
+    pos:
+    - 0.29
+    - 0.56
+    start: 1.5
+    end: 4.0
+    color: yellow
+  - type: callout
+    text: count 1 more
+    pos:
+    - 0.29
+    - 0.56
+    start: 4.0
+    end: 6.5
+    color: yellow
+  - type: callout
+    text: the answer!
+    pos:
+    - 0.29
+    - 0.56
+    start: 6.5
+    end: 9.0
+    color: yellow
+- id: s6_recap
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.25
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: clap
+    start: 0.0
+    end: 2.5
+  - who: kinnu_hd
+    do: talk
+    text: Let us quickly remember what we learned today.
+  - who: kinnu_hd
+    do: talk
+    text: Addition means putting things together.
+  - who: kinnu_hd
+    do: talk
+    text: The plus sign means plus, and it tells us to add.
+  - who: kinnu_hd
+    do: talk
+    text: We count to find how many there are in all.
+  - who: kinnu_hd
+    do: talk
+    text: And adding one just gives us the next counting number.
+  board:
+    title: Remember!
+    lines:
+    - text: Addition = putting together
+      at: 0.5
+    - text: +  means  PLUS
+      at: 1.9
+    - text: We count HOW MANY in all
+      at: 3.3
+    - text: Adding 1 = the next number
+      at: 4.7
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+- id: s7_practice
+  background: classroom_full.png
+  transition:
+    in: 0.3
+    out: 0.5
+  characters:
+  - id: kinnu_hd
+    pos:
+    - 0.17
+    - 0.99
+    scale: 0.9
+    facing: right
+  - id: vibhu_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.86
+    facing: right
+  actions:
+  - who: kinnu_hd
+    do: point
+    side: right
+    start: 0.2
+    end: 9.0
+  - who: kinnu_hd
+    do: talk
+    text: Now here is some practice for you to try at home.
+  - who: kinnu_hd
+    do: talk
+    text: Pause the video and solve these four sums in your notebook.
+  - who: kinnu_hd
+    do: talk
+    text: Number one, two plus two. Number two, three plus one.
+  - who: kinnu_hd
+    do: talk
+    text: Number three, five plus zero. And number four, four plus three.
+  - who: kinnu_hd
+    do: talk
+    text: Remember, you can count on your fingers or draw little circles to help.
+  - who: kinnu_hd
+    do: wave
+    start: 9.0
+    end: 14.0
+  - who: kinnu_hd
+    do: talk
+    text: Great job today, friends! Please like and subscribe, and see you next time with Kinnu. Bye bye!
+      A Katixo channel.
+  board:
+    title: Practice Time!
+    lines:
+    - text: 1)  2 + 2 = ?
+      at: 0.5
+    - text: 2)  3 + 1 = ?
+      at: 1.9
+    - text: 3)  5 + 0 = ?
+      at: 3.3
+    - text: 4)  4 + 3 = ?
+      at: 4.7
+    pos:
+    - 0.66
+    - 0.4
+    size:
+    - 0.58
+    - 0.62
+  overlays:
+  - type: banner
+    text: Practice Time!
+    start: 0.0
+    end: 4.0
+    color: green

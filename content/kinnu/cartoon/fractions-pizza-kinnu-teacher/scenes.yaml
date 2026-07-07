@@ -1,0 +1,80 @@
+episode: fractions-pizza-kinnu-teacher
+title: Fractions for Kids with Pizza - Kinnu Teacher
+fps: 15
+tts_provider: kokoro
+default_voice: bf_emma
+tts_speed: 0.80
+cast:
+  kinnu_hd: bf_emma
+scenes:
+  - id: s01
+    background: build/fractions_pizza_video_5min/slides_1080/slide_001.png
+    camera: { zoom: [1.0, 1.025] }
+    characters: [{ id: kinnu_hd, pos: [0.16, 0.99], scale: 0.58, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: enter, from: left, start: 0.0, end: 2.0 }
+      - { who: kinnu_hd, do: wave, start: 0.2, end: 3.2 }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "Hi friends! Welcome to Kinnu's magic pizza picnic. Today we are going to learn a new maths idea called fractions. Do not worry. Fractions are not scary. Fractions simply mean parts of a whole. Imagine you have one full pizza. If you eat a piece, that piece is a part. Today Kinnu will show us how to name those parts in a simple way." }
+
+  - id: s02
+    background: build/fractions_pizza_video_5min/slides_1080/slide_002.png
+    camera: { zoom: [1.0, 1.025] }
+    characters: [{ id: kinnu_hd, pos: [0.17, 0.99], scale: 0.58, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.20, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.8, end: 10.0 }
+      - { who: kinnu_hd, do: talk, text: "Let us begin with one whole pizza. Say it with me: one whole. Whole means complete. The pizza is not cut. It has all its pieces together. One full apple is one whole apple. One full chocolate bar is one whole chocolate bar. And this full pizza is one whole pizza." }
+
+  - id: s03
+    background: build/fractions_pizza_video_5min/slides_1080/slide_003.png
+    camera: { zoom: [1.0, 1.02] }
+    characters: [{ id: kinnu_hd, pos: [0.16, 0.99], scale: 0.58, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.24, start: 0.0, end: 2.5 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.6, end: 14.5 }
+      - { who: kinnu_hd, do: talk, text: "Now Kinnu's friends come to the picnic. Everyone wants pizza. What should Kinnu do? She should share equally. Equal means fair. If two children share, both pieces should look the same size. If one child gets a huge piece and another child gets a tiny piece, that is not equal. Fractions work best when the parts are equal." }
+
+  - id: s04
+    background: build/fractions_pizza_video_5min/slides_1080/slide_004.png
+    camera: { zoom: [1.0, 1.025] }
+    characters: [{ id: kinnu_hd, pos: [0.15, 0.99], scale: 0.58, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point_up, start: 0.2, end: 3.8 }
+      - { who: kinnu_hd, do: point, side: right, start: 3.8, end: 17.5 }
+      - { who: kinnu_hd, do: talk, text: "Now Kinnu cuts the pizza into two equal parts. Look carefully. The two parts are the same size. Each part is called one half. We write one half as one over two. The top number, one, tells us how many pieces we are talking about. The bottom number, two, tells us the whole pizza was cut into two equal parts." }
+
+  - id: s05
+    background: build/fractions_pizza_video_5min/slides_1080/slide_005.png
+    camera: { zoom: [1.0, 1.02] }
+    characters: [{ id: kinnu_hd, pos: [0.15, 0.99], scale: 0.58, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.0, end: 17.5 }
+      - { who: kinnu_hd, do: talk, text: "This rule is very important. Fractions need equal parts. On the good pizza, the pieces are equal. That is fair sharing. On the wrong pizza, one slice is bigger and one slice is smaller. That is not equal. So before we call something a fraction, we ask: are the parts the same size? If yes, good. If no, fix it first." }
+
+  - id: s06
+    background: build/fractions_pizza_video_5min/slides_1080/slide_006.png
+    camera: { zoom: [1.0, 1.025] }
+    characters: [{ id: kinnu_hd, pos: [0.15, 0.99], scale: 0.58, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.22, start: 0.0, end: 2.4 }
+      - { who: kinnu_hd, do: point, side: right, start: 0.6, end: 15.0 }
+      - { who: kinnu_hd, do: talk, text: "More friends join the picnic, so two pieces are not enough. Kinnu cuts the pizza into four equal parts. Now each piece is one quarter. We can also say one fourth. One quarter means one piece out of four equal pieces. The bottom number four tells us the whole pizza has four equal parts." }
+
+  - id: s07
+    background: build/fractions_pizza_video_5min/slides_1080/slide_007.png
+    camera: { zoom: [1.0, 1.025] }
+    characters: [{ id: kinnu_hd, pos: [0.14, 0.99], scale: 0.56, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: point_up, start: 0.0, end: 3.2 }
+      - { who: kinnu_hd, do: point, side: right, start: 3.2, end: 18.0 }
+      - { who: kinnu_hd, do: talk, text: "Let us practice. If Kinnu takes one slice from four equal slices, she has one fourth. If Vibhu takes two slices from four equal slices, he has two fourths. The top number counts the slices we have. The bottom number tells how many equal slices make the whole. Top number: pieces we have. Bottom number: total equal pieces." }
+
+  - id: s08
+    background: build/fractions_pizza_video_5min/slides_1080/slide_008.png
+    camera: { zoom: [1.0, 1.03] }
+    characters: [{ id: kinnu_hd, pos: [0.16, 0.99], scale: 0.58, facing: right }]
+    actions:
+      - { who: kinnu_hd, do: jump, start: 0.0, end: 2.2 }
+      - { who: kinnu_hd, do: cheer, start: 2.0, end: 5.2 }
+      - { who: kinnu_hd, do: wave, start: 18.0, end: 25.0 }
+      - { who: kinnu_hd, do: talk, text: "Wonderful learning today! Let us remember three ideas. One whole means the complete pizza. One half means one out of two equal parts. One quarter means one out of four equal parts. And the golden rule is: fractions must have equal parts. Next time you share pizza, fruit, roti, or chocolate, you can say: I am using fractions! Great job, friends." }

@@ -1,0 +1,78 @@
+chapter: "Kids English 03 - Am, Is, Are"
+brand: "Kinnu English"
+template: english_board
+slides:
+  - n: 1
+    narration: "Today we will learn three helping words: am, is, and are. They help us make simple English sentences."
+    visual:
+      kind: title
+      title: "Am, Is, Are"
+      subtitle: "Helping words for simple sentences"
+      icons: [book, pencil, bag]
+  - n: 2
+    narration: "Use am with I. Say: I am happy. I am ready. I am a student."
+    visual:
+      kind: rule
+      title: "I + am"
+      rule: "Use AM with I."
+      bullets:
+        - "I am happy."
+        - "I am ready."
+        - "I am a student."
+  - n: 3
+    narration: "Use is with one person, one animal, or one thing. He is kind. She is smart. It is red."
+    visual:
+      kind: rule
+      title: "One + is"
+      rule: "Use IS for one."
+      bullets:
+        - "He is kind."
+        - "She is smart."
+        - "It is red."
+  - n: 4
+    narration: "Use are with you, we, and they. You are good. We are friends. They are ready."
+    visual:
+      kind: rule
+      title: "You / We / They + are"
+      rule: "Use ARE with you, we, and they."
+      bullets:
+        - "You are good."
+        - "We are friends."
+        - "They are ready."
+  - n: 5
+    narration: "Your turn. I blank happy. Which word fits? The answer is am: I am happy."
+    visual:
+      kind: quiz
+      title: "Your Turn"
+      prompt: "I ___ happy."
+      choices: ["am", "is", "are"]
+      answer: "am"
+      hint: "I goes with am"
+  - n: 6
+    narration: "Try again. She blank my friend. Which word fits? The answer is is: She is my friend."
+    visual:
+      kind: quiz
+      title: "Try Again"
+      prompt: "She ___ my friend."
+      choices: ["am", "is", "are"]
+      answer: "is"
+      hint: "She is one person"
+  - n: 7
+    narration: "One more. They blank ready. Which word fits? The answer is are: They are ready."
+    visual:
+      kind: quiz
+      title: "One More"
+      prompt: "They ___ ready."
+      choices: ["am", "is", "are"]
+      answer: "are"
+      hint: "They goes with are"
+  - n: 8
+    narration: "Remember: I am, he is, she is, it is, you are, we are, and they are."
+    visual:
+      kind: recap
+      title: "Remember"
+      bullets:
+        - "I am"
+        - "He / She / It is"
+        - "You / We / They are"
+        - "Read every sentence aloud"

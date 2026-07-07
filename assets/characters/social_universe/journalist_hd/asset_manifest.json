@@ -1,0 +1,15 @@
+{
+  "id": "social_universe/journalist_hd",
+  "display_name": "Meera - Journalist",
+  "universe": "social_universe",
+  "style": "realistic_talking_figure",
+  "source_asset": "assets/source/social_universe/a27706d0-0f9b-4c62-b7cc-859624e89a17.png",
+  "capabilities": {
+    "talk": true,
+    "walk": false,
+    "gesture": false
+  },
+  "notes": [
+    "Sample talking rig from a complete full-body PNG; not final articulated puppet."
+  ]
+}

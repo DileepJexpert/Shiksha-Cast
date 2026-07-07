@@ -4,7 +4,12 @@ import yaml
 
 from shiksha_cast import story
 from shiksha_cast.config import GeneratorConfig, ScriptFile
-from shiksha_cast.story import _parse_story_json, script_from_story, write_story_episode
+from shiksha_cast.story import (
+    _parse_story_json,
+    render_story_from_story,
+    script_from_story,
+    write_story_episode,
+)
 
 
 CANNED_STORY = json.dumps(
@@ -82,18 +87,38 @@ def test_script_from_story_uses_dialogue_tags():
     assert "No characters" in script["slides"][0]["visual_prompt"]
 
 
+def test_render_story_from_story_is_story_build_ready():
+    data = _parse_story_json(CANNED_STORY)
+    render_story = render_story_from_story(data, "friction-story")
+
+    assert render_story["story_id"] == "friction-story"
+    assert render_story["cast"] == {"kinnu": "kinnu_hd", "gappu": "gappu_hd"}
+    assert render_story["voices"]["kinnu"] == "af_bella"
+    assert render_story["background"] == "classroom_full.png"
+    assert render_story["scenes"][0]["dialogue"][0] == {
+        "who": "kinnu",
+        "text": "Gappu, see the ball rolling!",
+        "gesture": "point",
+    }
+    assert render_story["scenes"][1]["dialogue"][1]["gesture"] == "smile"
+
+
 def test_write_story_episode_writes_story_and_script(tmp_path, monkeypatch):
     monkeypatch.setattr(story, "ollama_available", lambda url: True)
     monkeypatch.setattr(story, "ollama_generate_json", lambda url, model, prompt, **k: CANNED_STORY)
 
-    ep_dir, story_data, script_data = write_story_episode(
+    ep_dir, story_data, script_data, render_story = write_story_episode(
         "friction story", tmp_path, GeneratorConfig(), category="stories", n_scenes=2
     )
 
     assert ep_dir == tmp_path / "content" / "stories" / "friction-story"
+    assert (ep_dir / "story_plan.yaml").exists()
     assert (ep_dir / "story.yaml").exists()
     assert (ep_dir / "script.yaml").exists()
     assert len(story_data["scenes"]) == 2
+    assert render_story["cast"] == {"kinnu": "kinnu_hd", "gappu": "gappu_hd"}
     loaded = yaml.safe_load((ep_dir / "script.yaml").read_text(encoding="utf-8"))
     ScriptFile.model_validate(loaded)
     assert loaded == script_data
+    loaded_story = yaml.safe_load((ep_dir / "story.yaml").read_text(encoding="utf-8"))
+    assert loaded_story == render_story

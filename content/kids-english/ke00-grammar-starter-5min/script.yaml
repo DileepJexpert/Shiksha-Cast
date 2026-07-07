@@ -1,0 +1,454 @@
+chapter: Kinnu English Grammar Starter - 10 Rules in 5 Minutes
+brand: Kinnu English
+template: compiled_uploaded_slides
+slides:
+- n: 1
+  narration: 'Lesson one: a or an.'
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 1
+  section: A or An
+- n: 2
+  narration: Use a before a consonant sound.
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 2
+  section: A or An
+- n: 3
+  narration: Use an before a vowel sound.
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 3
+  section: A or An
+- n: 4
+  narration: 'Say: a ball, a cat, an apple, an egg.'
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 4
+  section: A or An
+- n: 5
+  narration: 'Your turn: an apple.'
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 5
+  section: A or An
+- n: 6
+  narration: 'Read aloud: I see a cat. I eat an apple.'
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 7
+  section: A or An
+- n: 7
+  narration: 'Remember: say the word aloud, then choose a or an.'
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 8
+  section: A or An
+- n: 8
+  narration: 'Lesson two: this or that.'
+  voice: af_heart
+  source_lesson: ke02-this-that
+  source_slide: 1
+  section: This or That
+- n: 9
+  narration: Use this for something near you.
+  voice: af_heart
+  source_lesson: ke02-this-that
+  source_slide: 2
+  section: This or That
+- n: 10
+  narration: Use that for something far from you.
+  voice: af_heart
+  source_lesson: ke02-this-that
+  source_slide: 3
+  section: This or That
+- n: 11
+  narration: 'Say: this book, that kite.'
+  voice: af_heart
+  source_lesson: ke02-this-that
+  source_slide: 4
+  section: This or That
+- n: 12
+  narration: 'Your turn: this pencil.'
+  voice: af_heart
+  source_lesson: ke02-this-that
+  source_slide: 5
+  section: This or That
+- n: 13
+  narration: 'Read aloud: This is my bag. That is a tree.'
+  voice: af_heart
+  source_lesson: ke02-this-that
+  source_slide: 7
+  section: This or That
+- n: 14
+  narration: 'Remember: this is near, that is far.'
+  voice: af_heart
+  source_lesson: ke02-this-that
+  source_slide: 8
+  section: This or That
+- n: 15
+  narration: 'Lesson three: am, is, are.'
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 1
+  section: Am, Is, Are
+- n: 16
+  narration: Use am with I.
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 2
+  section: Am, Is, Are
+- n: 17
+  narration: Use is with one person or one thing.
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 3
+  section: Am, Is, Are
+- n: 18
+  narration: Use are with you, we, and they.
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 4
+  section: Am, Is, Are
+- n: 19
+  narration: 'Your turn: I am happy.'
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 5
+  section: Am, Is, Are
+- n: 20
+  narration: 'Read aloud: She is kind. They are friends.'
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 7
+  section: Am, Is, Are
+- n: 21
+  narration: 'Remember: I am, he is, they are.'
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 8
+  section: Am, Is, Are
+- n: 22
+  narration: 'Lesson four: he, she, it.'
+  voice: af_heart
+  source_lesson: ke04-he-she-it
+  source_slide: 1
+  section: He, She, It
+- n: 23
+  narration: Use he for a boy or man.
+  voice: af_heart
+  source_lesson: ke04-he-she-it
+  source_slide: 2
+  section: He, She, It
+- n: 24
+  narration: Use she for a girl or woman.
+  voice: af_heart
+  source_lesson: ke04-he-she-it
+  source_slide: 3
+  section: He, She, It
+- n: 25
+  narration: Use it for an animal, place, or thing.
+  voice: af_heart
+  source_lesson: ke04-he-she-it
+  source_slide: 4
+  section: He, She, It
+- n: 26
+  narration: 'Your turn: she is my sister.'
+  voice: af_heart
+  source_lesson: ke04-he-she-it
+  source_slide: 5
+  section: He, She, It
+- n: 27
+  narration: 'Read aloud: He runs. She sings. It jumps.'
+  voice: af_heart
+  source_lesson: ke04-he-she-it
+  source_slide: 7
+  section: He, She, It
+- n: 28
+  narration: 'Remember: choose the word that matches the noun.'
+  voice: af_heart
+  source_lesson: ke04-he-she-it
+  source_slide: 8
+  section: He, She, It
+- n: 29
+  narration: 'Lesson five: I, you, we, they.'
+  voice: af_heart
+  source_lesson: ke05-i-you-we-they
+  source_slide: 1
+  section: I, You, We, They
+- n: 30
+  narration: Use I when you talk about yourself.
+  voice: af_heart
+  source_lesson: ke05-i-you-we-they
+  source_slide: 2
+  section: I, You, We, They
+- n: 31
+  narration: Use you when you talk to someone.
+  voice: af_heart
+  source_lesson: ke05-i-you-we-they
+  source_slide: 3
+  section: I, You, We, They
+- n: 32
+  narration: Use we for a group with you inside it.
+  voice: af_heart
+  source_lesson: ke05-i-you-we-they
+  source_slide: 4
+  section: I, You, We, They
+- n: 33
+  narration: 'Your turn: we are students.'
+  voice: af_heart
+  source_lesson: ke05-i-you-we-they
+  source_slide: 5
+  section: I, You, We, They
+- n: 34
+  narration: 'Read aloud: I read. You write. They play.'
+  voice: af_heart
+  source_lesson: ke05-i-you-we-they
+  source_slide: 7
+  section: I, You, We, They
+- n: 35
+  narration: 'Remember: pronouns make sentences short and clear.'
+  voice: af_heart
+  source_lesson: ke05-i-you-we-they
+  source_slide: 8
+  section: I, You, We, They
+- n: 36
+  narration: 'Lesson six: has or have.'
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 1
+  section: Has or Have
+- n: 37
+  narration: Use has with he, she, and it.
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 2
+  section: Has or Have
+- n: 38
+  narration: Use have with I, you, we, and they.
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 3
+  section: Has or Have
+- n: 39
+  narration: 'Say: she has a doll. They have books.'
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 4
+  section: Has or Have
+- n: 40
+  narration: 'Your turn: he has a kite.'
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 5
+  section: Has or Have
+- n: 41
+  narration: 'Read aloud: I have a pencil. It has wheels.'
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 7
+  section: Has or Have
+- n: 42
+  narration: 'Remember: one friend has, many friends have.'
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 8
+  section: Has or Have
+- n: 43
+  narration: 'Lesson seven: do or does.'
+  voice: af_heart
+  source_lesson: ke07-do-does
+  source_slide: 1
+  section: Do or Does
+- n: 44
+  narration: Use do with I, you, we, and they.
+  voice: af_heart
+  source_lesson: ke07-do-does
+  source_slide: 2
+  section: Do or Does
+- n: 45
+  narration: Use does with he, she, and it.
+  voice: af_heart
+  source_lesson: ke07-do-does
+  source_slide: 3
+  section: Do or Does
+- n: 46
+  narration: 'Say: do you read? Does she sing?'
+  voice: af_heart
+  source_lesson: ke07-do-does
+  source_slide: 4
+  section: Do or Does
+- n: 47
+  narration: 'Your turn: does he play?'
+  voice: af_heart
+  source_lesson: ke07-do-does
+  source_slide: 5
+  section: Do or Does
+- n: 48
+  narration: 'Read aloud: Do they jump? Does it work?'
+  voice: af_heart
+  source_lesson: ke07-do-does
+  source_slide: 7
+  section: Do or Does
+- n: 49
+  narration: 'Remember: does goes with he, she, and it.'
+  voice: af_heart
+  source_lesson: ke07-do-does
+  source_slide: 8
+  section: Do or Does
+- n: 50
+  narration: 'Lesson eight: was or were.'
+  voice: af_heart
+  source_lesson: ke08-was-were
+  source_slide: 1
+  section: Was or Were
+- n: 51
+  narration: Use was for one person or thing in the past.
+  voice: af_heart
+  source_lesson: ke08-was-were
+  source_slide: 2
+  section: Was or Were
+- n: 52
+  narration: Use were for many people or things in the past.
+  voice: af_heart
+  source_lesson: ke08-was-were
+  source_slide: 3
+  section: Was or Were
+- n: 53
+  narration: 'Say: I was tired. We were happy.'
+  voice: af_heart
+  source_lesson: ke08-was-were
+  source_slide: 4
+  section: Was or Were
+- n: 54
+  narration: 'Your turn: she was late.'
+  voice: af_heart
+  source_lesson: ke08-was-were
+  source_slide: 5
+  section: Was or Were
+- n: 55
+  narration: 'Read aloud: The birds were loud. It was sunny.'
+  voice: af_heart
+  source_lesson: ke08-was-were
+  source_slide: 7
+  section: Was or Were
+- n: 56
+  narration: 'Remember: was and were tell about the past.'
+  voice: af_heart
+  source_lesson: ke08-was-were
+  source_slide: 8
+  section: Was or Were
+- n: 57
+  narration: 'Lesson nine: can and cannot.'
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 1
+  section: Can or Cannot
+- n: 58
+  narration: Use can for something possible.
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 2
+  section: Can or Cannot
+- n: 59
+  narration: Use cannot for something not possible.
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 3
+  section: Can or Cannot
+- n: 60
+  narration: 'Say: I can swim. I cannot fly.'
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 4
+  section: Can or Cannot
+- n: 61
+  narration: 'Your turn: birds can fly.'
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 5
+  section: Can or Cannot
+- n: 62
+  narration: 'Read aloud: We can help. A fish cannot walk.'
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 7
+  section: Can or Cannot
+- n: 63
+  narration: 'Remember: can means able to do it.'
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 8
+  section: Can or Cannot
+- n: 64
+  narration: 'Lesson ten: there is, there are.'
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 1
+  section: There Is or There Are
+- n: 65
+  narration: Use there is for one thing.
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 2
+  section: There Is or There Are
+- n: 66
+  narration: Use there are for many things.
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 3
+  section: There Is or There Are
+- n: 67
+  narration: 'Say: there is one apple. There are three apples.'
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 4
+  section: There Is or There Are
+- n: 68
+  narration: 'Your turn: there are five stars.'
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 5
+  section: There Is or There Are
+- n: 69
+  narration: 'Read aloud: There is a book. There are two pencils.'
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 7
+  section: There Is or There Are
+- n: 70
+  narration: 'Remember: one uses is, many uses are.'
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 8
+  section: There Is or There Are
+- n: 71
+  narration: 'Final review: not a apple, say an apple.'
+  voice: af_heart
+  source_lesson: ke01-a-or-an
+  source_slide: 8
+  section: Final Review
+- n: 72
+  narration: 'Final review: I am, he is, they are.'
+  voice: af_heart
+  source_lesson: ke03-am-is-are
+  source_slide: 8
+  section: Final Review
+- n: 73
+  narration: 'Final review: she has, they have.'
+  voice: af_heart
+  source_lesson: ke06-has-have
+  source_slide: 8
+  section: Final Review
+- n: 74
+  narration: 'Final review: can means able; cannot means not able.'
+  voice: af_heart
+  source_lesson: ke09-can-cannot
+  source_slide: 8
+  section: Final Review
+- n: 75
+  narration: Great job. One uses there is; many uses there are.
+  voice: af_heart
+  source_lesson: ke10-there-is-there-are
+  source_slide: 8
+  section: Final Review

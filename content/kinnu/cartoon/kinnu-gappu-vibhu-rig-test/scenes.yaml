@@ -1,0 +1,71 @@
+episode: kinnu-gappu-vibhu-rig-test
+title: Kinnu introduces Gappu and Vibhu - rig test
+fps: 15
+cast:
+  kinnu_hd: af_heart
+  gappu_hd: am_michael
+  vibhu_hd: am_adam
+scenes:
+  # 1. Kinnu introduces her two friends (all three on screen, idle + talk)
+  - id: s1
+    background: classroom_full.png
+    transition: { in: 0.3, out: 0.2 }
+    characters:
+      - { id: kinnu_hd, pos: [0.5, 0.99], scale: 0.9, facing: right }
+      - { id: gappu_hd, pos: [0.22, 0.99], scale: 0.9, facing: right }
+      - { id: vibhu_hd, pos: [0.78, 0.99], scale: 0.9, facing: left }
+    actions:
+      - { who: kinnu_hd, do: talk, text: "Hi friends! Meet Gappu and my little brother Vibhu!" }
+      - { who: gappu_hd, do: wave, start: 0.4, end: 4.0 }
+      - { who: vibhu_hd, do: wave, start: 0.8, end: 4.0 }
+
+  # 2. Gappu shows off: wave, point, laugh
+  - id: s2
+    background: playground.png
+    transition: { in: 0.2, out: 0.2 }
+    characters:
+      - { id: gappu_hd, pos: [0.35, 0.99], scale: 0.95, facing: right }
+    actions:
+      - { who: gappu_hd, do: point, side: right, start: 0.2, end: 3.0 }
+      - { who: gappu_hd, do: laugh, start: 3.0, end: 6.5 }
+      - { who: gappu_hd, do: talk, text: "I am Gappu! Look over there. Ha ha ha, this is fun!" }
+
+  # 3. Vibhu: jump, then a little sad/cry, then cheer up
+  - id: s3
+    background: garden.png
+    transition: { in: 0.2, out: 0.2 }
+    characters:
+      - { id: vibhu_hd, pos: [0.5, 0.99], scale: 0.95, facing: right }
+    actions:
+      - { who: vibhu_hd, do: jump, start: 0.0, end: 2.0 }
+      - { who: vibhu_hd, do: cry, start: 2.2, end: 5.0 }
+      - { who: vibhu_hd, do: cheer, start: 5.2, end: 8.0 }
+      - { who: vibhu_hd, do: talk, text: "Wheee! Oh no, I am a little sad. But now, hooray, I am happy again!" }
+
+  # 4. All three walk a little across the scene
+  - id: s4
+    background: playground.png
+    transition: { in: 0.2, out: 0.2 }
+    characters:
+      - { id: kinnu_hd, pos: [0.15, 0.99], scale: 0.9, facing: right }
+      - { id: gappu_hd, pos: [0.30, 0.99], scale: 0.9, facing: right }
+      - { id: vibhu_hd, pos: [0.45, 0.99], scale: 0.9, facing: right }
+    actions:
+      - { who: kinnu_hd, do: walkto, to: 0.55, start: 0.2, end: 4.5 }
+      - { who: gappu_hd, do: walkto, to: 0.72, start: 0.2, end: 4.5 }
+      - { who: vibhu_hd, do: walkto, to: 0.88, start: 0.2, end: 4.5 }
+      - { who: kinnu_hd, do: talk, text: "Come on, everyone! Let us walk together." }
+
+  # 5. Head-turn test: Kinnu looks left, Gappu looks right, Vibhu looks back
+  - id: s5
+    background: garden.png
+    transition: { in: 0.2, out: 0.4 }
+    characters:
+      - { id: kinnu_hd, pos: [0.25, 0.99], scale: 0.9, facing: right }
+      - { id: gappu_hd, pos: [0.5, 0.99], scale: 0.9, facing: right }
+      - { id: vibhu_hd, pos: [0.75, 0.99], scale: 0.9, facing: right }
+    actions:
+      - { who: kinnu_hd, do: look_left, start: 0.2, end: 5.0 }
+      - { who: gappu_hd, do: look_right, start: 0.2, end: 5.0 }
+      - { who: vibhu_hd, do: look_back, start: 0.2, end: 5.0 }
+      - { who: kinnu_hd, do: talk, text: "Now watch us look around. Bye bye, friends!" }

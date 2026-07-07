@@ -1,0 +1,146 @@
+episode: social-paper-leak-hook
+title: 50,000 Mein Paper? Sach Ki Kahani
+fps: 24
+cast:
+  social_universe/student_hd: agastya
+  social_universe/common_man_hd: vinaya
+  social_universe/journalist_hd: kavya
+  social_universe/clerk_hd: vinaya
+  social_universe/officer_hd: agastya
+scenes:
+- id: s1_hook
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/student_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.66
+    facing: right
+  - id: social_universe/common_man_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.66
+    facing: left
+  actions:
+  - who: social_universe/student_hd
+    do: talk
+    text: Papa, kal exam hai. Aaj paper pachaas hazaar mein bik raha hai.
+  - who: social_universe/common_man_hd
+    do: talk
+    text: Beta, yeh sirf paper leak nahi. Yeh imandar bachchon ke sapno ki chori hai.
+  overlays:
+  - type: banner
+    text: 50,000 Mein Paper?
+    start: 0.0
+    end: 3.5
+    color: yellow
+- id: s2_bribe
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/clerk_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.66
+    facing: right
+  - id: social_universe/student_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.66
+    facing: left
+  actions:
+  - who: social_universe/clerk_hd
+    do: talk
+    text: Chup raho. System aise hi chalta hai.
+  - who: social_universe/student_hd
+    do: talk
+    text: Nahi sir. System galat ho sakta hai, par main chup nahi rahunga.
+- id: s3_reporter
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/journalist_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.66
+    facing: left
+  - id: social_universe/student_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.66
+    facing: right
+  actions:
+  - who: social_universe/journalist_hd
+    do: talk
+    text: Ravi, tumhare paas proof hai?
+  - who: social_universe/student_hd
+    do: talk
+    text: Haan madam. Chat, payment number, aur file ki photo.
+- id: s4_action
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/officer_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.66
+    facing: left
+  - id: social_universe/journalist_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.66
+    facing: right
+  actions:
+  - who: social_universe/officer_hd
+    do: talk
+    text: Investigation abhi shuru hoti hai. Kisi ka future bikne nahi denge.
+  - who: social_universe/journalist_hd
+    do: talk
+    text: Sach bolne wala akela nahi hota. Public uske saath khadi hoti hai.
+- id: s5_question
+  background: social_universe/public_office.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: social_universe/student_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.66
+    facing: right
+  - id: social_universe/officer_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.66
+    facing: left
+  actions:
+  - who: social_universe/student_hd
+    do: talk
+    text: Agar aapko paper leak ka proof mile, aap chup rahenge ya awaaz uthayenge?
+  overlays:
+  - type: banner
+    text: Aap kya karte?
+    start: 0.0
+    end: 3.5
+    color: yellow
+tts_provider: veena
+default_voice: kavya

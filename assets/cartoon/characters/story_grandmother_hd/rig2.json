@@ -1,0 +1,91 @@
+{
+  "type": "skeletal",
+  "scale": 0.95,
+  "space": [
+    760,
+    1060
+  ],
+  "feet_y": 1024,
+  "cx": 380,
+  "joints": {
+    "neck": [
+      380,
+      238
+    ],
+    "shoulder_left": [
+      380,
+      400
+    ],
+    "shoulder_right": [
+      380,
+      400
+    ],
+    "hip_left": [
+      380,
+      660
+    ],
+    "hip_right": [
+      380,
+      660
+    ]
+  },
+  "face": {
+    "brows": [
+      380,
+      200
+    ],
+    "eyes": [
+      380,
+      228
+    ],
+    "mouth": [
+      380,
+      168
+    ]
+  },
+  "pivot": {
+    "head": [
+      0.5,
+      0.5
+    ],
+    "torso": [
+      0.5,
+      0.5
+    ],
+    "upper_arm": [
+      0.5,
+      0.5
+    ],
+    "forearm": [
+      0.5,
+      0.5
+    ],
+    "thigh": [
+      0.5,
+      0.5
+    ],
+    "shin": [
+      0.5,
+      0.5
+    ]
+  },
+  "bone": {
+    "upper_arm": 0.1,
+    "forearm": 0.0,
+    "thigh": 0.1,
+    "shin": 0.0
+  },
+  "part_scale": {
+    "mouth": 0.42
+  },
+  "neck_raise": 0,
+  "torso_dy": -240,
+  "render_padding": 220,
+  "neck_stub": false,
+  "joint_caps": {
+    "shoulder": false,
+    "elbow": false,
+    "knee": false
+  },
+  "overlay_only": true
+}

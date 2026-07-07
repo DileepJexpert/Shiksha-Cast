@@ -1,0 +1,71 @@
+title: "50,000 Mein Paper? Sach Ki Kahani"
+story_id: social-paper-leak-hook
+fps: 24
+universe: social_universe
+tts_provider: veena
+default_voice: kavya
+background: public_office.png
+scale: 0.66
+description: "A fast fictional social-awareness short about paper leaks, bribery, and one student who chooses truth."
+cast:
+  ravi: student_hd
+  father: common_man_hd
+  journalist: journalist_hd
+  clerk: clerk_hd
+  officer: officer_hd
+voices:
+  ravi: agastya
+  father: vinaya
+  journalist: kavya
+  clerk: vinaya
+  officer: agastya
+scenes:
+  - id: s1_hook
+    banner: "50,000 Mein Paper?"
+    place:
+      ravi: left
+      father: right
+    dialogue:
+      - who: ravi
+        text: "Papa, kal exam hai. Aaj paper pachaas hazaar mein bik raha hai."
+      - who: father
+        text: "Beta, yeh sirf paper leak nahi. Yeh imandar bachchon ke sapno ki chori hai."
+
+  - id: s2_bribe
+    place:
+      clerk: left
+      ravi: right
+    dialogue:
+      - who: clerk
+        text: "Chup raho. System aise hi chalta hai."
+      - who: ravi
+        text: "Nahi sir. System galat ho sakta hai, par main chup nahi rahunga."
+
+  - id: s3_reporter
+    place:
+      ravi: left
+      journalist: right
+    dialogue:
+      - who: journalist
+        text: "Ravi, tumhare paas proof hai?"
+      - who: ravi
+        text: "Haan madam. Chat, payment number, aur file ki photo."
+
+  - id: s4_action
+    place:
+      journalist: left
+      officer: right
+    dialogue:
+      - who: officer
+        text: "Investigation abhi shuru hoti hai. Kisi ka future bikne nahi denge."
+      - who: journalist
+        text: "Sach bolne wala akela nahi hota. Public uske saath khadi hoti hai."
+
+  - id: s5_question
+    banner: "Aap kya karte?"
+    place:
+      ravi: left
+      officer: right
+    dialogue:
+      - who: ravi
+        text: "Agar aapko paper leak ka proof mile, aap chup rahenge ya awaaz uthayenge?"

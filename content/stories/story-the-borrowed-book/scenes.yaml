@@ -1,0 +1,134 @@
+episode: story-the-borrowed-book
+title: The Borrowed Book
+fps: 30
+cast:
+  story_father_hd: am_michael
+  story_young_hd: am_adam
+scenes:
+- id: s1
+  background: story_living_room.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: story_father_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.78
+    facing: right
+  - id: story_young_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.78
+    facing: left
+  actions:
+  - who: story_father_hd
+    do: talk
+    text: Ravi beta, come here for a minute.
+  - who: story_young_hd
+    do: talk
+    text: Yes papa, what happened?
+  - who: story_father_hd
+    do: talk
+    text: Last week you borrowed a book from your friend Aman. Have you returned it?
+  overlays:
+  - type: banner
+    text: The Borrowed Book
+    start: 0.0
+    end: 3.5
+    color: yellow
+- id: s2
+  background: story_living_room.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: story_young_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.78
+    facing: left
+  - id: story_father_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.78
+    facing: right
+  actions:
+  - who: story_young_hd
+    do: talk
+    text: Not yet papa. I forgot all about it. I will return it next week.
+  - who: story_father_hd
+    do: talk
+    text: Beta, when we borrow something, we must return it on time.
+  - who: story_father_hd
+    do: talk
+    text: Aman trusted you. If you keep his book too long, he may not trust you again.
+- id: s3
+  background: story_living_room.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: story_young_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.78
+    facing: left
+  - id: story_father_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.78
+    facing: right
+  actions:
+  - who: story_young_hd
+    do: talk
+    text: You are right, papa. I did not think about how Aman feels.
+  - who: story_young_hd
+    do: talk
+    text: I will go and return his book today itself.
+  - who: story_father_hd
+    do: talk
+    text: Very good, beta. That is the honest thing to do.
+- id: s4
+  background: story_living_room.png
+  transition:
+    in: 0.3
+    out: 0.3
+  characters:
+  - id: story_young_hd
+    pos:
+    - 0.7
+    - 0.99
+    scale: 0.78
+    facing: left
+  - id: story_father_hd
+    pos:
+    - 0.3
+    - 0.99
+    scale: 0.78
+    facing: right
+  actions:
+  - who: story_young_hd
+    do: talk
+    text: Papa, I returned the book and said sorry to Aman.
+  - who: story_young_hd
+    do: talk
+    text: He was so happy that he lent me another one!
+  - who: story_father_hd
+    do: talk
+    text: See beta? When we are honest and careful, people trust us even more.
+  - who: story_father_hd
+    do: talk
+    text: Always return what you borrow, on time. That is the mark of a good person.
+  overlays:
+  - type: banner
+    text: The next day
+    start: 0.0
+    end: 3.5
+    color: yellow

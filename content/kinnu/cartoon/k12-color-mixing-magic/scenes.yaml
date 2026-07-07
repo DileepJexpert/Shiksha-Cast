@@ -1,0 +1,174 @@
+episode: k12-color-mixing-magic
+title: Color Mixing Magic with Kinnu and Vibhu | Kids English Tutorial | Katixo
+fps: 30
+tts_speed: 0.82
+cast:
+  kinnu_hd: bf_emma
+  vibhu_sheet_hd: bm_george
+scenes:
+  - id: s1_hook
+    background: garden.png
+    transition: { in: 0.4, out: 0.3 }
+    camera: { zoom: [1.0, 1.04] }
+    characters:
+      - { id: kinnu_hd, pos: [0.22, 0.99], scale: 0.90, facing: right }
+      - { id: vibhu_sheet_hd, pos: [0.80, 0.99], scale: 0.76, facing: left }
+    props:
+      - { asset: balloon_red.png, pos: [0.48, 0.25], scale: 0.15, anim: float, start: 0.2 }
+      - { asset: balloon_yellow.png, pos: [0.62, 0.22], scale: 0.15, anim: float, start: 0.3 }
+      - { asset: balloon_blue.png, pos: [0.76, 0.26], scale: 0.15, anim: float, start: 0.4 }
+      - { asset: star.png, pos: [0.55, 0.56], scale: 0.10, anim: pop, start: 3.1 }
+    overlays:
+      - { type: banner, text: "Color Mixing Magic!", color: yellow, start: 0.0, end: 5.8 }
+      - { type: callout, text: "No boring board today!", pos: [0.56, 0.56], color: pink, start: 2.8, end: 5.8 }
+    actions:
+      - { who: kinnu_hd, do: wave, start: 0.0, end: 2.8 }
+      - { who: vibhu_sheet_hd, do: smile, start: 0.3, end: 5.4 }
+      - { who: kinnu_hd, do: talk, gesture: wave, text: "Hi friends. Today we will learn color mixing with balloons." }
+      - { who: vibhu_sheet_hd, do: talk, gesture: cheer, text: "Wow. Color magic!" }
+      - { who: kinnu_hd, do: talk, gesture: point_up, text: "When two colors come together, they can make a new color." }
+
+  - id: s2_primary_colors
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    camera: { zoom: [1.02, 1.00] }
+    characters:
+      - { id: kinnu_hd, pos: [0.20, 0.99], scale: 0.90, facing: right }
+      - { id: vibhu_sheet_hd, pos: [0.82, 0.99], scale: 0.76, facing: left }
+    props:
+      - { asset: balloon_red.png, pos: [0.43, 0.36], scale: 0.24, anim: float, start: 0.2 }
+      - { asset: balloon_yellow.png, pos: [0.58, 0.34], scale: 0.24, anim: float, start: 0.4 }
+      - { asset: balloon_blue.png, pos: [0.73, 0.36], scale: 0.24, anim: float, start: 0.6 }
+    overlays:
+      - { type: banner, text: "Three starter colors", color: blue, start: 0.0, end: 6.8 }
+      - { type: label, text: "Red   Yellow   Blue", pos: [0.58, 0.66], color: yellow, start: 1.0, end: 6.8 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.4, end: 5.8 }
+      - { who: vibhu_sheet_hd, do: think, start: 1.6, end: 4.8 }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "These are our starter colors. Red, yellow, and blue." }
+      - { who: vibhu_sheet_hd, do: talk, gesture: think, text: "Do they make more colors?" }
+      - { who: kinnu_hd, do: talk, gesture: smile, text: "Yes. Let us mix them slowly." }
+
+  - id: s3_red_yellow_orange
+    background: garden.png
+    transition: { in: 0.3, out: 0.3 }
+    camera: { zoom: [1.00, 1.05] }
+    characters:
+      - { id: kinnu_hd, pos: [0.21, 0.99], scale: 0.90, facing: right }
+      - { id: vibhu_sheet_hd, pos: [0.82, 0.99], scale: 0.76, facing: left }
+    props:
+      - { asset: balloon_red.png, pos: [0.45, 0.38], scale: 0.24, anim: float, start: 0.0, end: 5.1 }
+      - { asset: balloon_yellow.png, pos: [0.62, 0.38], scale: 0.24, anim: float, start: 0.0, end: 5.1 }
+      - { asset: balloon_orange.png, pos: [0.54, 0.40], scale: 0.36, anim: pop, start: 5.2 }
+      - { asset: star.png, pos: [0.70, 0.25], scale: 0.08, anim: pop, start: 5.4 }
+      - { asset: star.png, pos: [0.39, 0.26], scale: 0.07, anim: pop, start: 5.7 }
+    overlays:
+      - { type: label, text: "Red + Yellow", pos: [0.54, 0.19], color: white, start: 0.2, end: 5.1 }
+      - { type: banner, text: "Orange!", color: yellow, start: 5.2, end: 8.6 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.2 }
+      - { who: vibhu_sheet_hd, do: surprise, start: 5.0, end: 7.4 }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "First, red and yellow come close." }
+      - { who: kinnu_hd, do: talk, gesture: point_up, text: "Red plus yellow makes orange." }
+      - { who: vibhu_sheet_hd, do: talk, gesture: surprise, text: "Orange. Like a juicy orange fruit!" }
+
+  - id: s4_blue_yellow_green
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    camera: { zoom: [1.03, 1.00] }
+    characters:
+      - { id: kinnu_hd, pos: [0.21, 0.99], scale: 0.90, facing: right }
+      - { id: vibhu_sheet_hd, pos: [0.82, 0.99], scale: 0.76, facing: left }
+    props:
+      - { asset: balloon_blue.png, pos: [0.45, 0.38], scale: 0.24, anim: float, start: 0.0, end: 5.0 }
+      - { asset: balloon_yellow.png, pos: [0.62, 0.38], scale: 0.24, anim: float, start: 0.0, end: 5.0 }
+      - { asset: balloon_green.png, pos: [0.54, 0.40], scale: 0.36, anim: pop, start: 5.1 }
+      - { asset: heart.png, pos: [0.70, 0.26], scale: 0.08, anim: pop, start: 5.4 }
+    overlays:
+      - { type: label, text: "Blue + Yellow", pos: [0.54, 0.19], color: blue, start: 0.2, end: 5.0 }
+      - { type: banner, text: "Green!", color: green, start: 5.1, end: 8.8 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.2 }
+      - { who: vibhu_sheet_hd, do: clap, start: 5.0, end: 7.2 }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "Now, blue and yellow come together." }
+      - { who: kinnu_hd, do: talk, gesture: point_up, text: "Blue plus yellow makes green." }
+      - { who: vibhu_sheet_hd, do: talk, gesture: clap, text: "Green. Like leaves in a garden!" }
+
+  - id: s5_red_blue_purple
+    background: garden.png
+    transition: { in: 0.3, out: 0.3 }
+    camera: { zoom: [1.00, 1.04] }
+    characters:
+      - { id: kinnu_hd, pos: [0.21, 0.99], scale: 0.90, facing: right }
+      - { id: vibhu_sheet_hd, pos: [0.82, 0.99], scale: 0.76, facing: left }
+    props:
+      - { asset: balloon_red.png, pos: [0.45, 0.38], scale: 0.24, anim: float, start: 0.0, end: 5.0 }
+      - { asset: balloon_blue.png, pos: [0.62, 0.38], scale: 0.24, anim: float, start: 0.0, end: 5.0 }
+      - { asset: balloon_purple.png, pos: [0.54, 0.40], scale: 0.36, anim: pop, start: 5.1 }
+      - { asset: star.png, pos: [0.70, 0.27], scale: 0.08, anim: pop, start: 5.5 }
+    overlays:
+      - { type: label, text: "Red + Blue", pos: [0.54, 0.19], color: pink, start: 0.2, end: 5.0 }
+      - { type: banner, text: "Purple!", color: pink, start: 5.1, end: 8.7 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.2, end: 6.2 }
+      - { who: vibhu_sheet_hd, do: cheer, start: 5.0, end: 7.6 }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "Last mix. Red and blue meet each other." }
+      - { who: kinnu_hd, do: talk, gesture: point_up, text: "Red plus blue makes purple." }
+      - { who: vibhu_sheet_hd, do: talk, gesture: cheer, text: "Purple. That is my favorite one!" }
+
+  - id: s6_quick_game
+    background: playground.png
+    transition: { in: 0.3, out: 0.3 }
+    camera: { zoom: [1.02, 1.02] }
+    characters:
+      - { id: kinnu_hd, pos: [0.20, 0.99], scale: 0.90, facing: right }
+      - { id: vibhu_sheet_hd, pos: [0.80, 0.99], scale: 0.76, facing: left }
+    props:
+      - { asset: balloon_orange.png, pos: [0.46, 0.37], scale: 0.22, anim: pop, start: 2.3, end: 5.5 }
+      - { asset: balloon_green.png, pos: [0.58, 0.37], scale: 0.22, anim: pop, start: 5.7, end: 8.8 }
+      - { asset: balloon_purple.png, pos: [0.70, 0.37], scale: 0.22, anim: pop, start: 9.0 }
+    overlays:
+      - { type: banner, text: "Quick color game", color: blue, start: 0.0, end: 4.5 }
+      - { type: label, text: "Orange", pos: [0.46, 0.60], color: yellow, start: 2.3, end: 5.5 }
+      - { type: label, text: "Green", pos: [0.58, 0.60], color: white, start: 5.7, end: 8.8 }
+      - { type: label, text: "Purple", pos: [0.70, 0.60], color: pink, start: 9.0, end: 12.6 }
+    actions:
+      - { who: kinnu_hd, do: point, side: right, start: 0.4, end: 10.2 }
+      - { who: vibhu_sheet_hd, do: think, start: 1.0, end: 3.4 }
+      - { who: vibhu_sheet_hd, do: clap, start: 5.2, end: 7.4 }
+      - { who: vibhu_sheet_hd, do: cheer, start: 9.0, end: 11.4 }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "Game time. What does red plus yellow make?" }
+      - { who: vibhu_sheet_hd, do: talk, gesture: think, text: "Orange!" }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "What does blue plus yellow make?" }
+      - { who: vibhu_sheet_hd, do: talk, gesture: clap, text: "Green!" }
+      - { who: kinnu_hd, do: talk, gesture: point, text: "What does red plus blue make?" }
+      - { who: vibhu_sheet_hd, do: talk, gesture: cheer, text: "Purple!" }
+
+  - id: s7_recap
+    background: garden.png
+    transition: { in: 0.3, out: 0.5 }
+    camera: { zoom: [1.05, 1.00] }
+    characters:
+      - { id: kinnu_hd, pos: [0.23, 0.99], scale: 0.90, facing: right }
+      - { id: vibhu_sheet_hd, pos: [0.80, 0.99], scale: 0.76, facing: left }
+    props:
+      - { asset: balloon_red.png, pos: [0.42, 0.27], scale: 0.12, anim: float, start: 0.1 }
+      - { asset: balloon_yellow.png, pos: [0.52, 0.23], scale: 0.12, anim: float, start: 0.2 }
+      - { asset: balloon_blue.png, pos: [0.62, 0.27], scale: 0.12, anim: float, start: 0.3 }
+      - { asset: balloon_orange.png, pos: [0.48, 0.43], scale: 0.13, anim: float, start: 0.4 }
+      - { asset: balloon_green.png, pos: [0.58, 0.40], scale: 0.13, anim: float, start: 0.5 }
+      - { asset: balloon_purple.png, pos: [0.68, 0.43], scale: 0.13, anim: float, start: 0.6 }
+      - { asset: star.png, pos: [0.56, 0.60], scale: 0.11, anim: pop, start: 4.8 }
+    overlays:
+      - { type: banner, text: "Remember!", color: green, start: 0.0, end: 8.8 }
+      - { type: label, text: "Red+Yellow=Orange", pos: [0.56, 0.66], color: yellow, start: 1.0, end: 8.8 }
+      - { type: label, text: "Blue+Yellow=Green", pos: [0.56, 0.74], color: white, start: 2.5, end: 8.8 }
+      - { type: label, text: "Red+Blue=Purple", pos: [0.56, 0.82], color: pink, start: 4.0, end: 8.8 }
+    actions:
+      - { who: kinnu_hd, do: cheer, start: 0.2, end: 3.0 }
+      - { who: vibhu_sheet_hd, do: jump, start: 4.7, end: 6.1 }
+      - { who: kinnu_hd, do: talk, gesture: cheer, text: "Great job. Red plus yellow makes orange." }
+      - { who: kinnu_hd, do: talk, gesture: point_up, text: "Blue plus yellow makes green." }
+      - { who: kinnu_hd, do: talk, gesture: point_up, text: "Red plus blue makes purple." }
+      - { who: vibhu_sheet_hd, do: talk, gesture: cheer, text: "Try color mixing at home with crayons." }
+      - { who: kinnu_hd, do: talk, gesture: wave, text: "See you in the next lesson. A Katixo channel." }
